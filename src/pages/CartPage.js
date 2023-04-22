@@ -3,11 +3,11 @@ import { CartContext } from './contexts/CartProvider';
 
 const CartPage = ({ products }) => {
   const { items, totalPrice, removeItem } = useContext(CartContext);
-  console.log(items)
 
   const handleRemoveItem = (productId) => {
     removeItem(productId);
   };
+
   return (
     <div>
       <h1>Carrinho</h1>

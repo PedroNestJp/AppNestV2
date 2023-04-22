@@ -6,26 +6,36 @@ import ProductDetailsPage from './pages/ProductDetailsPage';
 import CartPage from './pages/CartPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
-import Navbar from './components/NavBar';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/ProfilePage'
+
 
 const App = () => {
   return (
     <Router>
-      <React.Fragment>
-        <AuthProvider>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/products/:id" element={<ProductDetailsPage />} />
-            <Route path="/cart" element={ <PrivateRoute> <CartPage /> </PrivateRoute>}/>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-          </Routes>
-        </AuthProvider>
-      </React.Fragment>
+      <Routes>
+      </Routes>
+      <AuthProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path='/profile' element={<ProfilePage />}></Route>
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute />
+            }>
+              <Route
+                path='/cart'
+                element={<CartPage />}
+              />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 };

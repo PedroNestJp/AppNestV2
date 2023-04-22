@@ -6,8 +6,16 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,6 +41,9 @@ const LoginPage = () => {
         <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
       </div>
       <button type="submit">Login</button>
+      <div> Ou se preferir :{' '}
+        <button onClick={handleGoogleLogin}>Sign in with Google</button>
+      </div>
     </form>
   );
 };
