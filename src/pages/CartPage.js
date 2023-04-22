@@ -1,11 +1,65 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { collection, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { CartContext } from './contexts/CartProvider';
+const { user } = auth();
 
-const CartPage = ({ products }) => {
-  const { items, totalPrice, removeItem } = useContext(CartContext);
+const CartPage = () => {
+  const { cartTotal, removeItem } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
 
-  const handleRemoveItem = (productId) => {
-    removeItem(productId);
+  useEffect(() => {
+    const cartCol = collection(db, 'carts');
+    const cartDoc = doc(cartCol, user.uid);
+    const unsubscribe = onSnapshot(cartDoc, (snapshot) => {
+      const data = snapshot.data();
+      const newItems = [];
+
+      data.items.forEach((item) => {
+        db.collection('products').doc(item.productId).get().then((doc) => {
+          const data = doc.data();
+          console.log(data)
+          newItems.push({
+            productId: doc.id,
+            title: data.title,
+            price: data.price,
+            quantity: item.quantity,
+          });
+          console.log(newItems)
+
+          if (newItems.length === data.items.length) {
+            setProducts(newItems);
+          }
+        });
+      });
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const handleRemoveItem = async (productId) => {
+    try {
+      const cartCol = collection(db, 'carts');
+      const cartDoc = doc(cartCol, auth.uid);
+      const snapshot = await cartDoc.get();
+
+      if (snapshot.exists()) {
+        const cart = snapshot.data();
+        const productIndex = cart.items.findIndex(
+          (item) => item.productId === productId
+        );
+
+        if (productIndex !== -1) {
+          cart.items.splice(productIndex, 1);
+          await updateDoc(cartDoc, cart);
+          removeItem(productId);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -22,12 +76,12 @@ const CartPage = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          {items.map(({ productId, quantity }) => (
+          {products.map(({ productId, title, price, quantity }) => (
             <tr key={productId}>
-              <td>{products.find((p) => p.id === productId).title}</td>
+              <td>{title}</td>
               <td>{quantity}</td>
-              <td>{products.find((p) => p.id === productId).price}</td>
-              <td>{products.find((p) => p.id === productId).price * quantity}</td>
+              <td>{price}</td>
+              <td>{price * quantity}</td>
               <td>
                 <button onClick={() => handleRemoveItem(productId)}>Remover</button>
               </td>
@@ -37,12 +91,11 @@ const CartPage = ({ products }) => {
         <tfoot>
           <tr>
             <td colSpan="3">Total</td>
-            <td>{totalPrice}</td>
+            <td>{cartTotal}</td>
           </tr>
         </tfoot>
       </table>
-    </div>
-  );
-};
+      </div>
+  )}
 
-export default CartPage;
+  export default CartPage

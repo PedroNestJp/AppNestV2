@@ -28,7 +28,7 @@ export default function CartProvider({ children }) {
     setCart([]);
   }
 
-  const cartTotal = cart.reduce(
+   const cartTotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );

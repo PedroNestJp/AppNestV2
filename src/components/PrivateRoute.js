@@ -1,14 +1,15 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../pages/contexts/AuthProvider';
+import CartPage from '../pages/CartPage';
 
-const PrivateRoute = ({ element: Component }) => {
-  const { currentUser } = useAuth();
+const PrivateRoute = ({ element: cartPage }) => {
+  const { user } = useAuth();
   let location = useLocation()
 
   return (
 
-      currentUser ? <Component /> : <Navigate to="/login" state={{ from: location }} />
+      user ? <CartPage /> : <Navigate to="/login" state={{ from: location }} />
     
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDoc, doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from './contexts/AuthProvider';
 
@@ -24,24 +24,21 @@ const ProductDetailsPage = () => {
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
-      const cartCol = doc(db, 'carts', user.uid);
-      const snapshot = await getDoc(cartCol);
+      const cartColRef = doc(db, 'carts', user.uid);
+      const snapshot = await getDoc(cartColRef);
+      const cart = snapshot.exists() ? snapshot.data() : { items: [] };
+
+      const productIndex = cart.items.findIndex((item) => item.productId === id);
+      if (productIndex !== -1) {
+        cart.items[productIndex].quantity++;
+      } else {
+        cart.items.push({ productId: id, quantity: 1 });
+      }
 
       if (snapshot.exists()) {
-        const cart = snapshot.data();
-        const productIndex = cart.items.findIndex(
-          (item) => item.productId === id
-        );
-
-        if (productIndex !== -1) {
-          cart.items[productIndex].quantity++;
-        } else {
-          cart.items.push({ productId: id, quantity: 1 });
-        }
-
-        await updateDoc(cartCol, cart);
+        await updateDoc(cartColRef, cart);
       } else {
-        await setDoc(cartCol, { items: [{ productId: id, quantity: 1 }] });
+        await setDoc(cartColRef, cart);
       }
     } catch (error) {
       console.error(error);
