@@ -9,11 +9,13 @@ import SignUpPage from './pages/SignUpPage';
 import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
 import ProfilePage from './pages/ProfilePage'
+import CartProvider from './pages/contexts/CartProvider';
 
 
 const App = () => {
   return (
     <Router>
+      <CartProvider>
       <Routes>
       </Routes>
       <AuthProvider>
@@ -36,6 +38,7 @@ const App = () => {
           </Route>
         </Routes>
       </AuthProvider>
+      </CartProvider>
     </Router>
   );
 };
