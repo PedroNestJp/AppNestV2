@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthProvider';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
+
 
 const SignUpPage = () => {
   const [name, setName] = useState('')
@@ -11,10 +12,30 @@ const SignUpPage = () => {
   const [error, setError] = useState('');
   const { signup } = useAuth();
   const navigate = useNavigate();
-
+  const user = auth.user
+  
+  useEffect(() => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      const userData = {
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        createdAt: new Date(),
+      };
+      setDoc(userRef, userData, { merge: true })
+        .then(() => {
+          console.log("User data saved to Firestore");
+        })
+        .catch((error) => {
+          console.error("Error saving user data to Firestore: ", error);
+        });
+    }
+  }, [user]);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     const usersCollection = collection(db, 'users');
     try {
       await addDoc(usersCollection, {
@@ -32,6 +53,7 @@ const SignUpPage = () => {
       navigate('/profile');
     } catch (error) {
       setError(error.message);
+      console.log('erro no segundo try')
     }
   };
 

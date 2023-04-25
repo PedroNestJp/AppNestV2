@@ -40,7 +40,7 @@ const ProductDetailsPage = () => {
     try {
       const favoritesRef = doc(db, 'users', user.uid, 'favorites', productId);
       await setDoc(favoritesRef, { addedAt: new Date() });
-      alert('Produto adicionado aos favoritos com sucesso!');
+      alert('Produto adicionado aos favoritos com sucesso ✅');
     } catch (error) {
       alert('Ocorreu um erro ao adicionar o produto aos favoritos: ' + error.message);
     }
@@ -68,6 +68,7 @@ const ProductDetailsPage = () => {
       } else {
         await setDoc(cartCol, { items: [{ productId: id, quantity: 1 }] });
       }
+      alert('Produto adicionado ao carrinho com sucesso ✅')
     } catch (error) {
       console.error(error);
     } finally {
