@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { CartContext } from './contexts/CartProvider';
+import { cart } from '../pages/contexts/CartProvider';
 
 const CartPage = ({ products }) => {
-  const { items, totalPrice, removeItem } = useContext(CartContext);
+  const { items, totalPrice, removeItem } = useContext(cart);
   console.log(items)
 
   const handleRemoveItem = (productId) => {

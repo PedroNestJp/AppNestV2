@@ -11,6 +11,7 @@ import Navbar from './components/NavBar';
 import ProfilePage from './pages/ProfilePage';
 import AddProductPage from './pages/admin/AddProducts';
 import AdminPage from './pages/admin/AdminPage';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -22,7 +23,14 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/products/:id" element={<ProductDetailsPage />} />
-            <Route path="/cart" element={ <PrivateRoute> <CartPage /> </PrivateRoute>}/>
+            <Route path="/cart">
+              <Route path='/cart'
+                      element={ 
+                      <PrivateRoute> 
+                          <CartPage />
+                        </PrivateRoute>}>
+              </Route>
+            </Route>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/addProduct" element={<AddProductPage />} />
@@ -30,6 +38,7 @@ const App = () => {
           </Routes>
         </AuthProvider>
       </React.Fragment>
+      <Footer/>
     </Router>
   );
 };
