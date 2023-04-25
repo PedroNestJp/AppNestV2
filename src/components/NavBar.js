@@ -12,9 +12,20 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         {user && (
-          <li>
-            <Link to="/cart">Carrinho</Link>
-          </li>
+          <>
+            <li>
+              <Link to="/cart">Carrinho</Link>
+            </li>
+            <li>
+              <Link to="/profile">Perfil</Link>
+            </li>
+            <li>
+              <Link to="/addProduct">AddProduct</Link>
+            </li>
+            <li>
+              <Link to="/admin">Admin Page</Link>
+            </li>
+          </>
         )}
         {!user && (
           <>

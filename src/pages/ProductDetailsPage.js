@@ -54,12 +54,12 @@ const ProductDetailsPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { title, price, imageUrl, desc } = product;
+  const { name, price, imageUrl, desc } = product;
 
   return (
     <div>
-      <img src={imageUrl} alt={title} />
-      <div>{title}</div>
+      <img width={150} src={imageUrl} alt={name}/>
+      <div>{name}</div>
       <div>{price}</div>
       <div>{desc}</div>
       <button onClick={handleAddToCart} disabled={isLoading}>

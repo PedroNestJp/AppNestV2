@@ -9,6 +9,8 @@ import SignUpPage from './pages/SignUpPage';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/NavBar';
 import ProfilePage from './pages/ProfilePage';
+import AddProductPage from './pages/admin/AddProducts';
+import AdminPage from './pages/admin/AdminPage';
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
             <Route path="/cart" element={ <PrivateRoute> <CartPage /> </PrivateRoute>}/>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/addProduct" element={<AddProductPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </AuthProvider>
       </React.Fragment>

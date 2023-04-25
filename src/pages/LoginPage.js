@@ -8,10 +8,10 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       await login(email, password);
       navigate('/profile');
@@ -19,7 +19,7 @@ const LoginPage = () => {
       setError(error.message);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>

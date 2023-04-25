@@ -3,7 +3,7 @@ import { useAuth } from './contexts/AuthProvider';
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
-
+console.log(user)
   return (
     <>
       <h1>Profile</h1>
