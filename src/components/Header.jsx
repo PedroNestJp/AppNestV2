@@ -1,16 +1,46 @@
-import React from 'react'
-import LoginPage from '../pages/LoginPage'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { auth } from '../firebase';
 
-function Header() {
+const Header = () => {
+  const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
+
   return (
-    <div className="header"> Header 
-        <ul>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/profile">Perfil</Link>
+        </li>
+        {isAdmin && (
+          <>
             <li>
-                <LoginPage/>
+              <Link to="/addProduct">AddProduct</Link>
             </li>
-        </ul>
-    </div>
-  )
-}
+            <li>
+              <Link to="/admin">Admin Page</Link>
+            </li>
+          </>
+        )}
+      </ul>
+      <ul>
+        {!auth.user && (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Cadastro</Link>
+            </li>
+          </>
+        )}
+        {auth.user && (
+          <li>
+            <button onClick={''}>Sair</button>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+};
 
-export default Header
+export default Header;

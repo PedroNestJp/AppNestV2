@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth} from "../firebase";
+import { auth } from "../firebase";
 
 function LoginPage() {
   // estado para armazenar informações do usuário logado
   const [user, setUser] = useState(null);
-  const [Email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
   // manipulador de eventos para fazer login do usuário com email e senha
   const handleSignIn = async (event) => {
     event.preventDefault();
-    const email = Email ;
+    const email = Email;
     const password = Password;
     try {
       const userCredentials = await signInWithEmailAndPassword(
@@ -20,7 +20,7 @@ function LoginPage() {
         password
       );
       setUser(userCredentials.user);
-      alert('Usuário logado com sucesso!')
+      alert("Usuário logado com sucesso!");
       console.log("Usuário logado com sucesso!");
     } catch (error) {
       console.error(error.message);
@@ -33,14 +33,12 @@ function LoginPage() {
     try {
       await signOut(auth);
       setUser(null);
-      alert("Usuário deslogado com sucesso!")
+      alert("Usuário deslogado com sucesso!");
       console.log("Usuário deslogado com sucesso!");
     } catch (error) {
       console.error(error.message);
     }
   };
-
-
 
   // efeito para monitorar o estado de autenticação do usuário
   useEffect(() => {
@@ -67,30 +65,28 @@ function LoginPage() {
         <div>
           <h2>Fazer Login</h2>
           <form onSubmit={handleSignIn}>
-            <label htmlFor="email" >Email:</label>
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
               value={Email}
-              onChange={(event) =>
-                setEmail(event.target.value)} />
+              onChange={(event) => setEmail(event.target.value)}
+            />
             <br />
             <label htmlFor="password">Senha:</label>
-            <input 
-              type="password" 
+            <input
+              type="password"
               id="password"
               value={Password}
-              onChange={(event) => setPassword(event.target.value)}  />
+              onChange={(event) => setPassword(event.target.value)}
+            />
             <br />
             <button type="submit">Entrar</button>
           </form>
         </div>
       )}
-      
     </div>
   );
 }
 
 export default LoginPage;
-
-

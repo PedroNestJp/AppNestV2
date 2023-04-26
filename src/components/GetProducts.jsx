@@ -18,7 +18,7 @@ function GetProducts() {
 
   return (
     <div>
-      <h1>All Products</h1>
+      <h1>Todos os Produtos</h1>
       <ul>
         {products.map((product) => (
           <li key={product.id}>
