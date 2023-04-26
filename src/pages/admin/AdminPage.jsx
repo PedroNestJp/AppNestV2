@@ -3,27 +3,27 @@ import { auth, db } from "../../firebase";
 import AddProduct from "./AddProducts";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
-async function createCartCollectionIfNotExists() {
-  const cartRef = collection(db, "carts");
+// async function createCartCollectionIfNotExists() {
+//   const cartRef = collection(db, "carts");
 
-  //Verifica se a coleção já existe
-  const cartSnapshot = await getDocs(cartRef);
-  if (!cartSnapshot.empty) {
-    return console.log(" A coleção já existe, não é necessário fazer nada");
-  }
+//   //Verifica se a coleção já existe
+//   const cartSnapshot = await getDocs(cartRef);
+//   if (!cartSnapshot.empty) {
+//     return console.log(" A coleção já existe, não é necessário fazer nada");
+//   }
 
-  //A coleção não existe, cria-a e adiciona um documento de exemplo
-  const exampleItem = {
-    name: "Exemplo de produto",
-    price: 10,
-    quantity: 1,
-  };
-  await setDoc(doc(db, "cart", "example-item"), exampleItem);
+//   //A coleção não existe, cria-a e adiciona um documento de exemplo
+//   const exampleItem = {
+//     name: "Exemplo de produto",
+//     price: 10,
+//     quantity: 1,
+//   };
+//   await setDoc(doc(db, "cart", "example-item"), exampleItem);
 
-  console.log("Coleção 'cart' criada com sucesso.");
-}
+//   console.log("Coleção 'cart' criada com sucesso.");
+// }
 
-createCartCollectionIfNotExists();
+// createCartCollectionIfNotExists();
 
 function AdminPage() {
   return (

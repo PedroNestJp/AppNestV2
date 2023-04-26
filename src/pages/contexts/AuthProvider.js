@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 import { auth } from '../../firebase';
+import {Navigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -22,8 +23,10 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const signup = async (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+    return (
+      createUserWithEmailAndPassword(auth, email, password),
+      <Navigate to="/" />
+  )};
 
   const login = async (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);

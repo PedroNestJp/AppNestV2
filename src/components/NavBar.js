@@ -1,24 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../pages/contexts/AuthProvider';
+import { auth } from '../firebase';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
 
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/profile">Perfil</Link>
         </li>
-        {user && (
+        {isAdmin && (
           <>
-            <li>
-              <Link to="/cart">Carrinho</Link>
-            </li>
-            <li>
-              <Link to="/profile">Perfil</Link>
-            </li>
             <li>
               <Link to="/addProduct">AddProduct</Link>
             </li>
@@ -27,6 +23,8 @@ const Navbar = () => {
             </li>
           </>
         )}
+      </ul>
+      <ul>
         {!user && (
           <>
             <li>
