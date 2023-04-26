@@ -17,7 +17,7 @@ const ProfilePage = () => {
   return (
     <>
       <h1>Profile</h1>
-      <div>Email: {auth.user.email}</div>
+      <div>Email: {auth.currentUser.email}</div>
       <p>
         {" "}
         Deseja alterar sua senha?{" "}

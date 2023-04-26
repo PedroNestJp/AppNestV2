@@ -11,6 +11,9 @@ const Header = () => {
         <li>
           <Link to="/profile">Perfil</Link>
         </li>
+        <li>
+          <Link to="/">Pagina Inicial</Link>
+        </li>
         {isAdmin && (
           <>
             <li>
