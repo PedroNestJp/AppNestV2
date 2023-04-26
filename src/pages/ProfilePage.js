@@ -1,23 +1,13 @@
 import React from 'react';
+import { useAuth } from './contexts/AuthProvider';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
-import { signOut } from 'firebase/auth';
-
-const Logout = async () => {
-  try {
-    await signOut(auth);
-    alert("Usuário deslogado com sucesso!");
-    console.log("Usuário deslogado com sucesso!");
-  } catch (error) {
-    console.error(error.message);
-  }
-};
 
 const ProfilePage = () => {
+  const { user, logout } = useAuth();
   return (
     <>
       <h1>Profile</h1>
-      <div>Email: {auth.currentUser.email}</div>
+      <div>Email: {user.email}</div>
       <p>
         {" "}
         Deseja alterar sua senha?{" "}
@@ -26,7 +16,7 @@ const ProfilePage = () => {
           <strong> Redefinir senha </strong>{" "}
         </Link>{" "}
       </p>
-      <button onClick={Logout}>Logout</button>
+      <button onClick={logout}>Logout</button>
     </>
   );
 };

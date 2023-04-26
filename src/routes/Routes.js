@@ -13,8 +13,8 @@ function AppRoutes() {
     <Router>
       <Header/>
         <Routes>
-            <Route path='/login' element={<LoginPage/>}/>
             <Route path='/' element={<HomePage/>} />
+            <Route path='/login' element={<LoginPage/>}/>
             <Route path='/products' element={<GetProducts/>} />
             <Route path='/addProduct' element={<AddProducts/>}/>
             <Route path='/admin' element={<AdminPage/>}/>
