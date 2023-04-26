@@ -17,7 +17,7 @@ function CartPage2() {
     });
     return unsubscribe;
   }, []);
-
+  
   useEffect(() => {
     let newTotal = 0;
     items.forEach((item) => {
@@ -25,7 +25,8 @@ function CartPage2() {
     });
     setTotal(newTotal);
   }, [items]);
-
+  
+  console.log(items)
   async function removeItem(id) {
     try {
       await deleteDoc(doc(db, "carts", id));
