@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
   const signup = async (email, password) => {
     return (
       createUserWithEmailAndPassword(auth, email, password),
-      <Navigate to="/" />
+      Navigate("/")
   )};
 
   const login = async (email, password) => {
@@ -33,7 +33,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    return signOut(auth);
+    await signOut(auth);
+    Navigate('/');
   };
 
   const value = {

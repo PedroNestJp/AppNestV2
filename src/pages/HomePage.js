@@ -20,8 +20,15 @@ const HomePage = () => {
 
   return (
     <div>
-      {products.map(({ id, title, price, imageUrl }) => (
-        <ProductCard key={id} id={id} name={title} price={price} imageUrl={imageUrl} />
+      {products.map(({ id, name, price, imageUrl, description }) => (
+        <ProductCard 
+          key={id} 
+          id={id} 
+          name={name} 
+          description={description} 
+          price={price} 
+          imageUrl={imageUrl} 
+          />
       ))}
     </div>
   );

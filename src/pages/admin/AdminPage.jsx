@@ -1,7 +1,6 @@
 import React from "react";
-import { auth, db } from "../../firebase";
+import { auth} from "../../firebase";
 import AddProduct from "./AddProducts";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 // async function createCartCollectionIfNotExists() {
 //   const cartRef = collection(db, "carts");

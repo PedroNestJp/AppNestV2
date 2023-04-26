@@ -13,6 +13,12 @@ const Navbar = () => {
         <li>
           <Link to="/profile">Perfil</Link>
         </li>
+        <li>
+          <Link to="/cart">Cart</Link>
+        </li>
+        <li>
+          <Link to="/"> Home </Link>
+        </li>
         {isAdmin && (
           <>
             <li>

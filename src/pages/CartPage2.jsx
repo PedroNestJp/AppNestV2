@@ -19,11 +19,11 @@ function CartPage2() {
   }, []);
 
   useEffect(() => {
-    let total = 0;
+    let newTotal = 0;
     items.forEach((item) => {
-      total += item.price * item.quantity;
+      newTotal += item.price * item.quantity;
     });
-    setTotal(total);
+    setTotal(newTotal);
   }, [items]);
 
   async function removeItem(id) {
@@ -58,7 +58,7 @@ function CartPage2() {
               <td>R$ {item.price}</td>
               <td>{item.imageUrl}</td>
               <td>{item.quantity}</td>
-              <td>R$ {(item.price && item.quantity) ? (item.price * item.quantity).toFixed(2) : ''}</td>
+              <td>R$ {item.price && item.quantity ? (item.price * item.quantity) : "-"}</td>
               <td>
                 <button onClick={() => removeItem(item.id)}>Remover</button>
               </td>
@@ -66,7 +66,7 @@ function CartPage2() {
           ))}
         </tbody>
       </table>
-      <p>Total: R$ {total.toFixed(2)}</p>
+      <p>Total: R$ {total}</p>
     </div>
   );
 }
