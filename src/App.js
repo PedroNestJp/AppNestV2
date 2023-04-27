@@ -29,9 +29,9 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/productEx" element={<ProductEx />} />
+          <Route path='/cart' element={<CartPage />} />
           {CurrentUser && CurrentUser.uid === process.env.REACT_APP_USER_ADMIN && (
             <>
-            <Route path='/cart' element={<CartPage />} />
               <Route path="/addProduct" element={<AddProductPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </>

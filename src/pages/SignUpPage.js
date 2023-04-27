@@ -4,16 +4,16 @@ import { useAuth } from './contexts/AuthProvider';
 import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
-
 const SignUpPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState('');
   const { signup } = useAuth();
   const navigate = useNavigate();
   const user = auth.currentUser
-  
+
   useEffect(() => {
     if (user) {
       const userRef = doc(db, "users", user.uid);
@@ -32,10 +32,14 @@ const SignUpPage = () => {
         });
     }
   }, [user]);
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     const usersCollection = collection(db, 'users');
     try {
       await addDoc(usersCollection, {
@@ -57,8 +61,6 @@ const SignUpPage = () => {
     }
   };
 
-
-
   return (
     <form onSubmit={handleSubmit}>
       <h1>Sign up</h1>
@@ -74,6 +76,10 @@ const SignUpPage = () => {
       <div>
         <label htmlFor="password">Password</label>
         <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+      </div>
+      <div>
+        <label>Confirm Password</label>
+        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
       </div>
       <button type="submit">Sign up</button>
     </form>

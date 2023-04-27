@@ -1,40 +1,33 @@
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { useFirestore } from "reactfire";
-import { auth } from "../firebase";
+import { doc, updateDoc } from "firebase/firestore";
+import { db, auth } from "../firebase";
 
+function ProductEx({ nome, preco, descricao, foto, id }) {
 
-function ProductEx({ name, price, desc, foto, id }) {
-  const firestore = useFirestore();
-
-  function AddToCart() {
+  const adicionarAoCarrinho = async () => {
     const user = auth.currentUser;
     if (!user) {
-      // usuário não autenticado
-      return;
+      return; // early return
     }
 
-    const produto = {
-      id,
-      name,
-      price,
-      desc,
-      foto
-    };
+    const product = { id, nome, preco, descricao };
+    const cartRef = doc(db, "carrinho", user.uid);
 
-    const cartRef = doc(firestore, "carrinho", user.uid);
-    updateDoc(cartRef, {
-      produtos: arrayUnion(produto)
-    });
+    try {
+      await updateDoc((db, product)); //await updateDoc
+    } catch (error) {
+      console.error(error); //log error to console
+    }
   }
 
   return (
     <div>
-      <h2>{name}</h2>
-      <p>{price}</p>
-      <p>{desc}</p>
-      <img src={foto} alt={name} />
-      <button onClick={AddToCart}>Adicionar ao carrinho</button>
+      <h2>{nome}</h2>
+      <p>{preco}</p>
+      <p>{descricao}</p>
+      <img src={''} alt={nome} />
+      <button onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
     </div>
   );
 }
-export default ProductEx
+
+export default ProductEx;
