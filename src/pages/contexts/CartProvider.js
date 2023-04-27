@@ -6,8 +6,8 @@ const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
 
   const addItem = (product) => {
-    const itemIndex = items.findIndex((item) => item.productId === product.id);
-
+    const itemIndex = items.findIndex((item) => item.id === product.id);
+console.log(itemIndex)
     if (itemIndex === -1) {
       setItems([...items, { ...product, quantity: product.quantity }]);
     } else {

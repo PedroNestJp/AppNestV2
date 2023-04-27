@@ -12,7 +12,7 @@ const SignUpPage = () => {
   const [error, setError] = useState('');
   const { signup } = useAuth();
   const navigate = useNavigate();
-  const user = auth.user
+  const user = auth.currentUser
   
   useEffect(() => {
     if (user) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 function CartPage2() {
@@ -8,16 +8,13 @@ function CartPage2() {
 
   useEffect(() => {
     const cartRef = collection(db, "carts");
-    const unsubscribe = onSnapshot(cartRef, (snapshot) => {
-      const items = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+    const unsubscribe = onSnapshot(cartRef, (querySnapshot) => {
+      const items = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setCartItems(items);
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
-  
+
   useEffect(() => {
     let newTotal = 0;
     items.forEach((item) => {
@@ -25,8 +22,7 @@ function CartPage2() {
     });
     setTotal(newTotal);
   }, [items]);
-  
-  console.log(items)
+
   async function removeItem(id) {
     try {
       await deleteDoc(doc(db, "carts", id));
@@ -38,15 +34,15 @@ function CartPage2() {
 
   return (
     <div>
-      <h1>Carrinho</h1>
+      <h2>Carrinho</h2>
       <table>
         <thead>
           <tr>
-            <th>Name </th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>imageUrl</th>
-            <th>Quantity</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Imagem</th>
+            <th>Quantidade</th>
             <th>Subtotal</th>
             <th>Ações</th>
           </tr>
@@ -54,7 +50,7 @@ function CartPage2() {
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <td>{item.name}</td>
+              <td>{item.description}</td>
               <td>{item.description}</td>
               <td>R$ {item.price}</td>
               <td>{item.imageUrl}</td>

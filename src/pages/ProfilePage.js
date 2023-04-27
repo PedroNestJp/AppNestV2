@@ -16,7 +16,7 @@ const ProfilePage = () => {
           <strong> Redefinir senha </strong>{" "}
         </Link>{" "}
       </p>
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout} > Sair </button>
     </>
   );
 };

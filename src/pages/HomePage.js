@@ -13,6 +13,7 @@ const HomePage = () => {
       const products = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setProducts(products);
     };
+    console.log(products)
     
 
     getProducts();
