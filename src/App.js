@@ -12,6 +12,7 @@ import AddProductPage from './pages/admin/AddProducts';
 import AdminPage from './pages/admin/AdminPage';
 import Footer from './components/Footer';
 import { auth } from './firebase';
+import ProductEx from './pages/ProductEx';
 
 const CurrentUser = auth.currentUser 
 
@@ -25,11 +26,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/products/:id" element={<ProductDetailsPage />} />
-          <Route path='/cart' element={<CartPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/productEx" element={<ProductEx />} />
           {CurrentUser && CurrentUser.uid === process.env.REACT_APP_USER_ADMIN && (
             <>
+            <Route path='/cart' element={<CartPage />} />
               <Route path="/addProduct" element={<AddProductPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </>
