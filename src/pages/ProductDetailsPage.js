@@ -55,18 +55,18 @@ const ProductDetailsPage = () => {
       if (snapshot.exists()) {
         const cart = snapshot.data();
         const productIndex = cart.items.findIndex(
-          (item) => item.productId === id
+          (item) => item.id === id
         );
 
         if (productIndex !== -1) {
           cart.items[productIndex].quantity++;
         } else {
-          cart.items.push({ productId: id, quantity: 1 });
+          cart.items.push({ id: id, quantity: 1 });
         }
 
         await updateDoc(cartCol, cart);
       } else {
-        await setDoc(cartCol, { items: [{ productId: id, quantity: 1 }] });
+        await setDoc(cartCol, { items: [{ id: id, quantity: 1 }] });
       }
       alert('Produto adicionado ao carrinho com sucesso ✅')
     } catch (error) {

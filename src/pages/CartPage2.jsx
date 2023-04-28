@@ -3,25 +3,17 @@ import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 function CartPage2() {
-  const [items, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    const cartRef = collection(db, "carts");
-    const unsubscribe = onSnapshot(cartRef, (querySnapshot) => {
-      const items = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setCartItems(items);
+  function handleQuantityChange(id, newQuantity) {
+    setCartItems((prevCartItems) => {
+      const updatedCartItems = prevCartItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      );
+      setTotal(updatedCartItems)
     });
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    let newTotal = 0;
-    items.forEach((item) => {
-      newTotal += item.price * item.quantity;
-    });
-    setTotal(newTotal);
-  }, [items]);
+  }
 
   async function removeItem(id) {
     try {
@@ -48,14 +40,21 @@ function CartPage2() {
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <td>{item.description}</td>
+          {cartItems.map((item) => (
+            <tr key={item.productId}>
+              <td>{item.name}</td>
               <td>{item.description}</td>
               <td>R$ {item.price}</td>
               <td>{item.imageUrl}</td>
-              <td>{item.quantity}</td>
-              <td>R$ {item.price && item.quantity ? (item.price * item.quantity) : "-"}</td>
+              <td>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) =>
+                    handleQuantityChange(item.productId, e.target.value)
+                  }
+                />
+              </td>
               <td>
                 <button onClick={() => removeItem(item.id)}>Remover</button>
               </td>

@@ -1,33 +1,22 @@
-import { doc, updateDoc } from "firebase/firestore";
-import { db, auth } from "../firebase";
+import React, { useState } from "react";
 
-function ProductEx({ nome, preco, descricao, foto, id }) {
-
-  const adicionarAoCarrinho = async () => {
-    const user = auth.currentUser;
-    if (!user) {
-      return; // early return
-    }
-
-    const product = { id, nome, preco, descricao };
-    const cartRef = doc(db, "carrinho", user.uid);
-
-    try {
-      await updateDoc((db, product)); //await updateDoc
-    } catch (error) {
-      console.error(error); //log error to console
-    }
+function Product({ id, name, description, price }) {
+  const [cartItems, setCartItems] = useState([]);
+  function handleAddToCart() {
+    setCartItems((prevCartItems) => [
+      ...prevCartItems,
+      { id, name, description, price, quantity: 1 },
+    ]);
   }
 
   return (
     <div>
-      <h2>{nome}</h2>
-      <p>{preco}</p>
-      <p>{descricao}</p>
-      <img src={''} alt={nome} />
-      <button onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
+      <h2>{id}</h2>
+      <h2>{name}</h2>
+      <p>{description}</p>
+      <p>{price}</p>
+      <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
     </div>
   );
 }
-
-export default ProductEx;
+export default Product
