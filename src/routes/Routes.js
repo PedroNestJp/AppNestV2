@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AuthProvider from '../pages/contexts/AuthProvider';
 import HomePage from '../pages/HomePage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
@@ -10,11 +10,8 @@ import Navbar from '../components/NavBar';
 import ProfilePage from '../pages/ProfilePage';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
-import { auth } from '../firebase';
 import Product from '../pages/ProductEx';
 import Footer from '../components/Footer';
-
-const CurrentUser = auth.currentUser
 
 function EdnPoints() {
     return (
@@ -29,12 +26,10 @@ function EdnPoints() {
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/product" element={<Product />} />
                     <Route path='/cart' element={<CartPage />} />
-                    {CurrentUser && CurrentUser.uid === process.env.REACT_APP_USER_ADMIN && (
-                        <>
-                            <Route path="/addProduct" element={<AddProductPage />} />
-                            <Route path="/admin" element={<AdminPage />} />
-                        </>
-                    )}
+
+                    <Route path="/addProduct" element={<AddProductPage />} />
+                    <Route path="/admin" element={<AdminPage />} />
+
                 </Routes>
                 <Footer />
             </AuthProvider>

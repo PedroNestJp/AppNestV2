@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from './contexts/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -6,12 +6,19 @@ const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!user) {
+      alert('Faça seu login para acessar o seu perfil')
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
   return (
     <>
       {user ? (
         <>
           <h1>Profile</h1>
-          <div>Email: {user.email}</div> {/* Removing unnecessary null check */}
+          <div>Email: {user.email}</div>
           <p>
             Deseja alterar sua senha?
             <Link to="/resetPassword">
@@ -22,7 +29,7 @@ const ProfilePage = () => {
         </>
       ) : (
         <>
-          {navigate('/login')}
+          <div>Faça o seu Login</div>
         </>
       )}
     </>

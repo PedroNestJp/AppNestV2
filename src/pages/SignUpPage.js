@@ -54,7 +54,7 @@ const SignUpPage = () => {
     }
     try {
       await signup(email, password);
-      navigate('/profile');
+      navigate('/');
     } catch (error) {
       setError(error.message);
       console.log('erro no segundo try')
@@ -75,7 +75,14 @@ const SignUpPage = () => {
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+        <input 
+        type="password" 
+        id="password" 
+        value={password} 
+        onChange={(event) => setPassword(event.target.value)} 
+        required
+        pattern=".{6,}"
+        title="A senha precisa ter pelo menos 6 caracteres" />
       </div>
       <div>
         <label>Confirm Password</label>
