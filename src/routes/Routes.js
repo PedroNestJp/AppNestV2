@@ -6,7 +6,7 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CartPage from '../pages/CartPage2';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
-import Navbar from '../components/NavBar';
+import Navbar from '../components/Header';
 import ProfilePage from '../pages/ProfilePage';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
