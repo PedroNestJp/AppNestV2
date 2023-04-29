@@ -25,9 +25,6 @@ const Navbar = () => {
         {isAdmin && (
           <>
             <li>
-              <Link to="/addProduct">AddProduct</Link>
-            </li>
-            <li>
               <Link to="/admin">Admin Page</Link>
             </li>
           </>

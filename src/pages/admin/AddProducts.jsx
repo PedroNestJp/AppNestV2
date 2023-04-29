@@ -51,7 +51,7 @@ function AddProduct() {
   return (
     <div>
       <h2>Add Products</h2>
-      {auth.currentUser.uid === process.env.REACT_APPN_USER_ADMI ? 
+      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN ? 
       <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Nome do produto:</label>

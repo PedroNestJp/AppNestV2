@@ -1,6 +1,7 @@
 import React from "react";
 import { auth} from "../../firebase";
 import AddProduct from "./AddProducts";
+import { Link } from "react-router-dom";
 
 // async function createCartCollectionIfNotExists() {
 //   const cartRef = collection(db, "carts");
@@ -29,7 +30,12 @@ function AdminPage() {
     <div className="main">
       <h1>Admin Page</h1>
       {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN ? (
-        <AddProduct />
+        <ul>
+          <li>
+          <Link to='/addProducts'> Add Products  </Link>
+          </li>
+        </ul>
+        
       ) : (
         "Sem Acesso"
       )}

@@ -27,7 +27,7 @@ function EdnPoints() {
                     <Route path="/product" element={<Product />} />
                     <Route path='/cart' element={<CartPage />} />
 
-                    <Route path="/addProduct" element={<AddProductPage />} />
+                    <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/admin" element={<AdminPage />} />
 
                 </Routes>
