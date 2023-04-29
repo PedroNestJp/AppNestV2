@@ -8,85 +8,95 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
-function CrudUsers() {
-  const [users, setUsers] = useState([]);
-  const [newUser, setNewUser] = useState({ name: "", email: "" });
-  const [updatingUser, setUpdatingUser] = useState(null);
+function Crudproducts() {
+  const [products, setProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "" });
+  const [updatingProduct, setUdatingProducts] = useState(null);
 
   useEffect(() => {
-    const getUsers = async () => {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      const usersFromFirestore = querySnapshot.docs.map((doc) => {
+    const getProducts = async () => {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const productsFromFirestore = querySnapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-      setUsers(usersFromFirestore);
+      setProducts(productsFromFirestore);
     };
-    getUsers();
+    getProducts();
   }, []);
 
-  const handleAddUser = async (e) => {
+  const handleAddProduct = async (e) => {
     e.preventDefault();
-    await addDoc(collection(db, "users"), newUser);
-    setUsers([...users, newUser]);
-    setNewUser({ name: "", email: "" });
+    await addDoc(collection(db, "products"), newProduct);
+    setProducts([...products, newProduct]);
+    setNewProduct({ name: "", description: "", price: "" });
   };
 
-  const handleUpdateUser = async (e) => {
+  const handleUpdateProduct = async (e) => {
     e.preventDefault();
-    await updateDoc(collection(db, "users"), updatingUser.id, updatingUser);
-    const updatedUsers = users.map((user) => {
-      if (user.id === updatingUser.id) {
-        return updatingUser;
+    await updateDoc(collection(db, "products"), updatingProduct.id, updatingProduct);
+    const updatedproducts = products.map((product) => {
+      if (product.id === updatingProduct.id) {
+        return updatingProduct;
       }
-      return user;
+      return product;
     });
-    setUsers(updatedUsers);
-    setUpdatingUser(null);
+    setProducts(updatedproducts);
+    setUdatingProducts(null);
   };
 
-  const handleDeleteUser = async (id) => {
-    await deleteDoc(collection(db, "users"), id);
-    const filteredUsers = users.filter((user) => user.id !== id);
-    setUsers(filteredUsers);
+  const handleDeleteProduct = async (id) => {
+    await deleteDoc(collection(db, "products"), id);
+    const filteredproducts = products.filter((product) => product.id !== id);
+    setProducts(filteredproducts);
   };
 
   return (
     <div>
-      <form onSubmit={handleAddUser}>
+      <form onSubmit={handleAddProduct}>
         {" "}
         <input
           type="text"
           placeholder="Name"
-          value={newUser.name}
-          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+          value={newProduct.name}
+          onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
         />
         <input
           type="text"
-          placeholder="Email"
-          value={newUser.email}
-          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+          placeholder="description"
+          value={newProduct.description}
+          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
         />
-        <button type="submit">Add User</button>
+        <input
+          type="price"
+          placeholder="Digite a Senha"
+          value={newProduct.price}
+          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+        />
+        <button type="submit">Add product</button>
       </form>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th>Email</th>
+            <th>description</th>
+            <th>price</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>{product.description}</td>
+              <td>{product.price}</td>
               <td>
-                <button onClick={() => setUpdatingUser(user)}>Edit</button>
-                <button onClick={() => handleDeleteUser(user.id)}>
+                <button onClick={() => setUdatingProducts(product)}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteProduct(product.id)}>
                   Delete
                 </button>
               </td>
@@ -94,22 +104,30 @@ function CrudUsers() {
           ))}
         </tbody>
       </table>
-      {updatingUser && (
-        <form onSubmit={handleUpdateUser}>
+      {updatingProduct && (
+        <form onSubmit={handleUpdateProduct}>
           <input
             type="text"
             placeholder="Name"
-            value={updatingUser.name}
+            value={updatingProduct.name}
             onChange={(e) =>
-              setUpdatingUser({ ...updatingUser, name: e.target.value })
+              setUdatingProducts({ ...updatingProduct, name: e.target.value })
             }
           />
           <input
             type="text"
-            placeholder="Email"
-            value={updatingUser.email}
+            placeholder="description"
+            value={updatingProduct.description}
             onChange={(e) =>
-              setUpdatingUser({ ...updatingUser, email: e.target.value })
+              setUdatingProducts({ ...updatingProduct, description: e.target.value })
+            }
+          />
+          <input
+            type="price"
+            placeholder="price"
+            value={updatingProduct.price}
+            onChange={(e) =>
+              setUdatingProducts({ ...updatingProduct, price: e.target.value })
             }
           />
           <button type="submit">Save Changes</button>
@@ -119,4 +137,4 @@ function CrudUsers() {
   );
 }
 
-export default CrudUsers;
+export default Crudproducts;

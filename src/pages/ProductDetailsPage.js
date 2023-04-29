@@ -28,6 +28,7 @@ const ProductDetailsPage = () => {
       setProduct(data);
     };
 
+
     getProduct();
   }, [id]);
 
@@ -49,24 +50,28 @@ const ProductDetailsPage = () => {
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
-      const cartCol = doc(db, 'carts', user.uid);
-      const snapshot = await getDoc(cartCol);
+      const cartDoc = doc(db, 'carts', user.uid);
+      const snapshot = await getDoc(cartDoc);
+
 
       if (snapshot.exists()) {
         const cart = snapshot.data();
         const productIndex = cart.items.findIndex(
           (item) => item.id === id
         );
+        console.log(cart, productIndex)
 
         if (productIndex !== -1) {
           cart.items[productIndex].quantity++;
+          console.log(productIndex)
         } else {
           cart.items.push({ id: id, quantity: 1 });
         }
 
-        await updateDoc(cartCol, cart);
+        await updateDoc(cartDoc, cart);
+        console.log(cart, cartDoc)
       } else {
-        await setDoc(cartCol, { items: [{ id: id, quantity: 1 }] });
+        await setDoc(cartDoc, { items: [{ id: id, quantity: 1 }] });
       }
       alert('Produto adicionado ao carrinho com sucesso ✅')
     } catch (error) {
@@ -80,22 +85,22 @@ const ProductDetailsPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, price, imageUrl, desc } = product;
+  const { name, price, imageUrl, description } = product;
 
   return (
     <div>
       <img width={150} src={imageUrl} alt={name} />
       <div>{name}</div>
+      <div>{description}</div>
       <div>{price}</div>
-      <div>{desc}</div>
-  {user && (
-    <div>
-      <button onClick={() => handleAddToFavorites(id)}>Adicionar aos favoritos</button>
-      <button onClick={handleAddToCart} disabled={isLoading}>Adicionar ao carrinho</button>
+      {user ? (
+        <div>
+          <button onClick={() => handleAddToFavorites(id)}>Adicionar aos favoritos</button>
+          <button onClick={handleAddToCart} disabled={isLoading}>Adicionar ao carrinho</button>
+        </div>
+      ) : ( ' Algo deu errado' )}
     </div>
-  )}
-</div>
-);
+  );
 };
 
 export default ProductDetailsPage;

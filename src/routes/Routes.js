@@ -13,6 +13,7 @@ import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
 import Footer from '../components/Footer';
 import CrudUsers from '../pages/admin/CRUD.Users';
+import FavoritesPage from '../pages/Favorites';
 
 function EdnPoints() {
     return (
@@ -27,6 +28,7 @@ function EdnPoints() {
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/product" element={<Product />} />
                     <Route path='/cart' element={<CartPage />} />
+                    <Route path='/favorites' element={<FavoritesPage />} />
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/crudUsers" element={<CrudUsers />} />

@@ -18,6 +18,11 @@ const ProfilePage = () => {
       {user ? (
         <>
           <h1>Profile</h1>
+          <ul>
+            <li>
+              <Link to='/favorites'> Favoritos </Link>
+            </li>
+          </ul>
           <div>Email: {user.email}</div>
           <p>
             Deseja alterar sua senha?

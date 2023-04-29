@@ -1,6 +1,5 @@
 import React from "react";
 import { auth} from "../../firebase";
-import AddProduct from "./AddProducts";
 import { Link } from "react-router-dom";
 
 // async function createCartCollectionIfNotExists() {
