@@ -12,6 +12,7 @@ import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
 import Footer from '../components/Footer';
+import CrudUsers from '../pages/admin/CRUD.Users';
 
 function EdnPoints() {
     return (
@@ -28,6 +29,7 @@ function EdnPoints() {
                     <Route path='/cart' element={<CartPage />} />
 
                     <Route path="/addProducts" element={<AddProductPage />} />
+                    <Route path="/crudUsers" element={<CrudUsers />} />
                     <Route path="/admin" element={<AdminPage />} />
 
                 </Routes>
