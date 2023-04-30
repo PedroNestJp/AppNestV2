@@ -7,6 +7,8 @@ function AddProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [OldPrice, setOldPrice] = useState("");
+  const [InstallmentPrice, setInstallmentPrice] = useState("");
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -14,6 +16,8 @@ function AddProduct() {
   const handleNameChange = (e) => setName(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
+  const handleOldPriceChange = (e) => setOldPrice(e.target.value);
+  const handleInstallmentPriceChange = (e) => setInstallmentPrice(e.target.value);
   const handleImageChange = (e) => setImage(e.target.files[0]);
   
   const handleSubmit = async (e) => {
@@ -30,6 +34,8 @@ function AddProduct() {
         name,
         description,
         price: Number(price),
+        OldPrice: Number(OldPrice),
+        InstallmentePrice: Number(InstallmentPrice),
         imageUrl,
       });
       console.log(docRef)
@@ -44,6 +50,8 @@ function AddProduct() {
     setName("");
     setDescription("");
     setPrice("");
+    setOldPrice("");
+    setInstallmentPrice("");
     setImage(null);
     setImageUrl(null);
   };
@@ -77,6 +85,24 @@ function AddProduct() {
           id="price"
           value={price}
           onChange={handlePriceChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="OldPrice">Preço:</label>
+        <input
+          type="number"
+          id="OldPrice"
+          value={OldPrice}
+          onChange={handleOldPriceChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="InstallmentPrice">Preço:</label>
+        <input
+          type="number"
+          id="InstallmentPrice"
+          value={InstallmentPrice}
+          onChange={handleInstallmentPriceChange }
         />
       </div>
       <div>

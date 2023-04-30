@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { getDoc, doc, updateDoc, setDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from './contexts/AuthProvider';
+import "../styles/ProductDetailsPage.css"
+import Cronometro from "../components/Contador"
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -88,19 +90,69 @@ const ProductDetailsPage = () => {
   const { name, price, imageUrl, description } = product;
 
   return (
-    <div>
-      <img width={150} src={imageUrl} alt={name} />
-      <div>{name}</div>
-      <div>{description}</div>
-      <div>{price}</div>
-      {user ? (
-        <div>
-          <button onClick={() => handleAddToFavorites(id)}>Adicionar aos favoritos</button>
-          <button onClick={handleAddToCart} disabled={isLoading}>Adicionar ao carrinho</button>
+    <div className="mainContentProduct">
+      <div className="containerProductFather">
+        <div className='containerProductChild1'>
+          <div className="imgProduct">
+            <img className="imgPrincipal" src={imageUrl} alt={name} />
+          </div>
+          {/* <span className='imgsProductsSub'>
+              <img id={name} src={imageUrl} alt={name} />
+              <img id={name} src={imageUrl} alt={name} />
+              <img id={name} src={imageUrl} alt={name} />
+            </span> */}
+          <div className="containerProductDesc">
+            <div className="promotionCall">
+              <Cronometro />
+              <div className='cardsPromo' >
+                <div className='offerDiscaunt'>
+                  <span> 2 </span>
+                  <span> Vendidos </span>
+                </div>
+                <div className='numberOfSales'>
+                  <span> 15% </span>
+                  <span> Desconto no pix </span>
+                </div>
+              </div>
+
+            </div>
+            <div className="descText" >{description}</div>
+            <div className="rating">
+              <div className='ratingStars'> ⭐⭐⭐⭐⭐ </div>
+              <div className='ratingText'> 2 avaliações </div>
+            </div>
+            <div className="hanking">
+              <button className='buttonTop10'>
+                TOP 10
+              </button>
+              <label> MAIS VENDIDOS</label>
+            </div>
+            <div className="value">
+              <span className="oldPriceNestPcOneSc"> DE R${'oldPrice'} POR: </span>
+              <span className="currentPriceProductScreen"> R${price} </span>
+              <span className=" installmentPriceProductScreen"> OU 12X DE R${'installmentPrice'} </span>
+              <span className="discountPix"> 10% de desconto no pix </span>
+            </div >
+          {user ? (
+            <div className="addCart">
+              <button className="addCartButton"
+                onClick={() => handleAddToFavorites(id)}>
+                Adicionar aos favoritos
+              </button>
+              <button className="addCartButton"
+                onClick={handleAddToCart}
+                disabled={isLoading}>
+                Adicionar ao carrinho
+              </button>
+            </div>
+          ) : (' Algo deu errado')}
+          </div>
         </div>
-      ) : ( ' Algo deu errado' )}
+      </div>
     </div>
   );
 };
 
 export default ProductDetailsPage;
+
+

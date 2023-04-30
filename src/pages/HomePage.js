@@ -17,7 +17,7 @@ const HomePage = () => {
     
 
     getProducts();
-  }, [products]);
+  }, []);
 
   return (
     <div>
