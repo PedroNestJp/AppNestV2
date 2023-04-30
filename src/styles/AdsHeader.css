@@ -1,0 +1,22 @@
+.adsDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    background-color: #000000;
+}
+
+.ads-log {
+
+    width: 100px;
+    height: 60px;
+}
+
+.ads-text{
+    width: 65px;
+    height: 45px;
+
+    font-weight: 900;
+    font-size: 24px;
+    color: #FFFFFF;
+}

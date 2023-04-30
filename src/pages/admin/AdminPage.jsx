@@ -34,7 +34,10 @@ function AdminPage() {
           <Link to='/addProducts'> Add Products  </Link>
           </li>
           <li>
-          <Link to='/crudUsers'> Crud Users  </Link>
+          <Link to='/CRUDProducts'> Crud Users  </Link>
+          </li>
+          <li>
+          <Link to='/addImage'> Add Image  </Link>
           </li>
         </ul>
         

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, doc, onSnapshot, getDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { db, auth } from "../firebase";
 
 const FavoritesPage = () => {

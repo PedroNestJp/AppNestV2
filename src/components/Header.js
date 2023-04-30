@@ -26,7 +26,7 @@ function Header () {
       <Link to='/'>
         <img
           className="logoNestHeaderHome"
-          src={''}
+          src={'https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2'}
           alt='logo'
         />
       </Link>

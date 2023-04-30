@@ -11,15 +11,20 @@ import ProfilePage from '../pages/ProfilePage';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
-import Footer from '../components/Footer';
-import CrudUsers from '../pages/admin/CRUD.Users';
+import {Footer, SubFooter} from '../components/Footer';
+import CRUDProducts from '../pages/admin/CRUD.Products';
 import FavoritesPage from '../pages/Favorites';
+import AddImage from '../pages/admin/AddImage';
+import { ContactLine1, ContactLine2 } from '../components/ContactLines';
+import AdsHeader from '../components/AdsHeader';
 
 function EdnPoints() {
     return (
         <div>
             <AuthProvider>
                 <Navbar />
+                <ContactLine1/>
+                <AdsHeader/>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/profile" element={<ProfilePage />} />
@@ -31,11 +36,14 @@ function EdnPoints() {
                     <Route path='/favorites' element={<FavoritesPage />} />
 
                     <Route path="/addProducts" element={<AddProductPage />} />
-                    <Route path="/crudUsers" element={<CrudUsers />} />
+                    <Route path="/CRUDProducts" element={<CRUDProducts />} />
+                    <Route path="/addImage" element={<AddImage />} />
                     <Route path="/admin" element={<AdminPage />} />
 
                 </Routes>
+                <ContactLine2/>
                 <Footer />
+                <SubFooter/>
             </AuthProvider>
         </div>
     )
