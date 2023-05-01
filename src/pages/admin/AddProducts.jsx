@@ -59,7 +59,7 @@ function AddProduct() {
   return (
     <div>
       <h2>Add Products</h2>
-      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN ? 
+      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? 
       <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Nome do produto:</label>
@@ -88,7 +88,7 @@ function AddProduct() {
         />
       </div>
       <div>
-        <label htmlFor="OldPrice">Preço:</label>
+        <label htmlFor="OldPrice">Old price:</label>
         <input
           type="number"
           id="OldPrice"
@@ -97,7 +97,7 @@ function AddProduct() {
         />
       </div>
       <div>
-        <label htmlFor="InstallmentPrice">Preço:</label>
+        <label htmlFor="InstallmentPrice">Installment Price:</label>
         <input
           type="number"
           id="InstallmentPrice"
@@ -123,7 +123,7 @@ function AddProduct() {
       {uploading ? "Enviando..." : "Adicionar Produto"}
       </button>
      
-    </form> : 'Sem Acesso'}
+    </form> : console.log(`sem acesso para ${auth.currentUser.uid}`) }
       
     </div>
   );

@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useAuth } from './contexts/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const isAdmin = 
+  auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? true  : null
 
   useEffect(() => {
     if (!user) {
@@ -15,17 +18,28 @@ const ProfilePage = () => {
 
   return (
     <>
+      { isAdmin ? (
+        <>
+          <h1> Olá {auth.currentUser.email}</h1>
+          <li>
+            <Link to='/admin' style={{color:'#f00'}} > Admin Page </Link>
+          </li>
+        </>
+      ) : ( console.log('no admin access')
+
+      )}
       {user ? (
         <>
           <h1>Profile</h1>
           <div>Email: {user.email}</div>
           <p>
             Deseja alterar sua senha?
-            <Link to="/resetPassword">
+            <Link to="/resetPassword" style={{color:'#f00'}}>
               <strong>Redefinir senha</strong>
             </Link>
           </p>
-          <button onClick={logout}>Sair</button>
+          <p> nome : {user.displayName} </p>
+          <button onClick={logout} >Sair</button>
         </>
       ) : (
         <>
@@ -33,7 +47,7 @@ const ProfilePage = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
 export default ProfilePage;

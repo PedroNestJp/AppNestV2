@@ -20,7 +20,6 @@ const AdsHeader = () => {
         <RiIcons.RiWhatsappFill alt="Chat do Whatsapp" className="icon-chat" />
       </Link>
     </span>
-    ;
   </div>
   )
 }

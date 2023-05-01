@@ -42,16 +42,14 @@ function Crudproducts() {
       setUploading(false);
     }
     alert("😎 Produto Adicionado com sucesso ✅");
-  };
+  };handleAddImage()
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
     setUploading(true);
     try {
       // Upload image to Firebase Storage
-      const imageRef = ref(storage, `images/${image.name}`);
-      await uploadBytes(imageRef, image);
-      const imageUrl = await getDownloadURL(imageRef);
+     handleAddImage()
       // Add new product to Firestore
       const docRef = await addDoc(collection(db, "products"), {
         name,

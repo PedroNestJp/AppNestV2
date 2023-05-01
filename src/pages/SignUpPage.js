@@ -19,7 +19,7 @@ const SignUpPage = () => {
       const userRef = doc(db, "users", user.uid);
       const userData = {
         email: user.email,
-        displayName: user.displayName,
+        name: user.displayName,
         photoURL: user.photoURL,
         createdAt: new Date(),
       };

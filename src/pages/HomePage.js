@@ -20,18 +20,41 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      {products.map(({ id, name, price, imageUrl, description }) => (
+    <section className="container-2" title="container-2" >
+      
+        <div 
+            id="hl" 
+            title="highlights" 
+            className="hl-text"
+            >  DESTAQUES 
+        </div>
+    <div className='highLightsBoxs' id='highlightsBoxs'>
+      {products.map(({ id, name, price, OldPrice, InstallmentePrice, imageUrl, description }) => (
+        <ProductCard 
+        key={id} 
+        id={id} 
+        name={name} 
+        description={description} 
+        OldPrice={OldPrice}
+        InstallmentPrice={InstallmentePrice}
+        price={price} 
+        imageUrl={imageUrl} 
+          />
+      ))}
+      {products.map(({ id, name, price, OldPrice, InstallmentePrice, imageUrl, description }) => (
         <ProductCard 
           key={id} 
           id={id} 
           name={name} 
           description={description} 
+          OldPrice={OldPrice}
+          InstallmentPrice={InstallmentePrice}
           price={price} 
           imageUrl={imageUrl} 
           />
       ))}
     </div>
+    </section>
   );
 };
 

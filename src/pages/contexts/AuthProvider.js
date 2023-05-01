@@ -4,7 +4,6 @@ import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndP
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
-
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -14,7 +13,6 @@ export const useAuth = () => {
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await signOut(auth);
-    navigate("/");
+    navigate("/login");
   };
 
   const value = {
