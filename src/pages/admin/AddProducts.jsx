@@ -7,8 +7,8 @@ function AddProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [OldPrice, setOldPrice] = useState("");
-  const [InstallmentPrice, setInstallmentPrice] = useState("");
+  const [oldPrice, setOldPrice] = useState("");
+  const [installmentPrice, setInstallmentPrice] = useState("");
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -34,8 +34,8 @@ function AddProduct() {
         name,
         description,
         price: Number(price),
-        OldPrice: Number(OldPrice),
-        InstallmentePrice: Number(InstallmentPrice),
+        oldPrice: Number(oldPrice),
+        installmentePrice: Number(installmentPrice),
         imageUrl,
       });
       console.log(docRef)
@@ -92,7 +92,7 @@ function AddProduct() {
         <input
           type="number"
           id="OldPrice"
-          value={OldPrice}
+          value={oldPrice}
           onChange={handleOldPriceChange}
         />
       </div>
@@ -101,7 +101,7 @@ function AddProduct() {
         <input
           type="number"
           id="InstallmentPrice"
-          value={InstallmentPrice}
+          value={installmentPrice}
           onChange={handleInstallmentPriceChange }
         />
       </div>
@@ -114,11 +114,11 @@ function AddProduct() {
           onChange={handleImageChange}
         />
       </div>
-      {imageUrl && (
-        <div className="imgProducts" >
-          <img   src={imageUrl}  alt="Product preview" />
+      {image ? (
+        <div className="imgProduct" >
+          <img  src={imageUrl}  alt="Product preview" />
         </div>
-      )}
+      ): null}
       <button type="submit" disabled={uploading}>
       {uploading ? "Enviando..." : "Adicionar Produto"}
       </button>

@@ -213,7 +213,7 @@ function Crudproducts() {
       )}
           <div>
       <h2>Add Products</h2>
-      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN ? 
+      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? 
       <form onSubmit={handleAddProduct}>
       <div>
         <label htmlFor="name">Nome do produto:</label>

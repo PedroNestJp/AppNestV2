@@ -31,6 +31,7 @@ function AddImage() {
     await handleAddImage();
   };
 
+
   return (
     <div>
       <h2>Add Products</h2>
@@ -46,9 +47,9 @@ function AddImage() {
             onChange={handleImageChange}
           />
         </div>
-        {imageUrl && (
-          <div className="imgProducts">
-            <img src={imageUrl} alt="Product preview" />
+        {image && (
+          <div className="imgProduct">
+            <div src={imageUrl} alt="Product preview" />
           </div>
         )}
         <button type="submit" disabled={uploading}>

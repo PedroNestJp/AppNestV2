@@ -25,7 +25,7 @@ export const SidebarData = [
   },
   {
     title: 'Destaques',
-    path: '/products',
+    path: '/',
     icon: <FaIcons.FaStar />,
     cName: 'nav-text'
   },

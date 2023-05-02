@@ -10,10 +10,10 @@ const Footer = () => {
                     <div className="institutional">
                         <p>Institutional</p>
                         <li>
-                            <Link className="texts-links-footer whoAreWe-footer ">Quem somos</Link>
+                            <Link className="texts-links-footer whoAreWe-footer " to='/aboutUs'>Quem somos</Link>
                         </li>
                         <li>
-                            <Link className="texts-links-footer termsFooter ">Termos e Condições de Venda</Link>
+                            <Link className="texts-links-footer termsFooter " to='/terms'>Termos e Condições de Venda</Link>
                         </li>
                         <li>
                             <Link className="texts-links-footer exchangeAndReturnPolicy-footer ">Política de Troca e Devoluções</Link>
@@ -52,7 +52,7 @@ const Footer = () => {
                             <Link className="texts-links-footer productHandling-footer">Manuseio do Produto</Link>
                         </li>
                         <li>
-                            <Link className="texts-links-footer contactUs-footer">Fale Conosco</Link>
+                            <Link target="blank" className="texts-links-footer contactUs-footer" to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'>Fale Conosco</Link>
                         </li>
                     </div>
 

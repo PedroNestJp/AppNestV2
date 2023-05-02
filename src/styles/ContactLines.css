@@ -1,7 +1,7 @@
 .contactsLine#contactsLineHome {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 10px;
   background: #211f1f;
 }
 
@@ -14,6 +14,8 @@
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  padding-top: 10px;
+
 
   background: #211f1f;
 }

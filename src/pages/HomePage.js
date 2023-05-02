@@ -35,7 +35,7 @@ const HomePage = () => {
         id={id} 
         name={name} 
         description={description} 
-        OldPrice={oldPrice}
+        oldPrice={oldPrice}
         installmentPrice={installmentPrice}
         price={price} 
         imageUrl={imageUrl} 

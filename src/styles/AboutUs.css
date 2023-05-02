@@ -1,0 +1,34 @@
+/* Definindo estilos para o cabeçalho */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Definindo estilos para as seções */
+  section {
+    margin-bottom: 2rem;
+  }
+  
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  section p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  
+  /* Definindo estilos para a lista de contatos */
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  

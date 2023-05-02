@@ -24,7 +24,7 @@ function Cronometro() {
   return (
     <div className='stopwatch'>
       <span className='offersEnd'>A oferta termina em:</span>
-      <span className='timeLeft'>1 DIA 5:{formataTempo(tempoRestante)} <img src={iconTime}/></span>
+      <span className='timeLeft'>1 DIA 5:{formataTempo(tempoRestante)} <img src={iconTime}/> </span>
     </div>
   )
 }

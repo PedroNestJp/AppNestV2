@@ -17,6 +17,8 @@ import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
 import { ContactLine1, ContactLine2 } from '../components/ContactLines';
 import AdsHeader from '../components/AdsHeader';
+import AboutUs from '../pages/AboutUs';
+import Terms from '../pages/Terms';
 
 function EdnPoints() {
     return (
@@ -34,6 +36,8 @@ function EdnPoints() {
                     <Route path="/product" element={<Product />} />
                     <Route path='/cart' element={<CartPage />} />
                     <Route path='/favorites' element={<FavoritesPage />} />
+                    <Route path='/aboutUs' element={<AboutUs />} />
+                    <Route path='/terms' element={<Terms />} />
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />
