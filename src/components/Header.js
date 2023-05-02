@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import { useAuth } from '../pages/contexts/AuthProvider';
-// import { auth } from '../firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../pages/contexts/AuthProvider';
+import { auth } from '../firebase';
 import * as BsIcons from 'react-icons/bs'
 import * as RxIcons from 'react-icons/rx'
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
 import Navbar from "./Navbar"
+const navigate = useNavigate
 
 
 function Header () {
-  // const { user, logout } = useAuth();
-  // const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
+  const { user, logout } = useAuth();
+  const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
   return (
     <div className="navbarhome">
 
@@ -53,7 +54,7 @@ function Header () {
       </div>
 
       <div className="areaProfile">
-
+        {user && (
         <Link
           to='/profile'
           alt="iconProfile"
@@ -61,6 +62,8 @@ function Header () {
         >
           <BsIcons.BsPersonCircle />
         </Link>
+
+        )}
         <span
           className="text-profile-home">
           Faça seu{' '}

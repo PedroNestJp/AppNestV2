@@ -48,15 +48,17 @@ const FavoritesPage = () => {
       <h1>Meus Favoritos</h1>
       <ul>
         {favorites.map((favorite) => (
-            <>
+          <>
             <li key={favorite.id}> {favorite.id} </li>
             <li key={favorite.id}> {favorite.name} </li>
             <li key={favorite.id}> {favorite.description} </li>
+            <li key={favorite.id}> {favorite.pldPrice} </li>
             <li key={favorite.id}> {favorite.price} </li>
+            <li key={favorite.id}> {favorite.installmentPrice} </li>
             <button onClick={() => handleRemoveFavorite(favorite.id)}>
               Remover dos favoritos
             </button>
-            </>
+          </>
         ))}
       </ul>
     </div>

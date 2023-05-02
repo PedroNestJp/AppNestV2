@@ -42,14 +42,16 @@ function Crudproducts() {
       setUploading(false);
     }
     alert("😎 Produto Adicionado com sucesso ✅");
-  };handleAddImage()
+  }
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
     setUploading(true);
     try {
       // Upload image to Firebase Storage
-     handleAddImage()
+      const imageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(imageRef, image);
+      const imageUrl = await getDownloadURL(imageRef);
       // Add new product to Firestore
       const docRef = await addDoc(collection(db, "products"), {
         name,
@@ -154,6 +156,7 @@ function Crudproducts() {
           <tr>
             <th>Name</th>
             <th>description</th>
+            <th>price</th>
             <th>price</th>
             <th>Actions</th>
           </tr>

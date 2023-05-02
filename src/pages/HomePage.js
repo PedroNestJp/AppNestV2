@@ -29,28 +29,16 @@ const HomePage = () => {
             >  DESTAQUES 
         </div>
     <div className='highLightsBoxs' id='highlightsBoxs'>
-      {products.map(({ id, name, price, OldPrice, InstallmentePrice, imageUrl, description }) => (
+      {products.map(({ id, name, price, oldPrice, installmentPrice, imageUrl, description }) => (
         <ProductCard 
         key={id} 
         id={id} 
         name={name} 
         description={description} 
-        OldPrice={OldPrice}
-        InstallmentPrice={InstallmentePrice}
+        OldPrice={oldPrice}
+        installmentPrice={installmentPrice}
         price={price} 
         imageUrl={imageUrl} 
-          />
-      ))}
-      {products.map(({ id, name, price, OldPrice, InstallmentePrice, imageUrl, description }) => (
-        <ProductCard 
-          key={id} 
-          id={id} 
-          name={name} 
-          description={description} 
-          OldPrice={OldPrice}
-          InstallmentPrice={InstallmentePrice}
-          price={price} 
-          imageUrl={imageUrl} 
           />
       ))}
     </div>
