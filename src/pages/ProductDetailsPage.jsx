@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { useAuth } from './contexts/AuthProvider';
 import "../styles/ProductDetailsPage.css"
 import Cronometro from "../components/Contador"
+import { Carousel } from 'react-responsive-carousel';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -96,11 +97,13 @@ const ProductDetailsPage = () => {
           <div className="imgProduct">
             <img className="imgPrincipal" src={imageUrl} alt={name} />
           </div>
-          {/* <span className='imgsProductsSub'>
+          <Carousel showArrows infiniteLoop slidesToShow={3}>
+           <span className='imgsProductsSub'>
               <img id={name} src={imageUrl} alt={name} />
               <img id={name} src={imageUrl} alt={name} />
               <img id={name} src={imageUrl} alt={name} />
-            </span> */}
+            </span> 
+            </Carousel >
           <div className="containerProductDesc">
             <div className="promotionCall">
               <Cronometro />

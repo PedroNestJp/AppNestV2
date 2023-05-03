@@ -38,7 +38,6 @@ function AddProduct() {
         installmentePrice: Number(installmentPrice),
         imageUrl,
       });
-      console.log(docRef)
     } catch (error) {
       console.error(error);
       alert("🦓 Ocorreu um erro ao adicionar o produto, verifique o log.");
@@ -123,7 +122,7 @@ function AddProduct() {
       {uploading ? "Enviando..." : "Adicionar Produto"}
       </button>
      
-    </form> : console.log(`sem acesso para ${auth.currentUser.uid}`) }
+    </form> : console.log(`sem acesso para ${auth.currentUser}`) }
       
     </div>
   );
