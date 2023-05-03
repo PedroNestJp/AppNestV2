@@ -52,7 +52,7 @@ function Header () {
       </div>
 
       <div className="areaProfile">
-        {user && (
+        {user ? (
         <Link
           to='/profile'
           alt="iconProfile"
@@ -61,7 +61,14 @@ function Header () {
           <BsIcons.BsPersonCircle />
         </Link>
 
-        )}
+        ) : (
+          <Link
+            to={null}
+            alt="iconProfile"
+            className="iconProfileHome"
+          >
+            <BsIcons.BsPersonCircle />
+          </Link>)}
         <span
           className="text-profile-home">
           Faça seu{' '}

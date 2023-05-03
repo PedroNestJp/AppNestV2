@@ -19,6 +19,7 @@ import { ContactLine1, ContactLine2 } from '../components/ContactLines';
 import AdsHeader from '../components/AdsHeader';
 import AboutUs from '../pages/AboutUs';
 import Terms from '../pages/Terms';
+import Carrosel from '../components/Carrosel';
 
 function EdnPoints() {
     return (
@@ -38,6 +39,7 @@ function EdnPoints() {
                     <Route path='/favorites' element={<FavoritesPage />} />
                     <Route path='/aboutUs' element={<AboutUs />} />
                     <Route path='/terms' element={<Terms />} />
+                    <Route path='/carrosel' element={<Carrosel/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />

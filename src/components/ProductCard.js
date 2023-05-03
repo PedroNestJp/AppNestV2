@@ -9,12 +9,12 @@ ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, descript
   return (
     <div className="hl-1 styleBox">
       <Link
-        to='/login'
+        to='/favorites'
         className="favoriteIcon"
         alt="Icone Favoitos">
         <BsIcons.BsHeartFill />
       </Link>
-      <Link to='/nestpcGamer_1'>
+      <Link to='/'>
         <img className="img-hl-1" src={imageUrl} alt={name} />
       </Link>
       <span>{name}</span>

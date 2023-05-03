@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import ProductCard from '../components/ProductCard';
 import { collection, getDocs } from "firebase/firestore";
+import '../styles/Home.css'
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -20,6 +21,7 @@ const HomePage = () => {
   }, []);
 
   return (
+    <>
     <section className="container-2" title="container-2" >
       
         <div 
@@ -28,21 +30,17 @@ const HomePage = () => {
             className="hl-text"
             >  DESTAQUES 
         </div>
-    <div className='highLightsBoxs' id='highlightsBoxs'>
-      {products.map(({ id, name, price, oldPrice, installmentPrice, imageUrl, description }) => (
-        <ProductCard 
-        key={id} 
-        id={id} 
-        name={name} 
-        description={description} 
-        oldPrice={oldPrice}
-        installmentPrice={installmentPrice}
-        price={price} 
-        imageUrl={imageUrl} 
-          />
-      ))}
-    </div>
+        <div className='highLightsBoxs' id='highlightsBoxs'>
+                  {products.map(({ id, ...product }) => (
+                    <ProductCard
+                        key={id}
+                        id={id}
+                        {...product}
+                    />
+                  ))}
+              </div>
     </section>
+    </>
   );
 };
 
