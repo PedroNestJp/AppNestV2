@@ -7,7 +7,7 @@ import * as RxIcons from 'react-icons/rx'
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
-import Navbar from "./Navbar"
+import Navbar from "./NavBar"
 
 function Header () {
   const { user } = useAuth();

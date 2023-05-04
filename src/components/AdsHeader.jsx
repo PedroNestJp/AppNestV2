@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import * as RiIcons from 'react-icons/ri'
 import '../styles/AdsHeader.css'
+import {CarroselAds} from "./Carrosel";
 
 
 const AdsHeader = () => {
     return(
   <div>
     <section className="adsDiv">
-      <h1 className="ads-text "> ADS </h1>
-      <Link to='/'><img className="ads-log" src={'https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2'} alt="logo da Nest" /></Link>
-      <h1 className="ads-text "> ADS </h1>
+<CarroselAds/>
     </section>
     <span className="chatWhatsapp">
       <Link

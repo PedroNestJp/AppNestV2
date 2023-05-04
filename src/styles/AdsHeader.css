@@ -1,8 +1,5 @@
 .adsDiv{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 10px;
+    margin-top: 62px;
     background-color: #000000;
 }
 

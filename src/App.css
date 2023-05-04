@@ -4,9 +4,16 @@
   box-sizing: border-box;
 }
 
-.carousel {
+.carousel *{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.carouselAds {
   display: flex;
   justify-content: center;
+  max-height: 200px;
 }
 
 .carousel .slide {
@@ -24,6 +31,9 @@
 }
 
 .carousel .control-dots .dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
     transition: opacity .25s ease-in;
     opacity: .3;
     filter: alpha(opacity=30);

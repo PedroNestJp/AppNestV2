@@ -19,14 +19,14 @@ import { ContactLine1, ContactLine2 } from '../components/ContactLines';
 import AdsHeader from '../components/AdsHeader';
 import AboutUs from '../pages/AboutUs';
 import Terms from '../pages/Terms';
-import Carrosel from '../components/Carrosel';
+import {Carrosel} from '../components/Carrosel';
 
 function EdnPoints() {
     return (
         <div>
             <AuthProvider>
                 <Navbar />
-                <ContactLine1/>
+                {/* <ContactLine1/> */}
                 <AdsHeader/>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
