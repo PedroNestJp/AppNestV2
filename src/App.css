@@ -4,21 +4,20 @@
   box-sizing: border-box;
 }
 
-.carousel *{
+.carousel * {
   display: flex;
-  flex-direction: row;
 
-}
+} 
 
 .carouselAds {
   display: flex;
   justify-content: center;
-  max-height: 200px;
+  max-height: 15rem
 }
 
 .carousel .slide {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .carousel .slide img {
@@ -26,48 +25,56 @@
   width: auto;
 }
 
-.image{
-    width: 300px;
+.image {
+  width: 300px;
+}
+
+.carousel .control-dots{
+  display: flex;
+justify-content: center;
 }
 
 .carousel .control-dots .dot {
   display: flex;
   align-items: center;
   justify-content: center;
-    transition: opacity .25s ease-in;
-    opacity: .3;
-    filter: alpha(opacity=30);
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.9);
-    background: #f00;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 8px;
+  transition: opacity 0.25s ease-in;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  background: #f00;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 8px;
 }
 
-.carousel .thumb.selected, .carousel .thumb:hover {
-    border: 3px solid #ff0000;
+.carousel .thumb.selected,
+.carousel .thumb:hover {
+  border: 3px solid #ff0000;
 }
 
 .carousel.carousel-slider .control-arrow {
-    top: 0;
-    background-color: silver;
-    font-size: 26px;
-    bottom: 0;
-    margin-top: 0;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  background-color: rgb(48, 48, 48);
+  font-size: 26px;
+  bottom: 0;
+  margin-top: 0;
+  padding: 5px;
 }
 
 .carousel .carousel-status {
-    display: flex;
-    position: absolute;
-    top: 0;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.9);
-    color: #fff;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    font-size: 15px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  font-size: 15px;
 }

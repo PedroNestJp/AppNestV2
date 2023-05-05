@@ -7,7 +7,7 @@ import * as RxIcons from 'react-icons/rx'
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
-import Navbar from "./NavBar"
+import Navbar from "./Navbar"
 
 function Header () {
   const { user } = useAuth();
@@ -116,6 +116,7 @@ function Header () {
           </Link>
         </span>
         <span >
+          
           <Link
             to='/favorites'
             className="favoriteIconNav"

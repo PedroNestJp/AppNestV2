@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-container{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 20px;
+    height: 620px;
+ 
+
+    background: #FFFFFF;
+    border-radius: 5px;
+
+}
+
+.title#loginScTitle{
+
+    margin: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    color: #E20100;
+    text-align: -webkit-center;
+    text-align: -webkit-center;
+}
+
+.inputsLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.email,.senha{
+    width: 370px;
+    height: 45px;
+    padding-left: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    outline: #E20100;
+}
+
+input::placeholder, .email, .senha{
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    
+    color: rgba(226, 1, 0, 0.6);
+}
+.enter{
+    margin-top: 20px;
+    background: #E20100;
+}
+
+.enter, .register{
+    cursor: pointer;
+    width: 370px;
+    height: 45px;
+    border-radius: 5px;
+    border: 1px solid #E20100;
+}
+
+
+.enter-text,.register-text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.lineLogin{
+    margin: 20px;
+    width: 360px;
+    height: 1px;
+    background-color: #000000;
+}
+
+.forgotPassword{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    
+    color: #E20100;
+}
+
+span.text-loginSocial{
+    text-align: -webkit-center;
+}
+
+.login-gg, .login-fb{
+    cursor: pointer;
+    width: 173px;
+    height: 45px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    margin: 10px;
+}
+
+.login-fb{
+
+    border: 1px solid #609CCE;
+
+}
+
+.login-gg{
+
+    border: 1px solid #E20100;
+
+}
+
+.fb-text, .gg-text{
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+
+}
+
+.fb-text{
+
+    color: #0A61B1;
+
+}
+
+.gg-text{
+
+    color: #E20100;
+
+}
+
+.loginOrLine{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.line1, .line2{
+
+    width: 160px;
+    height: 1px;
+    background-color: #000000;
+    margin: 5px;
+
+}
+
+.span4{
+
+    text-align: -webkit-center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    color: #E20100;
+    
+}
+
+.register{
+    background: #E20100;
+}
