@@ -3,15 +3,134 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthProvider";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import '../styles/Register.css'
+import "../styles/Register.css";
 
-const SignUpPage = () => {
+// const SignUpPage = () => {
+// const [fullName, setFullName] = useState("");
+// const [cpf, setCpf] = useState("");
+// const [dateOfBirth, setBirthDate] = useState("");
+// const [email, setEmail] = useState("");
+// const [password, setPassword] = useState("");
+// const [cellPhone, setCell] = useState("");
+// const [confirmPassword, setConfirmPassword] = useState("");
+// const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
+// const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
+// const [error, setError] = useState("");
+// const { signup } = useAuth();
+// const navigate = useNavigate();
+// const user = auth.currentUser;
+
+// useEffect(() => {
+//   if (user) {
+//     const userRef = doc(db, "users", user.uid);
+//     const userData = {
+//       email: user.email,
+//       name: user.displayName,
+//       cellPhone: user.phoneNumber,
+//       photoURL: user.photoURL,
+//       createdAt: new Date(),
+//     };
+//     setDoc(userRef, userData, { merge: true })
+//       .then(() => {
+//         console.log("User data saved to Firestore");
+//       })
+//       .catch((error) => {
+//         console.error("Error saving user data to Firestore: ", error);
+//       });
+//   }
+// }, [user]);
+
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+//   if (password !== confirmPassword) {
+//     setError("Passwords do not match");
+//     return;
+//   }
+
+//   const usersCollection = collection(db, "users");
+//   try {
+//     await addDoc(usersCollection, {
+//       fullName,
+//       cpf,
+//       cellPhone,
+//       email,
+//       password,
+//       dateOfBirth,
+//       acceptTermOne,
+//       acceptTermTwo,
+//     });
+//     alert("Usuário registrado com sucesso!");
+//   } catch (error) {
+//     console.error("Erro ao registrar usuário: ", error);
+//     alert("Ocorreu um erro ao registrar o usuário: " + error.message);
+//   }
+//   try {
+//     await signup(email, password, fullName, cpf, cellPhone);
+//     navigate("/");
+//   } catch (error) {
+//     setError(error.message);
+//     console.log("erro no segundo try");
+//   }
+
+//   return (
+//     <form >
+//       <h1>Sign up</h1>
+//       {error && <div>{error}</div>}
+//       <div>
+//         <label>
+//           Nome completo:
+//           <input
+//             type="text"
+//             value={fullName}
+//             onChange={(event) => setFullName(event.target.value)}
+//           />
+//         </label>
+//         <label htmlFor="email">Email</label>
+//         <input
+//           type="email"
+//           id="email"
+//           value={email}
+//           onChange={(event) => setEmail(event.target.value)}
+//           required
+//         />
+//       </div>
+//       <div>
+//         <label htmlFor="password">Senha</label>
+//         <input
+//           type="password"
+//           id="password"
+//           value={password}
+//           onChange={(event) => setPassword(event.target.value)}
+//           required
+//           pattern=".{6,}"
+//           title="A senha precisa ter pelo menos 6 caracteres"
+//         />
+//       </div>
+//       <div>
+//         <label>Confirme a Senha</label>
+//         <input
+//           type="password"
+//           value={confirmPassword}
+//           onChange={(e) => setConfirmPassword(e.target.value)}
+//           required
+//         />
+//       </div>
+//       <button type="submit">Cadastrar</button>
+//     </form>
+//   );
+// };
+
+// export { SignUpPage };
+
+const RegisterComponents = () => {
   const [fullName, setFullName] = useState("");
   const [cpf, setCpf] = useState("");
   const [dateOfBirth, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
+  const [cellPhone, setCellPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [cellPhone, setCell] = useState("");
+  const [address, setAddress] = useState("");
+  const [typePerson, setTypePerson] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
   const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
@@ -24,9 +143,15 @@ const SignUpPage = () => {
     if (user) {
       const userRef = doc(db, "users", user.uid);
       const userData = {
-        email: user.email,
-        name: user.displayName,
-        cellPhone: user.phoneNumber,
+        address: address,
+        fullName: fullName,
+        cpf: cpf,
+        cellPhone: cellPhone,
+        email: email,
+        password: password,
+        dateOfBirth: dateOfBirth,
+        acceptTermOne: acceptTermOne,
+        acceptTermTwo: acceptTermTwo,
         photoURL: user.photoURL,
         createdAt: new Date(),
       };
@@ -50,6 +175,7 @@ const SignUpPage = () => {
     const usersCollection = collection(db, "users");
     try {
       await addDoc(usersCollection, {
+        address,
         fullName,
         cpf,
         cellPhone,
@@ -65,92 +191,23 @@ const SignUpPage = () => {
       alert("Ocorreu um erro ao registrar o usuário: " + error.message);
     }
     try {
-      await signup(email, password, fullName, cpf, cellPhone);
+      await signup(
+        email,
+        password,
+        fullName,
+        cpf,
+        cellPhone,
+        address,
+        typePerson,
+        dateOfBirth,
+        acceptTermOne,
+        acceptTermTwo
+      );
       navigate("/");
     } catch (error) {
       setError(error.message);
       console.log("erro no segundo try");
     }
-  };
-
-  return (
-    <form >
-      <h1>Sign up</h1>
-      {error && <div>{error}</div>}
-      <div>
-        <label>
-          Nome completo:
-          <input
-            type="text"
-            value={fullName}
-            onChange={(event) => setFullName(event.target.value)}
-          />
-        </label>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-          pattern=".{6,}"
-          title="A senha precisa ter pelo menos 6 caracteres"
-        />
-      </div>
-      <div>
-        <label>Confirme a Senha</label>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Cadastrar</button>
-    </form>
-  );
-};
-
-export { SignUpPage };
-
-const RegisterComponents = () => {
-  const [fullName, setFullName] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [dateOfBirth, setBirthDate] = useState("");
-  const [email, setEmail] = useState("");
-  const [cellPhone, setCell] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRePassword] = useState("");
-  const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
-  const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
-
-  useEffect(() => {
-    registerUser();
-  }, []);
-
-  const registerUser = async (event) => {
-    // event.preventDefault()
-    const user = {
-      fullName: fullName,
-      cpf: cpf,
-      dateOfBirth: dateOfBirth,
-      email: email,
-      cellPhone: cellPhone,
-      password: password,
-      repeatPassword: repeatPassword,
-      acceptTermOne: acceptTermOne,
-      acceptTermTwo: acceptTermTwo,
-    };
   };
 
   return (
@@ -166,13 +223,17 @@ const RegisterComponents = () => {
               id="circlePPerson"
               type="radio"
               defaultChecked
+              value={typePerson}
+              onChange={(event) => setTypePerson(event.target.value)}
             />
             <div className="legalPerson"> PESSOA JURÍDICA </div>
+            <Link to='/'>
             <input
               className="circleLegalPerson"
               id="circleLegalPerson"
               type="radio"
             />
+            </Link>
           </div>
 
           <section className="inputs">
@@ -191,17 +252,19 @@ const RegisterComponents = () => {
               type="number"
               name="cpf"
               id="cpf"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{2}"
               value={cpf}
               onChange={(event) => setCpf(event.target.value)}
             />
             <input
               className="input-birthDate inputsRegister"
               placeholder="Data de Nascimento*:"
-              type="text"
+              type="date"
               name="birthDate"
               id="input-birthDate"
+              pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
               value={dateOfBirth}
-              onChange={() => setBirthDate()}
+              onChange={(event) => setBirthDate(event.target.value)}
             />
             <input
               className="input-tell inputsRegister"
@@ -210,7 +273,7 @@ const RegisterComponents = () => {
               name="Tell"
               id="input-tell"
               value={cellPhone}
-              onChange={(event) => setCell(event.target.value)}
+              onChange={(event) => setCellPhone(event.target.value)}
             />
             <input
               className="input-email inputsRegister"
@@ -222,11 +285,22 @@ const RegisterComponents = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
+              className="input-address inputsRegister"
+              placeholder="address*:"
+              type="text"
+              name="address"
+              id="address"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
+            />
+            <input
               className="input-password inputsRegister"
               placeholder="password*:"
               type="password"
               name="password"
               id="password"
+              pattern=".{6,}"
+              title="A senha precisa ter pelo menos 6 caracteres"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
@@ -236,8 +310,8 @@ const RegisterComponents = () => {
               type="password"
               name="repeatPassword"
               id="repeatPassword"
-              value={repeatPassword}
-              onChange={(event) => setRePassword(event.target.value)}
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
             />
             <h3 className="required-field"> (*) Campos obrigatórios </h3>
           </section>
@@ -273,16 +347,13 @@ const RegisterComponents = () => {
           </section>
 
           <div className="btnCreateAccount">
-            <Link to="/user/create">
-              <button
-                className="creat-account"
-                type="submit"
-                name="btnCreateAccount"
-                onClick={(e) => registerUser(e)}
-              >
-                <span className="creat-account-text"> CRIAR CONTA </span>
-              </button>
-            </Link>
+            <button
+              className="creat-account"
+              type="submit"
+              name="btnCreateAccount"
+            >
+              <span className="creat-account-text"> CRIAR CONTA </span>
+            </button>
           </div>
         </div>
       </form>

@@ -122,6 +122,7 @@
     "input-cpf input-birthDate"
     " input-tell email"
     "input-email input-email"
+    "input-address input-address"
     "input-password input-repeatPassword";
     
 }
@@ -132,6 +133,7 @@
         "input-name"
         "inputCpf"
         "input-birthDate"
+        "input-address"
         "input-tell"
         "input-email"
         "input-password"
