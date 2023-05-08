@@ -8,6 +8,8 @@ import CarouselHome, { Carrosel } from '../components/Carrosel';
 import imgIntelType from '../assets/buyByPlatform/buyByPlatform-img-intel.png'
 import imgAmdType from '../assets/buyByPlatform/buyByPlatform-img-amd.png'
 import { imgBbdHardware, imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from '../img/imgs';
+import ProductCard from '../components/ProductCard';
+import { Carousel } from 'react-responsive-carousel';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -92,15 +94,17 @@ const HomePage = () => {
             className="hl-text"
             >  DESTAQUES 
         </div>
-        {/* <div className='highLightsBoxs' id='highlightsBoxs'>
+         <div className='highLightsBoxs' id='highlightsBoxs'>
+             <Carousel showArrows={true} slideToShow={3} infiniteLoop>
                   {products.map(({ id, ...product }) => (
                     <ProductCard
                         key={id}
                         id={id}
                         {...product}
                     />
-                  ))}
-              </div>  */}
+                    ))}
+                    </Carousel>  
+              </div> 
         <Carrosel/>
     </section>
     <section className='buyByPlatform' id='buyByPlatformHome'>

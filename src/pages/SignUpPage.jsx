@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthProvider';
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./contexts/AuthProvider";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import '../styles/Register.css'
 
 const SignUpPage = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [dateOfBirth, setBirthDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cellPhone, setCell] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState('');
+  const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
+  const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
+  const [error, setError] = useState("");
   const { signup } = useAuth();
   const navigate = useNavigate();
-  const user = auth.currentUser
+  const user = auth.currentUser;
 
   useEffect(() => {
     if (user) {
@@ -20,6 +26,7 @@ const SignUpPage = () => {
       const userData = {
         email: user.email,
         name: user.displayName,
+        cellPhone: user.phoneNumber,
         photoURL: user.photoURL,
         createdAt: new Date(),
       };
@@ -40,57 +47,247 @@ const SignUpPage = () => {
       return;
     }
 
-    const usersCollection = collection(db, 'users');
+    const usersCollection = collection(db, "users");
     try {
       await addDoc(usersCollection, {
-        name,
+        fullName,
+        cpf,
+        cellPhone,
         email,
         password,
+        dateOfBirth,
+        acceptTermOne,
+        acceptTermTwo,
       });
-      alert('Usuário registrado com sucesso!');
+      alert("Usuário registrado com sucesso!");
     } catch (error) {
-      console.error('Erro ao registrar usuário: ', error);
-      alert('Ocorreu um erro ao registrar o usuário: ' + error.message);
+      console.error("Erro ao registrar usuário: ", error);
+      alert("Ocorreu um erro ao registrar o usuário: " + error.message);
     }
     try {
-      await signup(email, password);
-      navigate('/');
+      await signup(email, password, fullName, cpf, cellPhone);
+      navigate("/");
     } catch (error) {
       setError(error.message);
-      console.log('erro no segundo try')
+      console.log("erro no segundo try");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form >
       <h1>Sign up</h1>
       {error && <div>{error}</div>}
       <div>
         <label>
-          Nome:
-          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
+          Nome completo:
+          <input
+            type="text"
+            value={fullName}
+            onChange={(event) => setFullName(event.target.value)}
+          />
         </label>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
-        <input 
-        type="password" 
-        id="password" 
-        value={password} 
-        onChange={(event) => setPassword(event.target.value)} 
-        required
-        pattern=".{6,}"
-        title="A senha precisa ter pelo menos 6 caracteres" />
+        <label htmlFor="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+          pattern=".{6,}"
+          title="A senha precisa ter pelo menos 6 caracteres"
+        />
       </div>
       <div>
-        <label>Confirm Password</label>
-        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+        <label>Confirme a Senha</label>
+        <input
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
       </div>
-      <button type="submit">Sign up</button>
+      <button type="submit">Cadastrar</button>
     </form>
   );
 };
 
-export default SignUpPage;
+export { SignUpPage };
+
+const RegisterComponents = () => {
+  const [fullName, setFullName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [dateOfBirth, setBirthDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [cellPhone, setCell] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRePassword] = useState("");
+  const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
+  const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
+
+  useEffect(() => {
+    registerUser();
+  }, []);
+
+  const registerUser = async (event) => {
+    // event.preventDefault()
+    const user = {
+      fullName: fullName,
+      cpf: cpf,
+      dateOfBirth: dateOfBirth,
+      email: email,
+      cellPhone: cellPhone,
+      password: password,
+      repeatPassword: repeatPassword,
+      acceptTermOne: acceptTermOne,
+      acceptTermTwo: acceptTermTwo,
+    };
+  };
+
+  return (
+    <main className="main">
+      <form onSubmit={handleSubmit}>
+        <div className="content">
+          <h1 className="title"> CRIAR CONTA </h1>
+
+          <div className="typePerson">
+            <div className="physicalPerson"> PESSOA FÍSICA </div>
+            <input
+              className="circlePPerson"
+              id="circlePPerson"
+              type="radio"
+              defaultChecked
+            />
+            <div className="legalPerson"> PESSOA JURÍDICA </div>
+            <input
+              className="circleLegalPerson"
+              id="circleLegalPerson"
+              type="radio"
+            />
+          </div>
+
+          <section className="inputs">
+            <input
+              className="input-name inputsRegister"
+              placeholder="Nome completo*:"
+              type="text"
+              name="fullName"
+              id="fullName"
+              value={fullName}
+              onChange={(event) => setFullName(event.target.value)}
+            />
+            <input
+              className="input-cpf inputsRegister"
+              placeholder="CPF*:"
+              type="number"
+              name="cpf"
+              id="cpf"
+              value={cpf}
+              onChange={(event) => setCpf(event.target.value)}
+            />
+            <input
+              className="input-birthDate inputsRegister"
+              placeholder="Data de Nascimento*:"
+              type="text"
+              name="birthDate"
+              id="input-birthDate"
+              value={dateOfBirth}
+              onChange={() => setBirthDate()}
+            />
+            <input
+              className="input-tell inputsRegister"
+              placeholder="cellPhone*:"
+              type="number"
+              name="Tell"
+              id="input-tell"
+              value={cellPhone}
+              onChange={(event) => setCell(event.target.value)}
+            />
+            <input
+              className="input-email inputsRegister"
+              placeholder="E-mail*:"
+              type="text"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <input
+              className="input-password inputsRegister"
+              placeholder="password*:"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <input
+              className="input-repeatPassword inputsRegister"
+              placeholder="Repetir password*:"
+              type="password"
+              name="repeatPassword"
+              id="repeatPassword"
+              value={repeatPassword}
+              onChange={(event) => setRePassword(event.target.value)}
+            />
+            <h3 className="required-field"> (*) Campos obrigatórios </h3>
+          </section>
+        </div>
+
+        <div className="termsBtnRegister">
+          <section className="terms">
+            <div className="term">
+              <input
+                className="acceptTermsInput1"
+                type="checkbox"
+                value={acceptTermOne}
+                onChange={(event) => setAcceptTermOne(event.target.value)}
+                required
+              />
+              <h2 className="accept-terms-1">
+                Quero receber ofertas e novidades por e-mail, SMS ou WhatsApp
+              </h2>
+            </div>
+            <div className="term2">
+              <input
+                className="acceptTermsInput2"
+                type="checkbox"
+                value={acceptTermTwo}
+                onChange={(event) => setAcceptTermTwo(event.target.value)}
+                required
+              />
+              <h2 className="accept-terms-2">
+                Li e estou de acordo com as políticas da empresa e políticas de
+                privacidade.*
+              </h2>
+            </div>
+          </section>
+
+          <div className="btnCreateAccount">
+            <Link to="/user/create">
+              <button
+                className="creat-account"
+                type="submit"
+                name="btnCreateAccount"
+                onClick={(e) => registerUser(e)}
+              >
+                <span className="creat-account-text"> CRIAR CONTA </span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </form>
+    </main>
+  );
+};
+
+export default RegisterComponents;

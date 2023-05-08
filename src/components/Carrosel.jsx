@@ -25,7 +25,7 @@ const Carrosel = () => {
   return (
     <section className="container-2" title="container-2">
       <div className="highLightsBoxs" id="highlightsBoxs">
-        <Carousel showArrows infiniteLoop slidesToShow={5}  showThumbs={false}>
+      <Carousel showArrows infiniteLoop   showThumbs={false}>
           {Array(Math.ceil(products.length / 2))
             .fill()
             .map((_, i) => (
@@ -79,7 +79,7 @@ const CarroselAds = () => {
           alt=""
         />
       </div>
-      <div>d
+      <div>
         <img
           max-height={200}
           src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fintel-core-i9-10900kf.jpg?alt=media&token=2fa2bb15-eeb5-400f-88c0-9b6f039d4533"
