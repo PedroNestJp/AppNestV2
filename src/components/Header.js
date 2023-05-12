@@ -7,9 +7,9 @@ import * as RxIcons from 'react-icons/rx'
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
-import Navbar from "./Navbar"
+import Navbar from "./NavBar"
 
-function Header () {
+function Header() {
   const { user } = useAuth();
   // const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
   return (
@@ -53,13 +53,13 @@ function Header () {
 
       <div className="areaProfile">
         {user ? (
-        <Link
-          to='/profile'
-          alt="iconProfile"
-          className="iconProfileHome"
-        >
-          <BsIcons.BsPersonCircle />
-        </Link>
+          <Link
+            to='/profile'
+            alt="iconProfile"
+            className="iconProfileHome"
+          >
+            <BsIcons.BsPersonCircle />
+          </Link>
 
         ) : (
           <Link
@@ -116,7 +116,7 @@ function Header () {
           </Link>
         </span>
         <span >
-          
+
           <Link
             to='/favorites'
             className="favoriteIconNav"

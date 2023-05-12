@@ -53,7 +53,7 @@ const ProductDetailsPage = () => {
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
-      const cartDoc = doc(db, 'carts', user.uid);
+      const cartDoc = doc(db, 'cart', user.uid);
       const snapshot = await getDoc(cartDoc);
 
 
