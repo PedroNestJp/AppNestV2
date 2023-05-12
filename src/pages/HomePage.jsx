@@ -138,7 +138,7 @@ const HomePage = () => {
               src="../assets/pcs.png"
               alt=""
             />
-            <span className="bbd-text bbd-text-1"> PCS COMPLETOS </span>
+            <span className="bbd-text bbd-text-1"> PCS </span>
           </div>
 
           <div className="bbd-2 styleBox-bbd">
