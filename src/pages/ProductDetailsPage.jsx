@@ -97,13 +97,10 @@ const ProductDetailsPage = () => {
           <div className="imgProduct">
             <img className="imgPrincipal" src={imageUrl} alt={name} />
           </div>
-          <Carousel showArrows infiniteLoop slidesToShow={3}>
-           <span className='imgsProductsSub'>
+           {/* <span className='imgsProductsSub'>
               <img id={name} src={imageUrl} alt={name} />
-              <img id={name} src={imageUrl} alt={name} />
-              <img id={name} src={imageUrl} alt={name} />
-            </span> 
-            </Carousel >
+            </span>  */}
+
           <div className="containerProductDesc">
             <div className="promotionCall">
               <Cronometro />

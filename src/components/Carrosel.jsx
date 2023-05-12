@@ -99,7 +99,11 @@ const CarroselAds = () => {
 
 const CarouselHome = () => {
   return (
-    <Carousel>
+    <Carousel
+    showArrows
+    infiniteLoop
+    autoPlay
+    slidesToShow={3}>
       <ProductCard />
     </Carousel>
   );
