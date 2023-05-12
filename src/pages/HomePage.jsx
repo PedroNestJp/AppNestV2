@@ -125,7 +125,16 @@ const HomePage = () => {
       <section className="container-3" id="container-3" title="container-3">
         <div className="bs-text"> MAIS VENDIDOS </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carrosel />
+        <Carousel
+            showArrows={true}
+            showThumbs={false}
+            
+            infiniteLoop
+          >
+            {products.map(({ id, ...product }) => (
+              <ProductCard key={id} id={id} {...product} />
+            ))}
+          </Carousel>
       </section>
       <section className="departments" id="departmentsHome">
         <div className="departmentsText"> 🗄DEPARTAMENTOS </div>

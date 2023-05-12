@@ -95,11 +95,13 @@ const ProductDetailsPage = () => {
       <div className="containerProductFather">
         <div className='containerProductChild1'>
           <div className="imgProduct">
-            <img className="imgPrincipal" src={imageUrl} alt={name} />
-          </div>
            {/* <span className='imgsProductsSub'>
               <img id={name} src={imageUrl} alt={name} />
-            </span>  */}
+              <img id={name} src={imageUrl} alt={name} />
+              <img id={name} src={imageUrl} alt={name} />
+            </span>   */}
+            <img className="imgPrincipal" src={imageUrl} alt={name} />
+          </div>
 
           <div className="containerProductDesc">
             <div className="promotionCall">
