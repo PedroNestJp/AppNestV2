@@ -63,16 +63,13 @@ input:hover {
 
 .icon-lupa {
   cursor: pointer;
-  width: 35px;
-  height: 35px;
+  color: #ffffff;
 }
 
 .areaProfile {
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
-  
-
 }
 
 .text-profile-home {

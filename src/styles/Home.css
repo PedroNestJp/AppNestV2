@@ -117,7 +117,6 @@ a#textTypePc{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    white-space: nowrap;
 }
 
 .highLightsBoxs{
@@ -258,6 +257,7 @@ a{
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
+
     }
 
 }
@@ -273,6 +273,7 @@ a{
 
 }
 
+
 .divPlatformAmd, .divPlatformIntel{
 
     display: flex;
@@ -282,14 +283,14 @@ a{
 
 }
 .text-buy-by-platform{
-
+    
     text-align: -webkit-center;
     font-style: normal;
     font-weight: 900;
     font-size: 20px;
     line-height: 30px;
     color: #FF0101;
-
+    
 }
 
 .text-platform-amd, .text-platform-intel{
@@ -297,6 +298,14 @@ a{
     font-weight: 500;
     font-size: 18px;
     color: #FF0101;
+}
+@media (max-width: 515px) {
+
+    .platformAmd, .latformIntel{
+    
+        height: 7rem;
+    
+    }
 }
 .platform-amd ,.platform-intel {
     cursor: pointer;

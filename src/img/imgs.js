@@ -14,11 +14,8 @@ import imgBbdPc from '../assets/pcs.png'
 import imgBbdMonitor from '../assets/monitores.png'
 import imgBbdPeripherals from '../assets/kitGamer.png'
 import imgBbdHardware from '../assets/hardware.png'
-import aigo from '../assets/gabinetes/gamer/gabinente-aigo-blacktech-1.png'
-import aerocool from '../assets/gabinetes/gamer/gabinete-aerocool-trinity-pink-1.png'
-import bluecase from '../assets/gabinetes/gamer/gabinete-bluecase-bg014.png'
 
 export {iconTime,iconFacebook,iconGmail,iconLinkedin,iconTelegram, iconWhatsapp, 
         iconYoutube, imgAmdType,iconInstagram,imgIntelType,imgBbdPc, imgBbdMonitor,
-        imgBbdPeripherals,imgBbdHardware, aigo, aerocool, bluecase}
+        imgBbdPeripherals,imgBbdHardware}
 

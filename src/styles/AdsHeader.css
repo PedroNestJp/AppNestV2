@@ -3,10 +3,23 @@
     background-color: #000000;
 }
 
+@media (max-width: 1080px) {
+    .ads-div{
+        height: 130px;
+    }
+}
+
 .ads-log {
 
     width: 100px;
     height: 60px;
+}
+
+@media (max-width: 1080px) {
+    .ads-log{
+        width: 100px;
+        height: 30px;
+    }
 }
 
 .ads-text{
