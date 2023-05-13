@@ -7,7 +7,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, login, logout, loginComGoogle } = useAuth();
+  const { user, login, logout, loginWithRedirect } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -20,10 +20,10 @@ const LoginPage = () => {
     }
   };
 
-  const loginWithGoogle = async (event) => {
+  async function loginComGoogless (event) {
     event.preventDefault();
     try {
-      await loginComGoogle();
+      await loginWithRedirect();
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -52,87 +52,82 @@ const LoginPage = () => {
           </h2>
         </div>
       ) : (
-    <>
-      <div className="main-container">
-        <form onSubmit={handleSubmit}>
-          <div id="loginScTitle" className="title">
-            {" "}
-            FAZER LOGIN{" "}
-          </div>
-          {error ? (
-            <div style={{ color: "red" }}>
+        <>
+          <div className="main-container">
+            <form onSubmit={handleSubmit}>
+              <div id="loginScTitle" className="title">
+                {" "}
+                FAZER LOGIN{" "}
+              </div>
+              {error ? (
+                <div style={{ color: "red" }}>
+                  {" "}
+                  {console.log(error)}
+                  Os dados fornecidos não estão corretos ou você ainda não
+                  possui uma conta
+                </div>
+              ) : null}
+              <section className="inputsLogin">
+                <input
+                  className="email"
+                  placeholder="E- mail, CPF ou CNPJ"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  autoComplete="username"
+                  aria-label="Digite seu email"
+                  required
+                />
+                <input
+                  className="senha"
+                  id="loginScInput"
+                  placeholder="Senha"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete="password"
+                  aria-label="Digite sua senha"
+                  required
+                />
+              </section>
+              <button className="enter enter-text" type="submit">
+                ENTRAR
+              </button>
+            </form>
+            <span className="text-forgotPassword">Esqueceu a senha?</span>
+            <span className="lineLogin"></span>
+            <span className="text-loginSocial">
               {" "}
-              {console.log(error)}
-              Os dados fornecidos não estão corretos ou você ainda não possui
-              uma conta
-            </div>
-          ) : null}
-          <section className="inputsLogin">
-            <input
-              className="email"
-              placeholder="E- mail, CPF ou CNPJ"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              autoComplete="username"
-              aria-label="Digite seu email"
-              required
-            />
-            <input
-              className="senha"
-              id="loginScInput"
-              placeholder="Senha"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              autoComplete="password"
-              aria-label="Digite sua senha"
-              required
-            />
-          </section>
-            <button className="enter enter-text" type="submit">
-              ENTRAR
+              QUERO ACESSAR COM MINHAS REDES SOCIAIS{" "}
+            </span>
+
+            <button className="login-fb">
+              <span className="fb-text"> Facebook </span>
             </button>
-        </form>
-        <span className="text-forgotPassword">Esqueceu a senha?</span>
-        <span className="lineLogin"></span>
-        <span className="text-loginSocial">
-          {" "}
-          QUERO ACESSAR COM MINHAS REDES SOCIAIS{" "}
-        </span>
 
-          <button className="login-fb">
-            <span className="fb-text"> Facebook </span>
-          </button>
-      
-          <button onClick={loginWithGoogle} className="login-gg gg-text">
-             Google 
-          </button>
+            <button onClick={loginComGoogless} className="login-gg gg-text">
+              Google
+            </button>
 
-        <div className="loginOrLine">
-          <span className="line1"></span>
-          <span className="textOr">ou</span>
-          <span className="line2"></span>
-        </div>
-        <p>
-            Ainda não tem uma conta? faça o seu{" "}
-            <Link to={"/signup"} style={{ color: "#f00" }}>
-              {" "}
-              Cadastro{" "}
-            </Link>{" "}
-          </p>
-          <Link to={'/signup'}>
-          <button className="register register-text">
-             CADASTRE-SE
-          </button>
-          </Link>
-  
-      </div>
-    </>
-
+            <div className="loginOrLine">
+              <span className="line1"></span>
+              <span className="textOr">ou</span>
+              <span className="line2"></span>
+            </div>
+            <p>
+              Ainda não tem uma conta? faça o seu{" "}
+              <Link to={"/signup"} style={{ color: "#f00" }}>
+                {" "}
+                Cadastro{" "}
+              </Link>{" "}
+            </p>
+            <Link to={"/signup"}>
+              <button className="register register-text">CADASTRE-SE</button>
+            </Link>
+          </div>
+        </>
       )}
     </>
   );
 };
 
-
-export default LoginPage
+export default LoginPage;

@@ -1,0 +1,107 @@
+import { useEffect, useState } from "react";
+import {
+    collection,
+    onSnapshot,
+    doc,
+    updateDoc,
+    deleteDoc,
+    getDocs,
+} from "firebase/firestore";
+import { db } from "../firebase";
+
+const Checkout = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            const productsCol = collection(db, "products");
+            const snapshot = await getDocs(productsCol);
+            const products = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setProducts(products);
+        };
+
+        getProducts();
+    }, []);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, "carts"), (snapshot) => {
+            const newProduct = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setProducts((prevProducts) =>
+                prevProducts.map(
+                    (product) => newProduct.find((p) => p.id === product.id) || product
+                )
+            );
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
+    const handleIncreaseQuantity = async (productId, currentQuantity) => {
+        await updateDoc(doc(db, "carts", productId), {
+            quantity: currentQuantity + 1,
+        });
+    };
+
+    const handleDecreaseQuantity = async (productId, currentQuantity) => {
+        await updateDoc(doc(db, "carts", productId), {
+            quantity: currentQuantity - 1,
+        });
+    };
+
+    const handleRemoveItem = async (productId) => {
+        await deleteDoc(doc(db, "carts", productId));
+    };
+
+    return (
+        <div>
+            <h1>Carrinho</h1>
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <div>Produto: {product.name}</div>
+                        <div>
+                            <button
+                                onClick={() =>
+                                    handleDecreaseQuantity(product.id, product.quantity)
+                                }
+                            >
+                                -
+                            </button>
+                            {product.quantity}
+                            <button
+                                onClick={() =>
+                                    handleIncreaseQuantity(product.id, product.quantity)
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+                        <div>
+                            <strong>Preço: R$ </strong>
+                            {product.price}
+                        </div>
+                        <div>
+                            <strong>Descrição: </strong>
+                            {product.description}
+                        </div>
+                        <div>
+                            <button onClick={() => handleRemoveItem(product.id)}>
+                                Remover
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default Checkout;

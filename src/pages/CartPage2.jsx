@@ -8,7 +8,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [items, setItems] = useState([]);
@@ -29,7 +29,7 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "cart"), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "carts"), (snapshot) => {
       const newItems = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -41,31 +41,30 @@ const Checkout = () => {
       unsubscribe();
     };
   }, []);
-
+  console.log(items);
   const handleIncreaseQuantity = async (itemId, currentQuantity) => {
-    await updateDoc(doc(db, "cart", itemId), { quantity: currentQuantity + 1 });
+    await updateDoc(doc(db, "carts", itemId), {
+      quantity: currentQuantity + 1,
+    });
   };
 
   const handleDecreaseQuantity = async (itemId, currentQuantity) => {
-    await updateDoc(doc(db, "cart", itemId), { quantity: currentQuantity - 1 });
+    await updateDoc(doc(db, "carts", itemId), {
+      quantity: currentQuantity - 1,
+    });
   };
 
   const handleRemoveItem = async (itemId) => {
-    await deleteDoc(doc(db, "cart", itemId));
+    await deleteDoc(doc(db, "carts", itemId));
   };
 
   return (
     <div>
-    <div>
-    {products.map(({ id, ...product }) => (
-      <ProductCard key={id} id={id} {...product} />
-    ))}
-    </div>
-      <h1>Checkout</h1>
+      <h1>Carrinho</h1>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <div>Item $ {item.id}</div>
+            <div>Item $ {item.price}</div>
             <div>
               <button
                 onClick={() => handleDecreaseQuantity(item.id, item.quantity)}
@@ -86,6 +85,13 @@ const Checkout = () => {
           </li>
         ))}
       </ul>
+      <Link to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'>
+      <button
+        className="addCartButton"
+        >
+        Finalizar compra com um vendedor 
+      </button>
+      </Link>
     </div>
   );
 };

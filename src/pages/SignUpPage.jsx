@@ -226,14 +226,14 @@ const RegisterComponents = () => {
               value={typePerson}
               onChange={(event) => setTypePerson(event.target.value)}
             />
-            <div className="legalPerson"> PESSOA JURÍDICA </div>
+            {/* <div className="legalPerson"> PESSOA JURÍDICA </div>
             <Link to='/'>
             <input
               className="circleLegalPerson"
               id="circleLegalPerson"
               type="radio"
             />
-            </Link>
+            </Link> */}
           </div>
 
           <section className="inputs">

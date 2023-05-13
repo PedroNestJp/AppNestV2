@@ -1,67 +1,49 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { collection, doc, onSnapshot } from "firebase/firestore";
-import { db, auth } from "../firebase";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "./contexts/AuthProvider";
+import { auth, db } from '../firebase';
+import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
 
-const FavoritesPage = () => {
+function Favorites() {
   const [favorites, setFavorites] = useState([]);
-  const navigate = useNavigate();
+  const { user } = auth
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(doc(db, "users", auth.currentUser.uid), "favorites"),
-      (snapshot) => {
-        const newFavorites = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFavorites(newFavorites);
+    if (!user) return;
+    const favoritesRef = doc(collection(db, "favorites"), user.id);
+    getDocs(favoritesRef).then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        const { products } = querySnapshot.docs[0].data();
+        setFavorites(products);
       }
-    );
+    });
+  }, [user]);
 
-    return unsubscribe;
-  }, []);
-
-  const handleRemoveFavorite = async (favoriteId) => {
-    try {
-      const favoriteRef = doc(
-        db,
-        "users",
-        auth.currentUser.uid,
-        "favorites",
-        favoriteId
+  const handleAddToFavorites = (productId) => {
+    const updatedFavorites = [...favorites, productId];
+    const favoritesRef = doc(collection(db, "favorites"), user.id);
+    updateDoc(favoritesRef, { products: updatedFavorites })
+      .then(() => {
+        setFavorites(updatedFavorites);
+      })
+      .catch((error) =>
+        console.error("Error adding product to favorites:", error)
       );
-      await favoriteRef.delete();
-      alert("Produto removido dos favoritos com sucesso!");
-    } catch (error) {
-      console.error(error);
-    }
   };
-
-  if (!auth.currentUser) {
-    navigate("/login");
-    return null;
-  }
 
   return (
     <div>
-      <h1>Meus Favoritos</h1>
-      <ul>
-        {favorites.map((favorite) => (
-          <>
-            <li key={favorite.id}> {favorite.id} </li>
-            <li key={favorite.id}> {favorite.name} </li>
-            <li key={favorite.id}> {favorite.description} </li>
-            <li key={favorite.id}> {favorite.pldPrice} </li>
-            <li key={favorite.id}> {favorite.price} </li>
-            <li key={favorite.id}> {favorite.installmentPrice} </li>
-            <button onClick={() => handleRemoveFavorite(favorite.id)}>
-              Remover dos favoritos
-            </button>
-          </>
-        ))}
-      </ul>
+      <h2>Favorites</h2>
+      {favorites.length === 0 && <p>Nenhum produto foi adicionado ao carrinho ainda</p>}
+      {favorites.map((productId, index) => (
+        <products
+          key={index}
+          id={productId}
+          isFavorite={true}
+          onAddToFavorites={handleAddToFavorites}
+        />
+      ))}
     </div>
   );
-};
-export default FavoritesPage;
+}
+
+export default Favorites;
