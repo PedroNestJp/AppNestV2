@@ -27,14 +27,16 @@ const AuthProvider = ({ children }) => {
 
   const googleProvider = new GoogleAuthProvider();
 
-  const LoginComGoogle = async () => {
+  const loginWithPopup = async (email, password, phone, address, cpf) => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       const userData = {
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
+        name: email,
+        email,
+        phone,
+        address,
+        cpf,
       };
       await setDoc(doc(db, 'users', user.uid), userData);
       setUser(user);
@@ -91,8 +93,8 @@ const AuthProvider = ({ children }) => {
     user,
     signup,
     login,
-    LoginComGoogle,
     loginWithRedirect,
+    loginWithPopup,
     logout,
   };
 

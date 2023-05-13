@@ -7,7 +7,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, login, logout, loginWithRedirect } = useAuth();
+  const { user, login, logout, loginWithPopup } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -23,7 +23,7 @@ const LoginPage = () => {
   async function loginComGoogless (event) {
     event.preventDefault();
     try {
-      await loginWithRedirect();
+      await loginWithPopup();
       navigate("/");
     } catch (error) {
       setError(error.message);
