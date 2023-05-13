@@ -1,50 +1,59 @@
-import React, { useEffect } from 'react';
-import { useAuth } from './contexts/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import React, { useEffect } from "react";
+import { useAuth } from "./contexts/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const isAdmin = 
-  auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? true  : null
+  const isAdmin =
+    auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? true : null;
 
   useEffect(() => {
     if (!user) {
-      alert('Faça seu login para acessar o seu perfil')
-      navigate('/login');
+      alert("Faça seu login para acessar o seu perfil");
+      navigate("/login");
     }
   }, [user, navigate]);
 
   return (
     <>
-      { isAdmin ? (
+      {isAdmin ? (
         <>
-          <h1> Olá {auth.currentUser.email}</h1>
+          <h1> Olá Admin {auth.currentUser.email}</h1>
           <li>
-            <Link to='/admin' style={{color:'#f00'}} > Admin Page </Link>
+            <Link to="/admin" style={{ color: "#f00" }}>
+              {" "}
+              Admin Page{" "}
+            </Link>
           </li>
         </>
-      ) : ( console.log('no admin access')
-
+      ) : (
+        console.log("no admin access")
       )}
       {user ? (
         <>
           <h1>Profile</h1>
           <ul>
             <li>
-              <Link to='/favorites' style={{color:'#f00'}} > Favoritos </Link>
+              <Link to="/favorites" style={{ color: "#f00" }}>
+                {" "}
+                Favoritos{" "}
+              </Link>
             </li>
           </ul>
-          <div>Email: {user.email}</div>
+          <div>
+            <div>Olá: {user.displayName}</div>
+            <p>Email: {user.email}</p>
+          </div>
           <p>
             Deseja alterar sua senha?
-            <Link to="/resetPassword" style={{color:'#f00'}}>
+            <Link to="/resetPassword" style={{ color: "#f00" }}>
               <strong>Redefinir senha</strong>
             </Link>
           </p>
           <p> nome : {user.displayName} </p>
-          <button onClick={logout} >Sair</button>
+          <button onClick={logout}>Sair</button>
         </>
       ) : (
         <>
@@ -52,7 +61,7 @@ const ProfilePage = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
 export default ProfilePage;
