@@ -13,15 +13,27 @@ import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
+import {getReviewCount} from "../components/ReviewUtils";
 import {BsStarFill, BsFillCollectionFill} from 'react-icons/bs'
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = (productId) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const [reviewCount, setReviewCount] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchReviewCount = async () => {
+      const count = await getReviewCount(productId);
+      setReviewCount(count);
+    };
+
+    fetchReviewCount();
+  }, [productId]);
+  console.log(productId)
 
   useEffect(() => {
     if (user) {
@@ -130,7 +142,7 @@ const ProductDetailsPage = () => {
             </div>
             <div className="descText">{description}</div>
             <div className="rating">
-              <div className="ratingStars"> ⭐⭐⭐⭐⭐ </div>
+              <div className="ratingStars"> ⭐⭐⭐⭐⭐ {reviewCount} </div>
             </div>
             <div className="hanking">
               <button className="buttonTop10">TOP 10</button>
@@ -181,16 +193,18 @@ const ProductDetailsPage = () => {
       <div>
         
       </div>
+      <div className="containerProductChild2">
         <div className="reviewsArea">
-          <h1> <BsStarFill/>  Avaliações </h1>
+          <h1 className="reviewsTitle"> <BsStarFill/>  Avaliações </h1>
           <div className="reviews"> <ProductReview productId={product} /> </div>
         </div>
         <div className="descArea">
-          <h1> <BsFillCollectionFill/>  Descrição </h1>
+          <h1 className="descTitle"> <BsFillCollectionFill/>  Descrição </h1>
           <div className="desc"> {product.description} </div>
           <div className="desc img"> 
                 <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
            </div>
+        </div>
         </div>
     </div>
   );

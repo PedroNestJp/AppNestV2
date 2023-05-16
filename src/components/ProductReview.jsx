@@ -3,20 +3,30 @@ import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import { Link } from "react-router-dom";
+import "../styles/ProductDetailsPage.css";
+
+export async function getReviewCount(productId) {
+    try {
+      const q = query(collection(db, "reviews"), where("productId", "==", productId));
+      const querySnapshot = await getDocs(q);
+      return querySnapshot.size;
+    } catch (error) {
+      console.error("Erro ao buscar o número de avaliações:", error);
+      return 0;
+    }
+  }
 
 function ProductReview({ productId }) {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
   const { user } = useAuth();
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         // Consulta as avaliações do produto no Firebase
-        const q = query(
-          collection(db, "reviews"),
-          where("productId", "==", productId)
-        );
+        const q = query(collection(db, "reviews"), where("productId", "==", productId));
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => doc.data());
         setReviews(data);
@@ -53,9 +63,11 @@ function ProductReview({ productId }) {
 
   return (
     <div>
-      <div className="ratingText"> <Link to='#reviewsArea'> ({reviewCount })  avaliações </Link> </div>
+      <div className="ratingText">
+        <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
+      </div>
       {reviews.length > 0 ? (
-        <ul >
+        <ul>
           {reviews.map((review, index) => (
             <li id="reviewsArea" key={index}>
               {review.review} -{" "}
@@ -84,4 +96,4 @@ function ProductReview({ productId }) {
   );
 }
 
-export default ProductReview;
+export default ProductReview ;

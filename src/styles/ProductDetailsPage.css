@@ -31,7 +31,22 @@
 .containerProductChild1 {
   display: flex;
 }
+.containerProductChild2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.reviewsTitle ,.descTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.desc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .imgProduct {
   display: flex;
   align-content: center;
