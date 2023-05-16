@@ -13,7 +13,7 @@ import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
-import {BsStarFill} from 'react-icons/bs'
+import {BsStarFill, BsFillCollectionFill} from 'react-icons/bs'
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -184,6 +184,13 @@ const ProductDetailsPage = () => {
         <div className="reviewsArea">
           <h1> <BsStarFill/>  Avaliações </h1>
           <div className="reviews"> <ProductReview productId={product} /> </div>
+        </div>
+        <div className="descArea">
+          <h1> <BsFillCollectionFill/>  Descrição </h1>
+          <div className="desc"> {product.description} </div>
+          <div className="desc img"> 
+                <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
+           </div>
         </div>
     </div>
   );
