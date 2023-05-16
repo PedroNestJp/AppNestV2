@@ -13,6 +13,7 @@ import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
+import {BsStarFill} from 'react-icons/bs'
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -130,9 +131,6 @@ const ProductDetailsPage = () => {
             <div className="descText">{description}</div>
             <div className="rating">
               <div className="ratingStars"> ⭐⭐⭐⭐⭐ </div>
-              
-              <ProductReview productId={product} />
-
             </div>
             <div className="hanking">
               <button className="buttonTop10">TOP 10</button>
@@ -169,7 +167,8 @@ const ProductDetailsPage = () => {
                   user !== null
                     ? handleAddToCart(id)
                     : (alert(
-                        "Faça seu login para então adicionar itens ao carrinho"),
+                        "Faça seu login para então adicionar itens ao carrinho"
+                      ),
                       navigate("/login"))
                 }
               >
@@ -179,6 +178,13 @@ const ProductDetailsPage = () => {
           </div>
         </div>
       </div>
+      <div>
+        
+      </div>
+        <div className="reviewsArea">
+          <h1> <BsStarFill/>  Avaliações </h1>
+          <div className="reviews"> <ProductReview productId={product} /> </div>
+        </div>
     </div>
   );
 };

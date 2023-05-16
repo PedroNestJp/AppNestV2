@@ -53,7 +53,7 @@ function ProductReview({ productId }) {
 
   return (
     <div>
-      <div className="ratingText"> <Link to='#reviewsArea'> {reviewCount }  avaliações </Link> </div>
+      <div className="ratingText"> <Link to='#reviewsArea'> ({reviewCount })  avaliações </Link> </div>
       {reviews.length > 0 ? (
         <ul >
           {reviews.map((review, index) => (
