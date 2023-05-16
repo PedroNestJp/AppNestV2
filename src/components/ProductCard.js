@@ -38,7 +38,8 @@ const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, de
       <button
         onClick={() => handleAddToFavorites(id)}
         className="favoriteIcon"
-        alt="Icone Favoitos">
+        alt="Icone Favoitos"
+        title='Adicione aos favoritos'>
         <BsIcons.BsHeartFill />
       </button>
       <Link to='/'>
