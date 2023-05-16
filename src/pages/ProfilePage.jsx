@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useAuth } from "./contexts/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import { IoMdMail } from 'react-icons/io';
+import {BsLockFill, BsPersonCircle} from 'react-icons/bs'
+
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
@@ -20,7 +23,9 @@ const ProfilePage = () => {
     <>
       {isAdmin ? (
         <>
-          <h1> Olá Admin {auth.currentUser.email}</h1>
+          <h1>Painel Administrativo</h1>
+
+          <h2> Olá Admin {<BsPersonCircle/>} {auth.currentUser.displayName}</h2>
           <li>
             <Link to="/admin" style={{ color: "#f00" }}>
               {" "}
@@ -43,16 +48,15 @@ const ProfilePage = () => {
             </li>
           </ul>
           <div>
-            <div>Olá: {user.displayName}</div>
-            <p>Email: {user.email}</p>
+            <div>Olá {<BsPersonCircle/>} {user.displayName}</div>
+            <p>{<IoMdMail/>} {user.email}</p>
           </div>
           <p>
-            Deseja alterar sua senha?
+           {< BsLockFill/>} Deseja alterar sua senha?
             <Link to="/resetPassword" style={{ color: "#f00" }}>
               <strong>Redefinir senha</strong>
             </Link>
           </p>
-          <p> nome : {user.displayName} </p>
           <button onClick={logout}>Sair</button>
         </>
       ) : (

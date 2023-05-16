@@ -9,6 +9,7 @@ import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
 import Navbar from "./Navbar"
 
+
 function Header() {
   const { user } = useAuth();
   // const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
