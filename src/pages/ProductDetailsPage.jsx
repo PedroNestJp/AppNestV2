@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getDoc,
   doc,
@@ -12,6 +12,7 @@ import { db } from "../firebase";
 import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
+import ProductReview from "../components/ProductReview";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -128,7 +130,9 @@ const ProductDetailsPage = () => {
             <div className="descText">{description}</div>
             <div className="rating">
               <div className="ratingStars"> ⭐⭐⭐⭐⭐ </div>
-              <div className="ratingText"> 2 avaliações </div>
+              
+              <ProductReview productId={product} />
+
             </div>
             <div className="hanking">
               <button className="buttonTop10">TOP 10</button>
@@ -146,25 +150,32 @@ const ProductDetailsPage = () => {
               </span>
               <span className="discountPix"> 10% de desconto no pix </span>
             </div>
-            {user ? (
-              <div className="addCart">
-                <button
-                  className="addCartButton"
-                  onClick={() => handleAddToFavorites(id)}
-                >
-                  Adicionar aos favoritos
-                </button>
-                <button
-                  className="addCartButton"
-                  onClick={handleAddToCart}
-                  disabled={isLoading}
-                >
-                  Adicionar ao carrinho
-                </button>
-              </div>
-            ) : (
-              " Algo deu errado"
-            )}
+            <div className="addCart">
+              <button
+                className="addCartButton"
+                onClick={() =>
+                  user !== null
+                    ? handleAddToFavorites(id)
+                    : (alert("faça seu login para então favoritar itens"),
+                      navigate("/login"))
+                }
+              >
+                Adicionar aos favoritos
+              </button>
+              <button
+                className="addCartButton"
+                disabled={isLoading}
+                onClick={() =>
+                  user !== null
+                    ? handleAddToCart(id)
+                    : (alert(
+                        "Faça seu login para então adicionar itens ao carrinho"),
+                      navigate("/login"))
+                }
+              >
+                Adicionar ao carrinho
+              </button>
+            </div>
           </div>
         </div>
       </div>

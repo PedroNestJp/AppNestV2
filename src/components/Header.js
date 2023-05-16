@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../pages/contexts/AuthProvider';
 // import { auth } from '../firebase';
 import * as BsIcons from 'react-icons/bs'
@@ -11,16 +11,12 @@ import Navbar from "./Navbar"
 
 
 function Header() {
+const navigate = useNavigate()
+
   const { user } = useAuth();
   // const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
   return (
     <div className="navbarhome">
-
-      {/* <div>
-                <select className='selection'>
-                    <option value='escolha'> escolha </option>
-                </select>
-            </div> */}
       <Navbar />
 
       <Link to='/'>
@@ -57,6 +53,7 @@ function Header() {
           <Link
             to='/profile'
             alt="iconProfile"
+            title='Ir para o seu perfil'
             className="iconProfileHome"
           >
             <BsIcons.BsPersonCircle />
@@ -64,10 +61,13 @@ function Header() {
 
         ) : (
           <Link
-            to={null}
+            to='/login'
             alt="iconProfile"
+            title='Ir para o seu perfil'
             className="iconProfileHome"
-          >
+            onClick={() => {
+              alert("Faça seu Login ou cadastre-se")}}
+              >
             <BsIcons.BsPersonCircle />
           </Link>)}
         <span
@@ -76,7 +76,7 @@ function Header() {
           <Link
             to='/login'
             id="link-login-header-home"
-            title="link-login-header"
+            title="Faça seu login"
             className="link-login-home"
             href="/login">
             LOGIN
@@ -85,7 +85,7 @@ function Header() {
           <Link
             to='/signUp'
             id="link-cadastre-se-home"
-            title="link-cadastre-se"
+            title="Faça o seu cadastro"
             className="link-cadastre-se-home"
             href="/register">
             {' '}CADASTRE-SE
@@ -99,7 +99,7 @@ function Header() {
             to='/cart'
             className="icon-shoppingCart"
             id="iconShoppingCart"
-            title="icon-shoppingCart"
+            title="Ir para o seu carrinho"
             src="../assets/icons/icon-shoppingCart.png"
             alt="iconShoCar">
             <FaIcons.FaShoppingCart />
@@ -110,7 +110,7 @@ function Header() {
             to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'
             className="icon-support"
             id="iconSupporte"
-            title="iconSupporte"
+            title="Fale conosco"
             src="../assets/icons/icon-support.png"
             alt="iconSupport">
             <RiIcons.RiCustomerService2Fill />
@@ -122,7 +122,7 @@ function Header() {
             to='/favorites'
             className="favoriteIconNav"
             id="favoriteIconNav"
-            title="Favoriteicon"
+            title="Seus produtos favoritos"
             src="../assets/icons/favoriteIcon.png"
             alt="Favorite Icon">
             <BsIcons.BsHeartFill />
