@@ -29,11 +29,14 @@ const ProductDetailsPage = (productId) => {
     const fetchReviewCount = async () => {
       const count = await getReviewCount(productId);
       setReviewCount(count);
+      console.log(count)
+
     };
 
     fetchReviewCount();
   }, [productId]);
   console.log(productId)
+  console.log(reviewCount)
 
   useEffect(() => {
     if (user) {

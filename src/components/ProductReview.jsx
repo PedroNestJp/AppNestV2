@@ -5,23 +5,12 @@ import { useAuth } from "../pages/contexts/AuthProvider";
 import { Link } from "react-router-dom";
 import "../styles/ProductDetailsPage.css";
 
-export async function getReviewCount(productId) {
-    try {
-      const q = query(collection(db, "reviews"), where("productId", "==", productId));
-      const querySnapshot = await getDocs(q);
-      return querySnapshot.size;
-    } catch (error) {
-      console.error("Erro ao buscar o número de avaliações:", error);
-      return 0;
-    }
-  }
-
 function ProductReview({ productId }) {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
   const { user } = useAuth();
-
+  
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -30,20 +19,20 @@ function ProductReview({ productId }) {
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => doc.data());
         setReviews(data);
-
+        
         // Obtem o número total de avaliações
         setReviewCount(querySnapshot.size);
       } catch (error) {
         console.error("Erro ao buscar as avaliações:", error);
       }
     };
-
+    
     fetchReviews();
   }, [productId]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
       // Salva a nova avaliação no Firebase
       const reviewData = {
@@ -51,16 +40,16 @@ function ProductReview({ productId }) {
         review: newReview,
         userName: user.displayName, // Captura o ID do usuário autenticado
       };
-
+      
       await addDoc(collection(db, "reviews"), reviewData);
-
+      
       // Limpa o campo de nova avaliação
       setNewReview("");
     } catch (error) {
       console.error("Erro ao enviar a avaliação:", error);
     }
   };
-
+  
   return (
     <div>
       <div className="ratingText">

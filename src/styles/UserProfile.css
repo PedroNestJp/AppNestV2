@@ -1,0 +1,36 @@
+.user-profile {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.email {
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.favorites-list,
+.cart-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.favorites-list li,
+.cart-list li {
+  margin-bottom: 5px;
+}
+
+/* Outros estilos que você desejar adicionar */
+
