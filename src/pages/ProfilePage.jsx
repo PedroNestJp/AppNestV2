@@ -5,7 +5,6 @@ import { auth } from "../firebase";
 import { IoMdMail } from 'react-icons/io';
 import {BsLockFill, BsPersonCircle} from 'react-icons/bs'
 
-
 const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();

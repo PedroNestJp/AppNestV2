@@ -22,6 +22,7 @@ import Terms from '../pages/Terms';
 import {Carrosel} from '../components/Carrosel';
 import ResetPassword from '../pages/ResePassword';
 import UserProfile from '../pages/UserProfile';
+import CartTest from '../pages/testeCart';
 
 function EdnPoints() {
     return (
@@ -43,6 +44,7 @@ function EdnPoints() {
                     <Route path='/carrosel' element={<Carrosel/>}/>
                     <Route path='/resetPassword' element={<ResetPassword/>}/>
                     <Route path='/userProfile' element={<UserProfile/>}/>
+                    <Route path='/cartTest' element={<CartTest/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />

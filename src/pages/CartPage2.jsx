@@ -12,21 +12,6 @@ import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [items, setItems] = useState([]);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      const productsCol = collection(db, "products");
-      const snapshot = await getDocs(productsCol);
-      const products = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setProducts(products);
-    };
-
-    getProducts();
-  }, []);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "carts"), (snapshot) => {
@@ -95,5 +80,7 @@ const Checkout = () => {
     </div>
   );
 };
+
+
 
 export default Checkout;
