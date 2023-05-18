@@ -200,20 +200,20 @@ const ProductDetailsPage = (productId) => {
         <div></div>
         <div className="containerProductChild2">
           <div className="reviewsArea">
-            <h1 className="reviewsTitle">
+            <h2 className="reviewsTitle">
               {" "}
               <BsStarFill /> Avaliações{" "}
-            </h1>
+            </h2>
             <div className="reviews">
               {" "}
               <ProductReview productId={product} />{" "}
             </div>
           </div>
           <div className="descArea">
-            <h1 className="descTitle">
+            <h2 className="descTitle">
               {" "}
               <BsFillCollectionFill /> Descrição{" "}
-            </h1>
+            </h2>
             <div className="desc"> {product.description} </div>
             <div className="desc img">
               <img
@@ -224,10 +224,10 @@ const ProductDetailsPage = (productId) => {
             </div>
           </div>
         </div>
-        <div class="serviceIncluded">
-          <div class="mounting">
+        <div className="serviceIncluded">
+          <div className="mounting">
             <FaTools
-              class="img-serviceIncluded"
+              className="img-serviceIncluded"
               src="https://hotsite.pichau.com.br/descricao/descpc/montagem.svg"
               alt=""
             />
@@ -238,9 +238,9 @@ const ProductDetailsPage = (productId) => {
               do gabinete dando uma aparência mais limpa ao computador.
             </p>
           </div>
-          <div class="delivery">
+          <div className="delivery">
             <FaTruck
-              class="img-serviceIncluded"
+              className="img-serviceIncluded"
               src="https://hotsite.pichau.com.br/descricao/descpc/entrega.svg"
               alt=""
             />
@@ -251,9 +251,9 @@ const ProductDetailsPage = (productId) => {
               fitas de segurança com cola quimicamente ativa.
             </p>
           </div>
-          <div class="warranty">
+          <div className="warranty">
             <FaFileSignature
-              class="img-serviceIncluded"
+              className="img-serviceIncluded"
               src="https://hotsite.pichau.com.br/descricao/descpc/garantia.svg"
               alt=""
             />
@@ -266,8 +266,8 @@ const ProductDetailsPage = (productId) => {
             </p>
           </div>
         </div>
-        <article class="PrDtPgWarnings">
-          <h4 class="laranja">ATENÇÃO</h4>
+        <article className="PrDtPgWarnings">
+          <h4 className="laranja">ATENÇÃO</h4>
           <p>- Se atente à Entradas de Vídeo escolhidas no ato do pedido. </p>
           <p>
             <strong>

@@ -11,6 +11,7 @@
 
 .containerProductFather {
   display: flex;
+  justify-content: center;
   gap: 40px;
   padding: 15px;
   background: #f5f5f5;
@@ -20,8 +21,6 @@
 @media (max-width: 768px) {
   .containerProductChild1 {
     display: flex;
-    /* gap: 10px; */
-    /* padding: 10px; */
     background: #000000;
     flex-direction: column;
   }
@@ -30,6 +29,7 @@
 .containerProductChild1 {
   display: flex;
 }
+
 .containerProductChild2 {
   display: flex;
   flex-direction: column;
@@ -41,11 +41,13 @@
   align-items: center;
   justify-content: center;
 }
+
 .desc{
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .imgProduct {
   display: flex;
   align-content: center;
@@ -54,29 +56,7 @@
   max-width: 600px;
   min-width: 240px;
 }
-
-/* .imgsProducts{
-
-    display: flex;
-    margin-top: 60px;
-    align-items: flex-start;
-    min-width: 40px;
-    max-width: 60px;
-}
-
-.imgsProductsSub{
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-} */
-
-/* .imgsProducts #redragonSuperior1,#redragonSuperior2,#redragonSuperior3{
-
-} */
-
 .containerProductDesc {
-  padding: 10px;
   background: #ffffff;
   max-width: 650px;
   min-width: 200px;
@@ -85,17 +65,11 @@
 .promotionCall {
   display: flex;
   flex-direction: column;
-  background: #d9d9d9;
-  padding: 10px;
-  gap: 10px;
-  border-radius: 5px;
 }
 
 .stopwatch {
   display: flex;
-  gap: 10px;
-  background: #ffffff;
-  border-radius: 5px;
+  background: rgb(0 0 0 / 10%);
   text-align: center;
   justify-content: center;
   font-weight: 700;
@@ -105,32 +79,22 @@
 
 .cardsPromo {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 70%;
   font-size: 12px;
   line-height: 12px;
   font-weight: 600;
   text-align: center;
 }
 
-.offerDiscaunt {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background: #ffffff;
-  border-radius: 5px;
-  width: -webkit-fill-available;
-}
-
-.numberOfSales {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: -webkit-fill-available;
-  border-radius: 5px;
-  background-color: #ffffff;
+.numberOfSales, .offerDiscaunt {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    border: black solid 0.1rem;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: rgba(226, 1, 0, 0.81);
+    color: #ffffff;
 }
 
 .offersEnd {
@@ -248,6 +212,7 @@
 }
 
 .mounting, .delivery, .warranty{
+  border: #0000007c solid 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,10 +220,19 @@
   text-align: center;
   margin: 2rem;
 }
+.userReviewArea{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.inputReviewArea{
+height: 2rem;
+}
+.inputReviewArea input{
+  width: 100rem;
 
-
-
-
+}
 
 
 

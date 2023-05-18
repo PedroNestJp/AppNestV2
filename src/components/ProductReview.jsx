@@ -51,7 +51,18 @@ function ProductReview({ productId }) {
   };
   
   return (
-    <div>
+    <div className="userReviewArea">
+      <form onSubmit={handleSubmit}>
+        <div className="inputReviewArea">
+        <input
+          type="text"
+          value={newReview}
+          onChange={(e) => setNewReview(e.target.value)}
+          placeholder="Adicione uma avaliação"
+        />
+        <button type="submit">Enviar Avaliação</button>
+      </div>
+      </form>
       <div className="ratingText">
         <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
       </div>
@@ -72,15 +83,6 @@ function ProductReview({ productId }) {
       ) : (
         <p>Nenhuma avaliação disponível.</p>
       )}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={newReview}
-          onChange={(e) => setNewReview(e.target.value)}
-          placeholder="Adicione uma avaliação"
-        />
-        <button type="submit">Enviar Avaliação</button>
-      </form>
     </div>
   );
 }
