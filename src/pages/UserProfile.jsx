@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import { BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
-import HeaderShort from "../components/HeaderShort";
+import HeaderShort from "../components/ShortHeader";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
@@ -22,21 +22,33 @@ const ProfilePage = () => {
   const renderAdminContent = () => {
     if (isAdmin) {
       return (
+        <>
+          <HeaderShort />
 
-
-        
-        <div className="adminContentMain">
-          <HeaderShort/>
-          <h1>Painel Administrativo</h1>
-          <h2>
-            Olá Admin <BsPersonCircle /> {auth.currentUser.displayName}
-          </h2>
-          <li>
-            <Link to="/admin" style={{ color: "#f00" }}>
-              Admin Page
-            </Link>
-          </li>
-        </div>
+          <div className="adminContentMain">
+            <h1>Painel Administrativo</h1>
+            <h2>
+              Olá Admin : <BsPersonCircle /> {auth.currentUser.displayName}
+            </h2>
+            <ul>
+              <li>
+                <Link to="/addProducts" style={{ color: "#f00" }}>
+                  Add Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/CRUDProducts" style={{ color: "#f00" }}>
+                  CRUD Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/addImage" style={{ color: "#f00" }}>
+                  Add Image
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </>
       );
     }
     return null;
@@ -46,13 +58,12 @@ const ProfilePage = () => {
     if (user) {
       return (
         <>
+          <HeaderShort />
+
           <div className="user-profile">
-            <img
-              src={user.photoUrl}
-              alt="Profile"
-              className="profile-picture"
-            />
-            <h1>Profile</h1>
+            {<BsPersonCircle alt="Profile" className="profile-picture" />}
+
+            <h1>Perfil</h1>
 
             <div>
               <div>
@@ -63,26 +74,22 @@ const ProfilePage = () => {
               </p>
             </div>
             <h2 className="username">{user.username}</h2>
-            <ul>
-              <p className="email">{user.email}</p>
-              {/* Aqui você pode exibir outros dados do usuário, como endereço, telefone, etc. */}
-              <h3>Favoritos:</h3>
-              <ul className="favorites-list">
-                {user.favorites &&
-                  user.favorites.map((item) => (
-                    <li key={item.id}>{item.name}</li>
-                  ))}
-                <li>
-                  <Link to="/favorites" style={{ color: "#f00" }}>
-                    Favoritos
-                  </Link>
-                </li>
-              </ul>
+            <h3>Seus favoritos:</h3>
+            <ul className="favorites-list">
+              {user.favorites &&
+                user.favorites.map((item) => (
+                  <li key={item.id}>{item.name}</li>
+                ))}
+              <li>
+                <Link to="/favorites" style={{ color: "#f00" }}>
+                  Favoritos
+                </Link>
+              </li>
             </ul>
             <h3>Carrinho de Compras:</h3>
             <ul className="cart-list">
-              {user.cart &&
-                user.cart.map((item) => <li key={item.id}>{item.name}</li>)}
+              {user.carts &&
+                user.carts.map((item) => <li key={item.id}>{item.name}</li>)}
             </ul>
 
             <div className="resetPassword">

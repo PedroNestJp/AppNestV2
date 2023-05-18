@@ -5,8 +5,7 @@
 }
 
 .mainContentProduct {
-  align-items: center;
-  justify-content: center;
+  margin-top: 4rem;
   background-color: #ffffff;
 }
 
@@ -240,3 +239,32 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.serviceIncluded{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  gap: 2rem;
+}
+
+.mounting, .delivery, .warranty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem;
+}
+
+
+
+
+
+
+
+.PrDtPgWarnings{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

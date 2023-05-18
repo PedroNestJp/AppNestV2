@@ -4,6 +4,7 @@ import { useAuth } from "./contexts/AuthProvider";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "../styles/Register.css";
+import ShortHeader from "../components/ShortHeader";
 
 // const SignUpPage = () => {
 // const [fullName, setFullName] = useState("");
@@ -212,6 +213,7 @@ const RegisterComponents = () => {
 
   return (
     <main className="main">
+      <ShortHeader/>
       <form onSubmit={handleSubmit}>
         <div className="content">
           <h1 className="title"> CRIAR CONTA </h1>

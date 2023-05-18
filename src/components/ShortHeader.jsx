@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import * as BsIcons from "react-icons/bs";
 import { logo } from "../img/imgs";
+import "../styles/ShortHeader.css";
 
-const HeaderShort = () => {
+const ShortHeader = () => {
   return (
     <div className="navbarShort">
       <Link to="/" rel="noopener noreferrer">
@@ -15,13 +16,13 @@ const HeaderShort = () => {
         />
       </Link>
       <div className="areaProfileNavShort">
-        <Link to="/userProfile">
-          <img
-            className="iconProfileHome"
-            alt="iconProfileHome"
-            title="Ir para o seu perfil"
-            src={<BsIcons.BsPersonCircle />}
-          />
+        <Link
+          to="/userProfile"
+          className="iconProfileHome"
+          alt="iconProfileHome"
+          title="Ir para o seu perfil"
+        >
+          {<BsIcons.BsPersonCircle />}
         </Link>
         <span className="textProfileNavShort">
           Faça seu{" "}
@@ -30,18 +31,20 @@ const HeaderShort = () => {
             id="linkLoginNavShort"
             title="linkLoginNavShort"
             to="/login"
-          ></Link>
-          LOGIN ou{" "}
+          >
+          LOGIN
+          </Link> ou{" "}
           <Link
             className="linkRegisterNavShort"
             id="linkRegisterNavShort"
             title="linkRegisterNavShort"
             to="/signup"
-          ></Link>
+          >
           CADASTRE-SE
+          </Link>
         </span>
       </div>
     </div>
   );
 };
-export default HeaderShort;
+export default ShortHeader;

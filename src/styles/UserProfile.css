@@ -18,10 +18,9 @@
 }
 
 .profile-picture {
-  width: 150px;
-  height: 150px;
+  width: 10rem;
+  height: 15rem;
   border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 .username {

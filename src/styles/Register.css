@@ -7,59 +7,6 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
-.navbarShort {
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #000000;
-    flex-wrap: wrap;
-
-}
-
-.logoNestHeader {
-    
-    width: 135px;
-    height: 86px;
-    
-}
-
-.areaProfileNavShort{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.iconProfileNavShort {
-
-    width: 32px;
-    height: 32px;
-    
-}
-
-.textProfileNavShort {
-
-    width: 90px;
-    margin-left: 5px;
-    margin-bottom: 10px;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 13px;
-    
-    color: #FFFFFF;
-    
-}
-
-.linkLoginNavShort, .linkRegisterNavShort{
-    
-    font-style: normal;
-    font-weight: 700;
-    text-decoration: none;
-    color: #FFFFFF;
-    
-}
-
 .content{
     
     display: flex;

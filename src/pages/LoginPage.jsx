@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import "../styles/Login.css";
-import HeaderShort from "../components/HeaderShort";
+import HeaderShort from "../components/ShortHeader";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
