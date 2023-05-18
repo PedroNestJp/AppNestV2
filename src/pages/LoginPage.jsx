@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import "../styles/Login.css";
+import HeaderShort from "../components/HeaderShort";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ const LoginPage = () => {
   };
   return (
     <>
+    <HeaderShort/>
       {user ? (
         <div>
           <h1> Você Já está logado </h1>

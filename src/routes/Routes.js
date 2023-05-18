@@ -7,7 +7,6 @@ import CartPage from '../pages/CartPage2';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import Navbar from '../components/Header';
-import ProfilePage from '../pages/ProfilePage';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
@@ -28,11 +27,8 @@ function EdnPoints() {
     return (
         <div>
             <AuthProvider>
-                <Navbar />
-                <AdsHeader/>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/products/:id" element={<ProductDetailsPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />

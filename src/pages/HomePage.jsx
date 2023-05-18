@@ -3,13 +3,14 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "../styles/Home.css";
 import { Link } from "react-router-dom";
-import { Carrosel } from "../components/Carrosel";
-
 import imgIntelType from "../assets/buyByPlatform/buyByPlatform-img-intel.png";
 import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
 import { imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from "../img/imgs";
 import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
+import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import AdsHeader from "../components/AdsHeader";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -30,6 +31,8 @@ const HomePage = () => {
 
   return (
     <>
+      <Header />
+      <AdsHeader />
       <section className="container">
         <div
           id="typepc-text"
@@ -88,12 +91,7 @@ const HomePage = () => {
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel
-            showArrows={true}
-            showThumbs={false}
-            
-            infiniteLoop
-          >
+          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
             {products.map(({ id, ...product }) => (
               <ProductCard key={id} id={id} {...product} />
             ))}
@@ -125,16 +123,11 @@ const HomePage = () => {
       <section className="container-3" id="container-3" title="container-3">
         <div className="bs-text"> MAIS VENDIDOS </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel
-            showArrows={true}
-            showThumbs={false}
-            
-            infiniteLoop
-          >
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel>
+        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
+          {products.map(({ id, ...product }) => (
+            <ProductCard key={id} id={id} {...product} />
+          ))}
+        </Carousel>
       </section>
       <section className="departments" id="departmentsHome">
         <div className="departmentsText"> 🗄DEPARTAMENTOS </div>

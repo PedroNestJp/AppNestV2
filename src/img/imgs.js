@@ -13,9 +13,9 @@ import imgAmdType from '../assets/buyByPlatform/buyByPlatform-img-amd.png'
 import imgBbdPc from '../assets/pcs.png'
 import imgBbdMonitor from '../assets/monitores.png'
 import imgBbdPeripherals from '../assets/kitGamer.png'
-import imgBbdHardware from '../assets/hardware.png'
+import logo from '../assets/logoNestNew.png'
 
 export {iconTime,iconFacebook,iconGmail,iconLinkedin,iconTelegram, iconWhatsapp, 
         iconYoutube, imgAmdType,iconInstagram,imgIntelType,imgBbdPc, imgBbdMonitor,
-        imgBbdPeripherals,imgBbdHardware}
+        imgBbdPeripherals, logo}
 

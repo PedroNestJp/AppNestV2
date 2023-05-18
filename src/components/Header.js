@@ -24,6 +24,7 @@ function Header() {
           className="logoNestHeaderHome"
           src={'https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2'}
           alt='logo'
+          title='logo da Nest Informática'
         />
       </Link>
 
@@ -41,7 +42,7 @@ function Header() {
             to='/products' type='submit'
             className='icon-lupa'
             alt='icon-lupa'
-            title="icon-lupa"
+            title="icone de lupa"
           >
             <RxIcons.RxMagnifyingGlass />
           </Link>
@@ -51,7 +52,7 @@ function Header() {
       <div className="areaProfile">
         {user ? (
           <Link
-            to='/profile'
+            to='/userProfile'
             alt="iconProfile"
             title='Ir para o seu perfil'
             className="iconProfileHome"

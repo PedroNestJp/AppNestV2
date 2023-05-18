@@ -13,7 +13,7 @@ export const SidebarData = [
   },
   {
     title: 'Meus dados',
-    path: '/profile',
+    path: '/userProfile',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
