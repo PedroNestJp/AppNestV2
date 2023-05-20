@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import ProductCard from "../components/ProductCard";
+import ShortHeader from "../components/ShortHeader";
 
 const FavoriteProducts = () => {
   const [products, setProducts] = useState([]);
@@ -42,7 +43,8 @@ const FavoriteProducts = () => {
 
   return (
     <div>
-      <h2>Favorite Products</h2>
+      <><ShortHeader/></>
+      <h2>FAVORITOS</h2>
       <div>
         {favoriteProducts.length === 0 && (
           <p>Nenhum produto foi adicionado aos favoritos ainda</p>
