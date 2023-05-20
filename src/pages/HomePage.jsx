@@ -8,7 +8,6 @@ import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
 import { imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from "../img/imgs";
 import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
-import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 
@@ -121,7 +120,7 @@ const HomePage = () => {
         </div>
       </section>
       <section className="container-3" id="container-3" title="container-3">
-        <div className="bs-text"> MAIS VENDIDOS </div>
+        <div id="bestSelers" className="bs-text"> MAIS VENDIDOS </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
         <Carousel showArrows={true} showThumbs={false} infiniteLoop>
           {products.map(({ id, ...product }) => (

@@ -1,46 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import * as BsIcons from 'react-icons/bs'
+import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import '../styles/Home.css'
+import '../styles/Home.css';
 import { auth, db } from '../firebase';
-import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, description }) => {
   const [favorites, setFavorites] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { currentUser } = auth
 
   useEffect(() => {
     if (!currentUser) return;
-    const favorites = doc(collection(db, "favorites"), currentUser.uid);
-    getDoc(favorites).then((docSnapshot) => {
-      if (docSnapshot.exists()) {
-        const { products } = docSnapshot.data();
+    const favoritesDoc = doc(collection(db, 'favorites'), currentUser.uid);
+    getDoc(favoritesDoc).then((doc) => {
+      if (doc.exists()) {
+        const { products } = doc.data();
         setFavorites(products);
+        setIsFavorite(products.includes(id))
       }
-    });
-  }, [currentUser]);
+    })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+  }, [currentUser, id]);
 
   const handleAddToFavorites = (productId) => {
-    const updatedFavorites = [...favorites, productId];
-    const favoritesDoc = doc(collection(db, "favorites"), currentUser.uid);
+    const updatedFavorites = isFavorite ? favorites.filter((id) => id !== productId) : [...favorites, productId];
+    const favoritesDoc = doc(collection(db, 'favorites'), currentUser.uid);
     setDoc(favoritesDoc, { products: updatedFavorites })
       .then(() => {
         setFavorites(updatedFavorites);
+        setIsFavorite(!isFavorite);
       })
-      .catch((error) =>
-        console.error("Error adding product to favorites:", error)
-      );
+      .catch((error) => {
+        console.error('Error adding product to favorites:', error);
+      });
   };
-  
+
   return (
     <div className="hl-1 styleBox">
       <button
         onClick={() => handleAddToFavorites(id)}
-        className="favoriteIcon"
+        className='favoriteIcon'
         alt="Icone Favoitos"
-        title='Adicione aos favoritos'>
-        <BsIcons.BsHeartFill />
+        title={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}>
+        {isFavorite ? <BsHeartFill style={{ color: '#e20100', height: '1.5rem', width: '1.5rem', backgroundColor: 'white' }} /> : <BsHeart style={{ height: '1.5rem', width: '1.5rem', backgroundColor: 'white' }} />}
       </button>
       <Link to='/'>
         <img className="img-hl-1" src={imageUrl} alt={name} />

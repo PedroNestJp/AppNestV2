@@ -169,13 +169,13 @@ a{
 }
 
 .favoriteIcon{
-
-    color: #000000;
+    
     margin-left: 85%;
     cursor: pointer;
+    border: hidden;
 }
 
-.favoriteIcon:hover{
+.favoriteIconFill{
    color: #e20100;
 
 }

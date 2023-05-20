@@ -1,49 +1,59 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "./contexts/AuthProvider";
-import { auth, db } from '../firebase';
-import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { auth, db } from "../firebase";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import ProductCard from "../components/ProductCard";
 
-function Favorites() {
-  const [favorites, setFavorites] = useState([]);
-  const { user } = auth
+const FavoriteProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const { currentUser } = auth
 
   useEffect(() => {
-    if (!user) return;
-    const favoritesRef = doc(collection(db, "favorites"), user.id);
-    getDocs(favoritesRef).then((querySnapshot) => {
-      if (!querySnapshot.empty) {
-        const { products } = querySnapshot.docs[0].data();
-        setFavorites(products);
-      }
-    });
-  }, [user]);
+    const getProducts = async () => {
+      const favoritesDoc = doc(collection(db, 'products'), currentUser.uid);
+      const snapshot = await getDocs(favoritesDoc);
+      const products = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setProducts(products);
+    };
 
-  const handleAddToFavorites = (productId) => {
-    const updatedFavorites = [...favorites, productId];
-    const favoritesRef = doc(collection(db, "favorites"), user.id);
-    updateDoc(favoritesRef, { products: updatedFavorites })
-      .then(() => {
-        setFavorites(updatedFavorites);
-      })
-      .catch((error) =>
-        console.error("Error adding product to favorites:", error)
-      );
-  };
+    getProducts();
+  }, []);
+  console.log(products)
+
+  useEffect(() => {
+    if (!currentUser) return;
+    const favoritesDoc = doc(collection(db, 'favorites'), currentUser.uid);
+    getDoc(favoritesDoc).then((doc) => {
+      if (doc.exists()) {
+        const { products } = doc.data();
+        setFavoriteProducts(products);
+        
+      }
+    })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+  }, [currentUser,]);
+
+  console.log(favoriteProducts)
 
   return (
     <div>
-      <h2>Favorites</h2>
-      {favorites.length === 0 && <p>Nenhum produto foi adicionado ao carrinho ainda</p>}
-      {favorites.map((productId, index) => (
-        <products
-          key={index}
-          id={productId}
-          isFavorite={true}
-          onAddToFavorites={handleAddToFavorites}
-        />
-      ))}
+      <h2>Favorite Products</h2>
+      <div>
+        {favoriteProducts.length === 0 && (
+          <p>Nenhum produto foi adicionado aos favoritos ainda</p>
+        )}
+        {favoriteProducts.map((id, ...product) => (
+          <ProductCard key={id} id={id} {...product}
+          />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
-export default Favorites;
+export default FavoriteProducts;
