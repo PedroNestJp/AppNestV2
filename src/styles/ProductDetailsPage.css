@@ -10,19 +10,18 @@
 }
 
 .containerProductFather {
-  background: #f5f5f5;
+  background: #000;
 }
 @media (max-width: 590px) {
   .containerProductFather {
-  display: flex;
-  justify-content: center;
-  background: #f5f5f5;
-  margin-top: 6rem;
-}
+    display: flex;
+    justify-content: center;
+    background: #f5f5f5;
+    margin-top: 6rem;
+  }
 }
 
 @media (max-width: 768px) {
-
   .containerProductChild1 {
     display: flex;
     background: #000000;
@@ -33,6 +32,8 @@
 .containerProductChild1 {
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 1rem 0rem;
 }
 
 .containerProductChild2 {
@@ -55,11 +56,10 @@
   text-align: center;
 }
 .imgPrincipal {
-  max-height: 30rem;
-  min-width: 28rem;
+  max-height: 27rem;
+  min-width: 24rem;
 }
 .imgProduct {
-  margin-top: 3rem;
 }
 
 .containerProductDesc {
@@ -218,7 +218,9 @@
 .serviceIncluded {
   margin: 1rem;
 }
-
+.serviceIncludedBoxes{
+  max-width: 1080px;
+}
 .mounting,
 .delivery,
 .warranty {
@@ -236,6 +238,7 @@
 .inputReviewArea {
   width: -webkit-fill-available;
   margin: 1rem 0rem;
+  max-width: 1080px;
 }
 .inputReviewArea input {
   padding-left: 1rem;
@@ -249,6 +252,7 @@
   list-style: none;
   margin: 1rem 0rem;
   gap: 1rem;
+  max-width: 1080px;
 }
 
 #reviewsArea {
@@ -263,6 +267,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .ratingText {
