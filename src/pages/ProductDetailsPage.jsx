@@ -147,52 +147,54 @@ const ProductDetailsPage = (productId) => {
                   </div>
                 </div>
               </div>
-              <div className="descText">{description}</div>
-              <div className="rating">
-                <div className="ratingStars"> ⭐⭐⭐⭐⭐ {reviewCount} </div>
-              </div>
-              <div className="hanking">
-                <button className="buttonTop10">TOP 10</button>
-                <label> MAIS VENDIDOS</label>
-              </div>
-              <div className="value">
-                <span className="oldPriceNestPcOneSc">
-                  {" "}
-                  DE R${oldPrice} POR:{" "}
-                </span>
-                <span className="currentPriceProductScreen"> R${price} </span>
-                <span className=" installmentPriceProductScreen">
-                  {" "}
-                  OU 12X DE R$ {installmentPrice}{" "}
-                </span>
-                <span className="discountPix"> 10% de desconto no pix </span>
-              </div>
-              <div className="addCart">
-                <button
-                  className="addCartButton"
-                  onClick={() =>
-                    user !== null
-                      ? handleAddToFavorites(id)
-                      : (alert("faça seu login para então favoritar itens"),
-                        navigate("/login"))
-                  }
-                >
-                  Adicionar aos favoritos
-                </button>
-                <button
-                  className="addCartButton"
-                  disabled={isLoading}
-                  onClick={() =>
-                    user !== null
-                      ? handleAddToCart(id)
-                      : (alert(
-                          "Faça seu login para então adicionar itens ao carrinho"
-                        ),
-                        navigate("/login"))
-                  }
-                >
-                  Adicionar ao carrinho
-                </button>
+              <div className="areaDescriptionPrdct">
+                <div className="descText">{description}</div>
+                <div className="rating">
+                  <div className="ratingStars"> ⭐⭐⭐⭐⭐ {reviewCount} </div>
+                </div>
+                <div className="hanking">
+                  <button className="buttonTop10">TOP 10</button>
+                  <label> MAIS VENDIDOS</label>
+                </div>
+                <div className="value">
+                  <span className="oldPriceNestPcOneSc">
+                    {" "}
+                    DE R${oldPrice} POR:{" "}
+                  </span>
+                  <span className="currentPriceProductScreen"> R${price} </span>
+                  <span className=" installmentPriceProductScreen">
+                    {" "}
+                    OU 12X DE R$ {installmentPrice}{" "}
+                  </span>
+                  <span className="discountPix"> 10% de desconto no pix </span>
+                </div>
+                <div className="addCart">
+                  <button
+                    className="addCartButton"
+                    onClick={() =>
+                      user !== null
+                        ? handleAddToFavorites(id)
+                        : (alert("faça seu login para então favoritar itens"),
+                          navigate("/login"))
+                    }
+                  >
+                    Adicionar aos favoritos
+                  </button>
+                  <button
+                    className="addCartButton"
+                    disabled={isLoading}
+                    onClick={() =>
+                      user !== null
+                        ? handleAddToCart(id)
+                        : (alert(
+                            "Faça seu login para então adicionar itens ao carrinho"
+                          ),
+                          navigate("/login"))
+                    }
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                </div>
               </div>
             </div>
           </div>

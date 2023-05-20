@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .imgProduct {
@@ -86,15 +87,17 @@
 }
 
 .numberOfSales, .offerDiscaunt {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: -webkit-fill-available;
-    border: black solid 0.1rem;
-    justify-content: center;
-    padding: 0.5rem;
-    background-color: rgba(226, 1, 0, 0.81);
-    color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  border: black solid 0.1rem;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: #000;
+  color: #e20100;
+  gap: 0px;
+  border: #ffffffeb solid 1px;
 }
 
 .offersEnd {
@@ -191,10 +194,9 @@
   margin-top: 20px;
   height: 60px;
   width: 100%;
-  background: rgba(226, 1, 0, 0.81);
+  background: #000;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
   border-radius: 5px;
-
   font-weight: 700;
   line-height: 17px;
   font-size: 18px;
@@ -203,42 +205,69 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.areaDescriptionPrdct{
+  padding: 2rem;
+}
+
 .serviceIncluded{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-  gap: 2rem;
+  margin: 1rem;
 }
 
 .mounting, .delivery, .warranty{
   border: #0000007c solid 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   text-align: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 .userReviewArea{
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin: 1rem;
 }
 .inputReviewArea{
-height: 2rem;
+  width: -webkit-fill-available;
 }
 .inputReviewArea input{
-  width: 100rem;
-
+  width: -webkit-fill-available;
+}
+.ulReviewArea{
+  display: flex;
+ flex-direction: column;
+ width: -webkit-fill-available;
+  /* margin: 0rem 1rem 0rem 1rem; */
+  /* gap: 12px; */
+  border: black solid 1px;
+  list-style: none;
 }
 
-
+#reviewsArea{
+    border: black solid 1px;
+}
+.formReviewArea{
+  display: flex;
+}
 
 .PrDtPgWarnings{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.ratingText{
+}
+.btn reviewBtn{
+  cursor: pointer;
+  height: 2rem;
+  width: 10rem;
+  background: #000;
+  border-radius: 0px 5px 5px 0px;
+
+  font-weight: 700;
+  line-height: 11px;
+  font-size: 15px;
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
