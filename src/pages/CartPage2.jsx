@@ -1,86 +1,73 @@
-import { useEffect, useState } from "react";
-import {
-  collection,
-  onSnapshot,
-  doc,
-  updateDoc,
-  deleteDoc,
-  getDocs,
-} from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "./contexts/AuthProvider";
 import { db } from "../firebase";
-import { Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const Checkout = () => {
-  const [items, setItems] = useState([]);
+const CartPage = () => {
+  const { user } = useAuth();
+  const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "carts"), (snapshot) => {
-      const newItems = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setItems(newItems);
-    });
+    const fetchCartItems = async () => {
+      try {
+        const cartDoc = doc(db, "carts", user.uid);
+        const cartSnapshot = await getDoc(cartDoc);
 
-    return () => {
-      unsubscribe();
+        if (cartSnapshot.exists()) {
+          const cartData = cartSnapshot.data();
+          const itemsWithProductData = await Promise.all(
+            cartData.items.map(async (item) => {
+              const productDoc = doc(db, "products", item.id);
+              const productSnapshot = await getDoc(productDoc);
+
+              if (productSnapshot.exists()) {
+                const productData = productSnapshot.data();
+                return {
+                  id: item.id,
+                  quantity: item.quantity,
+                  product: productData,
+                };
+              }
+              return null;
+            })
+          );
+
+          setCartItems(itemsWithProductData.filter((item) => item !== null));
+        } else {
+          setCartItems([]);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
-  }, []);
-  console.log(items);
-  const handleIncreaseQuantity = async (itemId, currentQuantity) => {
-    await updateDoc(doc(db, "carts", itemId), {
-      quantity: currentQuantity + 1,
-    });
-  };
 
-  const handleDecreaseQuantity = async (itemId, currentQuantity) => {
-    await updateDoc(doc(db, "carts", itemId), {
-      quantity: currentQuantity - 1,
-    });
-  };
+    if (user) {
+      fetchCartItems();
+    } else {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
-  const handleRemoveItem = async (itemId) => {
-    await deleteDoc(doc(db, "carts", itemId));
-  };
+  if (cartItems.length === 0) {
+    return <div>Você ainda não tem itens no carrinho.</div>;
+  }
 
   return (
     <div>
-      <h1>Carrinho</h1>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <div>Item $ {item.price}</div>
-            <div>
-              <button
-                onClick={() => handleDecreaseQuantity(item.id, item.quantity)}
-              >
-                -
-              </button>
-              {item.quantity}
-              <button
-                onClick={() => handleIncreaseQuantity(item.id, item.quantity)}
-              >
-                +
-              </button>
-            </div>
-            <div>R$ ${item.price}</div>
-            <div>
-              <button onClick={() => handleRemoveItem(item.id)}>Remover</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <Link to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'>
-      <button
-        className="addCartButton"
-        >
-        Finalizar compra com um vendedor 
-      </button>
-      </Link>
+      <h1>Checkout</h1>
+      {cartItems.map((item) => (
+        <div key={item.id}>
+          <h2>{item.product.name}</h2>
+          <p>Price: {item.product.price}</p>
+          <p>Quantity: {item.quantity}</p>
+          {/* Display other product information as needed */}
+        </div>
+      ))}
+      <Link to="/payment">Proceed to Payment</Link>
     </div>
   );
 };
 
-
-
-export default Checkout;
+export default CartPage;

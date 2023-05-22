@@ -94,13 +94,21 @@ const ProductDetailsPage = (productId) => {
           cart.items[productIndex].quantity++;
           console.log(productIndex);
         } else {
-          cart.items.push({ id: id, quantity: 1 });
+          const productRef = doc(db, "products", id);
+          const productSnapshot = await getDoc(productRef);
+          const productData = productSnapshot.data();
+          cart.items.push({ id: id, quantity: 1, product: productData });
         }
 
         await updateDoc(cartDoc, cart);
         console.log(cart, cartDoc);
       } else {
-        await setDoc(cartDoc, { items: [{ id: id, quantity: 1 }] });
+        const productRef = doc(db, "products", id);
+        const productSnapshot = await getDoc(productRef);
+        const productData = productSnapshot.data();
+        await setDoc(cartDoc, {
+          items: [{ id: id, quantity: 1, product: productData }],
+        });
       }
       alert("Produto adicionado ao carrinho com sucesso ✅");
     } catch (error) {
