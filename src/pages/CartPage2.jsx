@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "./contexts/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "./contexts/AuthProvider";
+import ShortHeader from "../components/ShortHeader";
+import { BsCart } from "react-icons/bs";
 
-const CartPage = () => {
+const CheckoutPage = () => {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
@@ -50,24 +52,169 @@ const CartPage = () => {
     }
   }, [user, navigate]);
 
+  // const handleIncreaseQuantity = async (itemId) => {
+  //   try {
+  //     const cartDoc = doc(db, "carts", user.uid);
+  //     const cartSnapshot = await getDoc(cartDoc);
+
+  //     if (cartSnapshot.exists()) {
+  //       const cartData = cartSnapshot.data();
+  //       const itemIndex = cartData.items.findIndex(
+  //         (item) => item.id === itemId
+  //       );
+
+  //       if (itemIndex !== -1) {
+  //         cartData.items[itemIndex].quantity++;
+  //         await updateDoc(cartDoc, cartData);
+  //         setCartItems((prevItems) =>
+  //           prevItems.map((item) => {
+  //             if (item.id === itemId) {
+  //               item.quantity++;
+  //             }
+  //             return item;
+  //           })
+  //         );
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const handleDecreaseQuantity = async (itemId) => {
+  //   try {
+  //     const cartDoc = doc(db, "carts", user.uid);
+  //     const cartSnapshot = await getDoc(cartDoc);
+
+  //     if (cartSnapshot.exists()) {
+  //       const cartData = cartSnapshot.data();
+  //       const itemIndex = cartData.items.findIndex(
+  //         (item) => item.id === itemId
+  //       );
+
+  //       if (itemIndex !== -1) {
+  //         if (cartData.items[itemIndex].quantity > 1) {
+  //           cartData.items[itemIndex].quantity--;
+  //           await updateDoc(cartDoc, cartData);
+  //           setCartItems((prevItems) =>
+  //             prevItems.map((item) => {
+  //               if (item.id === itemId) {
+  //                 item.quantity--;
+  //               }
+  //               return item;
+  //             })
+  //           );
+  //         }
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const handleDeleteItem = async (itemId) => {
+    try {
+      const cartDoc = doc(db, "carts", user.uid);
+      const cartSnapshot = await getDoc(cartDoc);
+
+      if (cartSnapshot.exists()) {
+        const cartData = cartSnapshot.data();
+        const itemIndex = cartData.items.findIndex(
+          (item) => item.id === itemId
+        );
+
+        if (itemIndex !== -1) {
+          cartData.items.splice(itemIndex, 1);
+          await updateDoc(cartDoc, cartData);
+          setCartItems((prevItems) =>
+            prevItems.filter((item) => item.id !== itemId)
+          );
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleClearCart = async () => {
+    try {
+      const cartDoc = doc(db, "carts", user.uid);
+      await deleteDoc(cartDoc);
+      setCartItems([]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
   if (cartItems.length === 0) {
-    return <div>Você ainda não tem itens no carrinho.</div>;
+    return (
+      <div>
+        <ShortHeader />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "10rem",
+          }}
+        >
+          <h2>
+            {" "}
+            <BsCart /> Seu Carrinho está vazio
+          </h2>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div>
-      <h1>Checkout</h1>
-      {cartItems.map((item) => (
-        <div key={item.id}>
-          <h2>{item.product.name}</h2>
-          <p>Price: {item.product.price}</p>
-          <p>Quantity: {item.quantity}</p>
-          {/* Display other product information as needed */}
-        </div>
-      ))}
-      <Link to="/payment">Proceed to Payment</Link>
+      <ShortHeader />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h1>Seu carrinho</h1>
+        {cartItems.map((item) => (
+          <div className="hl-1 styleBox" key={item.id}>
+            <img
+              className="img-hl-1"
+              src={item.product.imageUrl}
+              alt={item.product.name}
+            />
+            <span className="oldPrice-hl-1 oldPrice-hl">
+              {" "}
+              DE: {item.product.oldPrice} POR:
+            </span>
+            <span className="currentPrice-hl-1 currentPrice-hl">
+              R${item.product.price},00
+            </span>
+            <span className="installmentPrice-hl-1 installmentPrice-hl">
+              12x DE R${item.product.installmentPrice},00
+            </span>
+            <span className="descriptionProduct">
+              {item.product.description}
+            </span>
+            <p>Quantity: {item.quantity}</p>
+            {/* <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+          <button onClick={() => handleDecreaseQuantity(item.id)}>-</button> */}
+            <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
+          </div>
+        ))}
+        <button onClick={handleClearCart}>Clear Cart</button>
+        <Link to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
+          <button className="button-buy">
+            Finalizar compra com um vendedor
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default CartPage;
+export default CheckoutPage;
