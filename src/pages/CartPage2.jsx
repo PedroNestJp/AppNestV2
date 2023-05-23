@@ -203,10 +203,10 @@ const CheckoutPage = () => {
             <p>Quantity: {item.quantity}</p>
             {/* <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
           <button onClick={() => handleDecreaseQuantity(item.id)}>-</button> */}
-            <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
+            <button onClick={() => handleDeleteItem(item.id)}>Deletar</button>
           </div>
         ))}
-        <button onClick={handleClearCart}>Clear Cart</button>
+        <button onClick={handleClearCart}>Limpar Carrinho</button>
         <Link to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
           <button className="button-buy">
             Finalizar compra com um vendedor
