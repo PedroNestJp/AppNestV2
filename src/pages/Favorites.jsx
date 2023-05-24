@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import ShortHeader from "../components/ShortHeader";
 import { useAuth } from "./contexts/AuthProvider";
-import { useNavigate, useParams } from "react-router-dom";
-import { BsHeart } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 const FavoriteProducts = () => {
-  const { id } = useParams();
   const { user } = useAuth();
   const [favItems, setFavItems] = useState([]);
   const navigate = useNavigate();
@@ -15,86 +14,64 @@ const FavoriteProducts = () => {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        if (user) {
-          const favDoc = doc(db, "favorites", user.uid);
-          const favSnapshot = await getDoc(favDoc);
-  
-          if (favSnapshot.exists()) {
-            const favData = favSnapshot.data();
-  
-            if (favData.items && Array.isArray(favData.items)) {
-              const itemsWithProductData = await Promise.all(
-                favData.items.map(async (item) => {
-                  const productDoc = doc(db, "products", item.id);
-                  const productSnapshot = await getDoc(productDoc);
-  
-                  if (productSnapshot.exists()) {
-                    const productData = productSnapshot.data();
-                    return {
-                      id: item.id,
-                      quantity: item.quantity,
-                      product: productData,
-                    };
-                  }
-                  return null;
-                })
-              );
-              setFavItems(itemsWithProductData.filter((item) => item !== null));
-            } else {
-              setFavItems([]);
-            }
-          } else {
-            setFavItems([]);
-          }
+        const favDoc = doc(db, "favorites", user.uid);
+        const favSnapshot = await getDoc(favDoc);
+
+        if (favSnapshot.exists()) {
+          const favData = favSnapshot.data();
+
+
+          const itemsWithProductData = await Promise.all(
+            (favData.products ?? []).map(async (productId) => {
+              const productDoc = doc(db, "products", productId);
+              const productSnapshot = await getDoc(productDoc);
+
+              if (productSnapshot.exists()) {
+                const productData = productSnapshot.data();
+                return {
+                  id: productId,
+                  product: productData,
+                };
+                
+              }
+
+              return null;
+            })
+          );
+
+          setFavItems(itemsWithProductData.filter((item) => item !== null));
         } else {
-          navigate("/login");
+          setFavItems([]);
+
         }
       } catch (error) {
         console.error(error);
       }
     };
-  
-    fetchFavorites();
-  }, [user, navigate]);
-  
-  
 
-  const handleIncreaseQuantity = async () => {
-    try {
-      const cartDoc = doc(db, "carts", user.uid);
-      const snapshot = await getDoc(cartDoc);
-
-      if (snapshot.exists()) {
-        const cartData = snapshot.data();
-        const updatedItems = cartData.items.map((item) => {
-          if (item.id === id) {
-            item.quantity++;
-          }
-          return item;
-        });
-        const updatedCart = { ...cartData, items: updatedItems };
-        await updateDoc(cartDoc, updatedCart);
-        alert("Produto adicionado ao carrinho com sucesso ✅");
-      }
-    } catch (error) {
-      console.error(error);
+    if (user) {
+      fetchFavorites();
+      
+    } else {
+      navigate("/login");
     }
-  };
+  }, [user, navigate]);
+
 
   const handleDeleteItem = async (itemId) => {
     try {
-      const cartDoc = doc(db, "carts", user.uid);
-      const cartSnapshot = await getDoc(cartDoc);
-
-      if (cartSnapshot.exists()) {
-        const cartData = cartSnapshot.data();
-        const itemIndex = cartData.items.findIndex(
-          (item) => item.id === itemId
+      const favDoc = doc(db, "favorites", user.uid);
+      const favSnapshot = await getDoc(favDoc);
+  
+      if (favSnapshot.exists()) {
+        const favData = favSnapshot.data();
+        const itemIndex = favData.products.findIndex(
+          (productId) => productId === itemId
         );
-
+  
         if (itemIndex !== -1) {
-          cartData.items.splice(itemIndex, 1);
-          await updateDoc(cartDoc, cartData);
+          favData.products.splice(itemIndex, 1);
+          await updateDoc(favDoc, favData);
           setFavItems((prevItems) =>
             prevItems.filter((item) => item.id !== itemId)
           );
@@ -105,15 +82,16 @@ const FavoriteProducts = () => {
     }
   };
 
-  // const handleClearCart = async () => {
-  //   try {
-  //     const cartDoc = doc(db, "carts", user.uid);
-  //     await deleteDoc(cartDoc);
-  //     setCartItems([]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleClearCart = async () => {
+    try {
+      const favDoc = doc(db, "favorites", user.uid);
+      await deleteDoc(favDoc);
+      setFavItems([]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   if (favItems.length === 0) {
     return (
@@ -149,11 +127,22 @@ const FavoriteProducts = () => {
         <h1>FAVORITOS</h1>
         {favItems.map((item) => (
           <div className="hl-1 styleBox" key={item.id}>
-            <img
-              className="img-hl-1"
-              src={item.product.imageUrl}
-              alt={item.product.name}
-            />
+                  <button
+        onClick={() => handleDeleteItem(item.id)}
+        className='favoriteIcon'
+        alt="Icone Favoitos"
+        title='Remover dos favoritos'>
+         <BsHeartFill style={{color:'#e20100', height: '1.5rem', width: '1.5rem', backgroundColor: 'white' }} />
+      </button>
+            <Link to={`/products/${item.id}`}>
+              <img
+                className="img-hl-1"
+                src={item.product.imageUrl}
+                alt={item.product.name}
+                title={item.product.name}
+              />
+            </Link>
+            <span>{item.product.name}</span>
             <span className="oldPrice-hl-1 oldPrice-hl">
               {" "}
               DE: {item.product.oldPrice} POR:
@@ -169,6 +158,7 @@ const FavoriteProducts = () => {
             </span>
           </div>
         ))}
+        <button onClick={handleClearCart}>Limpar Carrinho</button>
       </div>
     </div>
   );

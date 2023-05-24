@@ -68,6 +68,7 @@ const ProfilePage = () => {
             <div>
               <div>
                 Olá <BsPersonCircle /> {user.displayName}
+                <img width={20} alt="">{user.photoUrl}</img>
               </div>
               <p>
                 <IoMdMail /> {user.email}

@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
-import { auth, db } from '../firebase';
+import { db } from '../firebase';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { useAuth } from '../pages/contexts/AuthProvider';
 
 
 const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, description }) => {
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-  const { currentUser } = auth
+  const { user } = useAuth()
 
 
   useEffect(() => {
-    if (!currentUser) return;
-    const favoritesDoc = doc(collection(db, 'favorites'), currentUser.uid);
+    if (!user) return;
+    const favoritesDoc = doc(collection(db, 'favorites'), user.uid);
     getDoc(favoritesDoc).then((doc) => {
       if (doc.exists()) {
         const { products } = doc.data();
@@ -25,12 +26,12 @@ const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, de
       .catch((error) => {
         console.log('Error getting document:', error);
       });
-  }, [currentUser, id]);
+  }, [user, id]);
 
 
   const handleAddToFavorites = (productId) => {
     const updatedFavorites = isFavorite ? favorites.filter((id) => id !== productId) : [...favorites, productId];
-    const favoritesDoc = doc(collection(db, 'favorites'), currentUser.uid);
+    const favoritesDoc = doc(collection(db, 'favorites'), user.uid);
     setDoc(favoritesDoc, { products: updatedFavorites })
       .then(() => {
         setFavorites(updatedFavorites);
