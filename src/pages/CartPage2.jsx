@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./contexts/AuthProvider";
@@ -7,6 +7,7 @@ import ShortHeader from "../components/ShortHeader";
 import { BsCart } from "react-icons/bs";
 
 const CheckoutPage = () => {
+  const { id } = useParams();
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ const CheckoutPage = () => {
               return null;
             })
           );
-
           setCartItems(itemsWithProductData.filter((item) => item !== null));
         } else {
           setCartItems([]);
@@ -51,6 +51,28 @@ const CheckoutPage = () => {
       navigate("/login");
     }
   }, [user, navigate]);
+
+  const handleIncreaseQuantity = async () => {
+    try {
+      const cartDoc = doc(db, "carts", user.uid);
+      const snapshot = await getDoc(cartDoc);
+
+      if (snapshot.exists()) {
+        const cartData = snapshot.data();
+        const updatedItems = cartData.items.map((item) => {
+          if (item.id === id) {
+            item.quantity++;
+          }
+          return item;
+        });
+        const updatedCart = { ...cartData, items: updatedItems };
+        await updateDoc(cartDoc, updatedCart);
+        alert("Produto adicionado ao carrinho com sucesso ✅");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // const handleIncreaseQuantity = async (itemId) => {
   //   try {
@@ -145,7 +167,6 @@ const CheckoutPage = () => {
       console.error(error);
     }
   };
-  
 
   if (cartItems.length === 0) {
     return (
@@ -201,8 +222,8 @@ const CheckoutPage = () => {
               {item.product.description}
             </span>
             <p>Quantity: {item.quantity}</p>
-            {/* <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
-          <button onClick={() => handleDecreaseQuantity(item.id)}>-</button> */}
+            <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+            {/* <button onClick={() => handleDecreaseQuantity(item.id)}>-</button> */}
             <button onClick={() => handleDeleteItem(item.id)}>Deletar</button>
           </div>
         ))}

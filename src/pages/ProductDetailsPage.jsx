@@ -18,7 +18,7 @@ import { BsStarFill, BsFillCollectionFill } from "react-icons/bs";
 import { FaFileSignature, FaTools, FaTruck } from "react-icons/fa";
 import Header from "../components/Header";
 
-const ProductDetailsPage = (productId) => {
+const ProductDetailsPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,14 +29,14 @@ const ProductDetailsPage = (productId) => {
 
   useEffect(() => {
     const fetchReviewCount = async () => {
-      const count = await getReviewCount(productId);
+      const count = await getReviewCount(id);
       setReviewCount(count);
       console.log(count);
     };
 
     fetchReviewCount();
-  }, [productId]);
-  console.log(productId);
+  }, [id]);
+  console.log(id);
   console.log(reviewCount);
 
   useEffect(() => {
@@ -62,15 +62,23 @@ const ProductDetailsPage = (productId) => {
     getProduct();
   }, [id]);
 
-  const handleAddToFavorites = async (productId) => {
-    if (favorites.includes(productId)) {
+  const handleAddToFavorites = async () => {
+    if (favorites.includes(id)) {
       alert("Este produto já está nos favoritos!");
       return;
     }
 
     try {
-      const favoritesRef = doc(db, "users", user.uid, "favorites", productId);
-      await setDoc(favoritesRef, { addedAt: new Date() });
+      const productRef = doc(db, "products", id);
+      const productSnapshot = await getDoc(productRef);
+      const productData = productSnapshot.data();
+
+      const favoritesRef = doc(db, "users", user.uid, "favorites", id);
+      await setDoc(favoritesRef, {
+        addedAt: new Date(),
+        product: productData,
+      });
+
       alert("Produto adicionado aos favoritos com sucesso ✅");
     } catch (error) {
       alert(
@@ -88,7 +96,7 @@ const ProductDetailsPage = (productId) => {
       if (snapshot.exists()) {
         const cart = snapshot.data();
         const productIndex = cart.items.findIndex((item) => item.id === id);
-        console.log(cart, productIndex);
+        // console.log(cart, productIndex);
 
         if (productIndex !== -1) {
           cart.items[productIndex].quantity++;
@@ -101,7 +109,7 @@ const ProductDetailsPage = (productId) => {
         }
 
         await updateDoc(cartDoc, cart);
-        console.log(cart, cartDoc);
+        // console.log(cart, cartDoc);
       } else {
         const productRef = doc(db, "products", id);
         const productSnapshot = await getDoc(productRef);
@@ -124,6 +132,7 @@ const ProductDetailsPage = (productId) => {
 
   const { name, price, imageUrl, description, oldPrice, installmentPrice } =
     product;
+
 
   return (
     <>
@@ -158,7 +167,10 @@ const ProductDetailsPage = (productId) => {
               <div className="areaDescriptionPrdct">
                 <div className="descText">{description}</div>
                 <div className="rating">
-                  <div className="ratingStars"> ⭐⭐⭐⭐⭐ {reviewCount} </div>
+                  <div className="ratingStars">
+                    {" "}
+                    <Link to="#reviewsArea"> ⭐⭐⭐⭐⭐</Link>{" "}
+                  </div>
                 </div>
                 <div className="hanking">
                   <button className="buttonTop10">TOP 10</button>
@@ -207,14 +219,13 @@ const ProductDetailsPage = (productId) => {
             </div>
           </div>
         </div>
-        <div></div>
         <div className="containerProductChild2">
           <div className="reviewsArea">
             <h2 className="reviewsTitle">
               {" "}
               <BsStarFill /> Avaliações{" "}
             </h2>
-            <div className="reviews">
+            <div id="reviews" className="reviews">
               {" "}
               <ProductReview productId={product} />{" "}
             </div>
