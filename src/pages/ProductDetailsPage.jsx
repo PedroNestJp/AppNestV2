@@ -13,10 +13,10 @@ import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
-import { getReviewCount } from "../components/ReviewUtils";
 import { BsStarFill, BsFillCollectionFill } from "react-icons/bs";
 import { FaFileSignature, FaTools, FaTruck } from "react-icons/fa";
 import Header from "../components/Header";
+import Reviews from "../components/Reviews";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -24,20 +24,7 @@ const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
-  const [reviewCount, setReviewCount] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchReviewCount = async () => {
-      const count = await getReviewCount(id);
-      setReviewCount(count);
-      console.log(count);
-    };
-
-    fetchReviewCount();
-  }, [id]);
-  console.log(id);
-  console.log(reviewCount);
 
   useEffect(() => {
     if (user) {
@@ -168,7 +155,7 @@ const ProductDetailsPage = () => {
                 <div className="descText">{description}</div>
                 <div className="rating">
                   <div className="ratingStars">
-                    {" "}
+                    {Reviews}
                     <Link to="#reviewsArea"> ⭐⭐⭐⭐⭐</Link>{" "}
                   </div>
                 </div>

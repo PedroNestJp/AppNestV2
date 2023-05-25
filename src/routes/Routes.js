@@ -6,7 +6,6 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CartPage from '../pages/CartPage2';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
-import Navbar from '../components/Header';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
@@ -15,13 +14,13 @@ import CRUDProducts from '../pages/admin/CRUD.Products';
 import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
 import { ContactLine2 } from '../components/ContactLines';
-import AdsHeader from '../components/AdsHeader';
 import AboutUs from '../pages/AboutUs';
 import Terms from '../pages/Terms';
 import {Carrosel} from '../components/Carrosel';
 import ResetPassword from '../pages/ResePassword';
 import UserProfile from '../pages/UserProfile';
-import CartTest from '../pages/testeCart';
+import GamingPcsPage from '../pages/GamingPcsPage';
+import OfficePcsPage from '../pages/OfficePCsPage';
 
 function EdnPoints() {
     return (
@@ -40,7 +39,8 @@ function EdnPoints() {
                     <Route path='/carrosel' element={<Carrosel/>}/>
                     <Route path='/resetPassword' element={<ResetPassword/>}/>
                     <Route path='/userProfile' element={<UserProfile/>}/>
-                    <Route path='/cartTest' element={<CartTest/>}/>
+                    <Route path='/gamingPcsPage' element={<GamingPcsPage/>}/>
+                    <Route path='/officePcsPage' element={<OfficePcsPage/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />
