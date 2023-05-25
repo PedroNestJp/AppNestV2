@@ -107,7 +107,7 @@ const FavoriteProducts = () => {
         >
           <h2>
             <BsHeart />
-            Nenhum produto foi adicionados aos carrinhos ainda
+            Nenhum produto foi adicionados aos favoritos ainda
           </h2>
         </div>
       </div>
