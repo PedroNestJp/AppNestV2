@@ -170,7 +170,7 @@ a{
 
 .favoriteIcon{
     
-    margin-left: 85%;
+    margin-left: 75%;
     cursor: pointer;
     border: hidden;
 }
@@ -191,7 +191,8 @@ a{
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #E20100;
-    margin-top: 5PX;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
 
     font-weight: 900;
     font-size: 20px;
@@ -214,7 +215,6 @@ a{
     font-weight: 600;
     font-size: 12px;
     line-height: 12px;
-    color: #000000;
     margin: 5px 0px;
     -webkit-line-clamp: 3;
     display: -webkit-box;

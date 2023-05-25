@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../pages/contexts/AuthProvider';
-// import { auth } from '../firebase';
 import * as BsIcons from 'react-icons/bs'
 import * as RxIcons from 'react-icons/rx'
 import * as FaIcons from 'react-icons/fa'
@@ -9,22 +8,18 @@ import * as RiIcons from 'react-icons/ri'
 import "../styles/Header.css"
 import Navbar from "./Navbar"
 
-
 function Header() {
-// const navigate = useNavigate()
-
   const { user } = useAuth();
-  // const isAdmin = auth.currentUser?.uid === process.env.REACT_APP_USER_ADMIN;
+
   return (
     <div className="navbarhome">
       <Navbar />
-
       <Link to='/'>
         <img
           className="logoNestHeaderHome"
           src={'https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2'}
-          alt='logo'
-          title='logo da Nest Informática'
+          alt='logo da Nest Informática'
+          title='clique para ir para a tela inicial'
         />
       </Link>
 
@@ -42,7 +37,7 @@ function Header() {
             to='/products' type='submit'
             className='icon-lupa'
             alt='icon-lupa'
-            title="icone de lupa"
+            title="Pesquisar"
           >
             <RxIcons.RxMagnifyingGlass />
           </Link>
@@ -67,8 +62,9 @@ function Header() {
             title='Ir para o seu perfil'
             className="iconProfileHome"
             onClick={() => {
-              alert("Faça seu Login ou cadastre-se")}}
-              >
+              alert("Faça seu Login ou cadastre-se")
+            }}
+          >
             <BsIcons.BsPersonCircle />
           </Link>)}
         <span
@@ -130,35 +126,6 @@ function Header() {
           </Link>
         </span>
       </div>
-
-      {/* <nav>
-        <ul>
-          {isAdmin && (
-            <>
-              <li>
-                <Link to="/admin">Admin Page</Link>
-              </li>
-            </>
-          )}
-        </ul>
-        <ul>
-          {!user && (
-            <>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Cadastro</Link>
-              </li>
-            </>
-          )}
-          {user && (
-            <li>
-              <button onClick={logout}>Sair</button>
-            </li>
-          )}
-        </ul>
-      </nav> */}
     </div>
   );
 };

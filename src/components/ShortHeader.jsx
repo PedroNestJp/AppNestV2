@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import * as BsIcons from "react-icons/bs";
 import { logo } from "../img/imgs";
 import "../styles/ShortHeader.css";
+import Navbar from "./Navbar";
 
 const ShortHeader = () => {
   return (
     <div className="navbarShort">
+      <Navbar />
       <Link to="/" rel="noopener noreferrer">
         <img
           className="logoNestHeader"
           id="logoNestHeader"
-          title="logoNestHeader"
+          title="Clique para ir para a tela inicial"
           alt="logoNestHeader"
           src={logo}
         />

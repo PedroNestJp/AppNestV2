@@ -3,7 +3,6 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 
 export const SidebarData = [
   {
@@ -19,15 +18,9 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Mais Vendidos',
-    path: <Link to='bestSelers'/>,
-    icon: <FaIcons.FaFire />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Destaques',
-    path: '/',
-    icon: <FaIcons.FaStar />,
+    title: 'Carrinho',
+    path: '/cart',
+    icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
   {
@@ -37,9 +30,9 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Atendimento ao cliente',
+    title: 'Whatsapp',
     path: 'https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0',
-    icon: <RiIcons.RiCustomerService2Fill />,
+    icon: <IoIcons.IoLogoWhatsapp />,
     cName: 'nav-text'
   }
 ];
