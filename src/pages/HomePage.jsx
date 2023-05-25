@@ -58,7 +58,7 @@ const HomePage = () => {
           </div>
 
           <div className="divTypePc2">
-            <Link to="/products">
+            <Link to="/gamingPcsPage">
               <img
                 className="img-typepc-2"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgabinete-gamer-superframe-flow-mid-tower-rgb.png?alt=media&token=11b58f0e-566a-44e7-8c3d-cc4e36b1c587"
@@ -71,7 +71,7 @@ const HomePage = () => {
           </div>
 
           <div className="divTypePc3">
-            <Link to="/products">
+            <Link to="/officePcsPage">
               <img
                 className="img-typepc-3"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-office-tgt-rebel.png?alt=media&token=09c22749-b9c3-4627-8fa3-a23f077b4f3a"
