@@ -21,6 +21,7 @@ import ResetPassword from '../pages/ResePassword';
 import UserProfile from '../pages/UserProfile';
 import GamingPcsPage from '../pages/GamingPcsPage';
 import OfficePcsPage from '../pages/OfficePCsPage';
+import HighEndPcsPage from '../pages/HighEndPcsPage';
 
 function EdnPoints() {
     return (
@@ -41,6 +42,7 @@ function EdnPoints() {
                     <Route path='/userProfile' element={<UserProfile/>}/>
                     <Route path='/gamingPcsPage' element={<GamingPcsPage/>}/>
                     <Route path='/officePcsPage' element={<OfficePcsPage/>}/>
+                    <Route path='/highEndPcsPage' element={<HighEndPcsPage/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />

@@ -26,20 +26,20 @@ function Header() {
       }));
       setProducts(products);
     };
-  
+
     getProducts();
   }, []);
-  
+
   useEffect(() => {
     const lowercaseQuery = searchQuery.toLowerCase();
-  
+
     const filteredProducts = products.filter((product) => {
       if (product.titleLowercase) {
         return product.titleLowercase.includes(lowercaseQuery);
       }
       return false;
     });
-  
+
     setSearchResults(filteredProducts);
   }, [searchQuery, products]);
 
@@ -49,29 +49,39 @@ function Header() {
     // pois o useEffect cuidará da atualização dos resultados da busca.
   };
 
-return (
-  <div className="navbarhome">
-    <Navbar/>
-    <form className="search" action="#" onSubmit={handleSearch}>
-      <input
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-        className="inputSearch"
-        id="busque-aqui"
-        autoComplete="off"
-        placeholder="Busque aqui"
-        type="text"
-      />
-      <button
-        className="button-submit"
-        type="button"
-        alt="icon-lupa"
-        title="Pesquisar"
-        onClick={handleSearch}
-      >
-        <RxIcons.RxMagnifyingGlass />
-      </button>
-    </form>
+  return (
+    <div className="navbarhome">
+      <Navbar />
+      <Link to="/">
+        <img
+          className="logoNestHeaderHome"
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2"
+          }
+          alt="logo da Nest Informática"
+          title="clique para ir para a tela inicial"
+        />
+      </Link>
+      <form className="search" action="#" onSubmit={handleSearch}>
+        <input
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          className="inputSearch"
+          id="busque-aqui"
+          autoComplete="off"
+          placeholder="Busque aqui"
+          type="text"
+        />
+        <button
+          className="button-submit"
+          type="button"
+          alt="icon-lupa"
+          title="Pesquisar"
+          onClick={handleSearch}
+        >
+          <RxIcons.RxMagnifyingGlass />
+        </button>
+      </form>
 
       <div className="areaProfile">
         {user ? (
