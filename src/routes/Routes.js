@@ -23,6 +23,8 @@ import GamingPcsPage from '../pages/GamingPcsPage';
 import OfficePcsPage from '../pages/OfficePCsPage';
 import HighEndPcsPage from '../pages/HighEndPcsPage';
 import AllPcsPage from '../pages/AllPcsPage';
+import { FilterPcsByPlatform } from '../pages/FilterPcsByPlatform';
+import SearchResults from '../pages/SearchResults';
 
 function EdnPoints() {
     return (
@@ -45,6 +47,8 @@ function EdnPoints() {
                     <Route path='/officePcsPage' element={<OfficePcsPage/>}/>
                     <Route path='/highEndPcsPage' element={<HighEndPcsPage/>}/>
                     <Route path='/allPcsPage' element={<AllPcsPage/>}/>
+                    <Route path='/filterPcsByPlatform' element={<FilterPcsByPlatform/>}/>
+                    <Route path='/searchResults' element={<SearchResults/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
                     <Route path="/CRUDProducts" element={<CRUDProducts />} />

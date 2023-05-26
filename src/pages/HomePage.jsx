@@ -1,45 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
-import "../styles/Home.css";
 import { Link } from "react-router-dom";
-import imgIntelType from "../assets/buyByPlatform/buyByPlatform-img-intel.png";
-import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
-import { imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from "../img/imgs";
-import ProductCard from "../components/ProductCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
+import ProductCard from "../components/ProductCard";
+import {
+  imgBbdMonitor,
+  imgBbdPc,
+  imgBbdPeripherals,
+  imgIntelType,
+  imgAmdType,
+} from "../img/imgs";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "../styles/Home.css";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const fetchProducts = async () => {
       const productsCol = collection(db, "products");
       const snapshot = await getDocs(productsCol);
-      const products = snapshot.docs.map((doc) => ({
+      const productsData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setProducts(products);
+      setProducts(productsData);
     };
 
-    getProducts();
+    fetchProducts();
   }, []);
 
   return (
     <>
       <Header />
       <AdsHeader />
+
       <section className="container">
-        <div
-          id="typepc-text"
-          title="typepc-text"
-          className="typepc-text"
-          alt="QUAL É SEU TIPO DE PC?"
-        >
-          {" "}
+        <div className="typepc-text" title="typepc-text">
           QUAL TIPO DE PC VOCÊ BUSCA?
         </div>
 
@@ -50,8 +50,8 @@ const HomePage = () => {
                 className="img-typepc-1"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-corsair-680x-rgb.png?alt=media&token=95ca548e-9af5-4754-8005-565dca5ff810"
                 alt="PC HIGH-END"
-              ></img>
-              <span className="textTypePc-1 " id="textTypePc">
+              />
+              <span className="textTypePc-1" id="textTypePc">
                 HIGH-END
               </span>
             </Link>
@@ -63,8 +63,8 @@ const HomePage = () => {
                 className="img-typepc-2"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgabinete-gamer-superframe-flow-mid-tower-rgb.png?alt=media&token=11b58f0e-566a-44e7-8c3d-cc4e36b1c587"
                 alt="PC GAMER"
-              ></img>
-              <span className="textTypePc-2 " id="textTypePc">
+              />
+              <span className="textTypePc-2" id="textTypePc">
                 GAMER
               </span>
             </Link>
@@ -76,33 +76,33 @@ const HomePage = () => {
                 className="img-typepc-3"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-office-tgt-rebel.png?alt=media&token=09c22749-b9c3-4627-8fa3-a23f077b4f3a"
                 alt="PC OFFICE"
-              ></img>
-              <span className="textTypePc-3 " id="textTypePc">
+              />
+              <span className="textTypePc-3" id="textTypePc">
                 OFFICE
               </span>
             </Link>
           </div>
         </div>
       </section>
+
       <section className="container-2" title="container-2">
-        <div id="hl" title="highlights" className="hl-text">
-          {" "}
+        <div className="hl-text" id="hl">
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
+          <Carousel showArrows showThumbs={false} infiniteLoop>
             {products.map(({ id, ...product }) => (
               <ProductCard key={id} id={id} {...product} />
             ))}
           </Carousel>
         </div>
-        {/* <Carrosel/> */}
       </section>
+
       <section className="buyByPlatform" id="buyByPlatformHome">
-        <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
+        <div className="text-buy-by-platform">COMPRE POR PLATAFORMA</div>
         <div className="divBuyByPlatform">
           <div className="divPlatformIntel" id="textPlatform">
-            <span className="text-platform-intel"> INTEL </span>
+            <span className="text-platform-intel">INTEL</span>
             <img
               className="platform-intel"
               src={imgIntelType}
@@ -110,7 +110,7 @@ const HomePage = () => {
             />
           </div>
           <div className="divPlatformAmd" id="textPlatform">
-            <span className="text-platform-amd"> AMD </span>
+            <span className="text-platform-amd">AMD</span>
             <img
               className="platform-amd"
               src={imgAmdType}
@@ -119,60 +119,54 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
       <section className="container-3" id="container-3" title="container-3">
-        <div id="bestSelers" className="bs-text">
-          {" "}
-          MAIS VENDIDOS{" "}
+        <div className="bs-text" id="bestSelers">
+          MAIS VENDIDOS
         </div>
-        <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-          {products.map(({ id, ...product }) => (
-            <ProductCard key={id} id={id} {...product} />
-          ))}
-        </Carousel>
+        <div className="bestSelersBox" id="highlightsBoxs">
+          <Carousel showArrows showThumbs={false} infiniteLoop>
+            {products.map(({ id, ...product }) => (
+              <ProductCard key={id} id={id} {...product} />
+            ))}
+          </Carousel>
+        </div>
       </section>
+
       <section className="departments" id="departmentsHome">
-        <div className="departmentsText"> 🗄DEPARTAMENTOS </div>
+        <div className="departmentsText">🗄DEPARTAMENTOS</div>
 
         <div className="bbdBoxs">
-          <Link to={"/allPcsPage"}>
+          <Link to="/">
             <div className="bbd-1 styleBox-bbd">
               <img
                 className="img-bbd-1"
                 srcSet={imgBbdPc}
-                src="../assets/pcs.png"
-                alt=""
+                alt="PCS"
               />
-              <span className="bbd-text bbd-text-1"> PCS </span>
+              <span className="bbd-text bbd-text-1">PCS</span>
             </div>
           </Link>
-          <Link >
+          <Link to="">
             <div className="bbd-2 styleBox-bbd">
               <img
                 className="img-bbd-2"
                 srcSet={imgBbdMonitor}
-                src="../assets/monitores.png"
-                alt="PCS"
+                alt="MONITORES"
               />
-              <span className="bbd-text bbd-text-2"> MONITORES </span>
+              <span className="bbd-text bbd-text-2">MONITORES</span>
             </div>
           </Link>
-          <Link to={''}>
+          <Link to="">
             <div className="bbd-3 styleBox-bbd">
               <img
                 className="img-bbd-3"
                 srcSet={imgBbdPeripherals}
-                src="../assets/perifericos.png"
-                alt=""
+                alt="PERIFERICOS"
               />
-              <span className="bbd-text bbd-text-3"> PERIFERICOS </span>
+              <span className="bbd-text bbd-text-3">PERIFERICOS</span>
             </div>
           </Link>
-          {/* 
-        <div className="bbd-4 styleBox-bbd">
-            <img className="img-bbd-4" srcSet={imgBbdHardware} src="../assets/hardware.png" alt="imgHardware"/>
-            <span className="bbd-text bbd-text-4"> HARDWARE </span> 
-        </div> */}
         </div>
       </section>
     </>

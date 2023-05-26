@@ -1,91 +1,76 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
-import "../styles/Home.css";
-import imgIntelType from "../assets/buyByPlatform/buyByPlatform-img-intel.png";
-import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
+import { collection, getDocs, query } from "firebase/firestore";
+import "../styles/AllPcsPage.css";
 import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 
+// Função para filtrar os produtos por tipo
+const filterTypeProducts = (product, type) => {
+  return product.filter((product) => product.typePc === type);
+};
+
 const AllPcsPage = () => {
-  const [products, setProducts] = useState([]);
+  const [productsOffice, setProductsOffice] = useState([]);
+  const [productsGamer, setProductsGamer] = useState([]);
+  const [productsHighEnd, setProductsHighEnd] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
-      const productsCol = collection(db, "products");
-      const snapshot = await getDocs(productsCol);
-      const products = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setProducts(products);
+    const carregarProdutos = async () => {
+      const querySnapshot = await getDocs(query(collection(db, "products")));
+      const products = querySnapshot.docs.map((doc) => doc.data());
+
+      // Filtrar os produtos por tipo
+      const productsOffice = filterTypeProducts(products, "office");
+      const productsGamer = filterTypeProducts(products, "gamer");
+      const productsHighEnd = filterTypeProducts(products, "highEnd");
+
+      setProductsOffice(productsOffice);
+      setProductsGamer(productsGamer);
+      setProductsHighEnd(productsHighEnd);
     };
 
-    getProducts();
+    carregarProdutos();
   }, []);
 
   return (
     <>
       <Header />
 
-      <section
-        style={{ marginTop: "7rem" }}
-        className="buyByPlatform"
-        id="buyByPlatformHome"
-      >
-        <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
-        <div className="divBuyByPlatform">
-          <div className="divPlatformIntel" id="textPlatform">
-            <span className="text-platform-intel"> INTEL </span>
-            <img
-              className="platform-intel"
-              src={imgIntelType}
-              alt="Plataforma Intel"
-            />
-          </div>
-          <div className="divPlatformAmd" id="textPlatform">
-            <span className="text-platform-amd"> AMD </span>
-            <img
-              className="platform-amd"
-              src={imgAmdType}
-              alt="Plataforma AMD"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="container-2" title="container-2">
-        <div id="hl" title="highlights" className="bs-text">
+      <section id="pcsOfficeContainer" className="container" title="Pcs Office">
+        <div id="pcsOfficeId" title="Pcs Office" className="allPCsTexts">
           {" "}
           PCS OFFICE
         </div>
-        <div className="highLightsBoxs" id="highlightsBoxs">
+        <div className="allPcsBoxs" id="allPcsBoxsOffices">
           <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
+            {productsOffice.map(({ id, ...product }) => (
+                  <ProductCard key={id} id={id} {...product} />
+                ))}
           </Carousel>
         </div>
         {/* <Carrosel/> */}
       </section>
-      <section className="container-3" id="container-3" title="container-3">
-        <div id="bestSelers" className="bs-text">
+      <section className="container" id="pcsGamerContainer" title="Pcs Gamer">
+        <div id="pcsGamerDiv" className="allPCsTexts">
           PCS GAMER
         </div>
-        <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-          {products.map(({ id, ...product }) => (
-            <ProductCard key={id} id={id} {...product} />
-          ))}
-        </Carousel>
-      </section>
-      <section className="container-2" title="container-2">
-        <div className="bs-text"> PCS HIGH-END </div>
-        <div className="highLightsBoxs" id="highlightsBoxs">
+        <div className="allPcsBoxs" id="allPcsBoxsGamer">
           <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
+            {productsGamer.map(({ id, ...product }) => (
+                  <ProductCard key={id} id={id} {...product} />
+                ))}
+          </Carousel>
+        </div>
+      </section>
+      <section className="container" title="Pcs High-End">
+        <div className="allPCsTexts">PCS HIGH-END</div>
+        <div className="allPcsBoxs" id="allPcsBoxsHighEnd">
+          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
+            {productsHighEnd.map(({ id, ...product }) => (
+                  <ProductCard key={id} id={id} {...product} />
+                ))}
           </Carousel>
         </div>
       </section>

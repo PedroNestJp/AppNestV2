@@ -99,16 +99,13 @@ const LoginPage = () => {
             <span className="lineLogin"></span>
             <span className="text-loginSocial">
               {" "}
-              QUERO ACESSAR COM MINHAS REDES SOCIAIS{" "}
+              QUERO ACESSAR COM MINHA CONTA GOOGLE{" "}
             </span>
-
-            <button className="login-fb">
-              <span className="fb-text"> Facebook </span>
-            </button>
 
             <button onClick={loginComGoogless} className="login-gg gg-text">
               Google
             </button>
+            
 
             <div className="loginOrLine">
               <span className="line1"></span>
