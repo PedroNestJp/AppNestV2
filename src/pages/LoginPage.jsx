@@ -75,7 +75,7 @@ const LoginPage = () => {
                   placeholder="E- mail, CPF ou CNPJ"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  autoComplete={email}
+                  autoComplete='email'
                   aria-label="Digite seu email"
                   required
                 />

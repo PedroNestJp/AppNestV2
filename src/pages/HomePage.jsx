@@ -120,7 +120,10 @@ const HomePage = () => {
         </div>
       </section>
       <section className="container-3" id="container-3" title="container-3">
-        <div id="bestSelers" className="bs-text"> MAIS VENDIDOS </div>
+        <div id="bestSelers" className="bs-text">
+          {" "}
+          MAIS VENDIDOS{" "}
+        </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
         <Carousel showArrows={true} showThumbs={false} infiniteLoop>
           {products.map(({ id, ...product }) => (
@@ -132,35 +135,39 @@ const HomePage = () => {
         <div className="departmentsText"> 🗄DEPARTAMENTOS </div>
 
         <div className="bbdBoxs">
-          <div className="bbd-1 styleBox-bbd">
-            <img
-              className="img-bbd-1"
-              srcSet={imgBbdPc}
-              src="../assets/pcs.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-1"> PCS </span>
-          </div>
-
-          <div className="bbd-2 styleBox-bbd">
-            <img
-              className="img-bbd-2"
-              srcSet={imgBbdMonitor}
-              src="../assets/monitores.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-2"> MONITORES </span>
-          </div>
-
-          <div className="bbd-3 styleBox-bbd">
-            <img
-              className="img-bbd-3"
-              srcSet={imgBbdPeripherals}
-              src="../assets/perifericos.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-3"> PERIFERICOS </span>
-          </div>
+          <Link to={"/allPcsPage"}>
+            <div className="bbd-1 styleBox-bbd">
+              <img
+                className="img-bbd-1"
+                srcSet={imgBbdPc}
+                src="../assets/pcs.png"
+                alt=""
+              />
+              <span className="bbd-text bbd-text-1"> PCS </span>
+            </div>
+          </Link>
+          <Link >
+            <div className="bbd-2 styleBox-bbd">
+              <img
+                className="img-bbd-2"
+                srcSet={imgBbdMonitor}
+                src="../assets/monitores.png"
+                alt="PCS"
+              />
+              <span className="bbd-text bbd-text-2"> MONITORES </span>
+            </div>
+          </Link>
+          <Link to={''}>
+            <div className="bbd-3 styleBox-bbd">
+              <img
+                className="img-bbd-3"
+                srcSet={imgBbdPeripherals}
+                src="../assets/perifericos.png"
+                alt=""
+              />
+              <span className="bbd-text bbd-text-3"> PERIFERICOS </span>
+            </div>
+          </Link>
           {/* 
         <div className="bbd-4 styleBox-bbd">
             <img className="img-bbd-4" srcSet={imgBbdHardware} src="../assets/hardware.png" alt="imgHardware"/>
