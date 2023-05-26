@@ -14,7 +14,7 @@ const SearchResults = () => {
     }, 300);
 
     return () => clearTimeout(delaySearch);
-  }, [searchInput]);
+  }, [searchProducts]);
 
   const handleSearchInputChange = (event) => {
     const input = event.target.value;

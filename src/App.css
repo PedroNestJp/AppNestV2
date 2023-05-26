@@ -6,9 +6,7 @@
 
 .carousel * {
   display: flex;
-
-
-} 
+}
 
 .carouselAds {
   display: flex;
@@ -33,22 +31,19 @@
 }
 @media (max-width: 590px) {
   .carouselAds {
-    margin-top: 6.5rem;
     height: 4rem;
 
   }  
 }
 @media (max-width: 400px) {
   .carouselAds {
-    margin-top: 8.4rem;
     height: 3.5rem;
 
   }  
 }
 @media (max-width: 350px) {
   .carouselAds {
-    margin-top: 8.4rem;
-    height: 2.8rem;
+    height: 3.3em;
 
   }  
 }

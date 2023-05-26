@@ -77,10 +77,6 @@ const ProfilePage = () => {
             <h2 className="username">{user.username}</h2>
             <h3>Seus favoritos:</h3>
             <ul className="favorites-list">
-              {user.favorites &&
-                user.favorites.map((item) => (
-                  <li key={item.id}>{item.name}</li>
-                ))}
               <li>
                 <Link to="/favorites" style={{ color: "#f00" }}>
                   Favoritos
@@ -88,11 +84,13 @@ const ProfilePage = () => {
               </li>
             </ul>
             <h3>Carrinho de Compras:</h3>
-            <ul className="cart-list">
-              {user.carts &&
-                user.carts.map((item) => <li key={item.id}>{item.name}</li>)}
+            <ul className="favorites-list">
+              <li>
+                <Link to="/cart" style={{ color: "#f00" }}>
+                  Carrinho
+                </Link>
+              </li>
             </ul>
-
             <div className="resetPassword">
               <p>
                 <BsLockFill /> Deseja alterar sua senha?

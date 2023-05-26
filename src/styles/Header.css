@@ -21,7 +21,14 @@
 
 @media (max-width: 590px) {
   .navbarhome {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+
+  }
+  .areaProfile{
+    content-visibility: hidden;
+  }
+  .iconsNavHome{
+    content-visibility: hidden;
   }
 }
 
