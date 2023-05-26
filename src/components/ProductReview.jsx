@@ -45,6 +45,7 @@ function ProductReview({ productId }) {
       };
 
       await addDoc(collection(db, "reviews"), reviewData);
+      alert('Agradecemos a sua avaliação')
 
       // Limpa o campo de nova avaliação
       setNewReview("");
