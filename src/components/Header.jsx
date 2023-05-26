@@ -21,8 +21,6 @@ return (
      />
 </Link>
 
-php
-Copy code
   <ProductsSearch />
 
   <div className="areaProfile">
