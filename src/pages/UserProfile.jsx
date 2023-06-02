@@ -3,9 +3,10 @@ import { useAuth } from "./contexts/AuthProvider";
 import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
-import { BsLockFill, BsPersonCircle } from "react-icons/bs";
+import { BsHeartFill, BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
 import HeaderShort from "../components/ShortHeader";
+import { FaShoppingCart } from "react-icons/fa";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
@@ -26,6 +27,7 @@ const ProfilePage = () => {
           <HeaderShort />
 
           <div className="adminContentMain">
+            <div className="userProfileContainer">
             <h1>Painel Administrativo</h1>
             <h2>
               Olá Admin : <BsPersonCircle /> {auth.currentUser.displayName}
@@ -47,6 +49,7 @@ const ProfilePage = () => {
                 </Link>
               </li>
             </ul>
+            </div>
           </div>
         </>
       );
@@ -61,36 +64,39 @@ const ProfilePage = () => {
           <HeaderShort />
 
           <div className="user-profile">
-            {<BsPersonCircle alt="Profile" className="profile-picture" />}
 
-            <h1>Perfil</h1>
-
-            <div>
-              <div>
+            <div className="userProfileContainer">
+              {<BsPersonCircle alt="Profile" className="profile-picture" />}
+              <h2>Perfil</h2>
+              <div className="WellcomeUserBox">
                 Olá <BsPersonCircle /> {user.displayName}
                 <img width={20} alt="">{user.photoUrl}</img>
+                <h3>
+                  <IoMdMail /> {user.email}
+                </h3>
               </div>
-              <p>
-                <IoMdMail /> {user.email}
-              </p>
+              <h2 className="username">{user.username}</h2>
             </div>
-            <h2 className="username">{user.username}</h2>
+            <div className="userProfileContainer">
             <h3>Seus favoritos:</h3>
             <ul className="favorites-list">
               <li>
                 <Link to="/favorites" style={{ color: "#f00" }}>
-                  Favoritos
+                <BsHeartFill /> Favoritos
                 </Link>
               </li>
             </ul>
+            </div>
+            <div className="userProfileContainer">
             <h3>Carrinho de Compras:</h3>
             <ul className="favorites-list">
               <li>
                 <Link to="/cart" style={{ color: "#f00" }}>
-                  Carrinho
+                <FaShoppingCart /> Carrinho
                 </Link>
               </li>
             </ul>
+            </div>
             <div className="resetPassword">
               <p>
                 <BsLockFill /> Deseja alterar sua senha?
@@ -99,7 +105,7 @@ const ProfilePage = () => {
                 </Link>
               </p>
             </div>
-            <button className="btnLogout" onClick={logout}>
+            <button style={{width:'29rem'}} className="button-buy" onClick={logout}>
               Sair
             </button>
           </div>
