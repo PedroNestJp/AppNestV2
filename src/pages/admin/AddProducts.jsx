@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,7 @@ function ProductList() {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [updateName, setUpdateName] = useState("");
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
@@ -49,6 +51,7 @@ function ProductList() {
   const handlePlatformChange = (e) => setPlatform(e.target.value);
   const handleTypePcChange = (e) => setTypePc(e.target.value);
   const handleImageChange = (e) => setImage(e.target.files[0]);
+  const handleUpdateNameChange = (e) => setUpdateName(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,10 +93,10 @@ function ProductList() {
     setUploading(false);
   };
 
-  const handleUpdateProduct = async (productId, newValues) => {
+  const handleUpdateProduct = async (productId) => {
     try {
       const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, newValues);
+      await updateDoc(productRef, { name: updateName });
       alert("Produto atualizado com sucesso!");
     } catch (error) {
       console.error(error);
@@ -242,41 +245,56 @@ function ProductList() {
       )}
 
       <h2>Products List</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <p>
-              <img src={product.imageUrl} alt="Product" />
-            </p>
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <p>Price: {product.price}</p>
-            <p>Old Price: {product.oldPrice}</p>
-            <p>Installment Price: {product.installmentPrice}</p>
-            <p>Product Type: {product.productType}</p>
-            <p>Platform: {product.platform}</p>
-            <p>Type of PC: {product.typePc}</p>
 
-            <button
-              onClick={() =>
-                handleUpdateProduct(product.id, { name: "Updated Product" })
-              }
-            >
-              Update Name
-            </button>
-            <button onClick={() => handleDeleteProduct(product.id)}>
-              Delete
-            </button>
-            <button
-              onClick={() =>
-                handleAddField(product.id, "newField", "New Value")
-              }
-            >
-              Add Field
-            </button>
-          </li>
-        ))}
-      </ul>
+      {products.map((product) => (
+        <div className="hl-1 styleBox" key={product.id}>
+          <Link to="/">
+            <img
+              className="img-hl-1"
+              src={product.imageUrl}
+              alt={product.name}
+            />
+          </Link>
+          <span>{product.name}</span>
+          <span className="oldPrice-hl-1 oldPrice-hl">
+            {" "}
+            DE: {product.oldPrice} POR:
+          </span>
+          <span className="currentPrice-hl-1 currentPrice-hl">
+            R${product.price},00
+          </span>
+          <span className="installmentPrice-hl-1 installmentPrice-hl">
+            12x DE R${product.installmentPrice},00
+          </span>
+          <span className="descriptionProduct">{product.description}</span>
+          <span>Product Type: {product.productType}</span>
+          <span>Platform: {product.platform}</span>
+          <span>Type of PC: {product.typePc}</span>
+
+          <input
+            type="text"
+            value={updateName}
+            onChange={handleUpdateNameChange}
+          />
+          <button
+            onClick={() =>
+              handleUpdateProduct(product.id, { name: updateName })
+            }
+          >
+            Update Name
+          </button>
+          <button onClick={() => handleDeleteProduct(product.id)}>
+            Delete
+          </button>
+          <button
+            onClick={() =>
+              handleAddField(product.id, "newField", "New Value")
+            }
+          >
+            Add Field
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
