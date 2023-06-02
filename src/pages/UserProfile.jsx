@@ -7,6 +7,7 @@ import { BsHeartFill, BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
 import HeaderShort from "../components/ShortHeader";
 import { FaShoppingCart } from "react-icons/fa";
+import ShortHeader from "../components/ShortHeader";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
@@ -21,11 +22,12 @@ const ProfilePage = () => {
   }, [user, navigate]);
 
   const renderAdminContent = () => {
+
     if (isAdmin) {
       return (
         <>
-          <HeaderShort />
-
+        <ShortHeader/>
+        
           <div className="adminContentMain">
             <div className="userProfileContainer">
             <h1>Painel Administrativo</h1>
@@ -51,7 +53,7 @@ const ProfilePage = () => {
             </ul>
             </div>
           </div>
-        </>
+          </>
       );
     }
     return null;
@@ -61,10 +63,8 @@ const ProfilePage = () => {
     if (user) {
       return (
         <>
-          <HeaderShort />
-
+        <ShortHeader/>
           <div className="user-profile">
-
             <div className="userProfileContainer">
               {<BsPersonCircle alt="Profile" className="profile-picture" />}
               <h2>Perfil</h2>
@@ -109,7 +109,7 @@ const ProfilePage = () => {
               Sair
             </button>
           </div>
-        </>
+          </>
       );
     }
     return <div>Faça o seu Login</div>;

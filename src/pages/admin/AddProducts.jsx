@@ -13,6 +13,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
+import '../../styles/AddProducts.css'
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -147,11 +148,13 @@ function ProductList() {
   }, []);
 
   return (
-    <div>
-      <h2>Add Products</h2>
-      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
-        <form onSubmit={handleSubmit}>
-          <div>
+    <div className="AddProductsMain">
+      <div className="AddProductsContainer">
+        <h2>Add Products</h2>
+        {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+
+          <form className="addProductsInputs" onSubmit={handleSubmit}>
+
             <label htmlFor="name">Nome do produto:</label>
             <input
               type="text"
@@ -159,16 +162,14 @@ function ProductList() {
               value={name}
               onChange={handleNameChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="description">Descrição:</label>
             <textarea
               id="description"
               value={description}
               onChange={handleDescriptionChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="price">Preço:</label>
             <input
               type="number"
@@ -176,8 +177,7 @@ function ProductList() {
               value={price}
               onChange={handlePriceChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="OldPrice">Old price:</label>
             <input
               type="number"
@@ -185,8 +185,7 @@ function ProductList() {
               value={oldPrice}
               onChange={handleOldPriceChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="InstallmentPrice">Installment Price:</label>
             <input
               type="number"
@@ -194,8 +193,7 @@ function ProductList() {
               value={installmentPrice}
               onChange={handleInstallmentPriceChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="productType">Tipo de Produto:</label>
             <input
               type="text"
@@ -203,8 +201,7 @@ function ProductList() {
               value={productType}
               onChange={handleProductTypeChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="platform">Plataforma:</label>
             <input
               type="text"
@@ -212,8 +209,7 @@ function ProductList() {
               value={platform}
               onChange={handlePlatformChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="typePc">Tipo de PC:</label>
             <input
               type="text"
@@ -221,8 +217,7 @@ function ProductList() {
               value={typePc}
               onChange={handleTypePcChange}
             />
-          </div>
-          <div>
+
             <label htmlFor="image">Imagem:</label>
             <input
               type="file"
@@ -230,19 +225,21 @@ function ProductList() {
               accept="image/*"
               onChange={handleImageChange}
             />
-          </div>
-          {image && (
-            <div className="imgProduct">
-              <img src={imageUrl} alt="Product preview" />
-            </div>
-          )}
-          <button type="submit" disabled={uploading}>
-            {uploading ? "Enviando..." : "Adicionar Produto"}
-          </button>
-        </form>
-      ) : (
-        console.log(`Sem acesso para ${auth.currentUser}`)
-      )}
+
+            {image && (
+              <div className="imgProduct">
+                <img src={imageUrl} alt="Product preview" />
+              </div>
+            )}
+            <button type="submit" disabled={uploading}>
+              {uploading ? "Enviando..." : "Adicionar Produto"}
+            </button>
+          </form>
+
+        ) : (
+          console.log(`Sem acesso para ${auth.currentUser}`)
+        )}
+      </div>
 
       <h2>Products List</h2>
 

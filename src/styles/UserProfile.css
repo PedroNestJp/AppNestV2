@@ -49,6 +49,7 @@
 }
 
 .userProfileContainer {
+  padding: 1rem;
   background-color: white;
   display: flex;
   align-items: center;
