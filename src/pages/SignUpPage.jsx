@@ -6,123 +6,6 @@ import { auth, db } from "../firebase";
 import "../styles/Register.css";
 import ShortHeader from "../components/ShortHeader";
 
-// const SignUpPage = () => {
-// const [fullName, setFullName] = useState("");
-// const [cpf, setCpf] = useState("");
-// const [dateOfBirth, setBirthDate] = useState("");
-// const [email, setEmail] = useState("");
-// const [password, setPassword] = useState("");
-// const [cellPhone, setCell] = useState("");
-// const [confirmPassword, setConfirmPassword] = useState("");
-// const [acceptTermOne, setAcceptTermOne] = useState(Boolean);
-// const [acceptTermTwo, setAcceptTermTwo] = useState(Boolean);
-// const [error, setError] = useState("");
-// const { signup } = useAuth();
-// const navigate = useNavigate();
-// const user = auth.currentUser;
-
-// useEffect(() => {
-//   if (user) {
-//     const userRef = doc(db, "users", user.uid);
-//     const userData = {
-//       email: user.email,
-//       name: user.displayName,
-//       cellPhone: user.phoneNumber,
-//       photoURL: user.photoURL,
-//       createdAt: new Date(),
-//     };
-//     setDoc(userRef, userData, { merge: true })
-//       .then(() => {
-//         console.log("User data saved to Firestore");
-//       })
-//       .catch((error) => {
-//         console.error("Error saving user data to Firestore: ", error);
-//       });
-//   }
-// }, [user]);
-
-// const handleSubmit = async (event) => {
-//   event.preventDefault();
-//   if (password !== confirmPassword) {
-//     setError("Passwords do not match");
-//     return;
-//   }
-
-//   const usersCollection = collection(db, "users");
-//   try {
-//     await addDoc(usersCollection, {
-//       fullName,
-//       cpf,
-//       cellPhone,
-//       email,
-//       password,
-//       dateOfBirth,
-//       acceptTermOne,
-//       acceptTermTwo,
-//     });
-//     alert("Usuário registrado com sucesso!");
-//   } catch (error) {
-//     console.error("Erro ao registrar usuário: ", error);
-//     alert("Ocorreu um erro ao registrar o usuário: " + error.message);
-//   }
-//   try {
-//     await signup(email, password, fullName, cpf, cellPhone);
-//     navigate("/");
-//   } catch (error) {
-//     setError(error.message);
-//     console.log("erro no segundo try");
-//   }
-
-//   return (
-//     <form >
-//       <h1>Sign up</h1>
-//       {error && <div>{error}</div>}
-//       <div>
-//         <label>
-//           Nome completo:
-//           <input
-//             type="text"
-//             value={fullName}
-//             onChange={(event) => setFullName(event.target.value)}
-//           />
-//         </label>
-//         <label htmlFor="email">Email</label>
-//         <input
-//           type="email"
-//           id="email"
-//           value={email}
-//           onChange={(event) => setEmail(event.target.value)}
-//           required
-//         />
-//       </div>
-//       <div>
-//         <label htmlFor="password">Senha</label>
-//         <input
-//           type="password"
-//           id="password"
-//           value={password}
-//           onChange={(event) => setPassword(event.target.value)}
-//           required
-//           pattern=".{6,}"
-//           title="A senha precisa ter pelo menos 6 caracteres"
-//         />
-//       </div>
-//       <div>
-//         <label>Confirme a Senha</label>
-//         <input
-//           type="password"
-//           value={confirmPassword}
-//           onChange={(e) => setConfirmPassword(e.target.value)}
-//           required
-//         />
-//       </div>
-//       <button type="submit">Cadastrar</button>
-//     </form>
-//   );
-// };
-
-// export { SignUpPage };
-
 const RegisterComponents = () => {
   const [fullName, setFullName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -161,7 +44,7 @@ const RegisterComponents = () => {
           console.log("User data saved to Firestore");
         })
         .catch((error) => {
-          console.error("Error saving user data to Firestore: ", error);
+          console.error("Erro ao registrar usuário:  ", error);
         });
     }
   }, [user]);

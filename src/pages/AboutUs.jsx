@@ -1,6 +1,9 @@
 import React from "react";
+import ShortHeader from '../components/ShortHeader'
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
+
   const sectionStyle = {
     width: "100%",
     maxWidth: "800px",
@@ -25,6 +28,8 @@ const AboutUs = () => {
   };
 
   return (
+    <>
+    <ShortHeader/>
     <div
       style={{
         display: "flex",
@@ -34,6 +39,7 @@ const AboutUs = () => {
         margin: "20px",
       }}
     >
+      <section style={sectionStyle}>
       <h1>Quem Somos</h1>
 
       <p>
@@ -41,6 +47,7 @@ const AboutUs = () => {
         PCS gamers customizados ou pré-definidos de alta qualidade que serão
         ideais para a finalidade que você procura.
       </p>
+      </section>
       <section style={sectionStyle}>
         <h2 style={headingStyle}>Nossa História</h2>
         <p>
@@ -77,10 +84,14 @@ const AboutUs = () => {
           produtos e serviços.
         </p>
         <ul style={listStyle}>
+          <Link to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'>
+          <button className="button-buy"> Entre em contato agora </button>
+          </Link>
           <li style={listItemStyle}>Telefone: (83) 9 86377109</li>
           <li style={listItemStyle}>E-mail: nestinformaticajp@gmail.com.br</li>
         </ul>
       </section>
     </div>
+    </>
   );
 };export default AboutUs
