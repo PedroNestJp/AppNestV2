@@ -6,12 +6,10 @@ import { db } from '../firebase';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAuth } from '../pages/contexts/AuthProvider';
 
-
 const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, description }) => {
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth()
-
 
   useEffect(() => {
     if (!user) return;
@@ -27,7 +25,6 @@ const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, de
         console.log('Error getting document:', error);
       });
   }, [user, id]);
-
 
   const handleAddToFavorites = (productId) => {
     const updatedFavorites = isFavorite ? favorites.filter((id) => id !== productId) : [...favorites, productId];
