@@ -195,6 +195,7 @@ function ProductList() {
 
             <label htmlFor="name">Nome do produto:</label>
             <input
+            className="inputsAddProducts"
               placeholder="Name"
               type="text"
               id="name"
@@ -204,6 +205,7 @@ function ProductList() {
 
             <label htmlFor="description">Descrição:</label>
             <textarea
+            className="inputsAddProducts"
               placeholder="description"
               id="description"
               value={description}
@@ -212,6 +214,7 @@ function ProductList() {
 
             <label htmlFor="price">Preço:</label>
             <input
+            className="inputsAddProducts"
               placeholder="price"
               type="number"
               id="price"
@@ -221,6 +224,7 @@ function ProductList() {
 
             <label htmlFor="OldPrice">Old price:</label>
             <input
+            className="inputsAddProducts"
               placeholder="old price"
               type="number"
               id="OldPrice"
@@ -230,6 +234,7 @@ function ProductList() {
 
             <label htmlFor="InstallmentPrice">Installment Price:</label>
             <input
+            className="inputsAddProducts"
               placeholder="Installment Price"
               type="number"
               id="InstallmentPrice"
@@ -239,6 +244,7 @@ function ProductList() {
 
             <label htmlFor="productType">Tipo de Produto:</label>
             <input
+            className="inputsAddProducts"
               placeholder="Product Type"
               type="text"
               id="productType"
@@ -248,6 +254,7 @@ function ProductList() {
 
             <label htmlFor="platform">Plataforma:</label>
             <input
+            className="inputsAddProducts"
               placeholder="Platform"
               type="text"
               id="platform"
@@ -257,6 +264,7 @@ function ProductList() {
 
             <label htmlFor="typePc">Tipo de PC:</label>
             <input
+            className="inputsAddProducts"
               placeholder="PC Type"
               type="text"
               id="typePc"
@@ -266,6 +274,7 @@ function ProductList() {
 
             <label htmlFor="image">Imagem:</label>
             <input
+            className="inputsAddProducts"
               placeholder="Image"
               type="file"
               id="image"
@@ -278,7 +287,7 @@ function ProductList() {
                 <img src={imageUrl} alt="Product preview" />
               </div>
             )}
-            <button type="submit" disabled={uploading}>
+            <button className="button-buy" type="submit" disabled={uploading}>
               {uploading ? "Enviando..." : "Adicionar Produto"}
             </button>
           </form>
@@ -316,55 +325,63 @@ function ProductList() {
           <span>Type of PC: {product.typePc}</span>
 
           <input
+          className="inputsAddProducts"
             placeholder="name"
             type="text"
             value={updateName}
             onChange={handleUpdateNameChange}
           />
           <textarea
+          className="inputsAddProducts"
             placeholder="description"
             type="text"
             value={updateDescription}
             onChange={handleUpdateDescriptionChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="Price"
             type="number"
             value={updatePrice}
             onChange={handleUpdatePriceChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="Old Price"
             type="number"
             value={updateOldPrice}
             onChange={handleUpdateOldPriceChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="Installment Price"
             type="number"
             value={updateInstallmentPrice}
             onChange={handleUpdateInstallmentPriceChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="Product type"
             type="text"
             value={updateProductType}
             onChange={handleUpdateProductTypeChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="Platform"
             type="text"
             value={updatePlatform}
             onChange={handleUpdatePlatformChange}
           />
           <input
+          className="inputsAddProducts"
             placeholder="PC Type"
             type="text"
             value={updateTypePc}
             onChange={handleUpdateTypePcChange}
           />
 
-          <button onClick={() => handleUpdateProduct(product.id)}>
+          <button    className="button-buy"  onClick={() => handleUpdateProduct(product.id)}>
             Update
           </button>
           <button onClick={() => handleDeleteProduct(product.id)}>
