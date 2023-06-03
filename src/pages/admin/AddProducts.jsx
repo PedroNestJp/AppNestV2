@@ -29,6 +29,15 @@ function ProductList() {
   const [imageUrl, setImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [updateName, setUpdateName] = useState("");
+  const [updateDescription, setUpdateDescription] = useState("");
+  const [updatePrice, setUpdatePrice] = useState("");
+  const [updateOldPrice, setUpdateOldPrice] = useState("");
+  const [updateInstallmentPrice, setUpdateInstallmentPrice] = useState("");
+  const [updateProductType, setUpdateProductType] = useState("");
+  const [updatePlatform, setUpdatePlatform] = useState("");
+  const [updateTypePc, setUpdateTypePc] = useState("");
+  const [addField, setAddField] = useState('');
+  const [addValue, setAddValue] = useState('');
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
@@ -53,6 +62,16 @@ function ProductList() {
   const handleTypePcChange = (e) => setTypePc(e.target.value);
   const handleImageChange = (e) => setImage(e.target.files[0]);
   const handleUpdateNameChange = (e) => setUpdateName(e.target.value);
+  const handleUpdateDescriptionChange = (e) =>
+    setUpdateDescription(e.target.value);
+  const handleUpdatePriceChange = (e) => setUpdatePrice(e.target.value);
+  const handleUpdateOldPriceChange = (e) => setUpdateOldPrice(e.target.value);
+  const handleUpdateInstallmentPriceChange = (e) =>
+    setUpdateInstallmentPrice(e.target.value);
+  const handleUpdateProductTypeChange = (e) =>
+    setUpdateProductType(e.target.value);
+  const handleUpdatePlatformChange = (e) => setUpdatePlatform(e.target.value);
+  const handleUpdateTypePcChange = (e) => setUpdateTypePc(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +95,7 @@ function ProductList() {
         imageUrl,
       });
 
-      alert("Produto adicionado com sucesso!");
+      alert("😎 Produto Adicionado com sucesso ✅");
       setName("");
       setDescription("");
       setPrice("");
@@ -97,8 +116,27 @@ function ProductList() {
   const handleUpdateProduct = async (productId) => {
     try {
       const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { name: updateName });
-      alert("Produto atualizado com sucesso!");
+      await updateDoc(productRef, {
+        name: updateName,
+        description: updateDescription,
+        price: Number(updatePrice),
+        oldPrice: Number(updateOldPrice),
+        installmentPrice: Number(updateInstallmentPrice),
+        productType: updateProductType,
+        platform: updatePlatform,
+        typePc: updateTypePc,
+      });
+      alert("😎 Produto Adicionado com sucesso ✅")
+      setName("");
+      setDescription("");
+      setPrice("");
+      setOldPrice("");
+      setInstallmentPrice("");
+      setProductType("");
+      setPlatform("");
+      setTypePc("");
+      setImage(null);
+      setImageUrl(null);
     } catch (error) {
       console.error(error);
       alert("Ocorreu um erro ao atualizar o produto, verifique o log.");
@@ -157,6 +195,7 @@ function ProductList() {
 
             <label htmlFor="name">Nome do produto:</label>
             <input
+              placeholder="Name"
               type="text"
               id="name"
               value={name}
@@ -165,6 +204,7 @@ function ProductList() {
 
             <label htmlFor="description">Descrição:</label>
             <textarea
+              placeholder="description"
               id="description"
               value={description}
               onChange={handleDescriptionChange}
@@ -172,6 +212,7 @@ function ProductList() {
 
             <label htmlFor="price">Preço:</label>
             <input
+              placeholder="price"
               type="number"
               id="price"
               value={price}
@@ -180,6 +221,7 @@ function ProductList() {
 
             <label htmlFor="OldPrice">Old price:</label>
             <input
+              placeholder="old price"
               type="number"
               id="OldPrice"
               value={oldPrice}
@@ -188,6 +230,7 @@ function ProductList() {
 
             <label htmlFor="InstallmentPrice">Installment Price:</label>
             <input
+              placeholder="Installment Price"
               type="number"
               id="InstallmentPrice"
               value={installmentPrice}
@@ -196,6 +239,7 @@ function ProductList() {
 
             <label htmlFor="productType">Tipo de Produto:</label>
             <input
+              placeholder="Product Type"
               type="text"
               id="productType"
               value={productType}
@@ -204,6 +248,7 @@ function ProductList() {
 
             <label htmlFor="platform">Plataforma:</label>
             <input
+              placeholder="Platform"
               type="text"
               id="platform"
               value={platform}
@@ -212,6 +257,7 @@ function ProductList() {
 
             <label htmlFor="typePc">Tipo de PC:</label>
             <input
+              placeholder="PC Type"
               type="text"
               id="typePc"
               value={typePc}
@@ -220,6 +266,7 @@ function ProductList() {
 
             <label htmlFor="image">Imagem:</label>
             <input
+              placeholder="Image"
               type="file"
               id="image"
               accept="image/*"
@@ -269,27 +316,78 @@ function ProductList() {
           <span>Type of PC: {product.typePc}</span>
 
           <input
+            placeholder="name"
             type="text"
             value={updateName}
             onChange={handleUpdateNameChange}
           />
-          <button
-            onClick={() =>
-              handleUpdateProduct(product.id, { name: updateName })
-            }
-          >
-            Update Name
+          <textarea
+            placeholder="description"
+            type="text"
+            value={updateDescription}
+            onChange={handleUpdateDescriptionChange}
+          />
+          <input
+            placeholder="Price"
+            type="number"
+            value={updatePrice}
+            onChange={handleUpdatePriceChange}
+          />
+          <input
+            placeholder="Old Price"
+            type="number"
+            value={updateOldPrice}
+            onChange={handleUpdateOldPriceChange}
+          />
+          <input
+            placeholder="Installment Price"
+            type="number"
+            value={updateInstallmentPrice}
+            onChange={handleUpdateInstallmentPriceChange}
+          />
+          <input
+            placeholder="Product type"
+            type="text"
+            value={updateProductType}
+            onChange={handleUpdateProductTypeChange}
+          />
+          <input
+            placeholder="Platform"
+            type="text"
+            value={updatePlatform}
+            onChange={handleUpdatePlatformChange}
+          />
+          <input
+            placeholder="PC Type"
+            type="text"
+            value={updateTypePc}
+            onChange={handleUpdateTypePcChange}
+          />
+
+          <button onClick={() => handleUpdateProduct(product.id)}>
+            Update
           </button>
           <button onClick={() => handleDeleteProduct(product.id)}>
             Delete
           </button>
-          <button
-            onClick={() =>
-              handleAddField(product.id, "newField", "New Value")
-            }
-          >
-            Add Field
-          </button>
+
+          <div className="addField">
+            <input
+              type="text"
+              placeholder="Field"
+              value={addField}
+              onChange={(e) => setAddField(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Value"
+              value={addValue}
+              onChange={(e) => setAddValue(e.target.value)}
+            />
+            <button onClick={() => handleAddField(product.id, addField, addValue)}>
+              Add Field
+            </button>
+          </div>
         </div>
       ))}
     </div>
