@@ -13,7 +13,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
-import '../../styles/AddProducts.css'
+import "../../styles/AddProducts.css";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -36,8 +36,8 @@ function ProductList() {
   const [updateProductType, setUpdateProductType] = useState("");
   const [updatePlatform, setUpdatePlatform] = useState("");
   const [updateTypePc, setUpdateTypePc] = useState("");
-  const [addField, setAddField] = useState('');
-  const [addValue, setAddValue] = useState('');
+  const [addField, setAddField] = useState("");
+  const [addValue, setAddValue] = useState("");
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
@@ -126,7 +126,7 @@ function ProductList() {
         platform: updatePlatform,
         typePc: updateTypePc,
       });
-      alert("😎 Produto Adicionado com sucesso ✅")
+      alert("😎 Produto Adicionado com sucesso ✅");
       setName("");
       setDescription("");
       setPrice("");
@@ -188,15 +188,13 @@ function ProductList() {
   return (
     <div className="AddProductsMain">
       <div className="AddProductsContainer">
-        <h2>Add Products</h2>
+        <h2>Adicionar Produtos</h2>
         {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
-
           <form className="addProductsInputs" onSubmit={handleSubmit}>
-
             <label htmlFor="name">Nome do produto:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="Name"
+              className="inputsAddProducts"
+              placeholder="Nome"
               type="text"
               id="name"
               value={name}
@@ -205,8 +203,8 @@ function ProductList() {
 
             <label htmlFor="description">Descrição:</label>
             <textarea
-            className="inputsAddProducts"
-              placeholder="description"
+              className="inputsAddProducts"
+              placeholder="Descrição"
               id="description"
               value={description}
               onChange={handleDescriptionChange}
@@ -214,28 +212,28 @@ function ProductList() {
 
             <label htmlFor="price">Preço:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="price"
+              className="inputsAddProducts"
+              placeholder="Valor"
               type="number"
               id="price"
               value={price}
               onChange={handlePriceChange}
             />
 
-            <label htmlFor="OldPrice">Old price:</label>
+            <label htmlFor="OldPrice">Preço Antigo:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="old price"
+              className="inputsAddProducts"
+              placeholder="Preço Antigo"
               type="number"
               id="OldPrice"
               value={oldPrice}
               onChange={handleOldPriceChange}
             />
 
-            <label htmlFor="InstallmentPrice">Installment Price:</label>
+            <label htmlFor="InstallmentPrice">Valor Parcelado:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="Installment Price"
+              className="inputsAddProducts"
+              placeholder="Preço Parcelado"
               type="number"
               id="InstallmentPrice"
               value={installmentPrice}
@@ -244,8 +242,8 @@ function ProductList() {
 
             <label htmlFor="productType">Tipo de Produto:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="Product Type"
+              className="inputsAddProducts"
+              placeholder="Tipo de produto"
               type="text"
               id="productType"
               value={productType}
@@ -254,8 +252,8 @@ function ProductList() {
 
             <label htmlFor="platform">Plataforma:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="Platform"
+              className="inputsAddProducts"
+              placeholder="Plataforma"
               type="text"
               id="platform"
               value={platform}
@@ -264,8 +262,8 @@ function ProductList() {
 
             <label htmlFor="typePc">Tipo de PC:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="PC Type"
+              className="inputsAddProducts"
+              placeholder="Tipo de produto"
               type="text"
               id="typePc"
               value={typePc}
@@ -274,8 +272,8 @@ function ProductList() {
 
             <label htmlFor="image">Imagem:</label>
             <input
-            className="inputsAddProducts"
-              placeholder="Image"
+              className="inputsAddProducts"
+              placeholder="Imagem"
               type="file"
               id="image"
               accept="image/*"
@@ -291,13 +289,12 @@ function ProductList() {
               {uploading ? "Enviando..." : "Adicionar Produto"}
             </button>
           </form>
-
         ) : (
           console.log(`Sem acesso para ${auth.currentUser}`)
         )}
       </div>
 
-      <h2>Products List</h2>
+      <h2>Lista de Produtos</h2>
 
       {products.map((product) => (
         <div className="hl-1 styleBox" key={product.id}>
@@ -325,84 +322,95 @@ function ProductList() {
           <span>Type of PC: {product.typePc}</span>
 
           <input
-          className="inputsAddProducts"
-            placeholder="name"
+            className="inputsAddProducts"
+            placeholder="Nome"
             type="text"
             value={updateName}
             onChange={handleUpdateNameChange}
           />
           <textarea
-          className="inputsAddProducts"
-            placeholder="description"
+            className="inputsAddProducts"
+            placeholder="Descrição"
             type="text"
             value={updateDescription}
             onChange={handleUpdateDescriptionChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="Price"
+            className="inputsAddProducts"
+            placeholder="Preço"
             type="number"
             value={updatePrice}
             onChange={handleUpdatePriceChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="Old Price"
+            className="inputsAddProducts"
+            placeholder="Preço Antigo"
             type="number"
             value={updateOldPrice}
             onChange={handleUpdateOldPriceChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="Installment Price"
+            className="inputsAddProducts"
+            placeholder="Preço Parcelado"
             type="number"
             value={updateInstallmentPrice}
             onChange={handleUpdateInstallmentPriceChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="Product type"
+            className="inputsAddProducts"
+            placeholder="Tipo de Produto"
             type="text"
             value={updateProductType}
             onChange={handleUpdateProductTypeChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="Platform"
+            className="inputsAddProducts"
+            placeholder="Plataforma"
             type="text"
             value={updatePlatform}
             onChange={handleUpdatePlatformChange}
           />
           <input
-          className="inputsAddProducts"
-            placeholder="PC Type"
+            className="inputsAddProducts"
+            placeholder="Tipo de PC"
             type="text"
             value={updateTypePc}
             onChange={handleUpdateTypePcChange}
           />
 
-          <button    className="button-buy"  onClick={() => handleUpdateProduct(product.id)}>
-            Update
+          <button
+            className="button-buy"
+            onClick={() => handleUpdateProduct(product.id)}
+          >
+            Atualizar
           </button>
-          <button onClick={() => handleDeleteProduct(product.id)}>
-            Delete
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleDeleteProduct(product.id)}
+          >
+            Deletar
           </button>
 
           <div className="addField">
             <input
+              className="inputsAddProducts"
               type="text"
-              placeholder="Field"
+              placeholder="Campo"
               value={addField}
               onChange={(e) => setAddField(e.target.value)}
             />
             <input
+              className="inputsAddProducts"
               type="text"
-              placeholder="Value"
+              placeholder="Valor"
               value={addValue}
               onChange={(e) => setAddValue(e.target.value)}
             />
-            <button onClick={() => handleAddField(product.id, addField, addValue)}>
-              Add Field
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleAddField(product.id, addField, addValue)}
+            >
+              Adicionar Campo
             </button>
           </div>
         </div>
