@@ -113,30 +113,72 @@ function ProductList() {
     setUploading(false);
   };
 
-  const handleUpdateProduct = async (productId) => {
+  const handleUpdateProduct = async (productId, field) => {
     try {
       const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, {
-        name: updateName,
-        description: updateDescription,
-        price: Number(updatePrice),
-        oldPrice: Number(updateOldPrice),
-        installmentPrice: Number(updateInstallmentPrice),
-        productType: updateProductType,
-        platform: updatePlatform,
-        typePc: updateTypePc,
-      });
-      alert("😎 Produto Adicionado com sucesso ✅");
-      setName("");
-      setDescription("");
-      setPrice("");
-      setOldPrice("");
-      setInstallmentPrice("");
-      setProductType("");
-      setPlatform("");
-      setTypePc("");
-      setImage(null);
-      setImageUrl(null);
+      let updatedField = {};
+
+      switch (field) {
+        case "name":
+          updatedField = { name: updateName };
+          break;
+        case "description":
+          updatedField = { description: updateDescription };
+          break;
+        case "price":
+          updatedField = { price: Number(updatePrice) };
+          break;
+        case "oldPrice":
+          updatedField = { oldPrice: Number(updateOldPrice) };
+          break;
+        case "installmentPrice":
+          updatedField = { installmentPrice: Number(updateInstallmentPrice) };
+          break;
+        case "productType":
+          updatedField = { productType: updateProductType };
+          break;
+        case "platform":
+          updatedField = { platform: updatePlatform };
+          break;
+        case "typePc":
+          updatedField = { typePc: updateTypePc };
+          break;
+        default:
+          break;
+      }
+
+      await updateDoc(productRef, updatedField);
+      alert("😎 Produto atualizado com sucesso ✅");
+
+      // Reset the corresponding state after successful update
+      switch (field) {
+        case "name":
+          setUpdateName("");
+          break;
+        case "description":
+          setUpdateDescription("");
+          break;
+        case "price":
+          setUpdatePrice("");
+          break;
+        case "oldPrice":
+          setUpdateOldPrice("");
+          break;
+        case "installmentPrice":
+          setUpdateInstallmentPrice("");
+          break;
+        case "productType":
+          setUpdateProductType("");
+          break;
+        case "platform":
+          setUpdatePlatform("");
+          break;
+        case "typePc":
+          setUpdateTypePc("");
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       console.error(error);
       alert("Ocorreu um erro ao atualizar o produto, verifique o log.");
@@ -328,6 +370,12 @@ function ProductList() {
             value={updateName}
             onChange={handleUpdateNameChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "name")}
+          >
+            Atualizar Nome
+          </button>
           <textarea
             className="inputsAddProducts"
             placeholder="Descrição"
@@ -335,6 +383,12 @@ function ProductList() {
             value={updateDescription}
             onChange={handleUpdateDescriptionChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "description")}
+          >
+            Atualizar Descrição
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Preço"
@@ -342,6 +396,12 @@ function ProductList() {
             value={updatePrice}
             onChange={handleUpdatePriceChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "price")}
+          >
+            Atualizar Preço
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Preço Antigo"
@@ -349,6 +409,12 @@ function ProductList() {
             value={updateOldPrice}
             onChange={handleUpdateOldPriceChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "oldPrice")}
+          >
+            Atualizar Preço Antigo
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Preço Parcelado"
@@ -356,6 +422,12 @@ function ProductList() {
             value={updateInstallmentPrice}
             onChange={handleUpdateInstallmentPriceChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "installmentPrice")}
+          >
+            Atualizar Preço Parcelado
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Tipo de Produto"
@@ -363,6 +435,12 @@ function ProductList() {
             value={updateProductType}
             onChange={handleUpdateProductTypeChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "productType")}
+          >
+            Atualizar Tipo de Produto
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Plataforma"
@@ -370,6 +448,12 @@ function ProductList() {
             value={updatePlatform}
             onChange={handleUpdatePlatformChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "platform")}
+          >
+            Atualizar Plataforma
+          </button>
           <input
             className="inputsAddProducts"
             placeholder="Tipo de PC"
@@ -377,6 +461,12 @@ function ProductList() {
             value={updateTypePc}
             onChange={handleUpdateTypePcChange}
           />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "typePc")}
+          >
+            Atualizar Tipo de PC
+          </button>
 
           <button
             className="button-buy"
