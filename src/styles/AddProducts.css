@@ -1,15 +1,19 @@
 .AddProductsMain {
+    margin-top: 1rem;
+    gap: 2rem;
     display: flex;
+    justify-content: center;
     align-content: center;
     align-items: center;
     flex-direction: column;
 
 }
 
-.addProductsContainer {
+.AddProductsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .addProductsInputs {

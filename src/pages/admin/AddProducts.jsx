@@ -14,6 +14,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
 import "../../styles/AddProducts.css";
+import ShortHeader from '../../components/ShortHeader'
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -228,6 +229,8 @@ function ProductList() {
   }, []);
 
   return (
+    <>
+    <ShortHeader/>
     <div className="AddProductsMain">
       <div className="AddProductsContainer">
         <h2>Adicionar Produtos</h2>
@@ -506,6 +509,7 @@ function ProductList() {
         </div>
       ))}
     </div>
+    </>
   );
 }
 
