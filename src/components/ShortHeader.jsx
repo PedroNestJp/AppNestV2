@@ -3,8 +3,11 @@ import * as BsIcons from "react-icons/bs";
 import { logo } from "../img/imgs";
 import "../styles/ShortHeader.css";
 import Navbar from "./Navbar";
+import { useAuth } from "../pages/contexts/AuthProvider";
+
 
 const ShortHeader = () => {
+  const { user } = useAuth();
   return (
     <div className="navbarShort">
       <Navbar />
@@ -26,25 +29,32 @@ const ShortHeader = () => {
         >
           {<BsIcons.BsPersonCircle />}
         </Link>
+        {user ? (
         <span className="textProfileNavShort">
-          Faça seu{" "}
-          <Link
-            className="linkLoginNavShort"
-            id="linkLoginNavShort"
-            title="linkLoginNavShort"
-            to="/login"
-          >
-          LOGIN
-          </Link> ou{" "}
-          <Link
-            className="linkRegisterNavShort"
-            id="linkRegisterNavShort"
-            title="linkRegisterNavShort"
-            to="/signup"
-          >
-          CADASTRE-SE
-          </Link>
+          Olá {user.displayName}
         </span>
+        ) : (
+          <span className="textProfileNavShort">
+            Faça seu{" "}
+            <Link
+              className="linkLoginNavShort"
+              id="linkLoginNavShort"
+              title="linkLoginNavShort"
+              to="/login"
+            >
+              LOGIN
+            </Link> ou{" "}
+            <Link
+              className="linkRegisterNavShort"
+              id="linkRegisterNavShort"
+              title="linkRegisterNavShort"
+              to="/signup"
+            >
+              CADASTRE-SE
+            </Link>
+          </span>
+        )}
+
       </div>
     </div>
   );

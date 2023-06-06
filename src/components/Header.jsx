@@ -45,30 +45,35 @@ return (
       >
         <BsPersonCircle />
       </Link>
-    )}
-    <span className="text-profile-home">
-      Faça seu{" "}
-      <Link
-        to="/login"
-        id="link-login-header-home"
-        title="Faça seu login"
-        className="link-login-home"
-        href="/login"
-      >
-        LOGIN
-      </Link>{" "}
-      ou
-      <Link
-        to="/signUp"
-        id="link-cadastre-se-home"
-        title="Faça o seu cadastro"
-        className="link-cadastre-se-home"
-        href="/register"
-      >
-        {" "}
-        CADASTRE-SE
-      </Link>
-    </span>
+    )
+    }
+        {user ? (
+          <span className="textProfileNavShort">
+            Olá <strong> {user.displayName} </strong>
+          </span>
+          ) : (
+            <span className="textProfileNavShort">
+              Faça seu{" "}
+              <Link
+                className="linkLoginNavShort"
+                id="linkLoginNavShort"
+                title="linkLoginNavShort"
+                to="/login"
+              >
+                LOGIN
+              </Link> ou{" "}
+              <Link
+                className="linkRegisterNavShort"
+                id="linkRegisterNavShort"
+                title="linkRegisterNavShort"
+                to="/signup"
+              >
+                CADASTRE-SE
+              </Link>
+            </span>
+          )
+          
+        }
   </div>
 
   <div className="iconsNavHome">

@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import { BsHeartFill, BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
-import HeaderShort from "../components/ShortHeader";
 import { FaShoppingCart } from "react-icons/fa";
 import ShortHeader from "../components/ShortHeader";
 
@@ -75,7 +74,6 @@ const ProfilePage = () => {
                   <IoMdMail /> {user.email}
                 </h3>
               </div>
-              <h2 className="username">{user.username}</h2>
             </div>
             <div className="userProfileContainer">
             <h3>Seus favoritos:</h3>
