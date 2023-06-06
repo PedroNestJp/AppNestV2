@@ -13,6 +13,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
 import '../../styles/AddProducts.css'
+import ShortHeader from "../../components/ShortHeader"
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -125,7 +126,7 @@ function ProductList() {
         platform: updatePlatform,
         typePc: updateTypePc,
       });
-      alert("😎 Produto Adicionado com sucesso ✅")
+      alert("😎 Produto atualizado com sucesso ✅")
       setName("");
       setDescription("");
       setPrice("");
@@ -146,7 +147,7 @@ function ProductList() {
     try {
       const productRef = doc(db, "products", productId);
       await deleteDoc(productRef);
-      alert("Produto excluído com sucesso!");
+      alert("Produto excluído com sucesso! ✅");
     } catch (error) {
       console.error(error);
       alert("Ocorreu um erro ao excluir o produto, verifique o log.");
