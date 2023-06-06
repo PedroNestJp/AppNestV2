@@ -23,8 +23,11 @@ import GamingPcsPage from '../pages/GamingPcsPage';
 import OfficePcsPage from '../pages/OfficePCsPage';
 import HighEndPcsPage from '../pages/HighEndPcsPage';
 import AllPcsPage from '../pages/AllPcsPage';
-import { FilterPcsByPlatform } from '../pages/FilterPcsByPlatform';
+import FilterByPlatformAmd from '../pages/FilterByPlatformAmd';
 import SearchResults from '../pages/SearchResults';
+import PeripheralsPage from '../pages/PeripheralsPage'
+import MonitorsPage from '../pages/MonitorsPage';
+import FilterByPlatformIntel from '../pages/FilterByPlatformIntel';
 
 function EdnPoints() {
     return (
@@ -45,9 +48,12 @@ function EdnPoints() {
                     <Route path='/userProfile' element={<UserProfile/>}/>
                     <Route path='/gamingPcsPage' element={<GamingPcsPage/>}/>
                     <Route path='/officePcsPage' element={<OfficePcsPage/>}/>
+                    <Route path='/peripheralsPage' element={<PeripheralsPage/>}/>
+                    <Route path='/monitorsPage' element={<MonitorsPage/>}/>
                     <Route path='/highEndPcsPage' element={<HighEndPcsPage/>}/>
                     <Route path='/allPcsPage' element={<AllPcsPage/>}/>
-                    <Route path='/filterPcsByPlatform' element={<FilterPcsByPlatform/>}/>
+                    <Route path='/filterByPlatformAmd' element={<FilterByPlatformAmd/>}/>
+                    <Route path='/filterByPlatformIntel' element={<FilterByPlatformIntel/>}/>
                     <Route path='/searchResults' element={<SearchResults/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />

@@ -101,7 +101,9 @@ const HomePage = () => {
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform">COMPRE POR PLATAFORMA</div>
         <div className="divBuyByPlatform">
-          <div className="divPlatformIntel" id="textPlatform">
+
+        <Link to='/filterByPlatformIntel'>
+          <div className="divPlatformIntel" id="textPlatformIntel">
             <span className="text-platform-intel">INTEL</span>
             <img
               className="platform-intel"
@@ -109,7 +111,9 @@ const HomePage = () => {
               alt="Plataforma Intel"
             />
           </div>
-          <div className="divPlatformAmd" id="textPlatform">
+          </Link>
+            <Link to='/filterByPlatformAmd'>
+          <div className="divPlatformAmd" id="textPlatformAmd">
             <span className="text-platform-amd">AMD</span>
             <img
               className="platform-amd"
@@ -117,6 +121,7 @@ const HomePage = () => {
               alt="Plataforma AMD"
             />
           </div>
+            </Link>
         </div>
       </section>
 
@@ -147,7 +152,7 @@ const HomePage = () => {
               <span className="bbd-text bbd-text-1">PCS</span>
             </div>
           </Link>
-          <Link to="">
+          <Link to="/monitorsPage">
             <div className="bbd-2 styleBox-bbd">
               <img
                 className="img-bbd-2"
@@ -157,7 +162,7 @@ const HomePage = () => {
               <span className="bbd-text bbd-text-2">MONITORES</span>
             </div>
           </Link>
-          <Link to="">
+          <Link to="/peripheralsPage">
             <div className="bbd-3 styleBox-bbd">
               <img
                 className="img-bbd-3"

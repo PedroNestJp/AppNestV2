@@ -9,6 +9,7 @@ import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
+import { Link } from "react-router-dom";
 
 const HighEndPcsPage = () => {
   const [products, setProducts] = useState([]);
@@ -54,22 +55,26 @@ const HighEndPcsPage = () => {
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
         <div className="divBuyByPlatform">
-          <div className="divPlatformIntel" id="textPlatform">
-            <span className="text-platform-intel"> INTEL </span>
+        <Link to='/filterByPlatformIntel'>
+          <div className="divPlatformIntel" id="textPlatformIntel">
+            <span className="text-platform-intel">INTEL</span>
             <img
               className="platform-intel"
               src={imgIntelType}
               alt="Plataforma Intel"
             />
           </div>
-          <div className="divPlatformAmd" id="textPlatform">
-            <span className="text-platform-amd"> AMD </span>
+          </Link>
+            <Link to='/filterByPlatformAmd'>
+          <div className="divPlatformAmd" id="textPlatformAmd">
+            <span className="text-platform-amd">AMD</span>
             <img
               className="platform-amd"
               src={imgAmdType}
               alt="Plataforma AMD"
             />
           </div>
+            </Link>
         </div>
       </section>
       <section className="container-3" id="container-3" title="container-3">
@@ -85,43 +90,39 @@ const HighEndPcsPage = () => {
         </Carousel>
       </section>
       <section className="departments" id="departmentsHome">
-        <div className="departmentsText"> 🗄DEPARTAMENTOS </div>
+        <div className="departmentsText">🗄DEPARTAMENTOS</div>
 
         <div className="bbdBoxs">
-          <div className="bbd-1 styleBox-bbd">
-            <img
-              className="img-bbd-1"
-              srcSet={imgBbdPc}
-              src="../assets/pcs.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-1"> PCS </span>
-          </div>
-
-          <div className="bbd-2 styleBox-bbd">
-            <img
-              className="img-bbd-2"
-              srcSet={imgBbdMonitor}
-              src="../assets/monitores.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-2"> MONITORES </span>
-          </div>
-
-          <div className="bbd-3 styleBox-bbd">
-            <img
-              className="img-bbd-3"
-              srcSet={imgBbdPeripherals}
-              src="../assets/perifericos.png"
-              alt=""
-            />
-            <span className="bbd-text bbd-text-3"> PERIFERICOS </span>
-          </div>
-          {/* 
-        <div className="bbd-4 styleBox-bbd">
-            <img className="img-bbd-4" srcSet={imgBbdHardware} src="../assets/hardware.png" alt="imgHardware"/>
-            <span className="bbd-text bbd-text-4"> HARDWARE </span> 
-        </div> */}
+          <Link to="/">
+            <div className="bbd-1 styleBox-bbd">
+              <img
+                className="img-bbd-1"
+                srcSet={imgBbdPc}
+                alt="PCS"
+              />
+              <span className="bbd-text bbd-text-1">PCS</span>
+            </div>
+          </Link>
+          <Link to="/monitorsPage">
+            <div className="bbd-2 styleBox-bbd">
+              <img
+                className="img-bbd-2"
+                srcSet={imgBbdMonitor}
+                alt="MONITORES"
+              />
+              <span className="bbd-text bbd-text-2">MONITORES</span>
+            </div>
+          </Link>
+          <Link to="/peripheralsPage">
+            <div className="bbd-3 styleBox-bbd">
+              <img
+                className="img-bbd-3"
+                srcSet={imgBbdPeripherals}
+                alt="PERIFERICOS"
+              />
+              <span className="bbd-text bbd-text-3">PERIFERICOS</span>
+            </div>
+          </Link>
         </div>
       </section>
     </>

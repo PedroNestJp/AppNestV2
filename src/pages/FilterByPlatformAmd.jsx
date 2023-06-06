@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
 
-const GamingPcsPage = () => {
+const FilterByPlatformAmd = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const GamingPcsPage = () => {
 
       // Filter products based on PC type
       const filteredProducts = allProducts.filter(
-        (product) => product.typePc === "gamer"
+        (product) => product.platform === "amd"
       );
 
       setProducts(filteredProducts);
@@ -50,7 +50,6 @@ const GamingPcsPage = () => {
             ))}
           </Carousel>
         </div>
-        {/* <Carrosel/> */}
       </section>
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
@@ -113,7 +112,7 @@ const GamingPcsPage = () => {
               <span className="bbd-text bbd-text-2">MONITORES</span>
             </div>
           </Link>
-          <Link to="/peripheralsPage">
+          <Link to="/filterByPlatformAmd">
             <div className="bbd-3 styleBox-bbd">
               <img
                 className="img-bbd-3"
@@ -129,4 +128,4 @@ const GamingPcsPage = () => {
   );
 };
 
-export default GamingPcsPage;
+export default FilterByPlatformAmd;

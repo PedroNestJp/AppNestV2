@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
 
-const GamingPcsPage = () => {
+const PeripheralsPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const GamingPcsPage = () => {
 
       // Filter products based on PC type
       const filteredProducts = allProducts.filter(
-        (product) => product.typePc === "gamer"
+        (product) => product.productType === "perifericos"
       );
 
       setProducts(filteredProducts);
@@ -129,4 +129,4 @@ const GamingPcsPage = () => {
   );
 };
 
-export default GamingPcsPage;
+export default PeripheralsPage;
