@@ -6,10 +6,12 @@
 
 }
 
-.addProductsContainer {
+.AddProductsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
 }
 
 .addProductsInputs {
@@ -19,6 +21,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 5px;
+    outline: none;
 }
 
 .inputsAddProducts {
@@ -27,4 +30,6 @@
     border: 0.5px rgba(0, 0, 0, 0.2) solid;
     padding-left: 1rem;
     width: -webkit-fill-available;
+    outline: none;
+
 }

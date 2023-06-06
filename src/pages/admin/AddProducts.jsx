@@ -6,14 +6,14 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-  query,
-  where,
+
   getDocs,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
 import '../../styles/AddProducts.css'
+import ShortHeader from "../../components/ShortHeader"
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -108,7 +108,7 @@ function ProductList() {
       setImageUrl(null);
     } catch (error) {
       console.error(error);
-      alert("Ocorreu um erro ao adicionar o produto, verifique o log.");
+      alert("🦓 Ocorreu um erro ao adicionar o produto, verifique o log.");
     }
     setUploading(false);
   };
@@ -126,7 +126,7 @@ function ProductList() {
         platform: updatePlatform,
         typePc: updateTypePc,
       });
-      alert("😎 Produto Adicionado com sucesso ✅")
+      alert("😎 image.png Produto Adicionado com sucesso ✅")
       setName("");
       setDescription("");
       setPrice("");
@@ -139,7 +139,7 @@ function ProductList() {
       setImageUrl(null);
     } catch (error) {
       console.error(error);
-      alert("Ocorreu um erro ao atualizar o produto, verifique o log.");
+      alert(" Ocorreu um erro ao atualizar o produto, verifique o log.");
     }
   };
 
@@ -186,9 +186,11 @@ function ProductList() {
   }, []);
 
   return (
+    <>
+    <ShortHeader/>
     <div className="AddProductsMain">
       <div className="AddProductsContainer">
-        <h2>Add Products</h2>
+        <h2 style={{margin:'1rem'}}>Adicionar Produtos</h2>
         {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
 
           <form className="addProductsInputs" onSubmit={handleSubmit}>
@@ -296,7 +298,9 @@ function ProductList() {
           console.log(`Sem acesso para ${auth.currentUser}`)
         )}
       </div>
+      
 
+      
       <h2>Products List</h2>
 
       {products.map((product) => (
@@ -401,14 +405,16 @@ function ProductList() {
               value={addValue}
               onChange={(e) => setAddValue(e.target.value)}
             />
-            <button onClick={() => handleAddField(product.id, addField, addValue)}>
+            <button  onClick={() => handleAddField(product.id, addField, addValue)}>
               Add Field
             </button>
           </div>
         </div>
       ))}
+    
     </div>
-  );
+    </>
+  )
 }
 
 export default ProductList;
