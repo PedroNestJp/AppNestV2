@@ -158,7 +158,7 @@ const FavoriteProducts = () => {
             </span>
           </div>
         ))}
-        <button onClick={handleClearCart}>Limpar Carrinho</button>
+        <button onClick={handleClearCart}>Excluir os Favoritos</button>
       </div>
     </div>
   );

@@ -22,18 +22,19 @@ const PeripheralsPage = () => {
         id: doc.id,
         ...doc.data(),
       }));
-
+      
       // Filter products based on PC type
       const filteredProducts = allProducts.filter(
         (product) => product.productType === "perifericos"
-      );
-
-      setProducts(filteredProducts);
+        );
+        
+        setProducts(filteredProducts);
+        alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
-
+    
     getProducts();
   }, []);
-
+  
   return (
     <>
       <Header />
