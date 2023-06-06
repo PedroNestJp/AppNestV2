@@ -1,5 +1,8 @@
 .AddProductsMain {
+    margin-top: 1rem;
+    gap: 2rem;
     display: flex;
+    justify-content: center;
     align-content: center;
     align-items: center;
     flex-direction: column;
@@ -11,7 +14,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+<<<<<<< HEAD
     margin-top: 2rem;
+=======
+>>>>>>> fe25db385350cc122b7e377aff2615393857e248
 }
 
 .addProductsInputs {
@@ -25,6 +31,7 @@
 }
 
 .inputsAddProducts {
+    cursor: pointer;
     margin: 5px;
     border-radius: 4px;
     border: 0.5px rgba(0, 0, 0, 0.2) solid;
