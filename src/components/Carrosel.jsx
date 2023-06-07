@@ -7,39 +7,59 @@ import { db } from "../firebase";
 
 const Carrosel = () => {
   const [products, setProducts] = useState([]);
+  const [productGroups, setProductGroups] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const fetchProducts = async () => {
       const productsCol = collection(db, "products");
       const snapshot = await getDocs(productsCol);
-      const products = snapshot.docs.map((doc) => ({
+      const productsData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setProducts(products);
+      setProducts(productsData);
     };
 
-    getProducts();
+    fetchProducts();
   }, []);
+
+  useEffect(() => {
+    const divideProductsIntoGroups = () => {
+      const groups = [];
+      const totalProducts = products.length;
+      let startIndex = 0;
+      const groupSize = 3;
+
+      while (startIndex < totalProducts) {
+        const endIndex = startIndex + groupSize;
+        const group = products.slice(startIndex, endIndex);
+        groups.push(group);
+        startIndex = endIndex;
+      }
+
+      setProductGroups(groups);
+    };
+
+    divideProductsIntoGroups();
+  }, [products]);
 
   return (
     <section className="container-2" title="container-2">
       <div className="highLightsBoxs" id="highlightsBoxs">
         <Carousel showArrows infiniteLoop showThumbs={false}>
-          {Array(Math.ceil(products.length / 2))
-            .fill()
-            .map((_, i) => (
-              <div key={i}>
-                {products.slice(i * 5, i * 5 + 10).map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
-              </div>
-            ))}
+          {productGroups.map((group, index) => (
+            <div key={index}>
+              {group.map(({ id, ...product }) => (
+                <ProductCard key={id} id={id} {...product} />
+              ))}
+            </div>
+          ))}
         </Carousel>
       </div>
     </section>
   );
-};
+}; 
+export default Carrosel
 
 const CarroselAds = () => {
   return (
@@ -97,18 +117,4 @@ const CarroselAds = () => {
   );
 };
 
-const CarouselHome = () => {
-  return (
-    <Carousel
-    showArrows
-    infiniteLoop
-    autoPlay
-    slidesToShow={3}>
-      <ProductCard />
-    </Carousel>
-  );
-};
-
-export default CarouselHome;
-
-export { CarouselHome, CarroselAds, Carrosel };
+export { CarroselAds, Carrosel };

@@ -15,6 +15,7 @@ import {
 } from "../img/imgs";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../styles/Home.css";
+import { Carrosel } from "../components/Carrosel";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -130,11 +131,12 @@ const HomePage = () => {
           MAIS VENDIDOS
         </div>
         <div className="bestSelersBox" id="highlightsBoxs">
-          <Carousel showArrows showThumbs={false} infiniteLoop>
+          {/* <Carousel showArrows showThumbs={false} infiniteLoop>
             {products.map(({ id, ...product }) => (
               <ProductCard key={id} id={id} {...product} />
             ))}
-          </Carousel>
+          </Carousel> */}
+          <Carrosel/>
         </div>
       </section>
 
