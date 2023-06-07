@@ -6,17 +6,18 @@
 
 .mainContentProduct {
   margin-top: 4rem;
-  background-color: #ffffff;
+  background-color: #1c1c1c;
 }
 
 .containerProductFather {
-  background: #000;
+  background: #1c1c1c;
 }
+
 @media (max-width: 590px) {
   .containerProductFather {
     display: flex;
     justify-content: center;
-    background: #f5f5f5;
+    background: #1c1c1c;
   }
 }
 
@@ -31,8 +32,14 @@
 .containerProductChild1 {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem 0rem;
+}
+
+.imgProduct {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  align-items: center;
 }
 
 .containerProductChild2 {
@@ -59,39 +66,54 @@
   min-width: 24rem;
 }
 
-@media (max-width: 400px){
+@media (max-width: 400px) {
   .imgPrincipal {
-min-width: auto;
+    min-width: auto;
   }
 }
+
 .containerProductDesc {
-  background: #ffffff;
+  display: flex;
+  background: #1c1c1c;
+  width: 100%;
+  height: auto;
   max-width: 650px;
-  min-width: 200px;
+  min-width: 208px;
+  flex-direction: column;
 }
 
 .promotionCall {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.areaDescriptionPrdct {
+  color: white;
+  background-color: #1c1c1c;
+  padding: 1rem;
 }
 
 .stopwatch {
+  gap: 5px;
   display: flex;
-  background: rgb(0 0 0 / 10%);
+  background: #000;
   text-align: center;
   justify-content: center;
   font-weight: 700;
   font-size: 14px;
+  border-radius: 5px;
   line-height: 14px;
 }
 
 .cardsPromo {
-  background-color: #2b2b2b;
+  background-color: #1c1c1c;
   display: flex;
   font-size: 12px;
   line-height: 12px;
   font-weight: 600;
   text-align: center;
+  gap: 0.5rem;
 }
 
 .numberOfSales,
@@ -104,7 +126,8 @@ min-width: auto;
   padding: 0.5rem;
   color: #e20100;
   gap: 0px;
-  border: #ffffffeb solid 1px;
+  border: #000000 solid 1px;
+  border-radius: 5px;
 }
 
 .offersEnd {
@@ -115,13 +138,17 @@ min-width: auto;
 
 .timeLeft {
   display: flex;
-  color: #000000;
+  color: #fff;
   justify-content: center;
   align-items: center;
 }
 
 .descText {
-  margin: 5px;
+  color: white;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 2rem;
   font-weight: 700;
   line-height: 15px;
   font-size: 15px;
@@ -137,29 +164,20 @@ min-width: auto;
   flex-direction: column;
 }
 
-.hanking {
-  color: white;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 30px;
-}
-
 .buttonTop10 {
+  border: none;
   width: 7rem;
   height: 2rem;
-  background: #3772FF;
-  border-radius: 5px;
-  color: #ffffff;
+  background: #0074e4;
+  border-radius: 4px;
 }
+
 .hanking,
 .buttonTop10 {
+  color: white;
   font-family: "Poppins";
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 15px;
-  line-height: 30px;
 }
 
 .value {
@@ -177,6 +195,14 @@ min-width: auto;
   line-height: 25px;
 }
 
+.oldPrice {
+  text-decoration: line-through;
+}
+.oldPriceSpan {
+  display: flex;
+  gap: 5px;
+}
+
 .currentPriceProductScreen {
   font-weight: 700;
   font-size: 35px;
@@ -187,41 +213,58 @@ min-width: auto;
 .discountPix {
   font-weight: 400;
   font-size: 17px;
-  color: #e20100
+  color: #e20100;
 }
 
 .addCart {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
 }
 .addCartButton {
   cursor: pointer;
-  margin-top: 20px;
-  height: 60px;
+  margin-top: 0.5rem;
+  height: 3rem;
   width: 100%;
-  background: #3772FF;
-  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  background: #0074e4;
   border-radius: 5px;
+  border: none;
   font-weight: 700;
   line-height: 17px;
   font-size: 18px;
   text-align: center;
   color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.areaDescriptionPrdct {
-  color: white;
-  background-color: #292929;
-  padding: 2rem;
+.addCartButton:hover {
+  background-color: #298ae8;
 }
+
+.reviewsArea {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+
+.containerProductChild2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.reviewsTitle, .descTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .serviceIncluded {
   margin: 1rem;
 }
-.serviceIncludedBoxes{
+.serviceIncludedBoxes {
   max-width: 1080px;
 }
 .mounting,

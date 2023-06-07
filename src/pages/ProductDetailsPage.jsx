@@ -135,6 +135,7 @@ const ProductDetailsPage = () => {
               <img id={name} src={imageUrl} alt={name} />
             </span>   */}
               <img className="imgPrincipal" src={imageUrl} alt={name} />
+              <div className="descText">{description}</div>
             </div>
 
             <div className="containerProductDesc">
@@ -152,11 +153,11 @@ const ProductDetailsPage = () => {
                 </div>
               </div>
               <div className="areaDescriptionPrdct">
-                <div className="descText">{description}</div>
+                
                 <div className="rating">
                   <div className="ratingStars">
                     {Reviews}
-                    <Link to="#reviewsArea"> ⭐⭐⭐⭐⭐</Link>{" "}
+                    <a href="#reviewsArea"> ⭐⭐⭐⭐⭐</a>{" "}
                   </div>
                 </div>
                 <div className="hanking">
@@ -164,28 +165,28 @@ const ProductDetailsPage = () => {
                   <label> MAIS VENDIDOS</label>
                 </div>
                 <div className="value">
-                  <span className="oldPriceNestPcOneSc">
-                    {" "}
-                    DE R${oldPrice} POR:{" "}
+                  <span className="oldPriceSpan">
+                    DE<p className="oldPrice">R${oldPrice}</p> POR:
                   </span>
                   <span className="currentPriceProductScreen"> R${price} </span>
                   <span className=" installmentPriceProductScreen">
-                    {" "}
-                    OU 12X DE R$ {installmentPrice}{" "}
+                    OU 12X DE R$ {installmentPrice}
                   </span>
                   <span className="discountPix"> 10% de desconto no pix </span>
                 </div>
                 <div className="addCart">
-                  <button
-                    className="addCartButton"
-                    onClick={() =>
-                      user !== null
-                        ? handleAddToFavorites(id)
-                        : (alert("faça seu login para então favoritar itens"),
-                          navigate("/login"))
-                    }
-                  >
-                    Adicionar aos favoritos
+                  <button className="addCartButton"
+                  disabled={isLoading}
+                  onClick={() =>
+                    user !== null
+                      ? handleAddToCart(id)
+                      : (alert(
+                          "Faça seu login para então adicionar itens ao carrinho"
+                        ),
+                        navigate("/login"))
+                  }>
+                    COMPRAR AGORA
+
                   </button>
                   <button
                     className="addCartButton"
@@ -199,7 +200,18 @@ const ProductDetailsPage = () => {
                           navigate("/login"))
                     }
                   >
-                    Adicionar ao carrinho
+                    ADICIONAR AO CARRINHO
+                  </button>
+                  <button
+                    className="addCartButton"
+                    onClick={() =>
+                      user !== null
+                        ? handleAddToFavorites(id)
+                        : (alert("faça seu login para então favoritar itens"),
+                          navigate("/login"))
+                    }
+                  >
+                    ADICIONAR A LISTA DE DESEJOS
                   </button>
                 </div>
               </div>
