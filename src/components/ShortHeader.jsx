@@ -5,7 +5,6 @@ import "../styles/ShortHeader.css";
 import Navbar from "./Navbar";
 import { useAuth } from "../pages/contexts/AuthProvider";
 
-
 const ShortHeader = () => {
   const { user } = useAuth();
   return (
@@ -30,9 +29,17 @@ const ShortHeader = () => {
           {<BsIcons.BsPersonCircle />}
         </Link>
         {user ? (
-        <span className="textProfileNavShort">
-          Olá {user.displayName}
-        </span>
+          <span className="currentUserText">
+            {" "}
+            <Link
+              to="/userProfile"
+              className="iconProfileHome"
+              alt="iconProfileHome"
+              title="Ir para o seu perfil"
+            >
+              Olá {user.displayName}
+            </Link>
+          </span>
         ) : (
           <span className="textProfileNavShort">
             Faça seu{" "}
@@ -43,7 +50,8 @@ const ShortHeader = () => {
               to="/login"
             >
               LOGIN
-            </Link> ou{" "}
+            </Link>{" "}
+            ou{" "}
             <Link
               className="linkRegisterNavShort"
               id="linkRegisterNavShort"
@@ -54,7 +62,6 @@ const ShortHeader = () => {
             </Link>
           </span>
         )}
-
       </div>
     </div>
   );

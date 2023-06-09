@@ -45,11 +45,18 @@ function Header() {
           >
             <BsPersonCircle />
           </Link>
-        )
-        }
+        )}
         {user ? (
-          <span className="textProfileNavShort">
-            Olá <strong> {user.displayName} </strong>
+          <span className="currentUserText">
+            {" "}
+            <Link
+              to="/userProfile"
+              className="currentUserText"
+              alt="iconProfileHome"
+              title="Ir para o seu perfil"
+            >
+              Olá <strong>{user.displayName}</strong>
+            </Link>
           </span>
         ) : (
           <span className="textProfileNavShort">
@@ -61,7 +68,8 @@ function Header() {
               to="/login"
             >
               LOGIN
-            </Link> ou{" "}
+            </Link>{" "}
+            ou{" "}
             <Link
               className="linkRegisterNavShort"
               id="linkRegisterNavShort"
@@ -71,9 +79,7 @@ function Header() {
               CADASTRE-SE
             </Link>
           </span>
-        )
-
-        }
+        )}
       </div>
 
       <div className="iconsNavHome">

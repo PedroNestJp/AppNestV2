@@ -14,7 +14,13 @@ import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
 import { BsStarFill, BsFillCollectionFill } from "react-icons/bs";
-import { FaFileSignature, FaTools, FaTruck } from "react-icons/fa";
+import {
+  FaCartPlus,
+  FaFileSignature,
+  FaPlusCircle,
+  FaTools,
+  FaTruck,
+} from "react-icons/fa";
 import Header from "../components/Header";
 import Reviews from "../components/Reviews";
 
@@ -120,7 +126,6 @@ const ProductDetailsPage = () => {
   const { name, price, imageUrl, description, oldPrice, installmentPrice } =
     product;
 
-
   return (
     <>
       <Header />
@@ -153,7 +158,6 @@ const ProductDetailsPage = () => {
                 </div>
               </div>
               <div className="areaDescriptionPrdct">
-                
                 <div className="rating">
                   <div className="ratingStars">
                     {Reviews}
@@ -175,19 +179,6 @@ const ProductDetailsPage = () => {
                   <span className="discountPix"> 10% de desconto no pix </span>
                 </div>
                 <div className="addCart">
-                  <button className="addCartButton"
-                  disabled={isLoading}
-                  onClick={() =>
-                    user !== null
-                      ? handleAddToCart(id)
-                      : (alert(
-                          "Faça seu login para então adicionar itens ao carrinho"
-                        ),
-                        navigate("/login"))
-                  }>
-                    COMPRAR AGORA
-
-                  </button>
                   <button
                     className="addCartButton"
                     disabled={isLoading}
@@ -200,10 +191,25 @@ const ProductDetailsPage = () => {
                           navigate("/login"))
                     }
                   >
-                    ADICIONAR AO CARRINHO
+                    COMPRAR AGORA
                   </button>
                   <button
-                    className="addCartButton"
+                    className="btnBuyNow"
+                    disabled={isLoading}
+                    onClick={() =>
+                      user !== null
+                        ? handleAddToCart(id)
+                        : (alert(
+                            "Faça seu login para então adicionar itens ao carrinho"
+                          ),
+                          navigate("/login"))
+                    }
+                  >
+                    <FaCartPlus /> ADICIONAR AO CARRINHO
+                  </button>
+                  <button
+                    style={{ height: "2rem" }}
+                    className="btnBuyNow"
                     onClick={() =>
                       user !== null
                         ? handleAddToFavorites(id)
@@ -211,7 +217,7 @@ const ProductDetailsPage = () => {
                           navigate("/login"))
                     }
                   >
-                    ADICIONAR A LISTA DE DESEJOS
+                    <FaPlusCircle /> ADICIONAR A LISTA DE DESEJOS
                   </button>
                 </div>
               </div>
@@ -219,16 +225,14 @@ const ProductDetailsPage = () => {
           </div>
         </div>
         <div className="containerProductChild2">
-          <div className="reviewsArea">
-            <h2 className="reviewsTitle">
-              {" "}
-              <BsStarFill /> Avaliações{" "}
-            </h2>
-            <div id="reviews" className="reviews">
-              {" "}
-              <ProductReview productId={product} />{" "}
-            </div>
+          {/* Reviews Area */}
+
+          <div id="reviews" className="reviews">
+            {" "}
+            <ProductReview productId={product} />{" "}
           </div>
+
+          {/* descArea */}
           <div className="descArea">
             <h2 className="descTitle">
               {" "}

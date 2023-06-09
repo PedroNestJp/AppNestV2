@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import { Link } from "react-router-dom";
 import "../styles/ProductDetailsPage.css";
+import { BsStarFill } from "react-icons/bs";
 
 function ProductReview({ productId }) {
   const [reviews, setReviews] = useState([]);
@@ -45,7 +46,7 @@ function ProductReview({ productId }) {
       };
 
       await addDoc(collection(db, "reviews"), reviewData);
-      alert('Agradecemos a sua avaliação')
+      alert("Agradecemos a sua avaliação");
 
       // Limpa o campo de nova avaliação
       setNewReview("");
@@ -57,6 +58,9 @@ function ProductReview({ productId }) {
   return (
     <div className="userReviewArea">
       <div className="inputReviewArea">
+        <h2 className="reviewsTitle">
+          <BsStarFill /> Adicione uma avalição
+        </h2>
         <form className="formReviewArea" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -69,26 +73,35 @@ function ProductReview({ productId }) {
           </button>
         </form>
       </div>
-      <div className="ratingText">
-        <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
+      <div className="reviewsArea">
+        <h2 className="reviewsTitle">
+          <BsStarFill /> Avaliações
+        </h2>
+        <div className="ratingText">
+          <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
+        </div>
+        {reviews.length > 0 ? (
+          <div className="ulReviewArea">
+            {reviews.map((review, index) => (
+              <div className="reviewsArea">
+                <div id="reviewsArea" key={index}>
+                  <p className="liReview"> {review.review} - </p>
+                  <p className="liUserReview">
+                    {review.userName && (
+                      <>
+                        <strong>Usuário: </strong>
+                        {review.userName}
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>Nenhuma avaliação disponível.</p>
+        )}
       </div>
-      {reviews.length > 0 ? (
-        <ul className="ulReviewArea">
-          {reviews.map((review, index) => (
-            <li id="reviewsArea" key={index}>
-              {review.review} -{" "}
-              {review.userName && (
-                <>
-                  <strong>Usuário: </strong>
-                  {review.userName}
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nenhuma avaliação disponível.</p>
-      )}
     </div>
   );
 }
