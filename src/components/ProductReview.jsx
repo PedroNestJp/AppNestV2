@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { useAuth } from "../pages/contexts/AuthProvider";
-import { Link } from "react-router-dom";
+import { auth, db } from "../firebase";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsPage.css";
 import { BsStarFill } from "react-icons/bs";
+const navigate = useNavigate;
+const user = auth.currentUser; // Add this line to get the current logged in user
 
 function ProductReview({ productId }) {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
-  const { user } = useAuth();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -38,17 +38,22 @@ function ProductReview({ productId }) {
     e.preventDefault();
 
     try {
-      // Salva a nova avaliação no Firebase
+      if (!user) {
+        // Add this check to ensure the user is logged in before submitting a review
+        alert("Faça seu login para poder fazer uma avaliação");
+        return;
+      }
+
       const reviewData = {
         productId,
         review: newReview,
-        userName: user.displayName, // Captura o ID do usuário autenticado
+        userName: user.displayName,
+        userId: user.uid, // Add the UID of the current user to the review data
       };
 
       await addDoc(collection(db, "reviews"), reviewData);
       alert("Agradecemos a sua avaliação");
 
-      // Limpa o campo de nova avaliação
       setNewReview("");
     } catch (error) {
       console.error("Erro ao enviar a avaliação:", error);
@@ -68,9 +73,19 @@ function ProductReview({ productId }) {
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Adicione uma avaliação"
           />
-          <button className="btn reviewBtn" type="submit">
-            Enviar Avaliação
-          </button>
+          {user ? (
+            <button className="btn reviewBtn" type="submit">
+              Enviar Avaliação
+            </button>
+          ) :  (
+            
+            <Link to="/login">
+              <button className="btn reviewBtn" type="submit">
+                Enviar Avaliação
+              </button>
+            </Link>
+            
+          )}
         </form>
       </div>
       <div className="reviewsArea">
@@ -85,7 +100,6 @@ function ProductReview({ productId }) {
             {reviews.map((review, index) => (
               <div className="reviewsArea">
                 <div id="reviewsArea" key={index}>
-                  <p className="liReview"> {review.review} - </p>
                   <p className="liUserReview">
                     {review.userName && (
                       <>
@@ -94,6 +108,8 @@ function ProductReview({ productId }) {
                       </>
                     )}
                   </p>
+                  <div className="lineProducDeails"> </div>
+                  <p className="liReview"> {review.review}</p>
                 </div>
               </div>
             ))}

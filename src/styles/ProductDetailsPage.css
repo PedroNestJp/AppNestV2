@@ -42,12 +42,6 @@
   align-items: center;
 }
 
-.containerProductChild2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .reviewsTitle,
 .descTitle {
   display: flex;
@@ -264,7 +258,6 @@
 /* Second Container */
 
 .containerProductChild2 {
-  background-color: #121212;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -275,7 +268,6 @@
 .reviews {
   margin: 3rem 0rem;
   color: #f5f5f5;
-  border: black 1px solid;
 }
 
 .userReviewArea {
@@ -286,6 +278,7 @@
 }
 
 .inputReviewArea {
+  margin-top: 2rem;
   width: 100%;
   height: auto;
   max-width: 1080px;
@@ -293,7 +286,6 @@
 
 .reviewsTitle,
 .descTitle {
-  border: solid 1px black;
 }
 
 /* Reviews Form */
@@ -302,6 +294,7 @@
   display: flex;
 }
 .inputReviewArea input {
+  outline: none;
   padding-left: 1rem;
   width: -webkit-fill-available;
 }
@@ -319,20 +312,26 @@
   font-size: 15px;
   text-align: center;
   color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* Reviews Area */
 
 .reviewsArea {
+  display: flex;
   border-radius: 4px;
   padding: 20px;
   background: rgb(32, 32, 32);
+  align-items: center;
+  flex-direction: column;
+}
+
+.lineProducDeails{
+  height: 1px;
+  width: auto;
 }
 
 #reviewsArea {
   display: flex;
-  border: rgba(0, 0, 0, 0.2) solid 1px;
   flex-direction: column;
   align-items: center;
   height: 100%;
