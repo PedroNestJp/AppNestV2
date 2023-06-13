@@ -111,7 +111,7 @@ const ProductDetailsPage = () => {
   const { name, price, imageUrl, description, oldPrice, installmentPrice } = product;
 
   return (
-    <>
+    <div style={{backgroundColor: '#1c1c1c'}} >
       <Header />
       <div className="mainContentProduct">
         <div className="containerProductFather">
@@ -307,7 +307,7 @@ const ProductDetailsPage = () => {
           </div>
         </article>
       </div>
-    </>
+    </div>
   );
 };
 
