@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  getDoc,
-  doc,
-  updateDoc,
-  setDoc,
-  collection,
-  onSnapshot,
-} from "firebase/firestore";
+import { getDoc, doc, updateDoc, setDoc, collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./contexts/AuthProvider";
 import "../styles/ProductDetailsPage.css";
 import Cronometro from "../components/Contador";
 import ProductReview from "../components/ProductReview";
-import { BsStarFill, BsFillCollectionFill } from "react-icons/bs";
-import {
-  FaCartPlus,
-  FaFileSignature,
-  FaPlusCircle,
-  FaTools,
-  FaTruck,
-} from "react-icons/fa";
+import { BsFillCollectionFill } from "react-icons/bs";
+import { FaCartPlus, FaFileSignature, FaPlusCircle, FaTools, FaTruck } from "react-icons/fa";
 import Header from "../components/Header";
 import Reviews from "../components/Reviews";
 
@@ -61,6 +48,7 @@ const ProductDetailsPage = () => {
       return;
     }
 
+
     try {
       const productRef = doc(db, "products", id);
       const productSnapshot = await getDoc(productRef);
@@ -89,11 +77,9 @@ const ProductDetailsPage = () => {
       if (snapshot.exists()) {
         const cart = snapshot.data();
         const productIndex = cart.items.findIndex((item) => item.id === id);
-        // console.log(cart, productIndex);
 
         if (productIndex !== -1) {
           cart.items[productIndex].quantity++;
-          console.log(productIndex);
         } else {
           const productRef = doc(db, "products", id);
           const productSnapshot = await getDoc(productRef);
@@ -102,7 +88,6 @@ const ProductDetailsPage = () => {
         }
 
         await updateDoc(cartDoc, cart);
-        // console.log(cart, cartDoc);
       } else {
         const productRef = doc(db, "products", id);
         const productSnapshot = await getDoc(productRef);
@@ -123,29 +108,24 @@ const ProductDetailsPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, price, imageUrl, description, oldPrice, installmentPrice } =
-    product;
+  const { name, price, imageUrl, description, oldPrice, installmentPrice } = product;
 
   return (
     <>
       <Header />
-
       <div className="mainContentProduct">
         <div className="containerProductFather">
           <div className="containerProductChild1">
             <div className="imgProduct">
-              {/* <span className='imgsProductsSub'>
-              <img id={name} src={imageUrl} alt={name} />
-              <img id={name} src={imageUrl} alt={name} />
-              <img id={name} src={imageUrl} alt={name} />
-            </span>   */}
               <img className="imgPrincipal" src={imageUrl} alt={name} />
               <div className="descText">{description}</div>
             </div>
 
             <div className="containerProductDesc">
               <div className="promotionCall">
+
                 <Cronometro />
+
                 <div className="cardsPromo">
                   <div className="offerDiscaunt">
                     <span> 2 </span>
@@ -186,8 +166,8 @@ const ProductDetailsPage = () => {
                       user !== null
                         ? handleAddToCart(id)
                         : (alert(
-                            "Faça seu login para então adicionar itens ao carrinho"
-                          ),
+                          "Faça seu login para então adicionar itens ao carrinho"
+                        ),
                           navigate("/login"))
                     }
                   >
@@ -200,8 +180,8 @@ const ProductDetailsPage = () => {
                       user !== null
                         ? handleAddToCart(id)
                         : (alert(
-                            "Faça seu login para então adicionar itens ao carrinho"
-                          ),
+                          "Faça seu login para então adicionar itens ao carrinho"
+                        ),
                           navigate("/login"))
                     }
                   >
@@ -228,8 +208,7 @@ const ProductDetailsPage = () => {
           {/* Reviews Area */}
 
           <div id="reviews" className="reviews">
-            {" "}
-            <ProductReview productId={product} />{" "}
+            <ProductReview productId={product} />
           </div>
 
           {/* descArea */}
@@ -240,11 +219,7 @@ const ProductDetailsPage = () => {
             </h2>
             <div className="desc"> {product.description} </div>
             <div className="desc img">
-              <img
-                alt="imageProduct"
-                title="imagem do produto"
-                src={imageUrl}
-              />
+              <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
             </div>
           </div>
         </div>
@@ -257,9 +232,8 @@ const ProductDetailsPage = () => {
             />
             <h5>MONTAGEM</h5>
             <p>
-              Os computadores serão montados. Acompanham BIOS e Drivers
-              atualizados. Todos os cabos são posicionados pela parte traseira
-              do gabinete dando uma aparência mais limpa ao computador.
+              Os computadores serão montados. Acompanham BIOS e Drivers atualizados. Todos os cabos são posicionados
+              pela parte traseira do gabinete dando uma aparência mais limpa ao computador.
             </p>
           </div>
           <div className="delivery">
@@ -270,9 +244,8 @@ const ProductDetailsPage = () => {
             />
             <h5>ENTREGA</h5>
             <p>
-              São enviadas todas as caixas e acessórios presentes nos
-              equipamentos. Embalado com caixa de papelão de ondas duplas e
-              fitas de segurança com cola quimicamente ativa.
+              São enviadas todas as caixas e acessórios presentes nos equipamentos. Embalado com caixa de papelão de
+              ondas duplas e fitas de segurança com cola quimicamente ativa.
             </p>
           </div>
           <div className="warranty">
@@ -283,47 +256,55 @@ const ProductDetailsPage = () => {
             />
             <h5>GARANTIA</h5>
             <p>
-              A garantia é por peça, o prazo será indicado na nota fiscal. Os
-              computadores acompanham lacres de seurança, portanto não poderá
-              abrir seu gabinete e modificar pois ocasionará perca total da
-              garantia
+              A garantia é por peça, o prazo será indicado na nota fiscal. Os computadores acompanham lacres de
+              seurança, portanto não poderá abrir seu gabinete e modificar pois ocasionará perca total da garantia
             </p>
           </div>
         </div>
         <article className="PrDtPgWarnings">
-          <h4 className="laranja">ATENÇÃO</h4>
-          <p>- Se atente à Entradas de Vídeo escolhidas no ato do pedido. </p>
-          <p>
-            <strong>
-              Algumas placas de vídeo não possuem saída de vídeo VGA
-            </strong>{" "}
-            impossibilitando a utilização de alguns monitores.
+          <div className="warning">
+            <h4 className="laranja">ATENÇÃO</h4>
+            <p> Se atente à Entradas de Vídeo escolhidas no ato do pedido. </p>
+            <p>
+              <strong>
+                Algumas placas de vídeo não possuem saída de vídeo VGA
+              </strong>{" "}
+              impossibilitando a utilização de alguns monitores.
+
+            </p>
+            <p>
+              Caso haja algum erro ou incompatibilidade na escolha, será entrado em contato com o cliente avisando
+              sobre, porém, o cliente ao finalizar o pedido já se declara ciente que tal situação
+              foge ao controle da Nest Informática e a mesma não possui responsabilidade nem dever de arcar com custos
+              extras em virtude da escolha de produtos incompatíveis.
+            </p>
+
+          </div>
+          <div className="warningLink">
+            <h3> Duvidas?: </h3>
+            - Caso tenha alguma dificuldade com a escolha do item e da configuração, você pode
+            <strong>contatar o atendimento para auxilio</strong> no link à seguir:
             <br />
-          </p>
-          <p>
-            Caso haja algum erro ou incompatibilidade na escolha, será entrado
-            em contato com o cliente avisando sobre, porém, o cliente ao
-            finalizar o pedido via Full Custom já se declara ciente que tal
-            situação foge ao controle da TerabyteShop e a mesma não possui
-            responsabilidade nem dever de arcar com custos extras em virtude da
-            escolha de produtos incompatíveis.
-          </p>
-          <br />
-          <p>
-            - Caso tenha alguma dificuldade com a escolha dos itens e
-            customização da configuração, você pode{" "}
-            <strong>contatar o atendimento para auxilio</strong> no link à
-            seguir:
-          </p>
-          <strong>
-            <Link to="">
-              <span>CLIQUE AQUI!</span>
-            </Link>
-          </strong>
-          <br />- Gabinetes com a informação{" "}
-          <strong>S-FAN não acompanham os fans</strong>. As imagens são
-          meramente ilustrativas.
-          <br />
+            <strong>
+              <Link  to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
+                <span >CLIQUE AQUI!</span>
+              </Link>
+            </strong>
+          </div>
+          <div className="warnings">
+            <h3> Gabinetes: </h3>
+            - Gabinetes com a informação
+            <strong>S-FAN ou X-FAN não acompanham cooler traseiro</strong>. Caso necessite de um cooler adicional para
+            instalação no local, basta adquirir um cooler de <strong>120x120mm</strong> compatível.
+
+
+          </div>
+          <div className="warnings">
+            <h3> Prazos : </h3>
+            - Computadores podem demorar até <strong>30 dias úteis</strong> para serem montados e
+            enviados pois cada produto é adquirido para a montagem e a mesma é efetuada somente após a confirmação do
+            pagamento.
+          </div>
         </article>
       </div>
     </>

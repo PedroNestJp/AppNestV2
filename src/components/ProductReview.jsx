@@ -88,28 +88,28 @@ function ProductReview({ productId }) {
           )}
         </form>
       </div>
-      <div className="reviewsArea">
+      <div className="reviewsAreaMain">
         <h2 className="reviewsTitle">
           <BsStarFill /> Avaliações
         </h2>
+        {reviews.length > 0 ? (
+          <div className="ulReviewArea">
         <div className="ratingText">
           <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
         </div>
-        {reviews.length > 0 ? (
-          <div className="ulReviewArea">
             {reviews.map((review, index) => (
               <div className="reviewsArea">
-                <div id="reviewsArea" key={index}>
-                  <p className="liUserReview">
+                <div className="reviewArea" id="reviewArea" key={index}>
+                  <div className="liUserReview">
                     {review.userName && (
                       <>
                         <strong>Usuário: </strong>
                         {review.userName}
                       </>
                     )}
-                  </p>
+                  </div>
                   <div className="lineProducDeails"> </div>
-                  <p className="liReview"> {review.review}</p>
+                  <div className="review"> {review.review} </div>
                 </div>
               </div>
             ))}
