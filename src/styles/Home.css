@@ -117,6 +117,7 @@ a#textTypePc{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 1rem;
 }
 
 .highLightsBoxs{
@@ -125,6 +126,7 @@ a#textTypePc{
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 .img-hl-1,.img-hl-2, .img-hl-3, .img-bs-1, .img-bs-2,.img-bs-3{
     height: 220px;
@@ -148,13 +150,12 @@ a{
 .styleBox{
 
     flex-direction: column;
-    padding: 10px;
-    width: 30rem;
+    padding: 1rem;
+    width: 25rem;
     box-sizing: border-box;
-    margin: 7px;
-    background: #FFFFFF;
+    background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,26 +181,23 @@ a{
 
 }
 
-.button-buy{
-
+.button-buy {
     display: flex;
     align-items: center;
     justify-content: center;
     width: -webkit-fill-available;
-    height: 40px;
+    height: auto;
     transition: 0.3s;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 1rem;
     border: 1px solid #E20100;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-
+    
     font-weight: 900;
-    font-size: 20px;
+    font-size: 1.2rem;
     line-height: 39px;
-
     color: #E20100;
-
 }
 
 .button-buy:hover{
@@ -326,6 +324,7 @@ a{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 1rem;
 }
 
 .bestSelersBox{
