@@ -111,6 +111,15 @@ justify-content: center;
   transform: translate3d(-100%, 0px, 0px);
 }
 
+.carousel.carousel-slider {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
 .carousel .carousel-status {
   display: flex;
   position: absolute;
