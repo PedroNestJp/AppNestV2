@@ -85,6 +85,7 @@ const SubFooter = () => {
                     <p> SOMOS E-COMMERCE  NÃO TEMOS ATENDIMENTO LOCAL </p>
                 </div>
             </div>
+            <div className="createdBy"> Criado por - <Link to=''> Meu Digital Agência </Link> </div>
         </section>
     )
 }
