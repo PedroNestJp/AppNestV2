@@ -10,9 +10,12 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
+import Carrosel from "../components/Carrosel";
 
 const PeripheralsPage = () => {
   const [products, setProducts] = useState([]);
+  const [productGroups, setProductGroups] = useState([]);
+  const [groupSize, setGroupSize] = useState(3); // Valor inicial
 
   useEffect(() => {
     const getProducts = async () => {
@@ -22,19 +25,54 @@ const PeripheralsPage = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      
-      // Filter products based on PC type
+
       const filteredProducts = allProducts.filter(
         (product) => product.productType === "perifericos"
-        );
-        
-        setProducts(filteredProducts);
-        alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      );
+
+      setProducts(filteredProducts);
+      alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
-    
+
     getProducts();
   }, []);
-  
+
+  useEffect(() => {
+    const divideProductsIntoGroups = () => {
+      const groups = [];
+      const totalProducts = products.length;
+      let startIndex = 0;
+
+      while (startIndex < totalProducts) {
+        const endIndex = startIndex + groupSize;
+        const group = products.slice(startIndex, endIndex);
+        groups.push(group);
+        startIndex = endIndex;
+      }
+
+      setProductGroups(groups);
+    };
+
+    divideProductsIntoGroups();
+  }, [products, groupSize]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 600px)").matches) {
+        setGroupSize(1);
+      } else if (window.matchMedia("(max-width: 800px)").matches) {
+        setGroupSize(2);
+      } else {
+        setGroupSize(3);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <Header />
@@ -44,38 +82,41 @@ const PeripheralsPage = () => {
           {" "}
           DESTAQUES
         </div>
-        <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel>
-        </div>
-        {/* <Carrosel/> */}
+        <div className="highLightsBoxs" id="highlightsBoxs">        </div>
+        <Carousel showArrows infiniteLoop showThumbs={false}>
+          {productGroups.map((group, index) => (
+            <div key={index}>
+              {group.map(({ id, ...product }) => (
+                <ProductCard key={id} id={id} {...product} />
+              ))}
+            </div>
+          ))}
+        </Carousel>
+
       </section>
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
         <div className="divBuyByPlatform">
-        <Link to='/filterByPlatformIntel'>
-          <div className="divPlatformIntel" id="textPlatformIntel">
-            <span className="text-platform-intel">INTEL</span>
-            <img
-              className="platform-intel"
-              src={imgIntelType}
-              alt="Plataforma Intel"
-            />
-          </div>
+          <Link to='/filterByPlatformIntel'>
+            <div className="divPlatformIntel" id="textPlatformIntel">
+              <span className="text-platform-intel">INTEL</span>
+              <img
+                className="platform-intel"
+                src={imgIntelType}
+                alt="Plataforma Intel"
+              />
+            </div>
           </Link>
-            <Link to='/filterByPlatformAmd'>
-          <div className="divPlatformAmd" id="textPlatformAmd">
-            <span className="text-platform-amd">AMD</span>
-            <img
-              className="platform-amd"
-              src={imgAmdType}
-              alt="Plataforma AMD"
-            />
-          </div>
-            </Link>
+          <Link to='/filterByPlatformAmd'>
+            <div className="divPlatformAmd" id="textPlatformAmd">
+              <span className="text-platform-amd">AMD</span>
+              <img
+                className="platform-amd"
+                src={imgAmdType}
+                alt="Plataforma AMD"
+              />
+            </div>
+          </Link>
         </div>
       </section>
       <section className="container-3" id="container-3" title="container-3">

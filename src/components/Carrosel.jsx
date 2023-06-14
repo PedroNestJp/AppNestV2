@@ -8,6 +8,7 @@ import { db } from "../firebase";
 const Carrosel = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
+  const [groupSize, setGroupSize] = useState(3); // Valor inicial
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,8 +28,7 @@ const Carrosel = () => {
     const divideProductsIntoGroups = () => {
       const groups = [];
       const totalProducts = products.length;
-      let startIndex = 0;
-      const groupSize = 3;
+      let startIndex = 1;
 
       while (startIndex < totalProducts) {
         const endIndex = startIndex + groupSize;
@@ -41,7 +41,24 @@ const Carrosel = () => {
     };
 
     divideProductsIntoGroups();
-  }, [products]);
+  }, [products, groupSize]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 600px)").matches) {
+        setGroupSize(1);
+      } else if (window.matchMedia("(max-width: 800px)").matches) {
+        setGroupSize(2);
+      } else {
+        setGroupSize(3);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section className="container-2" title="container-2">
@@ -58,8 +75,10 @@ const Carrosel = () => {
       </div>
     </section>
   );
-}; 
-export default Carrosel
+};
+
+export default Carrosel;
+
 
 const CarroselAds = () => {
   return (

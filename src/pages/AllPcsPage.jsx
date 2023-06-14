@@ -5,6 +5,7 @@ import "../styles/AllPcsPage.css";
 import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
+import Carrosel from "../components/Carrosel";
 
 // Função para filtrar os produtos por tipo
 const filterTypeProducts = (product, type) => {
@@ -37,41 +38,27 @@ const AllPcsPage = () => {
   return (
     <>
       <Header />
-
       <section id="pcsOfficeContainer" className="container" title="Pcs Office">
         <div id="pcsOfficeId" title="Pcs Office" className="allPCsTexts">
           {" "}
           PCS OFFICE
         </div>
         <div className="allPcsBoxs" id="allPcsBoxsOffices">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {productsOffice.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
-          </Carousel>
+        <Carrosel/>
         </div>
-        {/* <Carrosel/> */}
       </section>
       <section className="container" id="pcsGamerContainer" title="Pcs Gamer">
         <div id="pcsGamerDiv" className="allPCsTexts">
           PCS GAMER
         </div>
         <div className="allPcsBoxs" id="allPcsBoxsGamer">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {productsGamer.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
-          </Carousel>
+        <Carrosel/>
         </div>
       </section>
       <section className="container" title="Pcs High-End">
         <div className="allPCsTexts">PCS HIGH-END</div>
         <div className="allPcsBoxs" id="allPcsBoxsHighEnd">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {productsHighEnd.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
-          </Carousel>
+        <Carrosel/>
         </div>
       </section>
     </>

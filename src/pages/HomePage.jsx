@@ -91,11 +91,7 @@ const HomePage = () => {
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel>
+          <Carrosel/>
         </div>
       </section>
 
@@ -131,11 +127,6 @@ const HomePage = () => {
           MAIS VENDIDOS
         </div>
         <div className="bestSelersBox" id="highlightsBoxs">
-          {/* <Carousel showArrows showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel> */}
           <Carrosel/>
         </div>
       </section>

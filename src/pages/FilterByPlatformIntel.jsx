@@ -10,6 +10,7 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
+import Carrosel from "../components/Carrosel";
 
 const FilterByPlatformIntel = () => {
   const [products, setProducts] = useState([]);
@@ -25,10 +26,11 @@ const FilterByPlatformIntel = () => {
 
       // Filter products based on PC type
       const filteredProducts = allProducts.filter(
-        (product) => product.platform === "amd"
+        (product) => product.platform === "intel"
       );
 
       setProducts(filteredProducts);
+      alert('Somente os PCS da plataforma Intel serão mostrados nesta tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
@@ -44,11 +46,8 @@ const FilterByPlatformIntel = () => {
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel>
+        <Carrosel/>
+
         </div>
       </section>
       <section className="buyByPlatform" id="buyByPlatformHome">
@@ -82,11 +81,8 @@ const FilterByPlatformIntel = () => {
           MAIS VENDIDOS{" "}
         </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-          {products.map(({ id, ...product }) => (
-            <ProductCard key={id} id={id} {...product} />
-          ))}
-        </Carousel>
+        <Carrosel/>
+
       </section>
       <section className="departments" id="departmentsHome">
         <div className="departmentsText">🗄DEPARTAMENTOS</div>

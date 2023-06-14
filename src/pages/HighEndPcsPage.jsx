@@ -10,9 +10,12 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
+import Carrosel from "../components/Carrosel";
 
 const HighEndPcsPage = () => {
   const [products, setProducts] = useState([]);
+  const [productGroups, setProductGroups] = useState([]);
+  const [groupSize, setGroupSize] = useState(3); // Valor inicial
 
   useEffect(() => {
     const getProducts = async () => {
@@ -23,15 +26,51 @@ const HighEndPcsPage = () => {
         ...doc.data(),
       }));
 
-      // Filter products based on PC type
       const filteredProducts = allProducts.filter(
-        (product) => product.typePc === "highEnd"
+        (product) => product.typePc === "office"
       );
 
       setProducts(filteredProducts);
+      alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
+  }, []);
+
+  useEffect(() => {
+    const divideProductsIntoGroups = () => {
+      const groups = [];
+      const totalProducts = products.length;
+      let startIndex = 0;
+
+      while (startIndex < totalProducts) {
+        const endIndex = startIndex + groupSize;
+        const group = products.slice(startIndex, endIndex);
+        groups.push(group);
+        startIndex = endIndex;
+      }
+
+      setProductGroups(groups);
+    };
+
+    divideProductsIntoGroups();
+  }, [products, groupSize]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 600px)").matches) {
+        setGroupSize(1);
+      } else if (window.matchMedia("(max-width: 800px)").matches) {
+        setGroupSize(2);
+      } else {
+        setGroupSize(3);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -44,13 +83,9 @@ const HighEndPcsPage = () => {
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} id={id} {...product} />
-            ))}
-          </Carousel>
+        <Carrosel/>
+
         </div>
-        {/* <Carrosel/> */}
       </section>
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
@@ -83,11 +118,8 @@ const HighEndPcsPage = () => {
           MAIS VENDIDOS{" "}
         </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
-          {products.map(({ id, ...product }) => (
-            <ProductCard key={id} id={id} {...product} />
-          ))}
-        </Carousel>
+        <Carrosel/>
+
       </section>
       <section className="departments" id="departmentsHome">
         <div className="departmentsText">🗄DEPARTAMENTOS</div>
