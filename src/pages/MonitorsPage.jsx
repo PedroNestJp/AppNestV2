@@ -27,7 +27,7 @@ const MonitorsPage = () => {
       }));
 
       const filteredProducts = allProducts.filter(
-        (product) => product.typePc === "office"
+        (product) => product.productType === "monitor"
       );
 
       setProducts(filteredProducts);
@@ -83,33 +83,41 @@ const MonitorsPage = () => {
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-        <Carrosel/>
+          <Carousel showArrows infiniteLoop showThumbs={false}>
+            {productGroups.map((group, index) => (
+              <div key={index}>
+                {group.map(({ id, ...product }) => (
+                  <ProductCard key={id} id={id} {...product} />
+                ))}
+              </div>
+            ))}
+          </Carousel>
 
         </div>
       </section>
       <section className="buyByPlatform" id="buyByPlatformHome">
         <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
         <div className="divBuyByPlatform">
-        <Link to='/filterByPlatformIntel'>
-          <div className="divPlatformIntel" id="textPlatformIntel">
-            <span className="text-platform-intel">INTEL</span>
-            <img
-              className="platform-intel"
-              src={imgIntelType}
-              alt="Plataforma Intel"
-            />
-          </div>
+          <Link to='/filterByPlatformIntel'>
+            <div className="divPlatformIntel" id="textPlatformIntel">
+              <span className="text-platform-intel">INTEL</span>
+              <img
+                className="platform-intel"
+                src={imgIntelType}
+                alt="Plataforma Intel"
+              />
+            </div>
           </Link>
-            <Link to='/filterByPlatformAmd'>
-          <div className="divPlatformAmd" id="textPlatformAmd">
-            <span className="text-platform-amd">AMD</span>
-            <img
-              className="platform-amd"
-              src={imgAmdType}
-              alt="Plataforma AMD"
-            />
-          </div>
-            </Link>
+          <Link to='/filterByPlatformAmd'>
+            <div className="divPlatformAmd" id="textPlatformAmd">
+              <span className="text-platform-amd">AMD</span>
+              <img
+                className="platform-amd"
+                src={imgAmdType}
+                alt="Plataforma AMD"
+              />
+            </div>
+          </Link>
         </div>
       </section>
       <section className="container-3" id="container-3" title="container-3">
@@ -118,7 +126,15 @@ const MonitorsPage = () => {
           MAIS VENDIDOS{" "}
         </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carrosel/>
+        <Carousel showArrows infiniteLoop showThumbs={false}>
+          {productGroups.map((group, index) => (
+            <div key={index}>
+              {group.map(({ id, ...product }) => (
+                <ProductCard key={id} id={id} {...product} />
+              ))}
+            </div>
+          ))}
+        </Carousel>
 
       </section>
       <section className="departments" id="departmentsHome">

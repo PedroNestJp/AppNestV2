@@ -10,7 +10,6 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
-import Carrosel from "../components/Carrosel";
 
 const FilterByPlatformAmd = () => {
   const [products, setProducts] = useState([]);
@@ -26,7 +25,6 @@ const FilterByPlatformAmd = () => {
         ...doc.data(),
       }));
 
-      // Filter products based on PC type
       const filteredProducts = allProducts.filter(
         (product) => product.platform === "amd"
       );
