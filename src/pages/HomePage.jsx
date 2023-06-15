@@ -135,7 +135,7 @@ const HomePage = () => {
         <div className="departmentsText">🗄DEPARTAMENTOS</div>
 
         <div className="bbdBoxs">
-          <Link to="/">
+          <Link to="/allPcsPage">
             <div className="bbd-1 styleBox-bbd">
               <img
                 className="img-bbd-1"
