@@ -31,7 +31,7 @@ const MonitorsPage = () => {
       );
 
       setProducts(filteredProducts);
-      alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      alert('Somente os Monitores serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
