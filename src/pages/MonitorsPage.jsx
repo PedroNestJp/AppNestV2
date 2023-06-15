@@ -10,7 +10,6 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
-import Carrosel from "../components/Carrosel";
 
 const MonitorsPage = () => {
   const [products, setProducts] = useState([]);
