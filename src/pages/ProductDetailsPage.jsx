@@ -204,7 +204,7 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-        <div className="containerProductChild2">
+
           {/* Reviews Area */}
 
           <div id="reviews" className="reviews">
@@ -222,7 +222,6 @@ const ProductDetailsPage = () => {
               <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
             </div>
           </div>
-        </div>
         <div className="serviceIncluded">
           <div className="mounting">
             <FaTools
