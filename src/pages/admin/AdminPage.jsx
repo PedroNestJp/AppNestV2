@@ -11,10 +11,7 @@ function AdminPage() {
           <li >
             <Link to="/addProducts" style={{color:'#f00'}}> Add Products </Link>
           </li>
-          <li>
-            <Link to="/CRUDProducts" style={{color:'#f00'}}> Crud Users </Link>
-          </li>
-          <li>
+           <li>
             <Link to="/addImage" style={{color:'#f00'}}> Add Image </Link>
           </li>
         </ul>

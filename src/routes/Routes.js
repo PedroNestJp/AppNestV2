@@ -10,7 +10,6 @@ import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import Product from '../pages/ProductEx';
 import {Footer, SubFooter} from '../components/Footer';
-import CRUDProducts from '../pages/admin/CRUD.Products';
 import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
 import { ContactLine2 } from '../components/ContactLines';
@@ -57,7 +56,6 @@ function EdnPoints() {
                     <Route path='/searchResults' element={<SearchResults/>}/>
 
                     <Route path="/addProducts" element={<AddProductPage />} />
-                    <Route path="/CRUDProducts" element={<CRUDProducts />} />
                     <Route path="/addImage" element={<AddImage />} />
                     <Route path="/admin" element={<AdminPage />} />
 

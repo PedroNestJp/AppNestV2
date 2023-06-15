@@ -94,8 +94,6 @@ function ProductList() {
         typePc,
         imageUrl,
       });
-
-      alert("😎 Produto Adicionado com sucesso ✅");
       setName("");
       setDescription("");
       setPrice("");
@@ -106,6 +104,7 @@ function ProductList() {
       setTypePc("");
       setImage(null);
       setImageUrl(null);
+      alert("😎 Produto Adicionado com sucesso ✅");
     } catch (error) {
       console.error(error);
       alert("🦓 Ocorreu um erro ao adicionar o produto, verifique o log.");
@@ -113,35 +112,36 @@ function ProductList() {
     setUploading(false);
   };
 
-  const handleUpdateProduct = async (productId, field) => {
-    try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, {
-        name: updateName,
-        description: updateDescription,
-        price: Number(updatePrice),
-        oldPrice: Number(updateOldPrice),
-        installmentPrice: Number(updateInstallmentPrice),
-        productType: updateProductType,
-        platform: updatePlatform,
-        typePc: updateTypePc,
-      });
-      alert("😎 Produto atualizado com sucesso ✅")
-      setName("");
-      setDescription("");
-      setPrice("");
-      setOldPrice("");
-      setInstallmentPrice("");
-      setProductType("");
-      setPlatform("");
-      setTypePc("");
-      setImage(null);
-      setImageUrl(null);
-    } catch (error) {
-      console.error(error);
-      alert(" Ocorreu um erro ao atualizar o produto, verifique o log.");
-    }
-  };
+const handleUpdateProduct = async (productId, field) => {
+  try {
+    const productRef = doc(db, "products", productId);
+    await updateDoc(productRef, {
+      name: updateName,
+      description: updateDescription,
+      price: Number(updatePrice),
+      oldPrice: Number(updateOldPrice),
+      installmentPrice: Number(updateInstallmentPrice),
+      productType: updateProductType,
+      platform: updatePlatform,
+      typePc: updateTypePc,
+    });
+
+    // Limpar os campos de entrada de dados
+    setUpdateName("");
+    setUpdateDescription("");
+    setUpdatePrice("");
+    setUpdateOldPrice("");
+    setUpdateInstallmentPrice("");
+    setUpdateProductType("");
+    setUpdatePlatform("");
+    setUpdateTypePc("");
+
+    alert("😎 Produto atualizado com sucesso ✅")
+  } catch (error) {
+    console.error(error);
+    alert(" Ocorreu um erro ao atualizar o produto, verifique o log.");
+  }
+};
 
   const handleDeleteProduct = async (productId) => {
     try {
