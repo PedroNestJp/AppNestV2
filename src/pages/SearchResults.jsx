@@ -14,7 +14,7 @@ const SearchResults = () => {
     }, 300);
 
     return () => clearTimeout(delaySearch);
-  }, [searchProducts]);
+  }, [searchInput]);
 
   const handleSearchInputChange = (event) => {
     const input = event.target.value;
@@ -52,12 +52,12 @@ const SearchResults = () => {
       {error && <p>{error}</p>}
 
       {filteredProducts.length > 0 && (
-  <ul>
-    {filteredProducts.map((product) => (
-      <li key={product.id}>{product.name}</li>
-    ))}
-  </ul>
-)}
+        <ul>
+          {filteredProducts.map((product) => (
+            <li key={product.id}>{product.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

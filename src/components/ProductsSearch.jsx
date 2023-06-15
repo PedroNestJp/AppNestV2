@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import * as RxIcons from 'react-icons/rx';
 import { db } from '../firebase';
+import { RxMagnifyingGlass } from 'react-icons/rx';
 
 function ProductsSearch() {
   const [searchInput, setSearchInput] = useState('');
@@ -24,7 +24,6 @@ function ProductsSearch() {
   const handleSearch = async () => {
     if (searchInput.trim() === '') {
       setSearchResults([]);
-      console.log(searchResults);
       return;
     }
 
@@ -36,13 +35,11 @@ function ProductsSearch() {
       const querySnapshot = await getDocs(q);
       const results = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setSearchResults(results);
-      console.log(results)
     } catch (err) {
       setError('An error occurred while searching for products.');
     }
 
     setLoading(false);
-    console.log(searchResults);
   };
 
   return (
@@ -63,8 +60,19 @@ function ProductsSearch() {
         title="Pesquisar"
         onClick={handleSearch}
       >
-        <RxIcons.RxMagnifyingGlass onClick={handleSearch} />
+        <RxMagnifyingGlass />
       </button>
+
+      {loading && <p style={{color:'white'}}>Loading...</p>}
+      {error && <p>{error}</p>}
+
+      {searchResults.length > 0 && (
+        <ul>
+          {searchResults.map((product) => (
+            <li style={{color:'white'}} key={product.id}>{product.name}</li>
+          ))}
+        </ul>
+      )}
     </form>
   );
 }
