@@ -91,7 +91,7 @@ input:hover {
 }
 
 .currentUserText {
-  width: 90px;
+  width: max-content;
   margin: 2px;
   font-weight: 400;
   font-size: 13px;

@@ -42,7 +42,7 @@
 }
 
 .currentUserText {
-  width: 7rem;
+  width: -webkit-fill-available;
   margin-bottom: 2px;
   font-weight: 400;
   font-size: 13px;
