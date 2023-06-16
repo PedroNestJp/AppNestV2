@@ -12,7 +12,7 @@ function ProductsSearch() {
   useEffect(() => {
     const delaySearch = setTimeout(() => {
       handleSearch();
-    }, 600);
+    }, 1000);
     return () => clearTimeout(delaySearch);
   }, [searchInput]);
 
@@ -26,6 +26,7 @@ function ProductsSearch() {
       setSearchResults([]);
       return;
     }
+    alert('Nenhum resultado para sua busca')
 
     setLoading(true);
     setError('');
@@ -63,16 +64,21 @@ function ProductsSearch() {
         <RxMagnifyingGlass />
       </button>
 
-      {loading && <p style={{color:'white'}}>Loading...</p>}
+      {/* {loading && <p style={{color:'white'}}>Loading...</p>}
       {error && <p>{error}</p>}
 
       {searchResults.length > 0 && (
-        <ul>
+      <div className='highLightsBoxs'>
           {searchResults.map((product) => (
-            <li style={{color:'white'}} key={product.id}>{product.name}</li>
+            <div className='result'>
+            <span style={{color:'white'}} key={product.id}>
+              {product.name} 
+              <img src={product.imageUrl} alt="" />
+            </span>
+            </div>
           ))}
-        </ul>
-      )}
+        </div>
+      )} */}
     </form>
   );
 }
