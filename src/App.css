@@ -38,7 +38,6 @@
 @media (max-width: 400px) {
   .carouselAds {
     height: 3.5rem;
-
   }  
 }
 @media (max-width: 350px) {
@@ -52,11 +51,9 @@
   align-items: center;
 }
 
-
 .carousel .slide img {
     max-height: 30vh;
     width: auto;
-
 }
 
 .image {

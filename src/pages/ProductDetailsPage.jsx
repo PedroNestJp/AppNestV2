@@ -10,6 +10,7 @@ import { BsFillCollectionFill } from "react-icons/bs";
 import { FaCartPlus, FaFileSignature, FaPlusCircle, FaTools, FaTruck } from "react-icons/fa";
 import Header from "../components/Header";
 import Reviews from "../components/Reviews";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -18,6 +19,13 @@ const ProductDetailsPage = () => {
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -105,7 +113,7 @@ const ProductDetailsPage = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>{isLoading && <LoadingOverlay />}</div>;
   }
 
   const { name, price, imageUrl, description, oldPrice, installmentPrice } = product;
