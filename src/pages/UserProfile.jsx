@@ -58,47 +58,48 @@ const ProfilePage = () => {
           <ShortHeader />
           <div className="userProfile">
             <div className="userProfileContainer">
-              {<BsPersonCircle alt="Profile" className="profile-picture" />}
-              <h2>Perfil</h2>
-              <div className="WellcomeUserBox">
-                Olá <BsPersonCircle /> {user.displayName}
-                <img width={20} alt="" src={user.photoUrl} />
-                <h3>
-                  <IoMdMail /> {user.email}
-                </h3>
+              <img width={20} alt="" src={user.photoUrl} />
+               Olá {' '}
+              {user.displayName}
+               {<BsPersonCircle alt="Profile" className="profile-picture" />}
+              <h6>
+                <IoMdMail /> {user.email}
+              </h6>
+
+            </div>
+            <div className="userProfileContainer2">
+              <div className="userProfileContainer">
+                <h3>Seus favoritos:</h3>
+                <ul className="favorites-list">
+                  <li>
+                    <Link to="/favorites" style={{ color: "#f00" }}>
+                      <BsHeartFill /> Favoritos
+                    </Link>
+                  </li>
+                </ul>
               </div>
-            </div>
-            <div className="userProfileContainer">
-              <h3>Seus favoritos:</h3>
-              <ul className="favorites-list">
-                <li>
-                  <Link to="/favorites" style={{ color: "#f00" }}>
-                    <BsHeartFill /> Favoritos
+              <div className="userProfileContainer">
+                <h3>Carrinho de Compras:</h3>
+                <ul className="favorites-list">
+                  <li>
+                    <Link to="/cart" style={{ color: "#f00" }}>
+                      <FaShoppingCart /> Carrinho
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="userProfileContainer">
+                <p>
+                  <BsLockFill /> Deseja alterar sua senha?
+                  <Link to="/resetPassword" style={{ color: "#f00" }}>
+                    <strong>Redefinir senha</strong>
                   </Link>
-                </li>
-              </ul>
+                </p>
+              </div>
+              <button style={{ width: '29rem' }} className="button-buy" onClick={logout}>
+                Sair
+              </button>
             </div>
-            <div className="userProfileContainer">
-              <h3>Carrinho de Compras:</h3>
-              <ul className="favorites-list">
-                <li>
-                  <Link to="/cart" style={{ color: "#f00" }}>
-                    <FaShoppingCart /> Carrinho
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="resetPassword">
-              <p>
-                <BsLockFill /> Deseja alterar sua senha?
-                <Link to="/resetPassword" style={{ color: "#f00" }}>
-                  <strong>Redefinir senha</strong>
-                </Link>
-              </p>
-            </div>
-            <button style={{ width: '29rem' }} className="button-buy" onClick={logout}>
-              Sair
-            </button>
           </div>
         </>
       );
