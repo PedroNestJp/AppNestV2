@@ -21,38 +21,31 @@ const ProfilePage = () => {
   }, [user, navigate]);
 
   const renderAdminContent = () => {
-
     if (isAdmin) {
       return (
         <>
-        <ShortHeader/>
-        
+          <ShortHeader />
           <div className="adminContentMain">
             <div className="userProfileContainer">
-            <h1>Painel Administrativo</h1>
-            <h2>
-              Olá Admin : <BsPersonCircle /> {auth.currentUser.displayName}
-            </h2>
-            <ul>
-              <li>
-                <Link to="/addProducts" style={{ color: "#f00" }}>
-                  Add Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/CRUDProducts" style={{ color: "#f00" }}>
-                  CRUD Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/addImage" style={{ color: "#f00" }}>
-                  Add Image
-                </Link>
-              </li>
-            </ul>
+              <h1>Painel Administrativo</h1>
+              <h2>
+                Olá Admin : <BsPersonCircle /> {auth.currentUser.displayName}
+              </h2>
+              <ul>
+                <li>
+                  <Link to="/addProducts" style={{ color: "#f00" }}>
+                    CRUD Produtos
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/addImage" style={{ color: "#f00" }}>
+                    Add Imagem a Cloud
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
-          </>
+        </>
       );
     }
     return null;
@@ -62,38 +55,38 @@ const ProfilePage = () => {
     if (user) {
       return (
         <>
-        <ShortHeader/>
-          <div className="user-profile">
+          <ShortHeader />
+          <div className="userProfile">
             <div className="userProfileContainer">
               {<BsPersonCircle alt="Profile" className="profile-picture" />}
               <h2>Perfil</h2>
               <div className="WellcomeUserBox">
                 Olá <BsPersonCircle /> {user.displayName}
-                <img width={20} alt="">{user.photoUrl}</img>
+                <img width={20} alt="" src={user.photoUrl} />
                 <h3>
                   <IoMdMail /> {user.email}
                 </h3>
               </div>
             </div>
             <div className="userProfileContainer">
-            <h3>Seus favoritos:</h3>
-            <ul className="favorites-list">
-              <li>
-                <Link to="/favorites" style={{ color: "#f00" }}>
-                <BsHeartFill /> Favoritos
-                </Link>
-              </li>
-            </ul>
+              <h3>Seus favoritos:</h3>
+              <ul className="favorites-list">
+                <li>
+                  <Link to="/favorites" style={{ color: "#f00" }}>
+                    <BsHeartFill /> Favoritos
+                  </Link>
+                </li>
+              </ul>
             </div>
             <div className="userProfileContainer">
-            <h3>Carrinho de Compras:</h3>
-            <ul className="favorites-list">
-              <li>
-                <Link to="/cart" style={{ color: "#f00" }}>
-                <FaShoppingCart /> Carrinho
-                </Link>
-              </li>
-            </ul>
+              <h3>Carrinho de Compras:</h3>
+              <ul className="favorites-list">
+                <li>
+                  <Link to="/cart" style={{ color: "#f00" }}>
+                    <FaShoppingCart /> Carrinho
+                  </Link>
+                </li>
+              </ul>
             </div>
             <div className="resetPassword">
               <p>
@@ -103,11 +96,11 @@ const ProfilePage = () => {
                 </Link>
               </p>
             </div>
-            <button style={{width:'29rem'}} className="button-buy" onClick={logout}>
+            <button style={{ width: '29rem' }} className="button-buy" onClick={logout}>
               Sair
             </button>
           </div>
-          </>
+        </>
       );
     }
     return <div>Faça o seu Login</div>;

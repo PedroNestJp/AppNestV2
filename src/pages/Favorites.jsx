@@ -122,6 +122,9 @@ const FavoriteProducts = () => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
+          height:'100vh',
+          margin:'4rem'
+          
         }}
       >
         <h1>FAVORITOS</h1>
