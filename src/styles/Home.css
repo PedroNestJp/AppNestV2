@@ -85,13 +85,13 @@ a#textTypePc {
 .typePcGamerImg,
 .typePcOfficeImg {
     cursor: pointer;
-    width: 50vh;
+    width: 50vw;
 }
 
 .typePcHEImg:hover,
 .typePcGamerImg:hover,
 .typePcOfficeImg:hover {
-    width: 265px;
+    width: 55vw;
     filter: drop-shadow(0px 10px 10px rgba(121, 20, 20, 0.6));
     z-index: -1;
 }
@@ -212,6 +212,7 @@ a {
     border: 1px solid #E20100;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
+    padding: 0px 10px;
 
     font-weight: 900;
     font-size: 1.2rem;

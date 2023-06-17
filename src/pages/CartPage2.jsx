@@ -96,7 +96,7 @@ const CheckoutPage = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "10rem",
+            height: "100vh",
           }}
         >
           <h2>
@@ -117,6 +117,7 @@ const CheckoutPage = () => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
+          marginTop: '5rem'
         }}
       >
         <h1>Seu carrinho</h1>
@@ -151,7 +152,7 @@ const CheckoutPage = () => {
         <button onClick={handleClearCart}>Limpar Carrinho</button>
         <Link to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
           <button className="button-buy">
-            Finalizar compra com um vendedor
+            Finalizar com um atendente
           </button>
         </Link>
       </div>

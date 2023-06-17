@@ -19,8 +19,6 @@ const FavoriteProducts = () => {
 
         if (favSnapshot.exists()) {
           const favData = favSnapshot.data();
-
-
           const itemsWithProductData = await Promise.all(
             (favData.products ?? []).map(async (productId) => {
               const productDoc = doc(db, "products", productId);
@@ -32,17 +30,13 @@ const FavoriteProducts = () => {
                   id: productId,
                   product: productData,
                 };
-                
               }
-
               return null;
             })
           );
-
           setFavItems(itemsWithProductData.filter((item) => item !== null));
         } else {
           setFavItems([]);
-
         }
       } catch (error) {
         console.error(error);
@@ -51,7 +45,7 @@ const FavoriteProducts = () => {
 
     if (user) {
       fetchFavorites();
-      
+
     } else {
       navigate("/login");
     }
@@ -62,13 +56,13 @@ const FavoriteProducts = () => {
     try {
       const favDoc = doc(db, "favorites", user.uid);
       const favSnapshot = await getDoc(favDoc);
-  
+
       if (favSnapshot.exists()) {
         const favData = favSnapshot.data();
         const itemIndex = favData.products.findIndex(
           (productId) => productId === itemId
         );
-  
+
         if (itemIndex !== -1) {
           favData.products.splice(itemIndex, 1);
           await updateDoc(favDoc, favData);
@@ -91,7 +85,7 @@ const FavoriteProducts = () => {
       console.error(error);
     }
   };
-  
+
 
   if (favItems.length === 0) {
     return (
@@ -102,7 +96,7 @@ const FavoriteProducts = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "10rem",
+            height: '100vh'
           }}
         >
           <h2>
@@ -122,21 +116,20 @@ const FavoriteProducts = () => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
-          height:'100vh',
-          margin:'4rem'
-          
+          margin: '5rem'
+
         }}
       >
         <h1>FAVORITOS</h1>
         {favItems.map((item) => (
           <div className="hl-1 styleBox" key={item.id}>
-                  <button
-        onClick={() => handleDeleteItem(item.id)}
-        className='favoriteIcon'
-        alt="Icone Favoitos"
-        title='Remover dos favoritos'>
-         <BsHeartFill style={{color:'#e20100', height: '1.5rem', width: '1.5rem', backgroundColor: 'white' }} />
-      </button>
+            <button
+              onClick={() => handleDeleteItem(item.id)}
+              className='favoriteIcon'
+              alt="Icone Favoitos"
+              title='Remover dos favoritos'>
+              <BsHeartFill style={{ color: '#e20100', height: '1.5rem', width: '1.5rem', backgroundColor: 'white' }} />
+            </button>
             <Link to={`/products/${item.id}`}>
               <img
                 className="img-hl-1"
@@ -161,7 +154,11 @@ const FavoriteProducts = () => {
             </span>
           </div>
         ))}
-        <button onClick={handleClearCart}>Excluir os Favoritos</button>
+        <button
+          className="button-buy"
+          onClick={handleClearCart}>
+            Excluir os Favoritos
+        </button>
       </div>
     </div>
   );
