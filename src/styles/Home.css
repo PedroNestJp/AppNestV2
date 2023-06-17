@@ -1,3 +1,65 @@
+a#textTypePc {
+    display: flex;
+    text-align: -webkit-center;
+    text-decoration: none;
+    color: #E20100;
+}
+
+.text-buy-by-platform,
+.typePcText,
+.hl-text,
+.bs-text,
+.departmentsText,
+.bbd-text {
+    font-weight: 900;
+    font-size: 4vh;
+    line-height: 4vh;
+}
+
+@media (max-width: 1024px) {
+    .text-buy-by-platform,
+    .typePcText,
+    .hl-text,
+    .bs-text,
+    .departmentsText,
+    .bbd-text {
+        font-weight: 800;
+        font-size: 3vh;
+        line-height: 3vh;
+    }
+}
+
+@media (max-width: 500px) {
+    .text-buy-by-platform,
+    .typePcText,
+    .hl-text,
+    .bs-text,
+    .departmentsText,
+    .bbd-text {
+        font-weight: 800;
+        font-size: 2.5vh;
+        line-height: 2.5vh;
+    }
+}
+
+.text-buy-by-platform,
+.typePcText,
+.hl-text,
+.bs-text,
+.departmentsText,
+.bbd-text {
+    text-align: -webkit-center;
+    color: #E20100;
+    margin: 2rem;
+}
+
+.text-platform-amd,
+.text-platform-intel {
+    font-weight: 500;
+    font-size: 15px;
+    color: #E20100;
+}
+
 .container {
     padding: 30px;
     display: flex;
@@ -13,81 +75,59 @@
     align-items: center;
     justify-content: center;
     text-align: -webkit-center;
-
 }
 
-.typepc-text {
-    text-align: -webkit-center;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 22px;
-    margin: 20px;
-    color: #E20100;
-}
-
-.imgsTypesPcs {
+.typePcsImages {
     display: flex;
     column-gap: 10px;
-
 }
 
-.img-typepc-1,
-.img-typepc-2,
-.img-typepc-3 {
+.typePcHEImg,
+.typePcGamerImg,
+.typePcOfficeImg {
     cursor: pointer;
     width: 250px;
 }
 
-.img-typepc-1:hover,
-.img-typepc-2:hover,
-.img-typepc-3:hover {
+.typePcHEImg:hover,
+.typePcGamerImg:hover,
+.typePcOfficeImg:hover {
     width: 265px;
     filter: drop-shadow(0px 10px 10px rgba(121, 20, 20, 0.6));
     z-index: -1;
 }
 
-.textTypePc-1:hover,
-.textTypePc-2:hover,
-.textTypePc-3:hover {
+.textTypeHE:hover,
+.textTypeGamer:hover,
+.textTypeOffice:hover {
     text-shadow: 0px 7px 7px rgba(0, 0, 0, 0.25);
 }
 
-a#textTypePc {
-    display: flex;
-    text-align: -webkit-center;
-    text-decoration: none;
-    color: #E20100;
-}
-
-.textTypesPcs {
+.typePcsText {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     text-align: -webkit-center;
-
 }
 
-.divTypePc1,
-.divTypePc2,
-.divTypePc3 {
+.typePcHE,
+.typePcGamer,
+.typePcOffice {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
-.textTypePc-1,
-.textTypePc-2,
-.textTypePc-3 {
+.textTypeHE,
+.textTypeGamer,
+.textTypeOffice {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #e20100;
     text-align: center;
-
-    font-style: normal;
     font-weight: 800;
     font-size: 12px;
     line-height: 12px;
@@ -95,7 +135,6 @@ a#textTypePc {
 }
 
 .icon-chat {
-
     z-index: 1;
     position: fixed;
     width: 80px;
@@ -106,11 +145,9 @@ a#textTypePc {
 }
 
 .icon-chat:hover {
-
     width: 110px;
     height: 110px;
     color: rgb(39, 154, 39);
-
 }
 
 .container-2 {
@@ -140,18 +177,8 @@ a#textTypePc {
     width: 200px;
 }
 
-.hl-text {
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 52px;
-    margin: 2rem;
-    color: #E20100;
-
-}
-
 a {
     text-decoration: none;
-
 }
 
 .styleBox {
@@ -209,15 +236,15 @@ a {
 }
 
 .descriptionProduct {
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
-    margin: 5px 0px;
     -webkit-line-clamp: 3;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin: 5px 0px;
     height: 2.3rem;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
 }
 
 .currentPrice-hl-1,
@@ -273,25 +300,8 @@ a {
 
 }
 
-.text-buy-by-platform {
-    text-align: -webkit-center;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 30px;
-    color: #FF0101;
-    margin: 2rem;
-
-}
-
-.text-platform-amd,
-.text-platform-intel {
-    font-weight: 500;
-    font-size: 18px;
-    color: #FF0101;
-}
-
 @media (max-width: 515px) {
+
     .platformAmd,
     .latformIntel {
         height: 7rem;
@@ -321,20 +331,11 @@ a {
 }
 
 .bestSelersBox {
-
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.bs-text {
-
-    font-weight: 900;
-    font-size: 20px;
-    color: #FF0101;
-    margin: 2rem;
 }
 
 .installmentPrice-bs-1,
@@ -343,7 +344,6 @@ a {
 .oldPrice-bs-1,
 .oldPrice-bs-2,
 .oldPrice-bs-3 {
-
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
@@ -353,32 +353,26 @@ a {
 .currentPrice-bs-1,
 .currentPrice-bs-2,
 .currentPrice-bs-3 {
-
     font-weight: 700;
     font-size: 22px;
     line-height: 18px;
-
     color: #E20100;
 }
 
 .buy-bs:hover {
-
     width: 261px;
     height: 46px;
     border-radius: 5px;
     transition: 0.3s;
     cursor: pointer;
     background-color: #E20100;
-
 }
-
 
 .departments {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 .bbdBoxs {
@@ -386,7 +380,6 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-
 }
 
 @media (max-width:765px) {
@@ -394,21 +387,9 @@ a {
         display: flex;
         flex-wrap: wrap;
     }
-
-}
-
-.departmentsText {
-
-    font-weight: 900;
-    font-size: 20px;
-    margin: 20px;
-
-    color: #E20100;
-
 }
 
 .styleBox-bbd {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -426,14 +407,4 @@ a {
 .img-bbd-5 {
     height: 100px;
     width: 200px;
-}
-
-
-.bbd-text {
-
-    font-weight: 700;
-    font-size: 15px;
-
-    color: #E20100;
-
 }

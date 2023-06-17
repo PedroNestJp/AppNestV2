@@ -38,45 +38,45 @@ const HomePage = () => {
       <AdsHeader />
 
       <section className="container">
-        <div className="typepc-text" title="typepc-text">
+        <h1 className="typePcText" title="typePcText">
           QUAL TIPO DE PC VOCÊ BUSCA?
-        </div>
+        </h1>
 
-        <div className="imgsTypesPcs">
-          <div className="divTypePc1">
+        <div className="typePcsImages">
+          <div className="typePcHE">
             <Link to="/highEndPcsPage">
               <img
-                className="img-typepc-1"
+                className="typePcHEImg"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-corsair-680x-rgb.png?alt=media&token=95ca548e-9af5-4754-8005-565dca5ff810"
                 alt="PC HIGH-END"
               />
-              <span className="textTypePc-1" id="textTypePc">
+              <span className="textTypeHE" id="textTypeHE">
                 HIGH-END
               </span>
             </Link>
           </div>
 
-          <div className="divTypePc2">
+          <div className="typePcGamer">
             <Link to="/gamingPcsPage">
               <img
-                className="img-typepc-2"
+                className="typePcGamerImg"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgabinete-gamer-superframe-flow-mid-tower-rgb.png?alt=media&token=11b58f0e-566a-44e7-8c3d-cc4e36b1c587"
                 alt="PC GAMER"
               />
-              <span className="textTypePc-2" id="textTypePc">
+              <span className="textTypeGamer" id="textTypeGamer">
                 GAMER
               </span>
             </Link>
           </div>
 
-          <div className="divTypePc3">
+          <div className="typePcOffice">
             <Link to="/officePcsPage">
               <img
-                className="img-typepc-3"
+                className="typePcOfficeImg"
                 src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-office-tgt-rebel.png?alt=media&token=09c22749-b9c3-4627-8fa3-a23f077b4f3a"
                 alt="PC OFFICE"
               />
-              <span className="textTypePc-3" id="textTypePc">
+              <span className="textTypeOffice" id="textTypeOffice">
                 OFFICE
               </span>
             </Link>
