@@ -8,7 +8,6 @@ import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import AddProductPage from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
-import Product from '../pages/ProductEx';
 import {Footer, SubFooter} from '../components/Footer';
 import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
@@ -37,7 +36,6 @@ function EdnPoints() {
                     <Route path="/products/:id" element={<ProductDetailsPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
-                    <Route path="/products" element={<Product />} />
                     <Route path='/cart' element={<CartPage />} />
                     <Route path='/favorites' element={<FavoritesPage />} />
                     <Route path='/aboutUs' element={<AboutUs />} />
