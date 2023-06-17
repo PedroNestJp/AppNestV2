@@ -50,7 +50,6 @@ a#textTypePc {
 .bbd-text {
     text-align: -webkit-center;
     color: #E20100;
-    margin: 2rem;
 }
 
 .text-platform-amd,
@@ -79,14 +78,14 @@ a#textTypePc {
 
 .typePcsImages {
     display: flex;
-    column-gap: 10px;
+    margin: 1rem;
 }
 
 .typePcHEImg,
 .typePcGamerImg,
 .typePcOfficeImg {
     cursor: pointer;
-    width: 250px;
+    width: 50vh;
 }
 
 .typePcHEImg:hover,
@@ -137,16 +136,16 @@ a#textTypePc {
 .icon-chat {
     z-index: 1;
     position: fixed;
-    width: 80px;
-    height: 80px;
+    width: 15vw;
+    height: 15vh;
     left: 75%;
     top: 80%;
     color: #E20100;
 }
 
 .icon-chat:hover {
-    width: 110px;
-    height: 110px;
+    width: 17vw;
+    height: 17vh;
     color: rgb(39, 154, 39);
 }
 
@@ -165,16 +164,6 @@ a#textTypePc {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
-}
-
-.img-hl-1,
-.img-hl-2,
-.img-hl-3,
-.img-bs-1,
-.img-bs-2,
-.img-bs-3 {
-    height: 220px;
-    width: 200px;
 }
 
 a {
