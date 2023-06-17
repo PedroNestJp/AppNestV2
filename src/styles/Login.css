@@ -1,28 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-.main-container{
+.main-container {
 
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    margin: 20px;
-    height: 620px;
- 
-
+    margin: 4rem 0rem;
     background: #FFFFFF;
     border-radius: 5px;
 
 }
 
-.title#loginScTitle{
+.title#loginScTitle {
 
     margin: 20px;
     font-family: 'Poppins';
@@ -34,7 +31,7 @@
     text-align: -webkit-center;
 }
 
-.inputsLogin{
+.inputsLogin {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +40,8 @@
 
 }
 
-.email,.senha{
+.email,
+.senha {
     width: 370px;
     height: 45px;
     padding-left: 20px;
@@ -52,21 +50,25 @@
     outline: #E20100;
 }
 
-input::placeholder, .email, .senha{
+input::placeholder,
+.email,
+.senha {
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    
+
     color: rgba(226, 1, 0, 0.6);
 }
-.enter{
+
+.enter {
     margin-top: 20px;
     background: #E20100;
 }
 
-.enter, .register{
+.enter,
+.register {
     cursor: pointer;
     width: 370px;
     height: 45px;
@@ -75,7 +77,8 @@ input::placeholder, .email, .senha{
 }
 
 
-.enter-text,.register-text{
+.enter-text,
+.register-text {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
@@ -83,27 +86,28 @@ input::placeholder, .email, .senha{
     color: #FFFFFF;
 }
 
-.lineLogin{
+.lineLogin {
     margin: 20px;
     width: 360px;
     height: 1px;
     background-color: #000000;
 }
 
-.forgotPassword{
+.forgotPassword {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
-    
+
     color: #E20100;
 }
 
-span.text-loginSocial{
+span.text-loginSocial {
     text-align: -webkit-center;
 }
 
-.login-gg, .login-fb{
+.login-gg,
+.login-fb {
     cursor: pointer;
     width: 173px;
     height: 45px;
@@ -112,19 +116,20 @@ span.text-loginSocial{
     margin: 10px;
 }
 
-.login-fb{
+.login-fb {
 
     border: 1px solid #609CCE;
 
 }
 
-.login-gg{
+.login-gg {
 
     border: 1px solid #E20100;
 
 }
 
-.fb-text, .gg-text{
+.fb-text,
+.gg-text {
 
     font-family: 'Poppins';
     font-style: normal;
@@ -133,26 +138,27 @@ span.text-loginSocial{
 
 }
 
-.fb-text{
+.fb-text {
 
     color: #0A61B1;
 
 }
 
-.gg-text{
+.gg-text {
 
     color: #E20100;
 
 }
 
-.loginOrLine{
+.loginOrLine {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
 }
 
-.line1, .line2{
+.line1,
+.line2 {
 
     width: 160px;
     height: 1px;
@@ -161,7 +167,7 @@ span.text-loginSocial{
 
 }
 
-.span4{
+.span4 {
 
     text-align: -webkit-center;
     font-family: 'Poppins';
@@ -169,9 +175,9 @@ span.text-loginSocial{
     font-weight: 500;
     font-size: 15px;
     color: #E20100;
-    
+
 }
 
-.register{
+.register {
     background: #E20100;
 }

@@ -1,6 +1,8 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../firebase";
+import { auth, storage } from "../../firebase";
 import { useState } from "react";
+import "../../styles/AddProducts.css";
+import ShortHeader from "../../components/ShortHeader";
 
 function AddImage() {
   const [imageUrl, setImageUrl] = useState(null);
@@ -8,7 +10,10 @@ function AddImage() {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleImageChange = (e) => setImage(e.target.files[0]);
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+    setImageUrl(URL.createObjectURL(e.target.files[0])); // Cria uma URL temporária para a prévia da imagem
+  };
 
   const handleAddImage = async () => {
     try {
@@ -31,32 +36,39 @@ function AddImage() {
     await handleAddImage();
   };
 
-
   return (
-    <div>
-      <h2>Add Products</h2>
-      {message && <p>{message}</p>}{" "}
-      <form onSubmit={handleSubmit}>
-        {" "}
-        <div>
-          <label htmlFor="image">Imagem:</label>{" "}
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </div>
-        {image && (
-          <div className="imgProduct">
-            <div src={imageUrl} alt="Product preview" />
-          </div>
+    <div className="AddProductsMain">
+      <ShortHeader />
+      <div className="AddProductsContainer">
+        <h2>Add Imagem a cloud</h2>
+        {message && <p>{message}</p>}
+        {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+          <form className="formAddImagem" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="image">Imagem:</label>
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
+            {imageUrl && (
+              <div className="imgProduct">
+                <img src={imageUrl} alt="Product preview" />
+              </div>
+            )}
+            <button className="button-buy" type="submit" disabled={uploading}>
+              {uploading ? "Enviando..." : "Adicionar Produto"}
+            </button>
+          </form>
+        ) : (
+          console.log(`Sem acesso para ${auth.currentUser}`)
         )}
-        <button type="submit" disabled={uploading}>
-          {uploading ? "Enviando..." : "Adicionar Produto"}
-        </button>
-      </form>
+      </div>
     </div>
+
   );
 }
-export default AddImage
+
+export default AddImage;
