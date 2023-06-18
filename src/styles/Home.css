@@ -37,6 +37,7 @@ a {
 }
 
 .h2{
+    margin: 1rem;
     font-weight: 700;
     font-size: 15px;
     color: #E20100;
@@ -142,8 +143,6 @@ a {
 
 .styleBox {
     flex-direction: column;
-    padding: 1rem;
-    width: 25rem;
     box-sizing: border-box;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.1);
@@ -152,6 +151,8 @@ a {
     align-items: center;
     justify-content: center;
     margin: 0.5rem;
+    padding: 1rem;
+    width: -webkit-fill-available;
 }
 
 .styleBox:hover {
@@ -251,13 +252,18 @@ a {
 }
 
 .platformImg{
-    width: 25vw;
+    border-radius: 1rem;
+    width: 40vh;
     margin: 1rem;
 }
 .platformImg:hover{
-    width: 26vw;
+    width: 42vh;
     transition: 0.2s;
 }
+
+#textPlatformAmd, #textPlatformIntel{
+    margin: 1rem 1rem 0rem;
+} 
 
 .bestSelersBox {
     display: flex;
@@ -303,6 +309,7 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin: 2rem 0rem 2rem;
 }
 
 @media (max-width:765px) {
@@ -312,16 +319,6 @@ a {
     }
 }
 
-.styleBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 15px;
-    box-sizing: border-box;
-    background: #F5F5F5;
-    border-radius: 5px;
-}
 .imgBbd {
     height: 100px;
     width: 200px;

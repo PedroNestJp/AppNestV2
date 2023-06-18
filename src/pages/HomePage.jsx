@@ -5,15 +5,14 @@ import { db } from "../firebase";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import {
-  imgBbdMonitor,
-  imgBbdPc,
-  imgBbdPeripherals,
   imgIntelType,
   imgAmdType,
 } from "../img/imgs";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../styles/Home.css";
 import { Carrosel } from "../components/Carrosel";
+import Departments from "../components/Departments";
+import BBPf from "./BBPf";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -83,82 +82,13 @@ const HomePage = () => {
         </div>
       </section>
       <h1 className="h1" id="hL"> DESTAQUES</h1>
-        <Carrosel />
-      <section className="bbPfSc" id="buyByPlatformHome">
-        <h1 className="h1" id="bBPf">
-          COMPRE POR PLATAFORMA
-        </h1>
-        <div className="bbPfDv">
-          <Link to='/filterByPlatformIntel'>
-            <h2
-              className="h2"
-              id="textPlatformIntel"
-              title="Mostrar apenas computadores da plataforma Intel">
-              INTEL
-            </h2>
-            <img
-              className="platformImg"
-              src={imgIntelType}
-              alt="Imagem da Plataforma Intel"
-            />
-          </Link>
-          <Link to='/filterByPlatformAmd'>
-            <h2
-              className="h2"
-              id="textPlatformAmd"
-              title="Mostrar apenas computadores da plataforma amd ">
-              AMD
-            </h2>
-            <img
-              className="platformImg"
-              src={imgAmdType}
-              alt="Imagem da Plataforma AMD"
-            />
-          </Link>
-        </div>
-      </section>
+      <Carrosel />
+      <BBPf/>
 
       <h1 className="h1" id="bS">MAIS VENDIDOS</h1>
-        <Carrosel />
+      <Carrosel />
+      <Departments />
 
-      <section className="departments" id="departmentsHome">
-        <h1 className="h1" id="departmentsTitle">🗄DEPARTAMENTOS</h1>
-        <div className="bbdBoxs">
-          <Link to="/allPcsPage">
-            <div className="styleBox">
-              <img
-                className="imgBbd"
-                srcSet={imgBbdPc}
-                alt="PCS"
-                title="Mostrar Todos os PCs"
-              />
-              <h2 className="h2">PCS</h2>
-            </div>
-          </Link>
-          <Link to="/monitorsPage">
-            <div className="styleBox">
-              <img
-                className="imgBbd"
-                srcSet={imgBbdMonitor}
-                alt="MONITORES"
-                title="Mostrar Todos os monitores"
-              />
-              <h2 className="h2">MONITORES</h2>
-            </div>
-          </Link>
-          <Link to="/peripheralsPage">
-            <div className="styleBox">
-              <img
-                className="imgBbd"
-                srcSet={imgBbdPeripherals}
-                alt="PERIFERICOS"
-                title="Mostrar todos os periféricos"
-              />
-              <h2 className="h2">PERIFERICOS</h2>
-            </div>
-          </Link>
-        </div>
-      </section>
     </>
   );
 };

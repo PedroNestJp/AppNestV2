@@ -10,6 +10,8 @@ import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
 import { Link } from "react-router-dom";
+import Departments from "../components/Departments";
+import BBPf from "./BBPf";
 
 const MonitorsPage = () => {
   const [products, setProducts] = useState([]);
@@ -77,7 +79,7 @@ const MonitorsPage = () => {
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">
-        <div id="hl" title="highlights" className="hl-text">
+        <div id="hl" title="highlights" className="h1">
           {" "}
           DESTAQUES
         </div>
@@ -94,33 +96,9 @@ const MonitorsPage = () => {
 
         </div>
       </section>
-      <section className="buyByPlatform" id="buyByPlatformHome">
-        <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
-        <div className="divBuyByPlatform">
-          <Link to='/filterByPlatformIntel'>
-            <div className="divPlatformIntel" id="textPlatformIntel">
-              <span className="text-platform-intel">INTEL</span>
-              <img
-                className="platform-intel"
-                src={imgIntelType}
-                alt="Plataforma Intel"
-              />
-            </div>
-          </Link>
-          <Link to='/filterByPlatformAmd'>
-            <div className="divPlatformAmd" id="textPlatformAmd">
-              <span className="text-platform-amd">AMD</span>
-              <img
-                className="platform-amd"
-                src={imgAmdType}
-                alt="Plataforma AMD"
-              />
-            </div>
-          </Link>
-        </div>
-      </section>
-      <section className="container-3" id="container-3" title="container-3">
-        <div id="bestSelers" className="bs-text">
+      <BBPf />
+      <section className="container-2" id="container-3" title="container-3">
+        <div id="bestSelers" className="h1">
           {" "}
           MAIS VENDIDOS{" "}
         </div>
@@ -134,44 +112,8 @@ const MonitorsPage = () => {
             </div>
           ))}
         </Carousel>
-
       </section>
-      <section className="departments" id="departmentsHome">
-        <div className="departmentsText">🗄DEPARTAMENTOS</div>
-
-        <div className="bbdBoxs">
-          <Link to="/">
-            <div className="bbd-1 styleBox-bbd">
-              <img
-                className="img-bbd-1"
-                srcSet={imgBbdPc}
-                alt="PCS"
-              />
-              <span className="bbd-text bbd-text-1">PCS</span>
-            </div>
-          </Link>
-          <Link to="/monitorsPage">
-            <div className="bbd-2 styleBox-bbd">
-              <img
-                className="img-bbd-2"
-                srcSet={imgBbdMonitor}
-                alt="MONITORES"
-              />
-              <span className="bbd-text bbd-text-2">MONITORES</span>
-            </div>
-          </Link>
-          <Link to="/peripheralsPage">
-            <div className="bbd-3 styleBox-bbd">
-              <img
-                className="img-bbd-3"
-                srcSet={imgBbdPeripherals}
-                alt="PERIFERICOS"
-              />
-              <span className="bbd-text bbd-text-3">PERIFERICOS</span>
-            </div>
-          </Link>
-        </div>
-      </section>
+      <Departments />
     </>
   );
 };
