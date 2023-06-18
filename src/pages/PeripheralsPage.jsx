@@ -92,10 +92,8 @@ const PeripheralsPage = () => {
             </div>
           ))}
         </Carousel>
-
       </section>
       <BBPf />
-
       <section className="container-3" id="container-3" title="container-3">
         <div id="bestSelers" className="h1">
           {" "}
