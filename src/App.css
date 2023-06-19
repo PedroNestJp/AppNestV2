@@ -52,7 +52,7 @@
 }
 
 .carousel .slide img {
-    max-height: 30vh;
+    height: 30vh;
     width: auto;
 }
 

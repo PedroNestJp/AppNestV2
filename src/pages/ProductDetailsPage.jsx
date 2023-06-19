@@ -119,7 +119,7 @@ const ProductDetailsPage = () => {
   const { name, price, imageUrl, description, oldPrice, installmentPrice } = product;
 
   return (
-    <div style={{backgroundColor: '#1c1c1c'}} >
+    <div style={{ backgroundColor: '#1c1c1c' }} >
       <Header />
       <div className="mainContentProduct">
         <div className="containerProductFather">
@@ -213,23 +213,23 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
-          {/* Reviews Area */}
+        {/* Reviews Area */}
 
-          <div id="reviews" className="reviews">
-            <ProductReview productId={product} />
-          </div>
+        <div id="reviews" className="reviews">
+          <ProductReview productId={product} />
+        </div>
 
-          {/* descArea */}
-          <div className="descArea">
-            <h2 className="descTitle">
-              {" "}
-              <BsFillCollectionFill /> Descrição{" "}
-            </h2>
-            <div className="desc"> {product.description} </div>
-            <div className="desc img">
-              <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
-            </div>
+        {/* descArea */}
+        <div className="descArea">
+          <h2 className="descTitle">
+            {" "}
+            <BsFillCollectionFill /> Descrição{" "}
+          </h2>
+          <div className="desc"> {product.description} </div>
+          <div className="desc img">
+            <img alt="imageProduct" title="imagem do produto" src={imageUrl} />
           </div>
+        </div>
         <div className="serviceIncluded">
           <div className="mounting">
             <FaTools
@@ -268,24 +268,24 @@ const ProductDetailsPage = () => {
             </p>
           </div>
         </div>
-        <article className="PrDtPgWarnings">
-          <div className="warning">
-            <h4 className="laranja">ATENÇÃO</h4>
-            <p> Se atente à Entradas de Vídeo escolhidas no ato do pedido. </p>
+        <section className="PrDtPgWarnings">
+          ATENÇÃO
+          <div className="videoInput">
+            <h3> Se atente à Entradas de Vídeo escolhidas no ato do pedido. </h3>
             <p>
               <strong>
                 Algumas placas de vídeo não possuem saída de vídeo VGA
-              </strong>{" "}
+              </strong>
               impossibilitando a utilização de alguns monitores.
-
             </p>
+          </div>
+          <div className="incompatibilities">
             <p>
               Caso haja algum erro ou incompatibilidade na escolha, será entrado em contato com o cliente avisando
               sobre, porém, o cliente ao finalizar o pedido já se declara ciente que tal situação
               foge ao controle da Nest Informática e a mesma não possui responsabilidade nem dever de arcar com custos
               extras em virtude da escolha de produtos incompatíveis.
             </p>
-
           </div>
           <div className="warningLink">
             <h3> Duvidas?: </h3>
@@ -293,7 +293,7 @@ const ProductDetailsPage = () => {
             <strong>contatar o atendimento para auxilio</strong> no link à seguir:
             <br />
             <strong>
-              <Link  to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
+              <Link to="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0">
                 <span >CLIQUE AQUI!</span>
               </Link>
             </strong>
@@ -312,7 +312,7 @@ const ProductDetailsPage = () => {
             enviados pois cada produto é adquirido para a montagem e a mesma é efetuada somente após a confirmação do
             pagamento.
           </div>
-        </article>
+        </section>
       </div>
     </div>
   );

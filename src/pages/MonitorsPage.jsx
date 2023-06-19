@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "../styles/Home.css";
-import imgIntelType from "../assets/buyByPlatform/buyByPlatform-img-intel.png";
-import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
-import { imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from "../img/imgs";
 import ProductCard from "../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../components/Header";
 import AdsHeader from "../components/AdsHeader";
-import { Link } from "react-router-dom";
 import Departments from "../components/Departments";
 import BBPf from "./BBPf";
 
 const MonitorsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
-  const [groupSize, setGroupSize] = useState(3); // Valor inicial
+  const [groupSize, setGroupSize] = useState(3);
 
   useEffect(() => {
     const getProducts = async () => {
