@@ -64,24 +64,24 @@ function ProductReview({ productId }) {
     <div className="userReviewArea">
       <div className="inputReviewArea">
         <h2 className="reviewsTitle">
-          <BsStarFill /> Adicione uma avalição
+          <BsStarFill /> Avaliações
         </h2>
         <form className="formReviewArea" onSubmit={handleSubmit}>
           <input
             type="text"
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
-            placeholder="Adicione uma avaliação"
+            placeholder="Digite aqui"
           />
           {user ? (
             <button className="btn reviewBtn" type="submit">
-              Enviar Avaliação
+              Enviar
             </button>
           ) :  (
             
             <Link to="/login">
               <button className="btn reviewBtn" type="submit">
-                Enviar Avaliação
+                Enviar
               </button>
             </Link>
             
