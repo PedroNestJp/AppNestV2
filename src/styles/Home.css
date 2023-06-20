@@ -11,23 +11,22 @@ a {
 
 .h1{
     font-weight: 900;
-    font-size: 4vh;
-    line-height: 4vh;
+    font-size: 3vw;
+    line-height: 3vw;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
     .h1 {
         font-weight: 800;
-        font-size: 3vh;
-        line-height: 3vh;
+
     }
 }
 
-@media (max-width: 500px) {
+
+@media (max-width: 380px) {
     .h1{
-        font-weight: 800;
-        font-size: 2.5vh;
-        line-height: 2.5vh;
+        font-weight: 700;
+    
     }
 }
 
@@ -37,19 +36,18 @@ a {
 }
 
 .h2{
-    margin: 1rem;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 2vw;
+    line-height: 70%;
     color: #E20100;
 }
 
 .container {
-    padding: 30px;
+    padding: 1rem 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    flex-wrap: wrap;
 }
 
 .descValue {
@@ -62,17 +60,17 @@ a {
 
 .pcsTypesImgs {
     display: flex;
-    margin: 1rem;
+    margin: 1rem 0rem;
     align-items: center;
 }
 
 .pcTypeImg {
     cursor: pointer;
-    width: 20vw;
+    width: 40vw;
 }
 
 .pcTypeImg:hover {
-    width: 22vw;
+    width: 41vw;
     filter: drop-shadow(0px 10px 10px rgba(121, 20, 20, 0.6));
     z-index: -1;
 }
@@ -219,14 +217,20 @@ a {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-    }
+        gap: 0rem;
+        .platformImg {
+            border-radius: 1rem;
+            width: 40vh;
+            height: 25vw;
+            margin: 0rem;
+        }
+    }  
 }
 
 .bbPfDv {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
     gap: 1rem;
 }
 
@@ -254,7 +258,6 @@ a {
 .platformImg{
     border-radius: 1rem;
     width: 40vh;
-    margin: 1rem;
 }
 .platformImg:hover{
     width: 42vh;
@@ -312,14 +315,19 @@ a {
     margin: 2rem 0rem 2rem;
 }
 
-@media (max-width:765px) {
+@media (max-width:1366px) {
     .bbdBoxs {
         display: flex;
         flex-wrap: wrap;
     }
 }
+@media (max-width:1200px) {
+    .bbdBoxs {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 .imgBbd {
-    height: 100px;
-    width: 200px;
+    height: 25vh;
 }

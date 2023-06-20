@@ -276,8 +276,8 @@ const ProductDetailsPage = () => {
               <strong>
                 Algumas placas de vídeo não possuem saída de vídeo VGA
               </strong>
-              impossibilitando a utilização de alguns monitores.
             </p>
+              <p>impossibilitando a utilização de alguns monitores.</p>
           </div>
           <div className="incompatibilities">
             <p>

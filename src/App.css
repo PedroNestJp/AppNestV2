@@ -11,49 +11,77 @@
 .carouselAds {
   display: flex;
   justify-content: center;
-  max-height: 10rem
+  height: 10vh;
+  width: 100vw;
 }
 
-@media (max-width: 1000px) {
-  .carouselAds {
-    height: 8rem;
+
+
+.carouselAds, #carouselAdsImg{
+  height: 35vh;
+  width: 100vw;
+
+}
+@media (max-width: 1700px) {
+  .carouselAds, #carouselAdsImg {
+    height: 30vh;
   }  
 }
-@media (max-width: 850px) {
-  .carouselAds {
-    height: 7rem;
+@media (max-width: 1400px) {
+  .carouselAds, #carouselAdsImg {
+    height: 25vh;
   }  
 }
-@media (max-width: 750px) {
-  .carouselAds {
-    height: 5rem;
+@media (max-width: 950px) {
+  .carouselAds, #carouselAdsImg {
+    height: 20vh;
   }  
 }
-@media (max-width: 590px) {
-  .carouselAds {
-    height: 4rem;
+@media (max-width: 768px) {
+  .carouselAds, #carouselAdsImg {
+    height: 18vh;
 
   }  
 }
-@media (max-width: 400px) {
-  .carouselAds {
-    height: 3.5rem;
+@media (max-width: 500px) {
+  .carouselAds, #carouselAdsImg {
+    height: 15vh;
   }  
 }
 @media (max-width: 350px) {
-  .carouselAds {
-    height: 3.3em;
+  .carouselAds, #carouselAdsImg {
+    height: 10vh;
 
   }  
-}
+} 
+
 .carousel .slide {
   display: flex;
   align-items: center;
 }
 
 .carousel .slide img {
+  height: 45vh;
+}
+
+@media (min-width:2500px) {
+  .pcTypeImg {
+      cursor: pointer;
+      width: 30vw;
+}
+}
+@media (min-width:1920px) {
+  .pcTypeImg {
+    cursor: pointer;
+    width: 25vw;
+}
+
+@media (max-width: 500px) {
+  .carousel .slide img {
     height: 30vh;
-    width: auto;
+}
+  
+}
 }
 
 .image {
