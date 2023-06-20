@@ -286,6 +286,8 @@
   display: flex;
   line-height: 18px;
   margin-top: 2rem;
+  width: -webkit-fill-available;
+  max-width: 1366px;
   flex-direction: column;
 }
 
@@ -321,6 +323,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: -webkit-fill-available;
+  max-width: 1366px;
 }
 
 .reviewsArea {
@@ -364,10 +368,13 @@
 
 
 .userReviewArea {
+  display: flex;
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
   border: 1px solid white;
+  flex-direction: column;
+  align-items: center;
 }
 
 .descArea {
