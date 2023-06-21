@@ -7,18 +7,19 @@ import { BsHeartFill, BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
 import { FaShoppingCart } from "react-icons/fa";
 import ShortHeader from "../components/ShortHeader";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const isAdmin = auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID;
+  const isAdmin = auth.currentUser && auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID
 
-  useEffect(() => {
-    if (!user) {
-      alert("Faça seu login para acessar o seu perfil");
-      navigate("/login");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     alert("Faça seu login para acessar o seu perfil");
+  //     navigate("/login");
+  //   }
+  // }, [user, navigate]);
 
   const renderAdminContent = () => {
     if (isAdmin) {
@@ -104,7 +105,7 @@ const ProfilePage = () => {
         </>
       );
     }
-    return <div>Faça o seu Login</div>;
+    return <div><LoadingOverlay/></div>;
   };
 
   return (

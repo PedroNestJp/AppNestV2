@@ -12,6 +12,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
 import "../../styles/AddProducts.css";
+import ShortHeader from '../../components/ShortHeader'
+import LoadingOverlay from "../../components/LoadingOverlay";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -227,10 +229,13 @@ function ProductList() {
   }, []);
 
   return (
+    <>
+    <ShortHeader/>
     <div className="AddProductsMain">
       <div className="AddProductsContainer">
         <h2>Adicionar Produtos</h2>
-        {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+
+        {auth.currentUser && auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ?(
           <form className="addProductsInputs" onSubmit={handleSubmit}>
             <label htmlFor="name">Nome do produto:</label>
             <input
@@ -327,7 +332,7 @@ function ProductList() {
               </div>
             )}
             <button className="button-buy" type="submit" disabled={uploading}>
-              {uploading ? "Enviando..." : "Adicionar Produto"}
+              {uploading ? <LoadingOverlay/> : "Adicionar Produto"}
             </button>
           </form>
         ) : (
@@ -347,15 +352,14 @@ function ProductList() {
             />
           </Link>
           <span>{product.name}</span>
-          <span className="oldPrice-hl-1 oldPrice-hl">
-            {" "}
-            DE: {product.oldPrice} POR:
+          <span style={{textDecoration:'line-through'}} className="oldPrice-hl-1 oldPrice-hl">
+            DE: {product.oldPrice},00 POR:
           </span>
           <span className="currentPrice-hl-1 currentPrice-hl">
             R${product.price},00
           </span>
           <span className="installmentPrice-hl-1 installmentPrice-hl">
-            12x DE R${product.installmentPrice},00
+            10X DE R${product.installmentPrice},00
           </span>
           <span className="descriptionProduct">{product.description}</span>
           <span>Product Type: {product.productType}</span>
@@ -390,19 +394,6 @@ function ProductList() {
           </button>
           <input
             className="inputsAddProducts"
-            placeholder="Preço"
-            type="number"
-            value={updatePrice}
-            onChange={handleUpdatePriceChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "price")}
-          >
-            Atualizar Preço
-          </button>
-          <input
-            className="inputsAddProducts"
             placeholder="Preço Antigo"
             type="number"
             value={updateOldPrice}
@@ -413,6 +404,19 @@ function ProductList() {
             onClick={() => handleUpdateProduct(product.id, "oldPrice")}
           >
             Atualizar Preço Antigo
+          </button>
+          <input
+            className="inputsAddProducts"
+            placeholder="Preço atual"
+            type="number"
+            value={updatePrice}
+            onChange={handleUpdatePriceChange}
+          />
+          <button
+            className="inputsAddProducts"
+            onClick={() => handleUpdateProduct(product.id, "price")}
+          >
+            Atualizar Preço
           </button>
           <input
             className="inputsAddProducts"
@@ -466,13 +470,6 @@ function ProductList() {
           >
             Atualizar Tipo de PC
           </button>
-
-          <button
-            className="button-buy"
-            onClick={() => handleUpdateProduct(product.id)}
-          >
-            Atualizar
-          </button>
           <button
             className="inputsAddProducts"
             onClick={() => handleDeleteProduct(product.id)}
@@ -505,6 +502,7 @@ function ProductList() {
         </div>
       ))}
     </div>
+    </>
   );
 }
 

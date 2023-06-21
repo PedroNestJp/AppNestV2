@@ -6,7 +6,7 @@ function AdminPage() {
   return (
     <div className="main">
       <h1>Admin Page</h1>
-      {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+      {auth.currentUser & auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
         <ul>
           <li >
             <Link to="/addProducts" style={{color:'#f00'}}> Add Products </Link>
