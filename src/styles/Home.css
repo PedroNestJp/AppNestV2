@@ -11,8 +11,8 @@ a {
 
 .h1{
     font-weight: 900;
-    font-size: 3vw;
-    line-height: 3vw;
+    font-size: 2vw;
+    line-height: 2vw;
 }
 
 @media (max-width: 1366px) {
@@ -37,7 +37,7 @@ a {
 
 .h2{
     font-weight: 700;
-    font-size: 2vw;
+    font-size: 1vw;
     line-height: 70%;
     color: #E20100;
 }
@@ -66,11 +66,11 @@ a {
 
 .pcTypeImg {
     cursor: pointer;
-    width: 40vw;
+    width: 15rem;
 }
 
 .pcTypeImg:hover {
-    width: 41vw;
+    width: 16rem;
     filter: drop-shadow(0px 10px 10px rgba(121, 20, 20, 0.6));
     z-index: -1;
 }
@@ -148,9 +148,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5rem;
+    margin: 1rem;
     padding: 1rem;
-    width: -webkit-fill-available;
+    width: 25rem
+;
 }
 
 .styleBox:hover {
@@ -276,13 +277,13 @@ a {
     flex-wrap: wrap;
 }
 
-.installmentPrice,
+/* .installmentPrice,
 .oldPrice{
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
     color: #000000;
-}
+} */
 
 .currentPrice {
     font-weight: 700;
@@ -329,5 +330,5 @@ a {
 }
 
 .imgBbd {
-    height: 25vh;
+    /* height: 25vh; */
 }

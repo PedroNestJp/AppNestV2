@@ -81,6 +81,22 @@
   flex-direction: column;
 }
 
+@media (width: 1440px) {
+  .containerProductDesc {
+    width: 35rem;
+  }
+}
+@media (width: 1366px) {
+  .containerProductDesc {
+    width: 35rem;
+  }
+}
+@media (width: 1024px) {
+  .containerProductDesc {
+    width: 30rem;
+  }
+}
+
 .promotionCall {
   display: flex;
   flex-direction: column;

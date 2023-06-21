@@ -6,7 +6,7 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CartPage from '../pages/CartPage2';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
-import AddProductPage from '../pages/admin/AddProducts';
+import ProductList from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
 import {Footer, SubFooter} from '../components/Footer';
 import FavoritesPage from '../pages/Favorites';
@@ -53,7 +53,7 @@ function EdnPoints() {
                     <Route path='/filterByPlatformIntel' element={<FilterByPlatformIntel/>}/>
                     <Route path='/searchResults' element={<SearchResults/>}/>
 
-                    <Route path="/addProducts" element={<AddProductPage />} />
+                    <Route path="/addProducts" element={<ProductList />} />
                     <Route path="/addImage" element={<AddImage />} />
                     <Route path="/admin" element={<AdminPage />} />
 

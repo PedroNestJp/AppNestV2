@@ -6,14 +6,12 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-
   getDocs,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
-import '../../styles/AddProducts.css'
-import ShortHeader from "../../components/ShortHeader"
+import "../../styles/AddProducts.css";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -93,7 +91,10 @@ function ProductList() {
         platform,
         typePc,
         imageUrl,
+        
       });
+
+      alert("😎 Produto Adicionado com sucesso ✅");
       setName("");
       setDescription("");
       setPrice("");
@@ -104,50 +105,90 @@ function ProductList() {
       setTypePc("");
       setImage(null);
       setImageUrl(null);
-      alert("😎 Produto Adicionado com sucesso ✅");
     } catch (error) {
       console.error(error);
-      alert("🦓 Ocorreu um erro ao adicionar o produto, verifique o log.");
+      alert("Ocorreu um erro ao adicionar o produto, verifique o log.");
     }
     setUploading(false);
   };
 
-const handleUpdateProduct = async (productId, field) => {
-  try {
-    const productRef = doc(db, "products", productId);
-    await updateDoc(productRef, {
-      name: updateName,
-      description: updateDescription,
-      price: Number(updatePrice),
-      oldPrice: Number(updateOldPrice),
-      installmentPrice: Number(updateInstallmentPrice),
-      productType: updateProductType,
-      platform: updatePlatform,
-      typePc: updateTypePc,
-    });
+  const handleUpdateProduct = async (productId, field) => {
+    try {
+      const productRef = doc(db, "products", productId);
+      let updatedField = {};
 
-    // Limpar os campos de entrada de dados
-    setUpdateName("");
-    setUpdateDescription("");
-    setUpdatePrice("");
-    setUpdateOldPrice("");
-    setUpdateInstallmentPrice("");
-    setUpdateProductType("");
-    setUpdatePlatform("");
-    setUpdateTypePc("");
+      switch (field) {
+        case "name":
+          updatedField = { name: updateName };
+          break;
+        case "description":
+          updatedField = { description: updateDescription };
+          break;
+        case "price":
+          updatedField = { price: Number(updatePrice) };
+          break;
+        case "oldPrice":
+          updatedField = { oldPrice: Number(updateOldPrice) };
+          break;
+        case "installmentPrice":
+          updatedField = { installmentPrice: Number(updateInstallmentPrice) };
+          break;
+        case "productType":
+          updatedField = { productType: updateProductType };
+          break;
+        case "platform":
+          updatedField = { platform: updatePlatform };
+          break;
+        case "typePc":
+          updatedField = { typePc: updateTypePc };
+          break;
+        default:
+          break;
+      }
 
-    alert("😎 Produto atualizado com sucesso ✅")
-  } catch (error) {
-    console.error(error);
-    alert(" Ocorreu um erro ao atualizar o produto, verifique o log.");
-  }
-};
+      await updateDoc(productRef, updatedField);
+      alert("😎 Produto atualizado com sucesso ✅");
+
+      // Reset the corresponding state after successful update
+      switch (field) {
+        case "name":
+          setUpdateName("");
+          break;
+        case "description":
+          setUpdateDescription("");
+          break;
+        case "price":
+          setUpdatePrice("");
+          break;
+        case "oldPrice":
+          setUpdateOldPrice("");
+          break;
+        case "installmentPrice":
+          setUpdateInstallmentPrice("");
+          break;
+        case "productType":
+          setUpdateProductType("");
+          break;
+        case "platform":
+          setUpdatePlatform("");
+          break;
+        case "typePc":
+          setUpdateTypePc("");
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ocorreu um erro ao atualizar o produto, verifique o log.");
+    }
+  };
 
   const handleDeleteProduct = async (productId) => {
     try {
       const productRef = doc(db, "products", productId);
       await deleteDoc(productRef);
-      alert("Produto excluído com sucesso! ✅");
+      alert("Produto excluído com sucesso!");
     } catch (error) {
       console.error(error);
       alert("Ocorreu um erro ao excluir o produto, verifique o log.");
@@ -186,11 +227,9 @@ const handleUpdateProduct = async (productId, field) => {
   }, []);
 
   return (
-    <>
-    <ShortHeader/>
     <div className="AddProductsMain">
       <div className="AddProductsContainer">
-        <h2>Add Products</h2>
+        <h2>Adicionar Produtos</h2>
         {auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
           <form className="addProductsInputs" onSubmit={handleSubmit}>
             <label htmlFor="name">Nome do produto:</label>
@@ -296,7 +335,7 @@ const handleUpdateProduct = async (productId, field) => {
         )}
       </div>
 
-      <h2>Products List</h2>
+      <h2>Lista de Produtos</h2>
 
       {products.map((product) => (
         <div className="hl-1 styleBox" key={product.id}>
@@ -456,15 +495,16 @@ const handleUpdateProduct = async (productId, field) => {
               value={addValue}
               onChange={(e) => setAddValue(e.target.value)}
             />
-            <button onClick={() => handleAddField(product.id, addField, addValue)}>
-              Add Field
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleAddField(product.id, addField, addValue)}
+            >
+              Adicionar Campo
             </button>
           </div>
         </div>
       ))}
-    
     </div>
-    </>
   );
 }
 
