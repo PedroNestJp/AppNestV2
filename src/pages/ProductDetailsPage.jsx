@@ -33,13 +33,6 @@ const ProductDetailsPage = () => {
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, []);
-
   useEffect(() => {
     if (user) {
       const unsubscribe = onSnapshot(
@@ -124,9 +117,9 @@ const ProductDetailsPage = () => {
     }
   };
 
-   if (!product) {
-     return <div>{isLoading && <LoadingOverlay />}</div>;
-   }
+  if (!product) {
+    return <div>{<LoadingOverlay />}</div>;
+  }
 
   const { name, price, imageUrl, description, oldPrice, installmentPrice } =
     product;
@@ -134,8 +127,8 @@ const ProductDetailsPage = () => {
   return (
     <div style={{ backgroundColor: "#1c1c1c" }}>
       <Header />
-      {isLoading ? (
-        <LoadingOverlay />
+      {!product ? (
+        <div><LoadingOverlay /></div>
       ) : (
         <div className="mainContentProduct">
           <div className="containerProductFather">
@@ -233,13 +226,10 @@ const ProductDetailsPage = () => {
               </div>
             </div>
           </div>
-
           {/* Reviews Area */}
-
           <div id="reviews" className="reviews">
             <ProductReview productId={product} />
           </div>
-
           {/* descArea */}
           <div className="descArea">
             <h2 className="descTitle">
