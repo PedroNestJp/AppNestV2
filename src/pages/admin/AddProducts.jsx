@@ -346,19 +346,19 @@ function ProductList() {
         <div className="hl-1 styleBox" key={product.id}>
           <Link to="/">
             <img
-              className="img-hl-1"
+              className="imgsBoxs"
               src={product.imageUrl}
               alt={product.name}
             />
           </Link>
           <span>{product.name}</span>
-          <span style={{textDecoration:'line-through'}} className="oldPrice-hl-1 oldPrice-hl">
+          <span style={{textDecoration:'line-through'}} className="oldPrice">
             DE: {product.oldPrice},00 POR:
           </span>
-          <span className="currentPrice-hl-1 currentPrice-hl">
+          <span className="currentPrice">
             R${product.price},00
           </span>
-          <span className="installmentPrice-hl-1 installmentPrice-hl">
+          <span className="installmentPrice">
             10X DE R${product.installmentPrice},00
           </span>
           <span className="descriptionProduct">{product.description}</span>

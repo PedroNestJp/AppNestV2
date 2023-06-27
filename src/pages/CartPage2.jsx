@@ -115,6 +115,7 @@ const CheckoutPage = () => {
       <div
         style={{
           display: "flex",
+          padding: '1rem',
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
