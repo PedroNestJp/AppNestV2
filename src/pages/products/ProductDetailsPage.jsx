@@ -58,7 +58,7 @@ const ProductDetailsPage = () => {
 
   const handleAddToFavorites = async () => {
     if (favorites.includes(id)) {
-      alert("Este produto já está nos favoritos!");
+      alert("Este produto já está na lista de desejos!");
       return;
     }
 
@@ -76,7 +76,7 @@ const ProductDetailsPage = () => {
       alert("Produto adicionado aos favoritos com sucesso ✅");
     } catch (error) {
       alert(
-        "Ocorreu um erro ao adicionar o produto aos favoritos: " + error.message
+        "Ocorreu um erro ao adicionar o produto a lista de desejos: " + error.message
       );
     }
   };

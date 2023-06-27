@@ -43,7 +43,8 @@ function AddImage() {
       <div className="AddProductsContainer">
         <h2>Add Imagem a cloud</h2>
         {message && <p>{message}</p>}
-        {auth.currentUser & auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+        {auth.currentUser &&
+          auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
           <form className="formAddImagem" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="image">Imagem:</label>

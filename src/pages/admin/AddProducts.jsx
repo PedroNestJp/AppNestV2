@@ -12,7 +12,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { Link } from "react-router-dom";
 import "../../styles/AddProducts.css";
-import ShortHeader from '../../components/ShortHeader'
+import ShortHeader from "../../components/ShortHeader";
 import LoadingOverlay from "../../components/LoadingOverlay";
 
 function ProductList() {
@@ -39,6 +39,8 @@ function ProductList() {
   const [addField, setAddField] = useState("");
   const [addValue, setAddValue] = useState("");
 
+
+
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
       const updatedProducts = snapshot.docs.map((doc) => ({
@@ -51,6 +53,10 @@ function ProductList() {
     return () => unsubscribe();
   }, []);
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+    setImageUrl(URL.createObjectURL(e.target.files[0])); // Cria uma URL temporária para a prévia da imagem
+  };
   const handleNameChange = (e) => setName(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
@@ -60,7 +66,6 @@ function ProductList() {
   const handleProductTypeChange = (e) => setProductType(e.target.value);
   const handlePlatformChange = (e) => setPlatform(e.target.value);
   const handleTypePcChange = (e) => setTypePc(e.target.value);
-  const handleImageChange = (e) => setImage(e.target.files[0]);
   const handleUpdateNameChange = (e) => setUpdateName(e.target.value);
   const handleUpdateDescriptionChange = (e) =>
     setUpdateDescription(e.target.value);
@@ -77,6 +82,7 @@ function ProductList() {
     e.preventDefault();
     setUploading(true);
     try {
+
       // Upload image to Firebase Storage
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
@@ -93,7 +99,6 @@ function ProductList() {
         platform,
         typePc,
         imageUrl,
-        
       });
 
       alert("😎 Produto Adicionado com sucesso ✅");
@@ -228,280 +233,298 @@ function ProductList() {
     updateExistingProducts();
   }, []);
 
+  if (!products) {
+    return <div>{<LoadingOverlay />}</div>;
+  }
+
   return (
     <>
-    <ShortHeader/>
-    <div className="AddProductsMain">
-      <div className="AddProductsContainer">
-        <h2>Adicionar Produtos</h2>
+      <ShortHeader />
+      {!products &
+      (
+        <div>
+          <LoadingOverlay />
+        </div>
+      )}
+      <div className="AddProductsMain">
+        <div className="AddProductsContainer">
+          <h2>Adicionar Produtos</h2>
 
-        {auth.currentUser && auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ?(
-          <form className="addProductsInputs" onSubmit={handleSubmit}>
-            <label htmlFor="name">Nome do produto:</label>
+          {auth.currentUser &&
+          auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID ? (
+            <form className="addProductsInputs" onSubmit={handleSubmit}>
+              <label htmlFor="name">Nome do produto:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Nome"
+                type="text"
+                id="name"
+                value={name}
+                onChange={handleNameChange}
+              />
+
+              <label htmlFor="description">Descrição:</label>
+              <textarea
+                className="inputsAddProducts"
+                placeholder="Descrição"
+                id="description"
+                value={description}
+                onChange={handleDescriptionChange}
+              />
+
+              <label htmlFor="price">Preço:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Valor"
+                type="number"
+                id="price"
+                value={price}
+                onChange={handlePriceChange}
+              />
+
+              <label htmlFor="OldPrice">Preço Antigo:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Preço Antigo"
+                type="number"
+                id="OldPrice"
+                value={oldPrice}
+                onChange={handleOldPriceChange}
+              />
+
+              <label htmlFor="InstallmentPrice">Valor Parcelado:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Preço Parcelado"
+                type="number"
+                id="InstallmentPrice"
+                value={installmentPrice}
+                onChange={handleInstallmentPriceChange}
+              />
+
+              <label htmlFor="productType">Tipo de Produto:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Tipo de produto"
+                type="text"
+                id="productType"
+                value={productType}
+                onChange={handleProductTypeChange}
+              />
+
+              <label htmlFor="platform">Plataforma:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Plataforma"
+                type="text"
+                id="platform"
+                value={platform}
+                onChange={handlePlatformChange}
+              />
+
+              <label htmlFor="typePc">Tipo de PC:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Tipo de produto"
+                type="text"
+                id="typePc"
+                value={typePc}
+                onChange={handleTypePcChange}
+              />
+
+              <label htmlFor="image">Imagem:</label>
+              <input
+                className="inputsAddProducts"
+                placeholder="Imagem"
+                type="file"
+                id="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+
+              {image && (
+                <div className="imgProduct">
+                  <img src={imageUrl} alt="Product preview" />
+                </div>
+              )}
+              <button className="button-buy" type="submit" disabled={uploading}>
+                {uploading ? <LoadingOverlay /> : "Adicionar Produto"}
+              </button>
+            </form>
+          ) : (
+            console.log(`Sem acesso para ${auth.currentUser}`)
+          )}
+        </div>
+
+        <h2>Atualizar Produtos</h2>
+
+        {products.map((product) => (
+          <div
+            style={{ width: "30rem", height: "auto" }}
+            className="styleBox"
+            key={product.id}
+          >
+            <Link to="/">
+              <img
+                className="imgsBoxs"
+                src={product.imageUrl}
+                alt={product.name}
+              />
+            </Link>
+            <span>{product.name}</span>
+            <span
+              style={{ textDecoration: "line-through" }}
+              className="oldPrice"
+            >
+              DE: {product.oldPrice},00 POR:
+            </span>
+            <span className="currentPrice">R${product.price},00</span>
+            <span className="installmentPrice">
+              10X DE R${product.installmentPrice},00
+            </span>
+            <span className="descriptionProduct">{product.description}</span>
+            <span>Product Type: {product.productType}</span>
+            <span>Platform: {product.platform}</span>
+            <span>Type of PC: {product.typePc}</span>
+
             <input
               className="inputsAddProducts"
               placeholder="Nome"
               type="text"
-              id="name"
-              value={name}
-              onChange={handleNameChange}
+              value={updateName}
+              onChange={handleUpdateNameChange}
             />
-
-            <label htmlFor="description">Descrição:</label>
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleUpdateProduct(product.id, "name")}
+            >
+              Atualizar Nome
+            </button>
             <textarea
               className="inputsAddProducts"
               placeholder="Descrição"
-              id="description"
-              value={description}
-              onChange={handleDescriptionChange}
+              type="text"
+              value={updateDescription}
+              onChange={handleUpdateDescriptionChange}
             />
-
-            <label htmlFor="price">Preço:</label>
-            <input
+            <button
               className="inputsAddProducts"
-              placeholder="Valor"
-              type="number"
-              id="price"
-              value={price}
-              onChange={handlePriceChange}
-            />
-
-            <label htmlFor="OldPrice">Preço Antigo:</label>
+              onClick={() => handleUpdateProduct(product.id, "description")}
+            >
+              Atualizar Descrição
+            </button>
             <input
               className="inputsAddProducts"
               placeholder="Preço Antigo"
               type="number"
-              id="OldPrice"
-              value={oldPrice}
-              onChange={handleOldPriceChange}
+              value={updateOldPrice}
+              onChange={handleUpdateOldPriceChange}
             />
-
-            <label htmlFor="InstallmentPrice">Valor Parcelado:</label>
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleUpdateProduct(product.id, "oldPrice")}
+            >
+              Atualizar Preço Antigo
+            </button>
+            <input
+              className="inputsAddProducts"
+              placeholder="Preço atual"
+              type="number"
+              value={updatePrice}
+              onChange={handleUpdatePriceChange}
+            />
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleUpdateProduct(product.id, "price")}
+            >
+              Atualizar Preço
+            </button>
             <input
               className="inputsAddProducts"
               placeholder="Preço Parcelado"
               type="number"
-              id="InstallmentPrice"
-              value={installmentPrice}
-              onChange={handleInstallmentPriceChange}
+              value={updateInstallmentPrice}
+              onChange={handleUpdateInstallmentPriceChange}
             />
-
-            <label htmlFor="productType">Tipo de Produto:</label>
+            <button
+              className="inputsAddProducts"
+              onClick={() =>
+                handleUpdateProduct(product.id, "installmentPrice")
+              }
+            >
+              Atualizar Preço Parcelado
+            </button>
             <input
               className="inputsAddProducts"
-              placeholder="Tipo de produto"
+              placeholder="Tipo de Produto"
               type="text"
-              id="productType"
-              value={productType}
-              onChange={handleProductTypeChange}
+              value={updateProductType}
+              onChange={handleUpdateProductTypeChange}
             />
-
-            <label htmlFor="platform">Plataforma:</label>
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleUpdateProduct(product.id, "productType")}
+            >
+              Atualizar Tipo de Produto
+            </button>
             <input
               className="inputsAddProducts"
               placeholder="Plataforma"
               type="text"
-              id="platform"
-              value={platform}
-              onChange={handlePlatformChange}
-            />
-
-            <label htmlFor="typePc">Tipo de PC:</label>
-            <input
-              className="inputsAddProducts"
-              placeholder="Tipo de produto"
-              type="text"
-              id="typePc"
-              value={typePc}
-              onChange={handleTypePcChange}
-            />
-
-            <label htmlFor="image">Imagem:</label>
-            <input
-              className="inputsAddProducts"
-              placeholder="Imagem"
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-
-            {image && (
-              <div className="imgProduct">
-                <img src={imageUrl} alt="Product preview" />
-              </div>
-            )}
-            <button className="button-buy" type="submit" disabled={uploading}>
-              {uploading ? <LoadingOverlay/> : "Adicionar Produto"}
-            </button>
-          </form>
-        ) : (
-          console.log(`Sem acesso para ${auth.currentUser}`)
-        )}
-      </div>
-
-      <h2>Lista de Produtos</h2>
-
-      {products.map((product) => (
-        <div className="hl-1 styleBox" key={product.id}>
-          <Link to="/">
-            <img
-              className="imgsBoxs"
-              src={product.imageUrl}
-              alt={product.name}
-            />
-          </Link>
-          <span>{product.name}</span>
-          <span style={{textDecoration:'line-through'}} className="oldPrice">
-            DE: {product.oldPrice},00 POR:
-          </span>
-          <span className="currentPrice">
-            R${product.price},00
-          </span>
-          <span className="installmentPrice">
-            10X DE R${product.installmentPrice},00
-          </span>
-          <span className="descriptionProduct">{product.description}</span>
-          <span>Product Type: {product.productType}</span>
-          <span>Platform: {product.platform}</span>
-          <span>Type of PC: {product.typePc}</span>
-
-          <input
-            className="inputsAddProducts"
-            placeholder="Nome"
-            type="text"
-            value={updateName}
-            onChange={handleUpdateNameChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "name")}
-          >
-            Atualizar Nome
-          </button>
-          <textarea
-            className="inputsAddProducts"
-            placeholder="Descrição"
-            type="text"
-            value={updateDescription}
-            onChange={handleUpdateDescriptionChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "description")}
-          >
-            Atualizar Descrição
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Preço Antigo"
-            type="number"
-            value={updateOldPrice}
-            onChange={handleUpdateOldPriceChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "oldPrice")}
-          >
-            Atualizar Preço Antigo
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Preço atual"
-            type="number"
-            value={updatePrice}
-            onChange={handleUpdatePriceChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "price")}
-          >
-            Atualizar Preço
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Preço Parcelado"
-            type="number"
-            value={updateInstallmentPrice}
-            onChange={handleUpdateInstallmentPriceChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "installmentPrice")}
-          >
-            Atualizar Preço Parcelado
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Tipo de Produto"
-            type="text"
-            value={updateProductType}
-            onChange={handleUpdateProductTypeChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "productType")}
-          >
-            Atualizar Tipo de Produto
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Plataforma"
-            type="text"
-            value={updatePlatform}
-            onChange={handleUpdatePlatformChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "platform")}
-          >
-            Atualizar Plataforma
-          </button>
-          <input
-            className="inputsAddProducts"
-            placeholder="Tipo de PC"
-            type="text"
-            value={updateTypePc}
-            onChange={handleUpdateTypePcChange}
-          />
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleUpdateProduct(product.id, "typePc")}
-          >
-            Atualizar Tipo de PC
-          </button>
-          <button
-            className="inputsAddProducts"
-            onClick={() => handleDeleteProduct(product.id)}
-          >
-            Deletar
-          </button>
-
-          <div className="addField">
-            <input
-              className="inputsAddProducts"
-              type="text"
-              placeholder="Campo"
-              value={addField}
-              onChange={(e) => setAddField(e.target.value)}
-            />
-            <input
-              className="inputsAddProducts"
-              type="text"
-              placeholder="Valor"
-              value={addValue}
-              onChange={(e) => setAddValue(e.target.value)}
+              value={updatePlatform}
+              onChange={handleUpdatePlatformChange}
             />
             <button
               className="inputsAddProducts"
-              onClick={() => handleAddField(product.id, addField, addValue)}
+              onClick={() => handleUpdateProduct(product.id, "platform")}
             >
-              Adicionar Campo
+              Atualizar Plataforma
             </button>
+            <input
+              className="inputsAddProducts"
+              placeholder="Tipo de PC"
+              type="text"
+              value={updateTypePc}
+              onChange={handleUpdateTypePcChange}
+            />
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleUpdateProduct(product.id, "typePc")}
+            >
+              Atualizar Tipo de PC
+            </button>
+            <button
+              className="inputsAddProducts"
+              onClick={() => handleDeleteProduct(product.id)}
+            >
+              Deletar
+            </button>
+
+            <div className="addField">
+              <input
+                className="inputsAddProducts"
+                type="text"
+                placeholder="Campo"
+                value={addField}
+                onChange={(e) => setAddField(e.target.value)}
+              />
+              <input
+                className="inputsAddProducts"
+                type="text"
+                placeholder="Valor"
+                value={addValue}
+                onChange={(e) => setAddValue(e.target.value)}
+              />
+              <button
+                className="inputsAddProducts"
+                onClick={() => handleAddField(product.id, addField, addValue)}
+              >
+                Adicionar Campo
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
     </>
   );
 }

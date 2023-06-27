@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "../../styles/Home.css";
-import imgIntelType from "../../assets/buyByPlatform/buyByPlatform-img-intel.png";
-import imgAmdType from "../../assets/buyByPlatform/buyByPlatform-img-amd.png";
-import { imgBbdMonitor, imgBbdPc, imgBbdPeripherals } from "../../img/imgs";
 import ProductCard from "../../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
 import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
-import { Link } from "react-router-dom";
+import BBPf from "../home/BBPf";
+import Departments from "../../components/Departments";
 
 const FilterByPlatformAmd = () => {
   const [products, setProducts] = useState([]);
@@ -24,15 +22,14 @@ const FilterByPlatformAmd = () => {
         id: doc.id,
         ...doc.data(),
       }));
-
       const filteredProducts = allProducts.filter(
         (product) => product.platform === "amd"
       );
-
       setProducts(filteredProducts);
-      alert('Somente os PCS da plataforma AMD serão mostrados nesta tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      alert(
+        "Somente os PCS da plataforma AMD serão mostrados nesta tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest"
+      );
     };
-
     getProducts();
   }, []);
 
@@ -48,7 +45,6 @@ const FilterByPlatformAmd = () => {
         groups.push(group);
         startIndex = endIndex;
       }
-
       setProductGroups(groups);
     };
 
@@ -65,7 +61,6 @@ const FilterByPlatformAmd = () => {
         setGroupSize(3);
       }
     };
-
     handleResize();
 
     window.addEventListener("resize", handleResize);
@@ -77,52 +72,25 @@ const FilterByPlatformAmd = () => {
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">
-        <div id="hl" title="highlights" className="hl-text">
-          {" "}
+        <div id="hl" title="highlights" className="h1">
           DESTAQUES
         </div>
         <div className="highLightsBoxs" id="highlightsBoxs">
-        <Carousel showArrows infiniteLoop showThumbs={false}>
-          {productGroups.map((group, index) => (
-            <div key={index}>
-              {group.map(({ id, ...product }) => (
-                <ProductCard key={id} id={id} {...product} />
-              ))}
-            </div>
-          ))}
-        </Carousel>
-
+          <Carousel showArrows infiniteLoop showThumbs={false}>
+            {productGroups.map((group, index) => (
+              <div key={index}>
+                {group.map(({ id, ...product }) => (
+                  <ProductCard key={id} id={id} {...product} />
+                ))}
+              </div>
+            ))}
+          </Carousel>
         </div>
       </section>
-      <section className="buyByPlatform" id="buyByPlatformHome">
-        <div className="text-buy-by-platform"> COMPRE POR PLATAFORMA </div>
-        <div className="divBuyByPlatform">
-        <Link to='/filterByPlatformIntel'>
-          <div className="divPlatformIntel" id="textPlatformIntel">
-            <span className="text-platform-intel">INTEL</span>
-            <img
-              className="platform-intel"
-              src={imgIntelType}
-              alt="Plataforma Intel"
-            />
-          </div>
-          </Link>
-            <Link to='/filterByPlatformAmd'>
-          <div className="divPlatformAmd" id="textPlatformAmd">
-            <span className="text-platform-amd">AMD</span>
-            <img
-              className="platform-amd"
-              src={imgAmdType}
-              alt="Plataforma AMD"
-            />
-          </div>
-            </Link>
-        </div>
-      </section>
+      <BBPf />
       <section className="container-3" id="container-3" title="container-3">
-        <div id="bestSelers" className="bs-text">
-          {" "}
-          MAIS VENDIDOS{" "}
+        <div id="bestSelers" className="h1">
+          MAIS VENDIDOS
         </div>
         <div className="bestSelersBox" id="highlightsBoxs"></div>
         <Carousel showArrows infiniteLoop showThumbs={false}>
@@ -134,44 +102,8 @@ const FilterByPlatformAmd = () => {
             </div>
           ))}
         </Carousel>
-
       </section>
-      <section className="departments" id="departmentsHome">
-        <div className="departmentsText">🗄DEPARTAMENTOS</div>
-
-        <div className="bbdBoxs">
-          <Link to="/">
-            <div className="bbd-1 styleBox-bbd">
-              <img
-                className="img-bbd-1"
-                srcSet={imgBbdPc}
-                alt="PCS"
-              />
-              <span className="bbd-text bbd-text-1">PCS</span>
-            </div>
-          </Link>
-          <Link to="/monitorsPage">
-            <div className="bbd-2 styleBox-bbd">
-              <img
-                className="img-bbd-2"
-                srcSet={imgBbdMonitor}
-                alt="MONITORES"
-              />
-              <span className="bbd-text bbd-text-2">MONITORES</span>
-            </div>
-          </Link>
-          <Link to="/filterByPlatformAmd">
-            <div className="bbd-3 styleBox-bbd">
-              <img
-                className="img-bbd-3"
-                srcSet={imgBbdPeripherals}
-                alt="PERIFERICOS"
-              />
-              <span className="bbd-text bbd-text-3">PERIFERICOS</span>
-            </div>
-          </Link>
-        </div>
-      </section>
+      <Departments />
     </>
   );
 };
