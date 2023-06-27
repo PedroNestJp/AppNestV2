@@ -137,11 +137,9 @@ const ProductDetailsPage = () => {
                 <img className="imgPrincipal" src={imageUrl} alt={name} />
                 <div className="descText">{description}</div>
               </div>
-
               <div className="containerProductDesc">
                 <div className="promotionCall">
                   <Cronometro />
-
                   <div className="cardsPromo">
                     <div className="offerDiscaunt">
                       <span> 2 </span>
@@ -166,18 +164,16 @@ const ProductDetailsPage = () => {
                   </div>
                   <div className="value">
                     <span className="oldPriceSpan">
-                      DE<p className="oldPrice">R${oldPrice}</p> POR:
+                      DE<p className="oldPrice">R${oldPrice},99</p> POR:
                     </span>
                     <span className="currentPriceProductScreen">
-                      {" "}
-                      R${price}{" "}
+                      R${price},99
                     </span>
                     <span className=" installmentPriceProductScreen">
-                      OU 10X DE R$ {installmentPrice}
+                      OU 10X DE R$ {installmentPrice},99
                     </span>
                     <span className="discountPix">
-                      {" "}
-                      10% de desconto no pix{" "}
+                      10% de desconto no pix
                     </span>
                   </div>
                   <div className="addCart">
