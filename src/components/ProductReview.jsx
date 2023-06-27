@@ -4,13 +4,12 @@ import { auth, db } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsPage.css";
 import { BsStarFill } from "react-icons/bs";
-const navigate = useNavigate;
-const user = auth.currentUser; // Add this line to get the current logged in user
 
 function ProductReview({ productId }) {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
+  const navigate = useNavigate(); // Call useNavigate directly
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -55,10 +54,15 @@ function ProductReview({ productId }) {
       alert("Agradecemos a sua avaliação");
 
       setNewReview("");
+
+      // Reload the page after submitting the review
+      window.location.reload();
     } catch (error) {
       console.error("Erro ao enviar a avaliação:", error);
     }
   };
+
+  const user = auth.currentUser; // Add this line to get the current logged in user
 
   return (
     <div className="userReviewArea">
@@ -74,17 +78,19 @@ function ProductReview({ productId }) {
             placeholder="Digite aqui"
           />
           {user ? (
-            <button className="btn reviewBtn" type="submit">
+            <button
+              onClick={handleSubmit}
+              className="btn reviewBtn"
+              type="submit"
+            >
               Enviar
             </button>
-          ) :  (
-            
+          ) : (
             <Link to="/login">
               <button className="btn reviewBtn" type="submit">
                 Enviar
               </button>
             </Link>
-            
           )}
         </form>
       </div>
@@ -94,12 +100,12 @@ function ProductReview({ productId }) {
         </h2>
         {reviews.length > 0 ? (
           <div className="ulReviewArea">
-        <div className="ratingText">
-          <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
-        </div>
-            {reviews.map((review, index) => (
-              <div className="reviewsArea">
-                <div className="reviewArea" id="reviewArea" key={index}>
+            <div className="ratingText">
+              <Link to="#reviewsArea"> ({reviewCount}) avaliações </Link>{" "}
+            </div>
+            {reviews.map((review) => (
+              <div className="reviewsArea" key={review.id}>
+                <div className="reviewArea" id="reviewArea">
                   <div className="liUserReview">
                     {review.userName && (
                       <>
