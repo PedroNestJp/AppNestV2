@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import imgIntelType from "../assets/buyByPlatform/buyByPlatform-img-intel.png";
-import imgAmdType from "../assets/buyByPlatform/buyByPlatform-img-amd.png";
+import imgIntelType from "../../assets/buyByPlatform/buyByPlatform-img-intel.png";
+import imgAmdType from "../../assets/buyByPlatform/buyByPlatform-img-amd.png";
 
 const BBPf = () => {
     return(

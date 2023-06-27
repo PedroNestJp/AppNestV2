@@ -1,5 +1,5 @@
 import React from "react";
-import ShortHeader from '../components/ShortHeader'
+import ShortHeader from '../../../components/ShortHeader'
 import { Link } from "react-router-dom";
 
 const AboutUs = () => {

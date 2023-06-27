@@ -93,10 +93,11 @@ const FavoriteProducts = () => {
         <ShortHeader />
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: '100vh'
+            display: 'flex',
+            height: '100vh',
+            alignItems: 'center',
+            textAlign: 'center',
+            justifyContent: 'center'
           }}
         >
           <h2>
@@ -132,21 +133,20 @@ const FavoriteProducts = () => {
             </button>
             <Link to={`/products/${item.id}`}>
               <img
-                className="img-hl-1"
+                className="imgsBoxs"
                 src={item.product.imageUrl}
                 alt={item.product.name}
                 title={item.product.name}
               />
             </Link>
             <span>{item.product.name}</span>
-            <span className="oldPrice-hl-1 oldPrice-hl">
-              {" "}
-              DE: {item.product.oldPrice} POR:
+            <span className="oldPrice">
+              DE: {item.product.oldPrice},00 POR:
             </span>
-            <span className="currentPrice-hl-1 currentPrice-hl">
+            <span className="currentPrice">
               R${item.product.price},00
             </span>
-            <span className="installmentPrice-hl-1 installmentPrice-hl">
+            <span className="installmentPrice">
               12x DE R${item.product.installmentPrice},00
             </span>
             <span className="descriptionProduct">

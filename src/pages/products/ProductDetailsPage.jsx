@@ -8,11 +8,11 @@ import {
   collection,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../firebase";
-import { useAuth } from "./contexts/AuthProvider";
-import "../styles/ProductDetailsPage.css";
-import Cronometro from "../components/Contador";
-import ProductReview from "../components/ProductReview";
+import { db } from "../../firebase";
+import { useAuth } from "../contexts/AuthProvider";
+import "../../styles/ProductDetailsPage.css";
+import Cronometro from "../../components/Contador";
+import ProductReview from "../../components/ProductReview";
 import { BsFillCollectionFill } from "react-icons/bs";
 import {
   FaCartPlus,
@@ -21,9 +21,9 @@ import {
   FaTools,
   FaTruck,
 } from "react-icons/fa";
-import Header from "../components/Header";
-import Reviews from "../components/Reviews";
-import LoadingOverlay from "../components/LoadingOverlay";
+import Header from "../../components/Header";
+import Reviews from "../../components/Reviews";
+import LoadingOverlay from "../../components/LoadingOverlay";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();

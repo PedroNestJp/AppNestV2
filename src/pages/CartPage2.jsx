@@ -5,6 +5,7 @@ import { db } from "../firebase";
 import { useAuth } from "./contexts/AuthProvider";
 import ShortHeader from "../components/ShortHeader";
 import { BsCart } from "react-icons/bs";
+import '../styles/Home.css'
 
 const CheckoutPage = () => {
   const { user } = useAuth();
@@ -125,21 +126,20 @@ const CheckoutPage = () => {
           <div className="hl-1 styleBox" key={item.id}>
             <Link to={`/products/${item.id}`}>
               <img
-                className="img-hl-1"
+                className="imgsBoxs"
                 src={item.product.imageUrl}
                 alt={item.product.name}
                 title={item.product.name}
               />
             </Link>
                <span>{item.product.name}</span>
-            <span className="oldPrice-hl-1 oldPrice-hl">
-              {" "}
+            <span className="oldPrice">
               DE: {item.product.oldPrice} POR:
             </span>
-            <span className="currentPrice-hl-1 currentPrice-hl">
+            <span className="currentPrice">
               R${item.product.price},00
             </span>
-            <span className="installmentPrice-hl-1 installmentPrice-hl">
+            <span className="installmentPrice">
               12x DE R${item.product.installmentPrice},00
             </span>
             <span className="descriptionProduct">

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth } from "./contexts/AuthProvider";
 import { auth } from "../firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import { BsHeartFill, BsLockFill, BsPersonCircle } from "react-icons/bs";
 import "../styles/UserProfile.css";
@@ -11,15 +11,7 @@ import LoadingOverlay from "../components/LoadingOverlay";
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const isAdmin = auth.currentUser && auth.currentUser.uid === process.env.REACT_APP_USER_ADMIN_UID
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     alert("Faça seu login para acessar o seu perfil");
-  //     navigate("/login");
-  //   }
-  // }, [user, navigate]);
 
   const renderAdminContent = () => {
     if (isAdmin) {

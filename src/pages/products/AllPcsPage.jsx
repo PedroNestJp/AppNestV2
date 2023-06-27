@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
-import "../styles/AllPcsPage.css";
-import ProductCard from "../components/ProductCard";
+import "../../styles/AllPcsPage.css";
+import ProductCard from "../../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
-// Função para filtrar os produtos por tipo
 const filterTypeProducts = (product, type) => {
   return product.filter((product) => product.typePc === type);
 };
-
 const AllPcsPage = () => {
   const [productsOffice, setProductsOffice] = useState([]);
   const [productsGamer, setProductsGamer] = useState([]);
@@ -21,7 +19,6 @@ const AllPcsPage = () => {
       const querySnapshot = await getDocs(query(collection(db, "products")));
       const products = querySnapshot.docs.map((doc) => doc.data());
 
-      // Filtrar os produtos por tipo
       const productsOffice = filterTypeProducts(products, "office");
       const productsGamer = filterTypeProducts(products, "gamer");
       const productsHighEnd = filterTypeProducts(products, "highEnd");
@@ -30,14 +27,12 @@ const AllPcsPage = () => {
       setProductsGamer(productsGamer);
       setProductsHighEnd(productsHighEnd);
     };
-
     carregarProdutos();
   }, []);
 
   return (
     <>
       <Header />
-
       <section id="pcsOfficeContainer" className="container" title="Pcs Office">
         <div id="pcsOfficeId" title="Pcs Office" className="allPCsTexts">
           {" "}
@@ -76,5 +71,4 @@ const AllPcsPage = () => {
     </>
   );
 };
-
 export default AllPcsPage;

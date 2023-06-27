@@ -10,8 +10,8 @@ const Departments = () => {
         <section className="departments" id="departmentsHome">
         <h1 className="h1" id="departmentsTitle">🗄DEPARTAMENTOS</h1>
         <div className="bbdBoxs">
+            <div className="styleBoxDepartments ">
           <Link to="/allPcsPage">
-            <div className="styleBox">
               <img
                 className="imgBbd"
                 srcSet={imgBbdPc}
@@ -19,10 +19,10 @@ const Departments = () => {
                 title="Mostrar Todos os PCs"
               />
               <h2 className="h2">PCS</h2>
-            </div>
           </Link>
+            </div>
+            <div className="styleBoxDepartments ">
           <Link to="/monitorsPage">
-            <div className="styleBox">
               <img
                 className="imgBbd"
                 srcSet={imgBbdMonitor}
@@ -30,10 +30,10 @@ const Departments = () => {
                 title="Mostrar Todos os monitores"
               />
               <h2 className="h2">MONITORES</h2>
-            </div>
           </Link>
+            </div>
+            <div className="styleBoxDepartments ">
           <Link to="/peripheralsPage">
-            <div className="styleBox">
               <img
                 className="imgBbd"
                 srcSet={imgBbdPeripherals}
@@ -41,8 +41,8 @@ const Departments = () => {
                 title="Mostrar todos os periféricos"
               />
               <h2 className="h2">PERIFERICOS</h2>
-            </div>
           </Link>
+            </div>
         </div>
       </section>
     )

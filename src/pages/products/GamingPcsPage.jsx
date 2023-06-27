@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import "../styles/Home.css";
-import ProductCard from "../components/ProductCard";
+import "../../styles/Home.css";
+import ProductCard from "../../components/ProductCard";
 import { Carousel } from "react-responsive-carousel";
-import Header from "../components/Header";
-import AdsHeader from "../components/AdsHeader";
-import Departments from "../components/Departments";
-import BBPf from "./BBPf";
+import Header from "../../components/Header";
+import AdsHeader from "../../components/AdsHeader";
+import Departments from "../../components/Departments";
+import BBPf from "../home/BBPf";
 
-const MonitorsPage = () => {
+const GamingPcsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
-  const [groupSize, setGroupSize] = useState(3);
+  const [groupSize, setGroupSize] = useState(3); // Valor inicial
 
   useEffect(() => {
     const getProducts = async () => {
@@ -24,11 +24,11 @@ const MonitorsPage = () => {
       }));
 
       const filteredProducts = allProducts.filter(
-        (product) => product.productType === "monitor"
+        (product) => product.typePc === "gamer"
       );
 
       setProducts(filteredProducts);
-      alert('Somente os Monitores serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      alert('Somente os Pcs Gamer serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
@@ -75,31 +75,27 @@ const MonitorsPage = () => {
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">
-        <div id="hl" title="highlights" className="h1">
+        <div id="hl" title="highlights" className="hl-text">
           {" "}
           DESTAQUES
         </div>
-        <div className="highLightsBoxs" id="highlightsBoxs">
-          <Carousel showArrows infiniteLoop showThumbs={false}>
-            {productGroups.map((group, index) => (
-              <div key={index}>
-                {group.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
-              </div>
-            ))}
-          </Carousel>
-
-        </div>
+        <div className="highLightsBoxs" id="highlightsBoxs"> </div>
+        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
+          {productGroups.map((group, index) => (
+            <div key={index}>
+              {group.map(({ id, ...product }) => (
+                <ProductCard key={id} id={id} {...product} />
+              ))}
+            </div>
+          ))}
+        </Carousel>
       </section>
       <BBPf />
       <section className="container-2" id="container-3" title="container-3">
-        <div id="bestSelers" className="h1">
-          {" "}
-          MAIS VENDIDOS{" "}
-        </div>
-        <div className="bestSelersBox" id="highlightsBoxs"></div>
-        <Carousel showArrows infiniteLoop showThumbs={false}>
+        <h1 id="bestSelers" className="h1">
+          MAIS VENDIDOS
+        </h1>
+        <Carousel showArrows={true} showThumbs={false} infiniteLoop>
           {productGroups.map((group, index) => (
             <div key={index}>
               {group.map(({ id, ...product }) => (
@@ -114,4 +110,4 @@ const MonitorsPage = () => {
   );
 };
 
-export default MonitorsPage;
+export default GamingPcsPage;

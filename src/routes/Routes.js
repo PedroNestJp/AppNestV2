@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AuthProvider from '../pages/contexts/AuthProvider';
-import HomePage from '../pages/HomePage';
-import ProductDetailsPage from '../pages/ProductDetailsPage';
+import HomePage from '../pages/home/HomePage';
+import ProductDetailsPage from '../pages/products/ProductDetailsPage';
 import CartPage from '../pages/CartPage2';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
@@ -12,20 +12,19 @@ import {Footer, SubFooter} from '../components/Footer';
 import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
 import { ContactLine2 } from '../components/ContactLines';
-import AboutUs from '../pages/AboutUs';
-import Terms from '../pages/Terms';
-import {Carrosel} from '../components/Carrosel';
+import AboutUs from '../pages/home/footer/AboutUs';
+import Terms from '../pages/home/footer/Terms';
 import ResetPassword from '../pages/ResePassword';
 import UserProfile from '../pages/UserProfile';
-import GamingPcsPage from '../pages/GamingPcsPage';
-import OfficePcsPage from '../pages/OfficePCsPage';
-import HighEndPcsPage from '../pages/HighEndPcsPage';
-import AllPcsPage from '../pages/AllPcsPage';
-import FilterByPlatformAmd from '../pages/FilterByPlatformAmd';
+import GamingPcsPage from '../pages/products/GamingPcsPage';
+import OfficePcsPage from '../pages/products/OfficePCsPage';
+import HighEndPcsPage from '../pages/products/HighEndPcsPage';
+import PeripheralsPage from '../pages/products/PeripheralsPage';
+import MonitorsPage from '../pages/products/MonitorsPage';
+import AllPcsPage from '../pages/products/AllPcsPage';
 import SearchResults from '../pages/SearchResults';
-import PeripheralsPage from '../pages/PeripheralsPage'
-import MonitorsPage from '../pages/MonitorsPage';
-import FilterByPlatformIntel from '../pages/FilterByPlatformIntel';
+import FilterByPlatformAmd from '../pages/products/FilterByPlatformAmd';
+import FilterByPlatformIntel from '../pages/products/FilterByPlatformIntel';
 
 function EdnPoints() {
     return (
@@ -40,7 +39,6 @@ function EdnPoints() {
                     <Route path='/favorites' element={<FavoritesPage />} />
                     <Route path='/aboutUs' element={<AboutUs />} />
                     <Route path='/terms' element={<Terms />} />
-                    <Route path='/carrosel' element={<Carrosel/>}/>
                     <Route path='/resetPassword' element={<ResetPassword/>}/>
                     <Route path='/userProfile' element={<UserProfile/>}/>
                     <Route path='/gamingPcsPage' element={<GamingPcsPage/>}/>
