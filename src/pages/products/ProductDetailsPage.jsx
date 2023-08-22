@@ -146,7 +146,7 @@ const ProductDetailsPage = () => {
                       <span> Vendidos </span>
                     </div>
                     <div className="numberOfSales">
-                      <span> 15% </span>
+                      <span> 10% </span>
                       <span> Desconto no pix </span>
                     </div>
                   </div>

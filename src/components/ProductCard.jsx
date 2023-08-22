@@ -54,7 +54,7 @@ const ProductCard = ({ id, name, price, oldPrice, installmentPrice, imageUrl, de
       <span>{name}</span>
       <span className="oldPrice"> DE: {oldPrice},00 POR:</span>
       <span className="currentPrice">R${price},00</span>
-      <span className="installmentPrice">12x DE R${installmentPrice},00</span>
+      <span className="installmentPrice">10x DE R${installmentPrice},00</span>
       <span className='descriptionProduct'>{description}</span>
       <Link className='button-buy' to={`/products/${id}`}>Ver Detalhes</Link>
     </div>
