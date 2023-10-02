@@ -3,6 +3,7 @@ import { getFirestore} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,5 +19,6 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 const analytics = getAnalytics(app);
+const perf = getPerformance(app);
 
-export { auth, db, storage, analytics };
+export { auth, db, storage, analytics , perf};
