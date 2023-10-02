@@ -41,8 +41,8 @@ const AllPcsPage = () => {
         <div className="allPcsBoxs" id="allPcsBoxsOffices">
           <Carousel showArrows={true} showThumbs={false} infiniteLoop>
             {productsOffice.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
+              <ProductCard key={id} id={id} {...product} />
+            ))}
           </Carousel>
         </div>
       </section>
@@ -53,8 +53,8 @@ const AllPcsPage = () => {
         <div className="allPcsBoxs" id="allPcsBoxsGamer">
           <Carousel showArrows={true} showThumbs={false} infiniteLoop>
             {productsGamer.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
+              <ProductCard key={id} id={id} {...product} />
+            ))}
           </Carousel>
         </div>
       </section>
@@ -63,8 +63,8 @@ const AllPcsPage = () => {
         <div className="allPcsBoxs" id="allPcsBoxsHighEnd">
           <Carousel showArrows={true} showThumbs={false} infiniteLoop>
             {productsHighEnd.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))}
+              <ProductCard key={id} id={id} {...product} />
+            ))}
           </Carousel>
         </div>
       </section>

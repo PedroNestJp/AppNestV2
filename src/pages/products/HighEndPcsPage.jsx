@@ -9,10 +9,12 @@ import AdsHeader from "../../components/AdsHeader";
 import Departments from "../../components/Departments";
 import BBPf from "../home/BBPf";
 
+
 const HighEndPcsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
   const [groupSize, setGroupSize] = useState(3); // Valor inicial
+
 
   useEffect(() => {
     const getProducts = async () => {
@@ -34,41 +36,6 @@ const HighEndPcsPage = () => {
     getProducts();
   }, []);
 
-  useEffect(() => {
-    const divideProductsIntoGroups = () => {
-      const groups = [];
-      const totalProducts = products.length;
-      let startIndex = 0;
-
-      while (startIndex < totalProducts) {
-        const endIndex = startIndex + groupSize;
-        const group = products.slice(startIndex, endIndex);
-        groups.push(group);
-        startIndex = endIndex;
-      }
-
-      setProductGroups(groups);
-    };
-
-    divideProductsIntoGroups();
-  }, [products, groupSize]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.matchMedia("(max-width: 600px)").matches) {
-        setGroupSize(1);
-      } else if (window.matchMedia("(max-width: 800px)").matches) {
-        setGroupSize(2);
-      } else {
-        setGroupSize(3);
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {
@@ -82,10 +49,8 @@ const HighEndPcsPage = () => {
         groups.push(group);
         startIndex = endIndex;
       }
-
       setProductGroups(groups);
     };
-
     divideProductsIntoGroups();
   }, [products, groupSize]);
 
@@ -99,7 +64,6 @@ const HighEndPcsPage = () => {
         setGroupSize(3);
       }
     };
-
     handleResize();
 
     window.addEventListener("resize", handleResize);
