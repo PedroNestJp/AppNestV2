@@ -8,11 +8,14 @@ import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
 import BBPf from "../home/BBPf";
 import Departments from "../../components/Departments";
+import { useAlert } from "../contexts/AlertContext";
+import Alert from "../../components/Alert";
 
 const FilterByPlatformIntel = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
   const [groupSize, setGroupSize] = useState(3); // Valor inicial
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -27,8 +30,8 @@ const FilterByPlatformIntel = () => {
         (product) => product.platform === "intel"
       );
       setProducts(filteredProducts);
-      alert(
-        "Somente os PCS da plataforma Intel serão mostrados nesta tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest"
+      showAlert(
+        "Somente os PCS da plataforma Intel serão mostrados nesta tela, para ver todos os produtos volte para a tela inicial clicando no logo da Nest"
       );
     };
     getProducts();
@@ -72,6 +75,7 @@ const FilterByPlatformIntel = () => {
 
   return (
     <>
+      <Alert />
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">

@@ -5,8 +5,7 @@ import {
   doc,
   updateDoc,
   setDoc,
-  collection,
-  onSnapshot,
+  collection
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../contexts/AuthProvider";

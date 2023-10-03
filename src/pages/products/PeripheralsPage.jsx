@@ -8,11 +8,14 @@ import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
 import Departments from "../../components/Departments";
 import BBPf from "../home/BBPf";
+import { useAlert } from "../contexts/AlertContext";
+import Alert from "../../components/Alert";
 
 const PeripheralsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
   const [groupSize, setGroupSize] = useState(3); // Valor inicial
+  const {showAlert} = useAlert()
 
   useEffect(() => {
     const getProducts = async () => {
@@ -28,7 +31,7 @@ const PeripheralsPage = () => {
       );
 
       setProducts(filteredProducts);
-      alert('Somente os perifericos serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      showAlert('Somente os perifericos serão mostrados nessa tela, para ver todos os produtos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
@@ -72,6 +75,7 @@ const PeripheralsPage = () => {
 
   return (
     <>
+      <Alert/>
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">
