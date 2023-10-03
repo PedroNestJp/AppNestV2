@@ -4,6 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import ProductCard from "./ProductCard";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import LoadingOverlay from "./LoadingOverlay";
 
 const Carrosel = () => {
   const [products, setProducts] = useState([]);
@@ -59,7 +60,9 @@ const Carrosel = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+  if (!products) {
+    return <LoadingOverlay />;
+  }
   return (
     <section className="container-2" title="container-2">
       <div className="highLightsBoxs" id="highlightsBoxs">
@@ -67,6 +70,7 @@ const Carrosel = () => {
           {productGroups.map((group, index) => (
             <div key={index}>
               {group.map(({ id, ...product }) => (
+
                 <ProductCard key={id} id={id} {...product} />
               ))}
             </div>

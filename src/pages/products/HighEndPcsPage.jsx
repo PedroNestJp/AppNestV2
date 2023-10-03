@@ -8,13 +8,13 @@ import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
 import Departments from "../../components/Departments";
 import BBPf from "../home/BBPf";
-
+import ModalAlert from "../../components/ModalAlert";
 
 const HighEndPcsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
   const [groupSize, setGroupSize] = useState(3); // Valor inicial
-
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -30,12 +30,17 @@ const HighEndPcsPage = () => {
       );
 
       setProducts(filteredProducts);
-      alert('Somente os Pcs High-End serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
+      setIsAlertOpen(true);
+
+      // alert('Somente os Pcs High-End serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest')
     };
 
     getProducts();
   }, []);
 
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
+  };
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {
@@ -72,6 +77,12 @@ const HighEndPcsPage = () => {
 
   return (
     <>
+      {isAlertOpen && (
+        <ModalAlert
+          message="Somente os Pcs High-End serão mostrados nessa tela, para ver todos osprodutos volte para a tela inicial clicando no logo da Nest"
+          onClose={handleAlertClose}
+        />
+      )}
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">
@@ -88,10 +99,9 @@ const HighEndPcsPage = () => {
               </div>
             ))}
           </Carousel>
-
         </div>
       </section>
-      <BBPf/>
+      <BBPf />
       <section className="container-2" id="container-3" title="container-3">
         <h1 id="bestSelers" className="h1">
           MAIS VENDIDOS

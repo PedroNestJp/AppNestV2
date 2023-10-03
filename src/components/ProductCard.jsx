@@ -5,6 +5,7 @@ import "../styles/Home.css";
 import { db } from "../firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../pages/contexts/AuthProvider";
+import LoadingOverlay from "./LoadingOverlay";
 
 const ProductCard = ({
   id,
@@ -50,6 +51,10 @@ const ProductCard = ({
         console.error("Error adding product to favorites:", error);
       });
   };
+
+  if (!ProductCard) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <div className="hl-1 styleBox">

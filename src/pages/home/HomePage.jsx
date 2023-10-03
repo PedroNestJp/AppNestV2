@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
 import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -10,22 +8,11 @@ import { Carrosel } from "../../components/Carrosel";
 import Departments from "../../components/Departments";
 import BBPf from "./BBPf";
 
+
+
+
+
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsCol = collection(db, "products");
-      const snapshot = await getDocs(productsCol);
-      const productsData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setProducts(productsData);
-    };
-
-    fetchProducts();
-  }, []);
 
   return (
     <>
