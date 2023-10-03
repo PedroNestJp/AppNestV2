@@ -6,6 +6,8 @@ import { db } from "../firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import LoadingOverlay from "./LoadingOverlay";
+import useAlert from "../pages/contexts/AlertContext";
+import Alert from "../components/Alert";
 
 const ProductCard = ({
   id,
@@ -20,6 +22,7 @@ const ProductCard = ({
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     if (!user) return;
@@ -56,50 +59,61 @@ const ProductCard = ({
     return <LoadingOverlay />;
   }
 
+  const handleRedirectToLogin = () => {
+    showAlert("Faça login para continuar.");
+    navigate("/login");
+  };
+
   return (
-    <div className="hl-1 styleBox">
-      <button
-        onClick={() =>
-          user !== null
-            ? handleAddToFavorites(id)
-            : (alert("faça seu login para poder favoritar itens"),
-              navigate("/login"))
-        }
-        className="favoriteIcon"
-        alt="Icone Favoitos"
-        title={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-      >
-        {isFavorite ? (
-          <BsHeartFill
-            style={{
-              color: "#e20100",
-              height: "1.5rem",
-              width: "1.5rem",
-              backgroundColor: "white",
-            }}
-          />
-        ) : (
-          <BsHeart
-            style={{
-              height: "1.5rem",
-              width: "1.5rem",
-              backgroundColor: "white",
-            }}
-          />
-        )}
-      </button>
-      <Link to="/">
-        <img className="img-hl-1" src={imageUrl} alt={name} />
-      </Link>
-      <span>{name}</span>
-      <span className="oldPrice"> DE: {oldPrice},00 POR:</span>
-      <span className="currentPrice">R${price},00</span>
-      <span className="installmentPrice">10x DE R${installmentPrice},00</span>
-      <span className="descriptionProduct">{description}</span>
-      <Link className="button-buy" to={`/products/${id}`}>
-        Ver Detalhes
-      </Link>
-    </div>
+    <>
+      <Alert />
+      <div className="hl-1 styleBox">
+        <button
+          onClick={() => {
+            if (user !== null) {
+              handleAddToFavorites(id);
+            } else {
+              handleRedirectToLogin();
+            }
+          }}
+          className="favoriteIcon"
+          alt="Icone Favoitos"
+          title={
+            isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"
+          }
+        >
+          {isFavorite ? (
+            <BsHeartFill
+              style={{
+                color: "#e20100",
+                height: "1.5rem",
+                width: "1.5rem",
+                backgroundColor: "white",
+              }}
+            />
+          ) : (
+            <BsHeart
+              style={{
+                height: "1.5rem",
+                width: "1.5rem",
+                backgroundColor: "white",
+              }}
+            />
+          )}
+        </button>
+        <Link to="/">
+          <img className="img-hl-1" src={imageUrl} alt={name} />
+        </Link>
+        <span>{name}</span>
+        <span className="oldPrice"> DE: {oldPrice},00 POR:</span>
+        <span className="currentPrice">R${price},00</span>
+        <span className="installmentPrice">10x DE R${installmentPrice},00</span>
+        <span className="descriptionProduct">{description}</span>
+        <Link className="button-buy" to={`/products/${id}`}>
+          Ver Detalhes
+        </Link>
+      </div>
+    </>
   );
 };
 
