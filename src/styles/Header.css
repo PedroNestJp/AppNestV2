@@ -85,7 +85,6 @@ input:hover {
   font-size: 10px;
   line-height: 12px;
   margin-bottom: 5px;
-  color: var(--color-white1);
 }
 
 .currentUserText {
@@ -93,7 +92,6 @@ input:hover {
   font-weight: 400;
   line-height: 10px;
   font-size: 10px;
-  color: var(--bgColor-white2);
 }
 
 .link-login-home,

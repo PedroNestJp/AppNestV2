@@ -2,22 +2,25 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  color: var(--color-white1);
+}
+.productDetailsPageMain{
+  background-color: var(--bgColor-grey1);
 }
 
 .mainContentProduct {
   margin-top: 4rem;
-  background-color: var(--bgColor-grey3);
 }
 
 .containerProductFather {
-  background: var(--bgColor-grey3);
+  background: var(--bgColor-grey1);
 }
 
 @media (max-width: 590px) {
   .containerProductFather {
     display: flex;
     justify-content: center;
-    background: var(--bgColor-grey3);
+    background: var(--bgColor-grey2);
   }
 }
 
@@ -103,11 +106,12 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem;
+  background-color: var(--bgColor-grey2);
 }
 
 .areaDescriptionPrdct {
   color: var(--color-white1);
-  background-color: var(--bgColor-grey3);
+  background-color: var(--bgColor-grey2);
   padding: 1rem;
 }
 
@@ -124,7 +128,6 @@
 }
 
 .cardsPromo {
-  background-color: var(--bgColor-grey3);
   display: flex;
   font-size: 12px;
   line-height: 12px;
@@ -141,7 +144,7 @@
   width: -webkit-fill-available;
   justify-content: center;
   padding: 0.5rem;
-  color: var(--bgColor-red2);
+  color: var(--textColor-red2);
   gap: 0px;
   border: var(--color-black1) solid 1px;
   border-radius: 5px;
@@ -150,7 +153,7 @@
 .offersEnd {
   display: flex;
   align-items: center;
-  color: var(--bgColor-red2);
+  color: var(--textColor-red2);
 }
 
 .timeLeft {
@@ -226,13 +229,13 @@
   font-weight: 700;
   font-size: 35px;
   line-height: 35px;
-  color: var(--bgColor-red2);
+  color: var(--textColor-red2);
 }
 
 .discountPix {
   font-weight: 400;
   font-size: 17px;
-  color: var(--bgColor-red2);
+  color: var(--textColor-red2);
 }
 
 .addCart {
@@ -253,7 +256,6 @@
   line-height: 15px;
   font-size: 17px;
   text-align: center;
-  color: var(--color-white1)fff;
 }
 
 .addCartButton:hover {
@@ -272,7 +274,6 @@
   line-height: 15px;
   font-size: 15px;
   text-align: center;
-  color: var(--bgColor-white2);
 }
 
 .btnBuyNow:hover {

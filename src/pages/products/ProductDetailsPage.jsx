@@ -138,7 +138,7 @@ const ProductDetailsPage = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#1c1c1c" }}>
+    <div className="productDetailsPageMain" >
       <Header />
       <div className="mainContentProduct">
         <div className="containerProductFather">

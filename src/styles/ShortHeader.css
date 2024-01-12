@@ -31,7 +31,6 @@
 }
 
 .iconProfileNavShort {
-  color: var(--bgColor-white2);
   width: 32px;
   height: 32px;
 }
@@ -43,7 +42,6 @@
   font-weight: 400;
   font-size: 10px;
   line-height: 13px;
-  color: var(--bgColor-white2);
 }
 
 .linkLoginNavShort,
@@ -51,7 +49,6 @@
   font-style: normal;
   font-weight: 700;
   text-decoration: none;
-  color: var(--bgColor-white2);
 }
 
 a .currentUserText:hover{
