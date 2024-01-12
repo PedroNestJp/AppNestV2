@@ -54,7 +54,6 @@ input::placeholder,
 .email,
 .senha {
 
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -106,8 +105,7 @@ span.text-loginSocial {
     text-align: -webkit-center;
 }
 
-.login-gg,
-.login-fb {
+.login-gg {
     cursor: pointer;
     width: 173px;
     height: 45px;
@@ -116,31 +114,18 @@ span.text-loginSocial {
     margin: 10px;
 }
 
-.login-fb {
-
-    border: 1px solid #609CCE;
-
-}
-
 .login-gg {
 
     border: 1px solid #E20100;
 
 }
 
-.fb-text,
 .gg-text {
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 17px;
-
-}
-
-.fb-text {
-
-    color: #0A61B1;
 
 }
 
