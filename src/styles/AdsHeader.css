@@ -1,6 +1,6 @@
 .adsDiv{
     margin-top: 6rem;
-    background-color: #000000;
+    background-color: var(--color-black1);
 }
 
 @media (max-width: 1080px) {
@@ -28,7 +28,7 @@
 
     font-weight: 900;
     font-size: 24px;
-    color: #FFFFFF;
+    color: var(--color-white1);
 }
 
 .carouselAdsImg{

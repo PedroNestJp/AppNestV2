@@ -18,7 +18,7 @@
 .allPCsTexts {
     font-weight: 900;
     font-size: 20px;
-    color:#FF0101;
+    color:var(--textColor-red1);
     margin: 2rem;
     margin-top: 6rem;
 }

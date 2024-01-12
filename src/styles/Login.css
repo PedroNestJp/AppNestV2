@@ -14,7 +14,7 @@
     justify-content: flex-start;
     flex-direction: column;
     margin: 4rem 0rem;
-    background: #FFFFFF;
+    background: var(--color-white1);
     border-radius: 5px;
 
 }
@@ -26,7 +26,7 @@
     font-style: normal;
     font-weight: 800;
     font-size: 20px;
-    color: #E20100;
+    color: var(--textColor-red2);
     text-align: -webkit-center;
     text-align: -webkit-center;
 }
@@ -45,9 +45,9 @@
     width: 370px;
     height: 45px;
     padding-left: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--bgColor-grey1);
     border-radius: 5px;
-    outline: #E20100;
+    outline: var(--textColor-red2);
 }
 
 input::placeholder,
@@ -58,12 +58,12 @@ input::placeholder,
     font-weight: 500;
     font-size: 12px;
 
-    color: rgba(226, 1, 0, 0.6);
+    color: var(--textColor-red3);
 }
 
 .enter {
     margin-top: 20px;
-    background: #E20100;
+    background: var(--textColor-red2);
 }
 
 .enter,
@@ -72,7 +72,7 @@ input::placeholder,
     width: 370px;
     height: 45px;
     border-radius: 5px;
-    border: 1px solid #E20100;
+    border: 1px solid var(--textColor-red2);
 }
 
 
@@ -82,14 +82,14 @@ input::placeholder,
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    color: #FFFFFF;
+    color: var(--color-white1);
 }
 
 .lineLogin {
     margin: 20px;
     width: 360px;
     height: 1px;
-    background-color: #000000;
+    background-color: var(--color-black1);
 }
 
 .forgotPassword {
@@ -98,7 +98,7 @@ input::placeholder,
     font-weight: 600;
     font-size: 12px;
 
-    color: #E20100;
+    color: var(--textColor-red2);
 }
 
 span.text-loginSocial {
@@ -110,13 +110,13 @@ span.text-loginSocial {
     width: 173px;
     height: 45px;
     border-radius: 5px;
-    background: #FFFFFF;
+    background: var(--color-white1);
     margin: 10px;
 }
 
 .login-gg {
 
-    border: 1px solid #E20100;
+    border: 1px solid var(--textColor-red2);
 
 }
 
@@ -131,7 +131,7 @@ span.text-loginSocial {
 
 .gg-text {
 
-    color: #E20100;
+    color: var(--textColor-red2);
 
 }
 
@@ -147,7 +147,7 @@ span.text-loginSocial {
 
     width: 160px;
     height: 1px;
-    background-color: #000000;
+    background-color: var(--color-black1);
     margin: 5px;
 
 }
@@ -159,10 +159,10 @@ span.text-loginSocial {
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
-    color: #E20100;
+    color: var(--textColor-red2);
 
 }
 
 .register {
-    background: #E20100;
+    background: var(--textColor-red2);
 }

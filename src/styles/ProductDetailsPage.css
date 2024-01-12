@@ -6,25 +6,25 @@
 
 .mainContentProduct {
   margin-top: 4rem;
-  background-color: #1c1c1c;
+  background-color: var(--bgColor-grey3);
 }
 
 .containerProductFather {
-  background: #1c1c1c;
+  background: var(--bgColor-grey3);
 }
 
 @media (max-width: 590px) {
   .containerProductFather {
     display: flex;
     justify-content: center;
-    background: #1c1c1c;
+    background: var(--bgColor-grey3);
   }
 }
 
 @media (max-width: 768px) {
   .containerProductChild1 {
     display: flex;
-    background: #000000;
+    background: var(--color-black1);
     flex-direction: column;
   }
 }
@@ -33,7 +33,7 @@
   padding: 1rem;
   margin: 1rem;
   display: flex;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   border-radius: 1rem;
   align-items: center;
   justify-content: center;
@@ -74,7 +74,7 @@
 
 .containerProductDesc {
   display: flex;
-  background: #1c1c1c;
+  background: var(--bgColor-grey3);
   width: 100%;
   height: auto;
   max-width: 50rem;
@@ -106,15 +106,15 @@
 }
 
 .areaDescriptionPrdct {
-  color: white;
-  background-color: #1c1c1c;
+  color: var(--color-white1);
+  background-color: var(--bgColor-grey3);
   padding: 1rem;
 }
 
 .stopwatch {
   gap: 5px;
   display: flex;
-  background: #000;
+  background: var(--color-black1);
   text-align: center;
   justify-content: center;
   font-weight: 700;
@@ -124,7 +124,7 @@
 }
 
 .cardsPromo {
-  background-color: #1c1c1c;
+  background-color: var(--bgColor-grey3);
   display: flex;
   font-size: 12px;
   line-height: 12px;
@@ -141,27 +141,27 @@
   width: -webkit-fill-available;
   justify-content: center;
   padding: 0.5rem;
-  color: #e20100;
+  color: var(--bgColor-red2);
   gap: 0px;
-  border: #000000 solid 1px;
+  border: var(--color-black1) solid 1px;
   border-radius: 5px;
 }
 
 .offersEnd {
   display: flex;
   align-items: center;
-  color: #e20100;
+  color: var(--bgColor-red2);
 }
 
 .timeLeft {
   display: flex;
-  color: #fff;
+  color: var(--color-white1);
   justify-content: center;
   align-items: center;
 }
 
 .descText {
-  color: white;
+  color: var(--color-white1);
   width: 100%;
   height: auto;
   padding: 1rem;
@@ -186,13 +186,13 @@
   border: none;
   width: 7rem;
   height: 2rem;
-  background: #0074e4;
+  background: var(--bgColor-blue1);
   border-radius: 4px;
 }
 
 .hanking,
 .buttonTop10 {
-  color: white;
+  color: var(--color-white1);
   font-family: "Poppins";
   font-weight: 700;
   font-size: 15px;
@@ -226,13 +226,13 @@
   font-weight: 700;
   font-size: 35px;
   line-height: 35px;
-  color: #e20100;
+  color: var(--bgColor-red2);
 }
 
 .discountPix {
   font-weight: 400;
   font-size: 17px;
-  color: #e20100;
+  color: var(--bgColor-red2);
 }
 
 .addCart {
@@ -246,18 +246,18 @@
   margin-top: 0.5rem;
   height: 3rem;
   width: 100%;
-  background: #1c1c1c;
+  background: var(--bgColor-grey3);
   border-radius: 5px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid var(--bgColor-white2);
   font-weight: 600;
   line-height: 15px;
   font-size: 17px;
   text-align: center;
-  color: #ffffff;
+  color: var(--color-white1)fff;
 }
 
 .addCartButton:hover {
-  background-color: #404040;
+  background-color: var(--bgColor-grey2);
 }
 
 .btnBuyNow {
@@ -265,18 +265,18 @@
   margin-top: 0.5rem;
   height: 3rem;
   width: 100%;
-  background: #0074e4;
+  background: var(--bgColor-blue1);
   border-radius: 5px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid var(--bgColor-white2);
   font-weight: 600;
   line-height: 15px;
   font-size: 15px;
   text-align: center;
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
 }
 
 .btnBuyNow:hover {
-  background-color: #298ae8;
+  background-color: var(--bgColor-blue2);
 }
 
 /* Second Container */
@@ -285,7 +285,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   border-radius: 10px;
   gap: 1rem;
   margin: 1rem;
@@ -295,7 +295,7 @@
 /* Reviews Area */
 
 .reviews {
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
 }
 
 .inputReviewArea {
@@ -326,13 +326,13 @@
 .reviewBtn {
   cursor: pointer;
   height: 2rem;
-  background: #000;
+  background: var(--color-black1);
   border-radius: 0px 5px 5px 0px;
 
   font-weight: 700;
   line-height: 11px;
   text-align: center;
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
 }
 
 /* Reviews Area */
@@ -346,14 +346,14 @@
 
 .reviewsArea {
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   padding: 1rem;
 }
 
 .lineProducDeails {
   height: 1px;
   width: -webkit-fill-available;
-  background-color: white;
+  background-color: var(--color-white1);
 }
 
 
@@ -376,7 +376,7 @@
   gap: 1rem;
   display: flex;
   padding: 1rem;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   border-radius: 5px;
   flex-direction: column;
 }
@@ -389,17 +389,17 @@
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   flex-direction: column;
   align-items: center;
 }
 
 .descArea {
   margin: 1rem;
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
   border-radius: 10px;
   padding: 1rem;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -409,21 +409,21 @@
 .videoInput {
   padding: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #f5f5f5;
+  border: 1px solid var(--bgColor-white2);
 }
 .incompatibilities {
   padding: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #f5f5f5;
+  border: 1px solid var(--bgColor-white2);
 }
 
 .PrDtPgWarnings {
   gap: 1rem;
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
   padding: 1rem;
   margin: 1rem;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -435,9 +435,9 @@
   margin: 1rem;
   gap: 1rem;
   padding: 1rem;
-  color: #f5f5f5;
+  color: var(--bgColor-white2);
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
   display: flex;
 
 }
@@ -458,7 +458,7 @@
 .warranty {
   width: 33%;
   border-radius: 10px;
-  border: #f5f5f5 solid 1px;
+  border: var(--bgColor-white2) solid 1px;
   text-align: center;
   padding: 1rem;
 }
@@ -476,5 +476,5 @@
 .warningLink {
   padding: 1rem;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--color-white1);
 }

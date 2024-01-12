@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
-import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
+// import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -21,9 +21,9 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const analytics = getAnalytics(app);
 const perf = getPerformance(app);
-const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider('6LcrCk8pAAAAAGpAByNbzbbtMSInkB-IQlX-fHoL'),
-  isTokenAutoRefreshEnabled: true // Set to true to allow auto-refresh.
-});
+// const appCheck = initializeAppCheck(app, {
+//   provider: new ReCaptchaEnterpriseProvider('6LcrCk8pAAAAAGpAByNbzbbtMSInkB-IQlX-fHoL'),
+//   isTokenAutoRefreshEnabled: true // Set to true to allow auto-refresh.
+// });
 
-export { auth, db, storage, analytics , perf, appCheck};
+export { auth, db, storage, analytics , perf};

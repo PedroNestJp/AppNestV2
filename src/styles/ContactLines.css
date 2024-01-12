@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
-  background: #211f1f;
+  background: var(--bgColor-grey1);
 }
 
 .social-media {
@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
-  background: #211f1f;
+  background: var(--bgColor-grey1);
 }
 
 .contactsLine2-text {
@@ -26,5 +26,5 @@
   font-size: 14px;
   line-height: 21px;
 
-  color: #ffffff;
+  color: var(--color-white1);
 }
