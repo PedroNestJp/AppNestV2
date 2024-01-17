@@ -132,8 +132,9 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
   overflow: visible;
+  margin: 3rem 0;
 }
 
 .highLightsBoxs {
@@ -143,6 +144,12 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.highLightsBoxs#budgetBuilderArea{
+    flex-direction: column;
+    height: auto;
+    width: auto;
 }
 
 .styleBox {
@@ -205,7 +212,7 @@ a {
 
 .button-buy:hover {
   background-color: var(--textColor-red2);
-  color: var(--bgColor-white2);
+  color: var(--color-white1);
 }
 
 .descriptionProduct {

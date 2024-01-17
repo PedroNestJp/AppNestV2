@@ -7,6 +7,7 @@ import "../../styles/Home.css";
 import { Carrosel } from "../../components/Carrosel";
 import Departments from "../../components/Departments";
 import BBPf from "./BBPf";
+import BudgetBuilderArea from "./BudgetBuilderArea";
 
 
 
@@ -64,6 +65,7 @@ const HomePage = () => {
         MAIS VENDIDOS
       </h1>
       <Carrosel />
+      <BudgetBuilderArea/>
       <Departments />
     </>
   );
