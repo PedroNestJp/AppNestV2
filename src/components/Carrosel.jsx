@@ -66,7 +66,11 @@ const Carrosel = () => {
   return (
     <section className="container-2" title="container-2">
       <div className="highLightsBoxs" id="highlightsBoxs">
-        <Carousel showArrows infiniteLoop showThumbs={false}>
+        <Carousel
+        showArrows
+        infiniteLoop={false}
+        showThumbs={false}
+        preventScrollOnTouchMove={true}>
           {productGroups.map((group, index) => (
             <div key={index}>
               {group.map(({ id, ...product }) => (
@@ -82,7 +86,6 @@ const Carrosel = () => {
 };
 
 export default Carrosel;
-
 
 const CarroselAds = () => {
   return (

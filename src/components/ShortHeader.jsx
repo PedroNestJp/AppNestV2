@@ -41,7 +41,7 @@ const ShortHeader = () => {
             </Link>
           </span>
         ) : (
-          <span className="textProfileNavShort">
+          <span className="textProfile">
             Faça seu{" "}
             <Link
               className="linkLoginNavShort"

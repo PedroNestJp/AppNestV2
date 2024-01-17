@@ -1,12 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 .navbarhome {
   display: flex;
   justify-content: center;
@@ -23,15 +14,15 @@
   .navbarhome {
     flex-wrap: nowrap;
   }
-  .areaProfile{
+  .areaProfile {
     content-visibility: hidden;
   }
-  .iconsNavHome{
+  .iconsNavHome {
     content-visibility: hidden;
   }
 }
 
-.headerLogo{
+.headerLogo {
   width: 5rem;
   height: 3rem;
   margin: 0.3rem;
@@ -68,22 +59,28 @@ input:hover {
   border: none;
 }
 
-.icon-lupa {
-  cursor: pointer;
-  color: var(--color-white1);
-}
-
-.areaProfile {
+.areaProfile,
+.iconsNavHome {
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
+  min-width: max-content;
+}
+
+.textProfile {
+  margin-left: 5px;
+}
+
+.textProfile,
+.text-profile-home {
+  width: 90px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  color: var(--color-white1);
 }
 
 .text-profile-home {
-  width: 90px;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
   margin-bottom: 5px;
 }
 
@@ -95,17 +92,12 @@ input:hover {
 }
 
 .link-login-home,
-.link-cadastre-se-home {
+.link-cadastre-se-home,
+.linkLoginNavShort,
+.linkRegisterNavShort {
   font-style: normal;
   font-weight: 700;
   text-decoration: none;
-  color: var(--color-white1);
-}
-
-.iconsNavHome {
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
 }
 
 .supportIcon,
@@ -114,18 +106,25 @@ input:hover {
 .iconProfileHome {
   border-radius: 50%;
   margin: 3px;
-  color: var(--bgColor-white2);
+}
+
+.supportIcon,
+.shoppingCartIcon,
+.favoritesIcon,
+.iconProfileHome,
+.linkLoginNavShort,
+.linkRegisterNavShort,
+.button-submit,
+.currentUserText {
+  color: var(--color-white1);
 }
 
 .supportIcon:hover,
 .shoppingCartIcon:hover,
 .favoritesIcon:hover,
 .iconProfileHome:hover,
-.currentUserText:hover
-{
+.currentUserText:hover,
+.linkLoginNavShort:hover,
+.linkRegisterNavShort:hover {
   color: var(--textColor-red2);
-}
-
-.favoritesIcon {
-  color: var(--bgColor-white2);
 }

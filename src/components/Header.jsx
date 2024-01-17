@@ -57,7 +57,7 @@ function Header() {
       );
     } else {
       return (
-        <span className="textProfileNavShort">
+        <span className="textProfile">
           Faça seu{" "}
           <Link
             className="linkLoginNavShort"

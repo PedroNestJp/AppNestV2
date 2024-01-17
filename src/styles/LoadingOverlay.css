@@ -12,8 +12,8 @@
   }
   
   .loader {
-    border: 16px solid var(--bgColor-white2);
-    border-top: 16px solid var(--textColor-red2);
+    border: 0.7rem solid var(--color-white1);
+    border-top: 0.7rem solid var(--textColor-red2);
     border-radius: 50%;
     width: 120px;
     height: 120px;

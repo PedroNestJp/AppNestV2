@@ -41,7 +41,7 @@
   
   .nav-text a {
     text-decoration: none;
-    color: var(--bgColor-white2);
+    color: var(--color-white1);
     font-size: 18px;
     width: 95%;
     height: 100%;

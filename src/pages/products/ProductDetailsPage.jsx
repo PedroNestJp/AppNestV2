@@ -339,7 +339,7 @@ const ProductDetailsPage = () => {
           <div className="warningLink">
             <h3> Duvidas?: </h3>- Caso tenha alguma dificuldade com a escolha do
             item e da configuração, você pode
-            <strong>contatar o atendimento para auxilio</strong> no link à
+            <strong> contatar o atendimento para auxilio</strong> no link à
             seguir:
             <br />
             <strong>
