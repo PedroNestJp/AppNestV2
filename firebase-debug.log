@@ -1,0 +1,34 @@
+[debug] [2024-06-21T20:08:14.436Z] ----------------------------------------------------------------------
+[debug] [2024-06-21T20:08:14.440Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\pedro.henrique\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-06-21T20:08:14.440Z] CLI Version:   13.11.2
+[debug] [2024-06-21T20:08:14.440Z] Platform:      win32
+[debug] [2024-06-21T20:08:14.441Z] Node Version:  v20.11.1
+[debug] [2024-06-21T20:08:14.441Z] Time:          Fri Jun 21 2024 17:08:14 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2024-06-21T20:08:14.441Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-21T20:08:14.457Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-06-21T20:08:14.624Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-21T20:08:14.625Z] > authorizing via signed-in user (meudigitalagencia@gmail.com)
+[debug] [2024-06-21T20:08:14.625Z] [iam] checking project nest-informatica for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-06-21T20:08:14.627Z] > refreshing access token with scopes: []
+[debug] [2024-06-21T20:08:14.628Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-06-21T20:08:14.628Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-21T20:08:14.933Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-06-21T20:08:14.934Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-21T20:08:14.971Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nest-informatica:testIamPermissions [none]
+[debug] [2024-06-21T20:08:14.971Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nest-informatica:testIamPermissions x-goog-quota-user=projects/nest-informatica
+[debug] [2024-06-21T20:08:14.972Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nest-informatica:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-06-21T20:08:15.077Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-06-21T20:08:15.077Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-06-21T20:08:16.123Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nest-informatica:testIamPermissions 200
+[debug] [2024-06-21T20:08:16.123Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nest-informatica:testIamPermissions {}
+[debug] [2024-06-21T20:08:16.124Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project nest-informatica:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-06-21T20:08:16.124Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nest-informatica [none]
+[debug] [2024-06-21T20:08:16.664Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nest-informatica 403
+[debug] [2024-06-21T20:08:16.665Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nest-informatica {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-06-21T20:08:16.665Z] HTTP Error: 403, The caller does not have permission
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
