@@ -25,6 +25,7 @@ import AllPcsPage from '../pages/products/AllPcsPage';
 import SearchResults from '../pages/SearchResults';
 import FilterByPlatformAmd from '../pages/products/FilterByPlatformAmd';
 import FilterByPlatformIntel from '../pages/products/FilterByPlatformIntel';
+import BudgetBuilder from '../pages/BudgetBuilder';
 
 function EdnPoints() {
     return (
@@ -50,6 +51,7 @@ function EdnPoints() {
                     <Route path='/filterByPlatformAmd' element={<FilterByPlatformAmd/>}/>
                     <Route path='/filterByPlatformIntel' element={<FilterByPlatformIntel/>}/>
                     <Route path='/searchResults' element={<SearchResults/>}/>
+                    <Route path='/budgetBuilder' element={<BudgetBuilder/>}/>
 
                     <Route path="/addProducts" element={<ProductList />} />
                     <Route path="/addImage" element={<AddImage />} />

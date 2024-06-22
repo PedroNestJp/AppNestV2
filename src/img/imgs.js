@@ -14,8 +14,9 @@ import imgBbdPc from '../assets/pcs.png'
 import imgBbdMonitor from '../assets/monitores.png'
 import imgBbdPeripherals from '../assets/kitGamer.png'
 import logo from '../assets/logoNestNew.png'
+import configCustom from '../assets/nestpc-custom/nestpc-custom.jpg'
 
 export {iconTime,iconFacebook,iconGmail,iconLinkedin,iconTelegram, iconWhatsapp, 
         iconYoutube, imgAmdType,iconInstagram,imgIntelType,imgBbdPc, imgBbdMonitor,
-        imgBbdPeripherals, logo}
+        imgBbdPeripherals, logo, configCustom}
 

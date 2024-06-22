@@ -7,7 +7,7 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import LoadingOverlay from "./LoadingOverlay";
 import {useAlert} from "../pages/contexts/AlertContext";
-import Alert from "../components/Alert";
+import Alert from "../utils/Alert";
 
 const ProductCard = ({
   id,
@@ -21,8 +21,8 @@ const ProductCard = ({
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate();
   const { showAlert } = useAlert();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) return;
