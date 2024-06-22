@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as RiIcons from 'react-icons/ri'
 import '../styles/AdsHeader.css'
-import { CarroselAds } from "./Carrosel";
+import { CarroselAds } from "./CarroselAds";
 
 export default function AdsHeader() {
   return (
