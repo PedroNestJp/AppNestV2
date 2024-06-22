@@ -18,7 +18,13 @@ const ContactLine = ({ className, id }) => {
       {socialMediaLinks.map((link, index) => (
         <span key={index}>
           <Link to={link.href}>
-            <img id={link.id} className="social-media" srcSet={link.srcSet} alt={link.alt} />
+            <img
+              key={index}
+              id={link.id}
+              className="social-media"
+              srcSet={link.srcSet}
+              alt={link.alt}
+            />
           </Link>
         </span>
       ))}
