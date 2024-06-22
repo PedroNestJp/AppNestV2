@@ -21,8 +21,8 @@ const ProductCard = ({
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate();
   const { showAlert } = useAlert();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) return;
