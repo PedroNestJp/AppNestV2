@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import AdsHeader from "../../components/AdsHeader";
 import Departments from "../../components/Departments";
 import ProductCard from "../../components/ProductCard"; // Certifique-se de importar ProductCard corretamente
-import Alert from "../../components/Alert"; // Certifique-se de importar Alert corretamente
+import Alert from "../../utils/Alert"; // Certifique-se de importar Alert corretamente
 import BBPf from "../home/BBPf";
 import { useAlert } from "../contexts/AlertContext";
 
