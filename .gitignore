@@ -7,6 +7,8 @@
 yarn.lock
 .env
 yarn.lock
+package-lock
+package-lock.json
 
 # testing
 /coverage
