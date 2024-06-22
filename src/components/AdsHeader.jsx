@@ -3,7 +3,7 @@ import * as RiIcons from 'react-icons/ri'
 import '../styles/AdsHeader.css'
 import { CarroselAds } from "./Carrosel";
 
-const AdsHeader = () => {
+export default function AdsHeader() {
   return (
     <>
       <section className="adsDiv">
@@ -21,4 +21,3 @@ const AdsHeader = () => {
     </>
   )
 }
-export default AdsHeader
