@@ -9,7 +9,7 @@ import AdsHeader from "../../components/AdsHeader";
 import Departments from "../../components/Departments";
 import BBPf from "../home/BBPf";
 import { useAlert } from "../contexts/AlertContext";
-import Alert from "../../components/Alert";
+import Alert from "../../utils/Alert";
 
 const PeripheralsPage = () => {
   const [products, setProducts] = useState([]);

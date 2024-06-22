@@ -7,7 +7,7 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../pages/contexts/AuthProvider";
 import LoadingOverlay from "./LoadingOverlay";
 import {useAlert} from "../pages/contexts/AlertContext";
-import Alert from "../components/Alert";
+import Alert from "../utils/Alert";
 
 const ProductCard = ({
   id,

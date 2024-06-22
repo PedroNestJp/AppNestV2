@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAlert } from '../pages/contexts/AlertContext'; // Importe useAlert
+import { useAlert } from '../pages/contexts/AlertContext';
 import ModalAlert from './ModalAlert';
 
 function Alert() {

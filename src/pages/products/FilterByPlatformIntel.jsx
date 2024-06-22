@@ -9,7 +9,7 @@ import AdsHeader from "../../components/AdsHeader";
 import BBPf from "../home/BBPf";
 import Departments from "../../components/Departments";
 import { useAlert } from "../contexts/AlertContext";
-import Alert from "../../components/Alert";
+import Alert from "../../utils/Alert";
 
 const FilterByPlatformIntel = () => {
   const [products, setProducts] = useState([]);

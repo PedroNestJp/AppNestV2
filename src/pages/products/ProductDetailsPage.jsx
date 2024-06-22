@@ -23,7 +23,7 @@ import {
 import Header from "../../components/Header";
 import Reviews from "../../components/Reviews";
 import LoadingOverlay from "../../components/LoadingOverlay";
-import ModalAlert from "../../components/ModalAlert";
+import ModalAlert from "../../utils/ModalAlert";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
