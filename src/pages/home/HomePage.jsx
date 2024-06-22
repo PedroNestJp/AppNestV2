@@ -27,7 +27,7 @@ const HomePage = () => {
           <Link to="/highEndPcsPage">
             <img
               className="pcTypeImg"
-              src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgb-corsair-680x-rgb.png?alt=media&token=95ca548e-9af5-4754-8005-565dca5ff810"
+              src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2Fgabinete-gamer-liketec-mad-rock-black-mini-tower-argb-m-atx-frente-e-lateral-em-vidro-lc-cb3x2-madrock.png?alt=media&token=091b37c5-da04-44df-ac1f-8e8080686008"
               alt="PC HIGH-END"
             />
             <h2 className="h2" id="pcTypeTxt" title="Tipo de PC High-End">
