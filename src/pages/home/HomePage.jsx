@@ -9,12 +9,7 @@ import Departments from "../../components/Departments";
 import BBPf from "./BBPf";
 import BudgetBuilderArea from "./BudgetBuilderArea";
 
-
-
-
-
 const HomePage = () => {
-
   return (
     <>
       <Header />

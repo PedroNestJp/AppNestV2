@@ -26,6 +26,7 @@ import SearchResults from '../pages/SearchResults';
 import FilterByPlatformAmd from '../pages/products/FilterByPlatformAmd';
 import FilterByPlatformIntel from '../pages/products/FilterByPlatformIntel';
 import BudgetBuilder from '../pages/BudgetBuilder';
+import SearchResultsPage from '../components/SearchResults';
 
 function EdnPoints() {
     return (
@@ -33,6 +34,7 @@ function EdnPoints() {
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/results" element={<SearchResultsPage />} />
                     <Route path="/products/:id" element={<ProductDetailsPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />

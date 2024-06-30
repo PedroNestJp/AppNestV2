@@ -82,57 +82,60 @@ function Header() {
   };
 
   return (
-    <div className="navbarhome">
-      <Navbar />
-      <Link to="/" title="clique para ir para a tela inicial">
-        <img
-          className="headerLogo"
-          src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2"
-          alt="logo da Nest Informática"
-          id="headerLogo"
-        />
-      </Link>
-      <ProductsSearch />
-      <div className="areaProfile">
-        {renderProfileLink()}
-        {renderUserGreeting()}
-      </div>
+    <>
+      <div className="navbarhome">
+        <Navbar />
+        <Link to="/" title="clique para ir para a tela inicial">
+          <img
+            className="headerLogo"
+            src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2"
+            alt="logo da Nest Informática"
+            id="headerLogo"
+          />
+        </Link>
+        <ProductsSearch  />
+        <div className="areaProfile">
+          {renderProfileLink()}
+          {renderUserGreeting()}
+        </div>
 
-      <div className="iconsNavHome">
-        <span>
-          <Link
-            to="/cart"
-            className="shoppingCartIcon"
-            id="shoppingCartIcon"
-            title="Ir para o seu carrinho"
-          >
-            <FaShoppingCart />
-          </Link>
-        </span>
-        <span>
-          <a
-            href="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0"
-            className="supportIcon"
-            id="supportIcon"
-            title="Fale conosco"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <RiCustomerService2Fill />
-          </a>
-        </span>
-        <span>
-          <Link
-            to="/favorites"
-            className="favoritesIcon"
-            id="favoritesIcon"
-            title="Seus produtos favoritos"
-          >
-            <BsHeartFill />
-          </Link>
-        </span>
+        <div className="iconsNavHome">
+          <span>
+            <Link
+              to="/cart"
+              className="shoppingCartIcon"
+              id="shoppingCartIcon"
+              title="Ir para o seu carrinho"
+            >
+              <FaShoppingCart />
+            </Link>
+          </span>
+          <span>
+            <a
+              href="https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0"
+              className="supportIcon"
+              id="supportIcon"
+              title="Fale conosco"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <RiCustomerService2Fill />
+            </a>
+          </span>
+          <span>
+            <Link
+              to="/favorites"
+              className="favoritesIcon"
+              id="favoritesIcon"
+              title="Seus produtos favoritos"
+            >
+              <BsHeartFill />
+            </Link>
+          </span>
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
 

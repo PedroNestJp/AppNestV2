@@ -18,7 +18,9 @@ export const CarroselAds = () => {
                 infiniteLoop
                 autoPlay
                 slidesToShow={3}
-                showThumbs={false}>
+                showThumbs={false}
+                swipeable
+                emulateTouch>
                 <div>
                     <img
                         id="carouselAdsImg"

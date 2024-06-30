@@ -1,65 +1,31 @@
-import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import ProductCard from "./ProductCard";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-import LoadingOverlay from "./LoadingOverlay";
+import { useFetchProducts } from "../hooks/fetchProducts";
+import { useMemo } from "react";
+import { useGroupSize } from "../hooks/useGroupSize";
 
+const ProductGroup = ({ group }) => (
+  <div>
+    {group.map(({ id, ...product }) => (
+      <ProductCard key={id} id={id} {...product} />
+    ))}
+  </div>
+);
 export const Carrosel = () => {
-  const [products, setProducts] = useState([]);
-  const [productGroups, setProductGroups] = useState([]);
-  const [groupSize, setGroupSize] = useState(3);
+  const { products, loading } = useFetchProducts();
+  const groupSize = useGroupSize();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsCol = collection(db, "products");
-      const snapshot = await getDocs(productsCol);
-      const productsData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setProducts(productsData);
-    };
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    const divideProductsIntoGroups = () => {
-      const groups = [];
-      const totalProducts = products.length;
-      let startIndex = 0;
-      while (startIndex < totalProducts) {
-        const endIndex = startIndex + groupSize;
-        const group = products.slice(startIndex, endIndex);
-        groups.push(group);
-        startIndex = endIndex;
-      }
-      setProductGroups(groups);
-    };
-
-    divideProductsIntoGroups();
+  const productGroups = useMemo(() => {
+    const groups = [];
+    for (let i = 0; i < products.length; i += groupSize) {
+      groups.push(products.slice(i, i + groupSize));
+    }
+    return groups;
   }, [products, groupSize]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.matchMedia("(max-width: 980px)").matches) {
-        setGroupSize(1);
-      } else if (window.matchMedia("(max-width: 1200px)").matches) {
-        setGroupSize(2);
-      } else {
-        setGroupSize(3);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   if (!products) {
-    return <LoadingOverlay />;
+    return loading;
   }
 
   return (
@@ -69,15 +35,12 @@ export const Carrosel = () => {
           showArrows
           infiniteLoop={false}
           showThumbs={false}
-          preventScrollOnTouchMove={true}>
+          preventScrollOnTouchMove
+          swipeable
+          emulateTouch
+        >
           {productGroups.map((group, index) => (
-            <div key={index}>
-              {
-                group.map(({ id, ...product }) => (
-                  <ProductCard key={id} id={id} {...product} />
-                ))
-              }
-            </div>
+            <ProductGroup key={index} group={group} />
           ))}
         </Carousel>
       </div>
