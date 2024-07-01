@@ -89,7 +89,10 @@ justify-content: center;
   height: 5rem;
   border: 1px solid var(--textColor-red1);
   border-radius: 2rem;
-  top: 10rem;
+  top: 40%;
+  transition: all .25s ease-in;
+  opacity: .4;
+  position: absolute;
 }
 
 .carousel .control-next.control-arrow:before {

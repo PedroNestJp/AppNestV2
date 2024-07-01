@@ -32,7 +32,6 @@ const ContactLine = ({ className, id }) => {
   );
 };
 
-const ContactLine1 = () => <ContactLine className="contactsLine" id="contactsLineHome" />;
 const ContactLine2 = () => <ContactLine className="contactsLine-2" />;
 
-export { ContactLine1, ContactLine2 };
+export { ContactLine2 }
