@@ -11,16 +11,11 @@
 }
 
 .carouselAds, #carouselAdsImg{
-  height: 20rem;
+  height: 15vh;
   width: 100vw;
 
 }
 
-@media (max-width: 1366px) {
-  .carouselAds, #carouselAdsImg {
-    height: 15rem;
-  }  
-}
 @media (max-width: 950px) {
   .carouselAds, #carouselAdsImg {
     height: 12rem;

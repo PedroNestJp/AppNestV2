@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
-import * as RiIcons from 'react-icons/ri'
-import '../styles/AdsHeader.css'
-import { CarroselAds } from "./CarroselAds";
+import { RiWhatsappFill } from 'react-icons/ri';
+import '../styles/AdsHeader.css';
+import CarouselAds from "./CarouselAds";
 
-export default function AdsHeader() {
+const AdsHeader = () => {
   return (
     <>
-      <section className="adsDiv">
-        <CarroselAds />
+      <section className="adsDiv" aria-label="Advertisement Carousel Section">
+        <CarouselAds />
       </section>
       <span className="chatWhatsapp">
         <Link
           to={process.env.REACT_APP_URL_WHATSAPP}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
+          aria-label="Chat with us on Whatsapp"
         >
-          <RiIcons.RiWhatsappFill alt="Chat do Whatsapp" className="icon-chat" />
+          <RiWhatsappFill className="icon-chat" aria-hidden="true" />
         </Link>
       </span>
     </>
-  )
-}
+  );
+};
+
+export default AdsHeader;

@@ -1,36 +1,47 @@
-.adsDiv{
-    margin-top: 6rem;
+.adsDiv {
+    margin-top: 3rem;
     background-color: var(--color-black1);
 }
 
-@media (max-width: 1080px) {
-    .ads-div{
-        height: 130px;
-    }
-}
-
 .ads-log {
-
     width: 100px;
     height: 60px;
 }
 
 @media (max-width: 1080px) {
-    .ads-log{
+    .ads-log {
         width: 100px;
         height: 30px;
     }
 }
 
-.ads-text{
+.ads-text {
     width: 65px;
     height: 45px;
-
     font-weight: 900;
     font-size: 24px;
     color: var(--color-white1);
 }
 
-.carouselAdsImg{
+.carouselAdsImg {
     height: 15vh;
+}
+
+.chatWhatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.icon-chat {
+    width: 50px;
+    height: 50px;
+    color: var(--color-green);
+    transition: transform 0.3s;
+}
+
+.icon-chat:hover,
+.icon-chat:focus {
+    transform: scale(1.1);
 }
