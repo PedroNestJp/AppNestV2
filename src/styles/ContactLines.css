@@ -1,23 +1,17 @@
-.contactsLine#contactsLineHome {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-  background: var(--bgColor-grey1);
-}
 
 .social-media {
   width: 30px;
   height: 25px;
 }
 
-.contactsLine-2 {
+.contactsLine {
   display: flex;
   justify-content: center;
   padding-top: 10px;
   background: var(--bgColor-grey1);
 }
 
-.contactsLine2-text {
+.contactsLine-text {
   display: flex;
   width: 227px;
   height: 21px;

@@ -8,10 +8,10 @@ import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import ProductList from '../pages/admin/AddProducts';
 import AdminPage from '../pages/admin/AdminPage';
-import {Footer, SubFooter} from '../components/Footer';
+import { Footer, SubFooter } from '../components/Footer';
 import FavoritesPage from '../pages/Favorites';
 import AddImage from '../pages/admin/AddImage';
-import { ContactLine2 } from '../components/ContactLines';
+import { ContactLine } from '../components/ContactLine';
 import AboutUs from '../pages/home/footer/AboutUs';
 import Terms from '../pages/home/footer/Terms';
 import ResetPassword from '../pages/ResePassword';
@@ -42,27 +42,27 @@ function EdnPoints() {
                     <Route path='/favorites' element={<FavoritesPage />} />
                     <Route path='/aboutUs' element={<AboutUs />} />
                     <Route path='/terms' element={<Terms />} />
-                    <Route path='/resetPassword' element={<ResetPassword/>}/>
-                    <Route path='/userProfile' element={<UserProfile/>}/>
-                    <Route path='/gamingPcsPage' element={<GamingPcsPage/>}/>
-                    <Route path='/officePcsPage' element={<OfficePcsPage/>}/>
-                    <Route path='/peripheralsPage' element={<PeripheralsPage/>}/>
-                    <Route path='/monitorsPage' element={<MonitorsPage/>}/>
-                    <Route path='/highEndPcsPage' element={<HighEndPcsPage/>}/>
-                    <Route path='/allPcsPage' element={<AllPcsPage/>}/>
-                    <Route path='/filterByPlatformAmd' element={<FilterByPlatformAmd/>}/>
-                    <Route path='/filterByPlatformIntel' element={<FilterByPlatformIntel/>}/>
-                    <Route path='/searchResults' element={<SearchResults/>}/>
-                    <Route path='/budgetBuilder' element={<BudgetBuilder/>}/>
+                    <Route path='/resetPassword' element={<ResetPassword />} />
+                    <Route path='/userProfile' element={<UserProfile />} />
+                    <Route path='/gamingPcsPage' element={<GamingPcsPage />} />
+                    <Route path='/officePcsPage' element={<OfficePcsPage />} />
+                    <Route path='/peripheralsPage' element={<PeripheralsPage />} />
+                    <Route path='/monitorsPage' element={<MonitorsPage />} />
+                    <Route path='/highEndPcsPage' element={<HighEndPcsPage />} />
+                    <Route path='/allPcsPage' element={<AllPcsPage />} />
+                    <Route path='/filterByPlatformAmd' element={<FilterByPlatformAmd />} />
+                    <Route path='/filterByPlatformIntel' element={<FilterByPlatformIntel />} />
+                    <Route path='/searchResults' element={<SearchResults />} />
+                    <Route path='/budgetBuilder' element={<BudgetBuilder />} />
 
                     <Route path="/addProducts" element={<ProductList />} />
                     <Route path="/addImage" element={<AddImage />} />
                     <Route path="/admin" element={<AdminPage />} />
 
                 </Routes>
-                <ContactLine2/>
+                <ContactLine />
                 <Footer />
-                <SubFooter/>
+                <SubFooter />
             </AuthProvider>
         </div>
     )

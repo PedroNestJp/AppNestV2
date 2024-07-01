@@ -5,44 +5,44 @@ import {
   imgBbdPeripherals,
 } from "../img/imgs";
 
+const departments = [
+  {
+    name: "PCS",
+    link: "/allPcsPage",
+    img: imgBbdPc,
+  },
+  {
+    name: "MONITORES",
+    link: "/monitorsPage",
+    img: imgBbdMonitor,
+  },
+  {
+    name: "PERIFÉRICOS",
+    link: "/peripheralsPage",
+    img: imgBbdPeripherals,
+  },
+];
+
 const Departments = () => {
   return (
-    <section className="departments" id="departmentsHome">
+    <section className="departments" id="departmentsHome" aria-labelledby="Tutulos de departamnetos">
       <h1 className="h1" id="departmentsTitle">🗄DEPARTAMENTOS</h1>
       <div className="bbdBoxs">
-        <div className="styleBoxDepartments ">
-          <Link to="/allPcsPage">
-            <img
-              className="imgBbd"
-              srcSet={imgBbdPc}
-              alt="PCS"
-              title="Mostrar Todos os PCs"
-            />
-            <h2 className="h2">PCS</h2>
-          </Link>
-        </div>
-        <div className="styleBoxDepartments ">
-          <Link to="/monitorsPage">
-            <img
-              className="imgBbd"
-              srcSet={imgBbdMonitor}
-              alt="MONITORES"
-              title="Mostrar Todos os monitores"
-            />
-            <h2 className="h2">MONITORES</h2>
-          </Link>
-        </div>
-        <div className="styleBoxDepartments ">
-          <Link to="/peripheralsPage">
-            <img
-              className="imgBbd"
-              srcSet={imgBbdPeripherals}
-              alt="PERIFERICOS"
-              title="Mostrar todos os periféricos"
-            />
-            <h2 className="h2">PERIFERICOS</h2>
-          </Link>
-        </div>
+        {departments.map((department) => (
+          <div className="styleBoxDepartments " key={department.name}>
+            <Link to={department.link}>
+              <img
+                key={department.name}
+                id={department.name}
+                className="imgBbd"
+                srcSet={department.img}
+                alt={department.name}
+                title={department.name}
+              />
+              <h2 className="h2">{department.name}</h2>
+            </Link>
+          </div>
+        ))}
       </div>
     </section>
   )
