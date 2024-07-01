@@ -1,92 +1,105 @@
-import { Link } from "react-router-dom"
-import '../styles/Footer.css'
+import React from 'react';
+import { Link } from "react-router-dom";
+import '../styles/Footer.css';
+
+const footerData = [
+  {
+    type: "institutional",
+    title: "Institutional",
+    links: [
+      { to: "/aboutUs", title: "Quem somos" },
+      { to: "/terms", title: "Termos e Condições de Venda" },
+      { to: "/exchangePolicy", title: "Política de Troca e Devoluções" },
+    ],
+  },
+  {
+    type: "doubts",
+    title: "Dúvidas",
+    links: [
+      { to: "/howToBuy", title: "Como comprar" },
+      { to: "/delivery", title: "Prazos e entregas" },
+      { to: "/paymentMethods", title: "Formas de Pagamentos" },
+    ],
+  },
+  {
+    type: "help",
+    title: "Ajuda",
+    links: [
+      { to: "/tutorialVideos", title: "Vídeos Tutoriais" },
+      { to: "/productHandling", title: "Manuseio do Produto" },
+      { to: "https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0", title: "Fale Conosco", external: true },
+    ],
+  },
+];
 
 const Footer = () => {
-    return (
+  return (
+    <footer className="footer">
+      <div className="info-footer">
+        <div className="texts-info-footer">
+          {footerData.map((section) => (
+            <FooterSection key={section.type} section={section} />
+          ))}
+        </div>
+      </div>
+    </footer>
+  );
+};
 
-        <section className="footer">
-            <div className="info-footer">
-                <div className="texts-info-footer">
-                    <div className="institutional">
-                        <p>Institutional</p>
-                        <li>
-                            <Link className="texts-links-footer whoAreWe-footer " to='/aboutUs'>Quem somos</Link>
-                        </li>
-                        <li>
-                            <Link className="texts-links-footer termsFooter " to='/terms'>Termos e Condições de Venda</Link>
-                        </li>
-                        <li>
-                            <Link className="texts-links-footer exchangeAndReturnPolicy-footer ">Política de Troca e Devoluções</Link>
-                        </li>
-                    </div>
-                    <div className="doubts">
-                        <p> Dúvidas </p>
-                        <li>
-                            <Link className="texts-links-footer howToBuy-footer">Como comprar</Link>
-                        </li>
-                        <li>
-                            <Link className="texts-links-footer deadlineAndDelivery-footer">Prazos e entregas</Link>
-                        </li>
-                        <li>
-                            <Link className="texts-links-footer paymentMethods-footer">Formas de Pagamentos</Link>
-                        </li>
-                    </div>
-                    {/* <div className="client">
-                {/* <p> Clientes </p>
-                    <li>
-                        <Link className=" myAccount-footer">Minha conta</Link>
-                    </li>
-                    <li>
-                        <Link className="myRequests-footer">Meus pedidos</Link>
-                    </li>
-                    <li>
-                        <Link className="myTickets-footer">Meus tickets</Link>
-                    </li>
-                </div> */}
-                    <div className="help">
-                        <p> Ajuda </p>
-                        <li>
-                            <Link className="texts-links-footer tutorialVideos-footer">Videos Tutoriais</Link>
-                        </li>
-                        <li>
-                            <Link className="texts-links-footer productHandling-footer">Manuseio do Produto</Link>
-                        </li>
-                        <li>
-                            <Link target="blank" className="texts-links-footer contactUs-footer" to='https://api.whatsapp.com/message/JVU7KU5D3563D1?autoload=1&app_absent=0'>Fale Conosco</Link>
-                        </li>
-                    </div>
+const FooterSection = ({ section }) => (
+  <div className={section.type}>
+    <p>{section.title}</p>
+    <ul>
+      {section.links.map((link, index) => (
+        <FooterLink key={index} link={link} />
+      ))}
+    </ul>
+  </div>
+);
 
-                </div>
-            </div>
-
-        </section>
-
-    )
-}
+const FooterLink = ({ link }) => (
+  <li>
+    {link.external ? (
+      <a href={link.to} target="_blank" rel="noopener noreferrer" className="texts-links-footer">
+        {link.title}
+      </a>
+    ) : (
+      <Link to={link.to} className="texts-links-footer">
+        {link.title}
+      </Link>
+    )}
+  </li>
+);
 
 const SubFooter = () => {
-    return (
-        <section className="subFooter">
-            <div className="certifications"></div>
-            <div className="businessInformation">
-                <div className="logoSubFooter">
-                    <Link href="/">
-                        <img className="logoSubFooter"
-                            src={'https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2'} alt='logo' />
-                    </Link>
-                </div>
-                <div className="businessTexts">
-                    <p> NEST INFORMÁTICA ATACADO E VAREJO DE PRODUTOS DE INFORMATICA LTDA </p>
-                    <p> CNPJ: 43.061.678/0001-97 | JOÃO PESSOA-PB </p>
-                </div>
-                <div className="openingHours">
-                    <p> ATENDIMENTO </p>
-                    <p> De segunda a sexta das 8:30 às 12H / 13H às 18H </p>
-                    <p> SOMOS E-COMMERCE  NÃO TEMOS ATENDIMENTO LOCAL </p>
-                </div>
-            </div>
-            <div className="createdBy"> Criado por - <Link to=''> Meu Digital Agência </Link> </div>
-        </section>
-    )
-}
-export { Footer, SubFooter }
+  return (
+    <section className="subFooter">
+      <div className="certifications" aria-label="Certificações"></div>
+      <div className="businessInformation">
+        <div className="logoSubFooter">
+          <Link to="/">
+            <img
+              className="logoSubFooter"
+              src="https://firebasestorage.googleapis.com/v0/b/nest-informatica.appspot.com/o/images%2FlogoNestNew.png?alt=media&token=ffd0bd44-299a-4604-b341-d2805997cac2"
+              alt="Logo Nest Informática"
+            />
+          </Link>
+        </div>
+        <div className="businessTexts">
+          <p>NEST INFORMÁTICA ATACADO E VAREJO DE PRODUTOS DE INFORMÁTICA LTDA</p>
+          <p>CNPJ: 43.061.678/0001-97 | JOÃO PESSOA-PB</p>
+        </div>
+        <div className="openingHours">
+          <p>ATENDIMENTO</p>
+          <p>De segunda a sexta das 8:30 às 12H / 13H às 18H</p>
+          <p>SOMOS E-COMMERCE NÃO TEMOS ATENDIMENTO LOCAL</p>
+        </div>
+      </div>
+      <div className="createdBy">
+        Criado por - <Link to="">Meu Digital Agência</Link>
+      </div>
+    </section>
+  );
+};
+
+export { Footer, SubFooter };
