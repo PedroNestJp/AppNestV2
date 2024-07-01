@@ -35,7 +35,7 @@ const PeripheralsPage = () => {
     };
 
     getProducts();
-  }, []);
+  }, [showAlert]);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {

@@ -15,7 +15,7 @@ const OfficePcsPage = () => {
   const [products, setProducts] = useState([]);
   const [productGroups, setProductGroups] = useState([]);
   const [groupSize, setGroupSize] = useState(3); // Valor inicial
-  const {showAlert} = useAlert()
+  const { showAlert } = useAlert()
 
   useEffect(() => {
     const getProducts = async () => {
@@ -35,7 +35,7 @@ const OfficePcsPage = () => {
     };
 
     getProducts();
-  }, []);
+  }, [showAlert]);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {
@@ -75,7 +75,7 @@ const OfficePcsPage = () => {
 
   return (
     <>
-    <Alert/>
+      <Alert />
       <Header />
       <AdsHeader />
       <section className="container-2" title="container-2">

@@ -35,7 +35,7 @@ const FilterByPlatformIntel = () => {
       );
     };
     getProducts();
-  }, []);
+  }, [showAlert]);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {

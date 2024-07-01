@@ -34,7 +34,7 @@ const FilterByPlatformAmd = () => {
       );
     };
     getProducts();
-  }, []);
+  }, [showAlert]);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {

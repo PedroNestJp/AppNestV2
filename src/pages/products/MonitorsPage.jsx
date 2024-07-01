@@ -37,7 +37,7 @@ const MonitorsPage = () => {
     };
 
     getProducts();
-  }, []);
+  }, [showAlert]);
 
   useEffect(() => {
     const divideProductsIntoGroups = () => {
